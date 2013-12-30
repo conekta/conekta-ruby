@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'conekta/ruby/new/version'
+require 'conekta/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "conekta-ruby-new"
-  spec.version       = Conekta::Ruby::New::VERSION
+  spec.name          = "conekta"
+  spec.version       = Conekta::VERSION
   spec.authors       = ["MauricioMurga"]
   spec.email         = ["mauricio_murga@hotmail.com"]
   spec.description   = %q{TODO: Write a gem description}
