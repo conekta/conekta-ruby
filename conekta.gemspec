@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "conekta"
   spec.version       = Conekta::VERSION
   spec.authors       = ["MauricioMurga"]
-  spec.email         = ["mauricio_murga@hotmail.com"]
+  spec.email         = ["mauricio@conekta.io"]
   spec.description   = %q{TODO: Write a gem description}
   spec.summary       = %q{TODO: Write a gem summary}
   spec.homepage      = ""

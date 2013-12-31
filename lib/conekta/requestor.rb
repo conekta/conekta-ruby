@@ -18,10 +18,10 @@ module Conekta
         end
         response = conn.method(meth).call do |req|
           req.url url
-          req.headers['Content-Type'] = 'application/json'
           req.headers['HTTP_AUTHORIZATION'] = "Basic #{ Base64.encode64('1tv5yJp3xnVZ7eK67m4h' + ':')}"
           req.headers['Accept'] = "vnd.conekta-v0.3.0"
           if params
+            req.headers['Content-Type'] = 'application/json'
             req.body = params.to_json
           end
         end
