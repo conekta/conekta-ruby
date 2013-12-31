@@ -11,23 +11,32 @@ module Conekta
     def unset_key(k)
       @values.delete(k)
     end
-    def load_from(hash)
-      hash.each do |k,v|
-        if v.respond_to? :each and !v.instance_of?(ConektaObject)
-          v = Conekta::Util.convert_to_conekta_object(v)
+    def load_from(response)
+      if response.instance_of?(Array)
+        response.each_with_index do |v, i|
+          load_from_enumerable(i,v)
         end
-        if self.instance_of?(ConektaObject)
-          self[k] = v
-        else
-          self.class.send(:define_method, k.to_sym, Proc.new {v})
+      elsif response.instance_of?(Hash)
+        response.each do |k,v|
+          load_from_enumerable(k,v)
         end
-        self.set_val(k,v)
       end
     end
     def to_s
       @values.inspect
     end
-    private
+    protected
+    def load_from_enumerable(k,v)
+      if v.respond_to? :each and !v.instance_of?(ConektaObject)
+        v = Conekta::Util.convert_to_conekta_object(v)
+      end
+      if self.instance_of?(ConektaObject)
+        self[k] = v
+      else
+        self.class.send(:define_method, k.to_sym, Proc.new {v}) #if k.instance_of?(String)
+      end
+      self.set_val(k,v)
+    end
     def inspect
       if self.respond_to? :each
         self.to_s

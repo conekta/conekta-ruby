@@ -1,10 +1,19 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 describe :conekta_tests do
-  it "puts hello" do
-    c = Conekta::Charge.get("52bf93a0cfc26cc6b9000071")
-    puts c
-    puts c.id
-    puts c.amount
-    puts c.methods.inspect
+  it "get charge" do
+p "GET CHARGE"
+    charge = Conekta::Charge.get("52bf93a0cfc26cc6b9000071")
+    puts charge
+    puts charge.id
+    puts charge.amount
+    puts charge.payment_method
+  end
+  it "where charge" do
+p "WHERE CHARGE"
+    charges = Conekta::Charge.where()
+    puts charges.class
+    puts charges
+    puts charges[0].class
+    puts charges[0]
   end
 end

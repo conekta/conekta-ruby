@@ -8,10 +8,10 @@ module Conekta
       }
     end
     def self.convert_to_conekta_object(resp)
-puts resp.class
-      if resp.has_key?('object') and types[resp['object']]
+      if resp.instance_of?(Hash) and resp.has_key?('object') and types[resp['object']]
         instance = types[resp['object']].new()
         instance.load_from(resp)
+p instance.class
         return instance
       end
       if resp.respond_to? :each

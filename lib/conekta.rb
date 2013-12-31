@@ -2,6 +2,12 @@ require 'json'
 
 require "conekta/version"
 
+require "conekta/operations/get"
+require "conekta/operations/where"
+require "conekta/operations/create"
+#require "conekta/operations/delete"
+#require "conekta/operations/update"
+
 require "conekta/conekta_object"
 require "conekta/resource"
 require "conekta/requestor"
