@@ -25,17 +25,15 @@ module Conekta
       end
     end
     def to_s
-      string = ""
-      @values.each do |k,v|
-        string = string + v.to_s
-#        if v.instance_of?(ConektaObject)
-#          p v.inspect
-#        else
-#          p v.to_s
-#        end
+      @values.inspect
+    end
+    private
+    def inspect
+      if self.respond_to? :each
+        self.to_s
+      else
+        super
       end
-string
-#      @values.inspect
     end
   end
 end

@@ -27,5 +27,13 @@ module Conekta
     def to_s
       @values.inspect
     end
+    protected
+    def inspect
+      if self.respond_to? :each
+        self.to_s
+      else
+        super
+      end
+    end
   end
 end

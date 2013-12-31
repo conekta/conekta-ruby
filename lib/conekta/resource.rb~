@@ -13,8 +13,9 @@ module Conekta
       if id == nil
         raise Exception.new("no id")
       end
-      self.class.url + "/" + id.to_s
+      self.class.url + "/" + id
     end
+    protected
     def self.get(id)
       instance = self.new(id)
       url = instance.url
