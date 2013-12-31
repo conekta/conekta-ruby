@@ -1,0 +1,7 @@
+module Conekta
+  class Charge < Resource
+    def load_from(values)
+      super
+    end
+  end
+end
