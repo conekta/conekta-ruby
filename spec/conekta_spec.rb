@@ -1,5 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 describe :conekta_tests do
+  Conekta.api_key = '1tv5yJp3xnVZ7eK67m4h'
   describe :charge_tests do
 #    it "get charge" do
 #  p "GET CHARGE"
@@ -42,8 +43,12 @@ describe :conekta_tests do
         "card"=> "tok_test_visa_4242"
       })
       puts charge.status
-      charge.capture
-      puts charge.status
+      begin
+        charge.capture
+        puts charge.status
+      rescue Exception => e
+        p e.message
+      end
     end
   end
 

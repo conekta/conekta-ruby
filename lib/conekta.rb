@@ -13,6 +13,7 @@ require "conekta/conekta_object"
 require "conekta/resource"
 require "conekta/requestor"
 require "conekta/util"
+require "conekta/error"
 require "conekta/payment_method"
 require "conekta/charge"
 

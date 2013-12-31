@@ -7,6 +7,7 @@ require "conekta/operations/where"
 require "conekta/operations/create"
 #require "conekta/operations/delete"
 #require "conekta/operations/update"
+require "conekta/operations/custom_action"
 
 require "conekta/conekta_object"
 require "conekta/resource"
