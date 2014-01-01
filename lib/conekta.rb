@@ -20,8 +20,12 @@ require "conekta/charge"
 module Conekta
   #@api_base = 'https://api.conekta.io'
   @api_base = 'http://localhost:3000'
+  @api_version = '0.3.0'
   def self.api_base
     @api_base
+  end
+  def self.api_version
+    @api_version
   end
   def self.api_key
     @api_key

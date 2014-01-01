@@ -1,4 +1,3 @@
-require "active_support"
 module Conekta
   module Util
     def self.types

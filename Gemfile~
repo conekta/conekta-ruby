@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 gem 'sys-uname'
+gem 'base64'
 gem 'rspec'
 gem 'faraday'
 gem 'json'

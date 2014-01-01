@@ -1,4 +1,4 @@
-require "active_support"
+#require "active_support"
 module Conekta
   module Util
     def self.types
@@ -11,7 +11,6 @@ module Conekta
       if resp.instance_of?(Hash) and resp.has_key?('object') and types[resp['object']]
         instance = types[resp['object']].new()
         instance.load_from(resp)
-p instance.class
         return instance
       end
       if resp.respond_to? :each
