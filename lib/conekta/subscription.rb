@@ -3,7 +3,7 @@ module Conekta
     include Conekta::Operations::Update
     def url
       if id == nil
-        raise Exception.new("no id")
+        raise Error.new('Could not get the id of ' + self.class.class_name + ' instance.')
       end
       self.customer.url + "/subscription"
     end

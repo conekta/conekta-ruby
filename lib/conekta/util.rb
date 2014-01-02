@@ -7,7 +7,9 @@ module Conekta
         'customer' => Customer,
         'card' => Card,
         'subscription' => Subscription,
-        'plan' => Plan
+        'plan' => Plan,
+        'token' => Token,
+        'event' => Event
       }
     end
     def self.convert_to_conekta_object(resp)

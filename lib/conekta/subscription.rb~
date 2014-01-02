@@ -5,7 +5,7 @@ module Conekta
       if id == nil
         raise Exception.new("no id")
       end
-      self.customer.url + "subscription"
+      self.customer.url + "/subscription"
     end
   end
 end

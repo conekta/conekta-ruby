@@ -7,7 +7,7 @@ module Conekta
       if id == nil
         raise Exception.new("no id")
       end
-      self.customer.url + "subscription/" + id
+      self.customer.url + self.class.url + "/" + id
     end
     def delete
       self.delete_member('customer','cards')
