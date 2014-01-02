@@ -38,7 +38,7 @@ module Conekta
             end
           end
         else
-          self.class.send(:define_method, member, Proc.new {nil})
+          self.create_attr(member.to_s, nil)
         end
         self
       end

@@ -41,6 +41,16 @@ module Conekta
         super
       end
     end
+    def create_attr(k,v)
+        create_method( "#{k}=".to_sym ) { |val| 
+            instance_variable_set( "@" + k, val)
+        }
+        self.send("#{k}=".to_sym, v)
+        self.class.send(:remove_method, "#{k}=".to_sym)
+        create_method( k.to_sym ) { 
+            instance_variable_get( "@" + k ) 
+        }
+    end
     protected
     def to_hash
       hash = Hash.new
@@ -51,16 +61,6 @@ module Conekta
     end
     def create_method( name, &block )
         self.class.send( :define_method, name, &block )
-    end
-    def create_attr(k,v)
-        create_method( "#{k}=".to_sym ) { |val| 
-            instance_variable_set( "@" + k, val)
-        }
-        self.send("#{k}=".to_sym, v)
-        self.class.send(:remove_method, "#{k}=".to_sym)
-        create_method( k.to_sym ) { 
-            instance_variable_get( "@" + k ) 
-        }
     end
     def load_from_enumerable(k,v)
       if v.respond_to? :each and !v.instance_of?(ConektaObject)

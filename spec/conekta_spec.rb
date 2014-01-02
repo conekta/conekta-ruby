@@ -142,6 +142,8 @@ describe :conekta_tests do
       p customer.cards[0].delete
       p "#0"
       p customer.cards[0]
+      p "#0 cus"
+      p customer.cards[0].customer
       p "delete"
       p customer.cards[0].delete
       p "#0"

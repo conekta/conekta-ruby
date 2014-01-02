@@ -13,7 +13,6 @@ module Conekta
         if obj.class.class_name == "ConektaObject"
           self.method(parent).call.method(member).call.each do |(k, v)|
             if v.id == self.id
-              self.method(parent).call.method(member).call.unset_key(k)
               self.method(parent).call.method(member).call[k] = nil
               # Shift hash array
               shift = false
@@ -26,13 +25,20 @@ module Conekta
                   shift = true
                 end
               end
-              # Remove last member because the hash array was shifted
-              self.method(parent).call.method(member).call.delete(self.method(parent).call.method(member).call.count-1)
+              n_members = self.method(parent).call.method(member).call.count
+              if (n_members - 1) != 0
+                # Remove last member because the hash array was shifted
+                self.method(parent).call.method(member).call.unset_key(n_members - 1)
+                self.method(parent).call.method(member).call.delete(n_members - 1)
+              else 
+                self.method(parent).call.method(member).call.unset_key(0)
+                self.method(parent).call.method(member).call.delete(0)
+              end
               break
             end
           end
         else
-          self.class.send(:define_method, member, Proc.new {nil})
+          self.create_attr(member, nil)
         end
         self
       end

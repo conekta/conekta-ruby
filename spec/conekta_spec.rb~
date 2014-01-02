@@ -146,7 +146,7 @@ describe :conekta_tests do
       p customer.cards[0].delete
       p "#0"
       p customer.cards[0]
-      p customer.cards
+      p customer.cards.class
     end
   end
 
