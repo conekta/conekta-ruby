@@ -18,9 +18,6 @@ module Conekta
       if resp.respond_to? :each
         instance = ConektaObject.new
         instance.load_from(resp)
-#p "insatnce!"
-#p instance
-#p "insatnce!"
         return instance
       end
       return instance

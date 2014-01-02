@@ -6,8 +6,7 @@ module Conekta
         member = member.to_sym
         requestor = Requestor.new
         response = requestor.request(:post, url, params)
-
-        if self.method(member).call.class.class_name == "ConektaObject"
+        if self.method(member).call and self.method(member).call.class.class_name == "ConektaObject"
           arr = [response]
           self.method(member).call.values.each do |(k,v)|
             arr << v.to_hash
@@ -17,7 +16,7 @@ module Conekta
           instances = self.method(member).call
           instance = instances[0]
         else
-          instance = Util.types[member].new()
+          instance = Util.types[member.to_s].new()
           instance.load_from(response)
           self.create_attr(member.to_s, instance)
           self.set_val(member.to_sym, instance)

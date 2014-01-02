@@ -18,12 +18,15 @@ module Conekta
           self.cards.set_val(k,v)
         end
       end
-      if self.respond_to? :subscription
+      if self.respond_to? :subscription and self.subscription
          self.subscription.create_attr('customer', customer)
       end
     end
     def create_card(params)
       self.create_member('cards', params)
+    end
+    def create_subscription(params)
+      self.create_member('subscription', params)
     end
   end
 end

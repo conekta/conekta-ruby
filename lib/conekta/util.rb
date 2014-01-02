@@ -6,7 +6,8 @@ module Conekta
         'charge' => Charge,
         'customer' => Customer,
         'card' => Card,
-        'subscription' => Subscription
+        'subscription' => Subscription,
+        'plan' => Plan
       }
     end
     def self.convert_to_conekta_object(resp)
