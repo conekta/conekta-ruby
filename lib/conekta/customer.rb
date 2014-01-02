@@ -15,13 +15,11 @@ module Conekta
       self.cards.each do |k,v|
         if !v.respond_to? :deleted or !v.deleted
           v.create_attr('customer', customer)
-#          v.class.send(:define_method, :customer, Proc.new {customer})
           self.cards.set_val(k,v)
         end
       end
       if self.respond_to? :subscription
          self.subscription.create_attr('customer', customer)
-#        self.subscription.class.send(:define_method, :customer, Proc.new {customer})
       end
     end
     def create_card(params)

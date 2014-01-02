@@ -10,11 +10,6 @@ module Conekta
         if self.method(member).call.class.class_name == "ConektaObject"
           arr = [response]
           self.method(member).call.values.each do |(k,v)|
-p "k"
-p k
-p "v"
-p v.inspect
-
             arr << v.to_hash
           end
           self.method(member).call.load_from(arr)

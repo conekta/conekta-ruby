@@ -19,7 +19,7 @@ module Conekta
         else
           instance = Util.types[member].new()
           instance.load_from(response)
-          self.class.send(:define_method, member, Proc.new {instance})
+          self.create_attr(member.to_s, instance)
           self.set_val(member.to_sym, instance)
           self.load_from
         end
