@@ -125,6 +125,11 @@ describe :conekta_tests do
         :cards => ["tok_test_visa_4242"],
         :plan => "gold-plan"
       })
+#p customer
+#p customer.cards
+#p customer.cards.class
+#p customer.cards[0].class
+#p customer.cards[0]
       card = customer.create_card(:token => 'tok_test_visa_1881')
       card = customer.create_card(:token => 'tok_test_mastercard_4444')
       p customer.cards
@@ -132,9 +137,10 @@ describe :conekta_tests do
       p customer.cards[0]
       p customer.cards[1]
       p customer.cards[2]
-      p "c1"
-      p customer.cards[1].id
-      p customer.cards[1]
+      p "delete"
+      p customer.cards[1].delete
+      p "cards"
+      p customer.cards
     end
   end
 

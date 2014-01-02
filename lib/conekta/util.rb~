@@ -10,7 +10,7 @@ module Conekta
       }
     end
     def self.convert_to_conekta_object(resp)
-      if resp.instance_of?(Hash) and resp.has_key?('object') and types[resp['object']]
+      if resp.kind_of?(Hash) and resp.has_key?('object') and types[resp['object']]
         instance = types[resp['object']].new()
         instance.load_from(resp)
         return instance
@@ -18,6 +18,9 @@ module Conekta
       if resp.respond_to? :each
         instance = ConektaObject.new
         instance.load_from(resp)
+#p "insatnce!"
+#p instance
+#p "insatnce!"
         return instance
       end
       return instance
