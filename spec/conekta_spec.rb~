@@ -150,14 +150,74 @@ describe :conekta_tests do
 #      p customer.cards[0]
 #      p customer.cards.class
 #    end
-    it "creates a subscription" do
+#    it "creates a subscription" do
+#      customer = Conekta::Customer.create({
+#        :name => "James Howlett",
+#        :email => "james.howlett@forces.gov",
+#        :phone => "55-5555-5555",
+#        :cards => ["tok_test_visa_4242"]
+#      })
+#      p customer
+#      customer.create_subscription({
+#          :plan => "gold-plan"
+#        })
+#      p customer
+#    end
+    it "updates subscription" do
+      p "updates subscription"
       customer = Conekta::Customer.create({
         :name => "James Howlett",
         :email => "james.howlett@forces.gov",
-        :phone => "55-5555-5555"
+        :phone => "55-5555-5555",
+        :cards => ["tok_test_visa_4242"]
       })
       p customer
+      customer.create_subscription({
+          :plan => "gold-plan"
+        })
+      p customer
+      customer.subscription.update({:plan => "gold-plan3"})
     end
+  end
+  describe :plan_tests do
+#    it "get plan" do
+#      p "get plan"
+#      plans = Conekta::Plan.where
+#      p plans
+#      p = plans.first
+#      plan = Conekta::Plan.get(p.id)
+#      p plan
+#    end
+#    it "creates plan" do
+#      p "creates plan"
+#      plans = Conekta::Plan.where
+#      plan = Conekta::Plan.create({
+#        :id => "gold-plan" + plans.count.to_s,
+#        :name => "Gold Plan",
+#        :amount => 10000,
+#        :currency => "MXN",
+#        :interval => "month",
+#        :frequency => 1,
+#        :trial_period_days => 15,
+#        :expiry_count => 12})
+#      p plan
+#    end
+#    it "update plan" do
+#      p "update plan"
+#      plans = Conekta::Plan.where
+#      plan = plans.first
+#      plan.update({:name => 'Silver Plan'})
+#      p plan
+#    end
+#    it "delete plan" do
+#      p "delete plan"      
+#      plans = Conekta::Plan.where
+#      p plans.count
+#      plan = plans.first
+#      p plan.delete
+#      p plans.count
+#      p plans
+#    end
   end
 
 end

@@ -26,7 +26,7 @@ module Conekta
                 end
               end
               n_members = self.method(parent).call.method(member).call.count
-              last_index = if (n_members - 1) != 0 then n_members - 1 else 0 end
+              last_index = n_members - 1
               # Remove last member because the hash array was shifted
               self.method(parent).call.method(member).call.unset_key(last_index)
               self.method(parent).call.method(member).call.delete(last_index)

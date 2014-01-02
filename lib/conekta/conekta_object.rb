@@ -12,6 +12,12 @@ module Conekta
     def unset_key(k)
       @values.delete(k)
     end
+    def first
+      self[0]
+    end
+    def last
+      self[self.count - 1]
+    end
     def load_from(response)
       if response.instance_of?(Array)
         response.each_with_index do |v, i|

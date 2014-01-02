@@ -12,6 +12,12 @@ module Conekta
     def unset_key(k)
       @values.delete(k)
     end
+    def first
+      self[0]
+    end
+    def last
+      self[self.count]
+    end
     def load_from(response)
       if response.instance_of?(Array)
         response.each_with_index do |v, i|
@@ -27,9 +33,6 @@ module Conekta
     def to_s
       @values.inspect
     end
-    def self.class_name
-      self.name.split('::')[-1]
-    end
     def inspect
       if self.respond_to? :each
         if self.class.class_name != "ConektaObject"
@@ -40,6 +43,9 @@ module Conekta
       else
         super
       end
+    end
+    def self.class_name
+      self.name.split('::')[-1]
     end
     def create_attr(k,v)
         create_method( "#{k}=".to_sym ) { |val| 

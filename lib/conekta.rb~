@@ -20,6 +20,7 @@ require "conekta/charge"
 require "conekta/customer"
 require "conekta/card"
 require "conekta/subscription"
+require "conekta/plan"
 
 module Conekta
   #@api_base = 'https://api.conekta.io'
