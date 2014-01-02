@@ -27,9 +27,6 @@ module Conekta
     def to_s
       @values.inspect
     end
-    def self.class_name
-      self.name.split('::')[-1]
-    end
     def inspect
       if self.respond_to? :each
         if self.class.class_name != "ConektaObject"
@@ -40,6 +37,9 @@ module Conekta
       else
         super
       end
+    end
+    def self.class_name
+      self.name.split('::')[-1]
     end
     def create_attr(k,v)
         create_method( "#{k}=".to_sym ) { |val| 
