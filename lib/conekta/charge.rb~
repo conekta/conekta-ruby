@@ -7,13 +7,5 @@ module Conekta
     def capture
       custom_action(:post, 'capture', nil)
     end
-    def refund(params=nil)
-      if params == nil
-        params = {"amount" => self.amount}
-      else
-        params = {"amount" => params}
-      end
-      custom_action(:post, 'capture', params)
-    end
   end
 end
