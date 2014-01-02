@@ -3,11 +3,14 @@ module Conekta
     def self.types
       @types ||= {
         'card_payment' => PaymentMethod,
-        'charge' => Charge
+        'charge' => Charge,
+        'customer' => Customer,
+        'card' => Card,
+        'subscription' => Subscription
       }
     end
     def self.convert_to_conekta_object(resp)
-      if resp.instance_of?(Hash) and resp.has_key?('object') and types[resp['object']]
+      if resp.kind_of?(Hash) and resp.has_key?('object') and types[resp['object']]
         instance = types[resp['object']].new()
         instance.load_from(resp)
         return instance

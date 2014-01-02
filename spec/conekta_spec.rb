@@ -32,23 +32,109 @@ describe :conekta_tests do
 #      puts charge.amount
 #      puts charge.payment_method
 #    end
-    it "capture charge" do
-      p "CAPTURE CHARGE"
-      charge = Conekta::Charge.create({
-        "currency"=>"MXN",
-        "amount"=> 20000,
-        "description"=>"Stogies",
-        "reference_id"=>"9839-wolf_pack",
-        "capture" => false,
-        "card"=> "tok_test_visa_4242"
+#    it "capture charge" do
+#      p "CAPTURE CHARGE"
+#      charge = Conekta::Charge.create({
+#        "currency"=>"MXN",
+#        "amount"=> 20000,
+#        "description"=>"Stogies",
+#        "reference_id"=>"9839-wolf_pack",
+#        "capture" => false,
+#        "card"=> "tok_test_visa_4242"
+#      })
+#      puts charge.status
+#      begin
+#        charge.capture
+#        puts charge.status
+#      rescue Exception => e
+#        p e.message
+#      end
+#    end
+  end
+  describe :customer_tests do
+#    it "gets a customer" do
+#      p "gets a customer"
+#      customer = Conekta::Customer.get("cus_eVXwZTpkefmjvmVj8")
+#      p customer
+#      p customer.cards[0]
+#    end
+#    it "creates a customer" do
+#      p "creates a customer"
+#      customer = Conekta::Customer.create({
+#        :name => "James Howlett",
+#        :email => "james.howlett@forces.gov",
+#        :phone => "55-5555-5555",
+#        :cards => ["tok_test_visa_4242"],
+#        :plan => "gold-plan"
+#      })
+#      p customer
+#    end
+#    it "deletes a customer" do
+#      p "deletes a customer"
+#      customer = Conekta::Customer.create({
+#        :name => "James Howlett",
+#        :email => "james.howlett@forces.gov",
+#        :phone => "55-5555-5555",
+#        :cards => ["tok_test_visa_4242"],
+#        :plan => "gold-plan"
+#      })
+#      p customer
+#      customer.delete
+#      p customer
+#      p customer.deleted
+#    end
+#    it "updates a customer" do
+#      p "updates a customer"
+#      customer = Conekta::Customer.create({
+#        :name => "James Howlett",
+#        :email => "james.howlett@forces.gov",
+#        :phone => "55-5555-5555",
+#        :cards => ["tok_test_visa_4242"],
+#        :plan => "gold-plan"
+#      })
+#      p customer
+#      customer.update({
+#        :name => "Logan",
+#        :email => "logan@x-men.org",
+#      })
+#      p customer
+#    end
+#    it "creates a customer card" do
+#      p "creates a customer card"
+#      customer = Conekta::Customer.create({
+#        :name => "James Howlett",
+#        :email => "james.howlett@forces.gov",
+#        :phone => "55-5555-5555",
+#        :cards => ["tok_test_visa_4242"],
+#        :plan => "gold-plan"
+#      })
+#      p customer
+#      card = customer.create_card(:token => 'tok_test_visa_1881')
+#      p "new customer"
+#      p customer
+#      card = customer.create_card(:token => 'tok_test_mastercard_4444')
+#      p "new customer"
+#      p customer
+#    end
+    it "deletes and creates card" do
+      p "deletes and creates card"
+      customer = Conekta::Customer.create({
+        :name => "James Howlett",
+        :email => "james.howlett@forces.gov",
+        :phone => "55-5555-5555",
+        :cards => ["tok_test_visa_4242"],
+        :plan => "gold-plan"
       })
-      puts charge.status
-      begin
-        charge.capture
-        puts charge.status
-      rescue Exception => e
-        p e.message
-      end
+      card = customer.create_card(:token => 'tok_test_visa_1881')
+      card = customer.create_card(:token => 'tok_test_mastercard_4444')
+      p customer.cards
+      p "wa"
+      p customer.cards[0]
+      p customer.cards[1]
+      p customer.cards[2]
+      p "c1"
+      p customer.cards[1].id
+      p customer.cards[1]
     end
   end
 

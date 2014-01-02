@@ -5,9 +5,10 @@ require "conekta/version"
 require "conekta/operations/get"
 require "conekta/operations/where"
 require "conekta/operations/create"
-#require "conekta/operations/delete"
-#require "conekta/operations/update"
+require "conekta/operations/delete"
+require "conekta/operations/update"
 require "conekta/operations/custom_action"
+require "conekta/operations/create_member"
 
 require "conekta/conekta_object"
 require "conekta/resource"
@@ -16,6 +17,9 @@ require "conekta/util"
 require "conekta/error"
 require "conekta/payment_method"
 require "conekta/charge"
+require "conekta/customer"
+require "conekta/card"
+require "conekta/subscription"
 
 module Conekta
   #@api_base = 'https://api.conekta.io'
