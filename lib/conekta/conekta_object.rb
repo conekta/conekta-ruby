@@ -70,7 +70,6 @@ module Conekta
         self[k] = v
       else
         self.create_attr(k,v)
-#        self.class.send(:define_method, k.to_sym, Proc.new {v})
       end
       self.set_val(k,v)
     end

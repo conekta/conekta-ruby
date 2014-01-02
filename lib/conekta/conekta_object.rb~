@@ -57,7 +57,7 @@ module Conekta
             instance_variable_set( "@" + k, val)
         }
         self.send("#{k}=".to_sym, v)
-        self.send(:remove_method, "#{k}=".to_sym)
+        self.class.send(:remove_method, "#{k}=".to_sym)
         create_method( k.to_sym ) { 
             instance_variable_get( "@" + k ) 
         }
@@ -70,7 +70,6 @@ module Conekta
         self[k] = v
       else
         self.create_attr(k,v)
-#        self.class.send(:define_method, k.to_sym, Proc.new {v})
       end
       self.set_val(k,v)
     end
