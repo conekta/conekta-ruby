@@ -2,7 +2,9 @@ module Conekta
   module Util
     def self.types
       @types ||= {
+        'bank_transfer_payment' => PaymentMethod,
         'card_payment' => PaymentMethod,
+        'cash_payment' => PaymentMethod,
         'charge' => Charge,
         'customer' => Customer,
         'card' => Card,

@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["mauricio@conekta.io"]
   spec.description   = %q{Ruby library for https://api.conekta.io}
   spec.summary       = %q{This library provides https://api.conekta.io operations}
-  spec.homepage      = ""
+  spec.homepage      = "https://www.conekta.io"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Conekta::VERSION
   spec.authors       = ["MauricioMurga"]
   spec.email         = ["mauricio@conekta.io"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{Ruby library for https://api.conekta.io}
+  spec.summary       = %q{This library provides https://api.conekta.io operations}
   spec.homepage      = ""
   spec.license       = "MIT"
 

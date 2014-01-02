@@ -2,54 +2,80 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 describe :conekta_tests do
   Conekta.api_key = '1tv5yJp3xnVZ7eK67m4h'
   describe :charge_tests do
-#    it "get charge" do
-#  p "GET CHARGE"
-#      charge = Conekta::Charge.get("52bf93a0cfc26cc6b9000071")
-#      puts charge
-#      puts charge.id
-#      puts charge.amount
-#      puts charge.payment_method
-#    end
-#    it "where charge" do
-#  p "WHERE CHARGE"
-#      charges = Conekta::Charge.where()
-#      puts charges.class
-#      puts charges
-#      puts charges[0].class
-#      puts charges[0]
-#    end
-#    it "create charge" do
-#      p "GET CHARGE"
-#      charge = Conekta::Charge.create({
-#        "currency"=>"MXN",
-#        "amount"=> 20000,
-#        "description"=>"Stogies",
-#        "reference_id"=>"9839-wolf_pack",
-#        "card"=> "tok_test_visa_4242"
-#      })
-#      puts charge
-#      puts charge.id
-#      puts charge.amount
-#      puts charge.payment_method
-#    end
-#    it "capture charge" do
-#      p "CAPTURE CHARGE"
-#      charge = Conekta::Charge.create({
-#        "currency"=>"MXN",
-#        "amount"=> 20000,
-#        "description"=>"Stogies",
-#        "reference_id"=>"9839-wolf_pack",
-#        "capture" => false,
-#        "card"=> "tok_test_visa_4242"
-#      })
-#      puts charge.status
-#      begin
-#        charge.capture
-#        puts charge.status
-#      rescue Exception => e
-#        p e.message
-#      end
-#    end
+    before :each do
+      @valid_payment_method = {amount: 2000, currency: 'mxn', description: 'Some desc'}
+      @invalid_payment_method = {amount: 10, currency: 'mxn', description: 'Some desc'}
+      @valid_visa_card = {card: 'tok_test_visa_4242'}
+    end
+    p "charge tests"
+    it "succesful get charge" do
+      pm = @valid_payment_method
+      card = @valid_visa_card
+      cpm = Conekta::Charge.create(pm.merge(card))
+      cpm.status.should eq("paid")
+      pm = Conekta::Charge.get(cpm.id)
+      pm.class.class_name.should eq("Charge")
+    end
+    it "test succesful where" do
+      charges = Conekta::Charge.where
+      charges.class.class_name.should eq("ConektaObject")
+      charges[0].class.class_name.should eq("Charge")
+    end
+    it "tests succesful bank pm create" do
+      pm = @valid_payment_method
+      bank = {bank: {'type' => 'banorte'}}
+      bpm = Conekta::Charge.create(pm.merge(bank))
+      bpm.status.should eq("pending_payment")
+    end
+    it "tests succesful card pm create" do
+      pm = @valid_payment_method
+      card = @valid_visa_card
+      cpm = Conekta::Charge.create(pm.merge(card))
+      cpm.status.should eq("paid")
+    end
+    it "tests succesful oxxo pm create" do
+      pm = @valid_payment_method
+      oxxo = {cash: {'type' => 'oxxo'}}
+      bpm = Conekta::Charge.create(pm.merge(oxxo))
+      bpm.status.should eq("pending_payment")
+    end
+    it "test unsuccesful pm create" do
+      pm = @invalid_payment_method
+      card = @valid_visa_card
+      begin
+        cpm = Conekta::Charge.create(pm.merge(card))
+      rescue Exception => e
+        e.message.should eq("The minimum purchase is 3 MXN pesos for card payments")
+      end
+    end
+    it "test susccesful refund" do
+      pm = @valid_payment_method
+      card = @valid_visa_card
+      cpm = Conekta::Charge.create(pm.merge(card))
+      cpm.status.should eq("paid")
+      cpm.refund
+      cpm.status.should eq("refunded")
+    end
+    it "test unsusccesful refund" do
+      pm = @valid_payment_method
+      card = @valid_visa_card
+      cpm = Conekta::Charge.create(pm.merge(card))
+      cpm.status.should eq("paid")
+      begin
+        cpm.refund(3000)
+      rescue Exception => e
+        e.message.should eq("The order does not exist or the amount to refund is invalid")
+      end
+    end
+    it "tests succesful card pm create" do
+      pm = @valid_payment_method
+      card = @valid_visa_card
+      capture = {capture: false}
+      cpm = Conekta::Charge.create(pm.merge(card).merge(capture))
+      cpm.status.should eq("pre_authorized")
+      cpm.capture
+      cpm.status.should eq("paid")
+    end
   end
   describe :customer_tests do
 #    it "gets a customer" do
@@ -163,22 +189,22 @@ describe :conekta_tests do
 #        })
 #      p customer
 #    end
-    it "updates subscription" do
-      p "updates subscription"
-      customer = Conekta::Customer.create({
-        :name => "James Howlett",
-        :email => "james.howlett@forces.gov",
-        :phone => "55-5555-5555",
-        :cards => ["tok_test_visa_4242"]
-      })
-      p customer
-      customer.create_subscription({
-          :plan => "gold-plan"
-        })
-      p customer
-      customer.subscription.update({:plan => "gold-plan3"})
-      p customer
-    end
+#    it "updates subscription" do
+#      p "updates subscription"
+#      customer = Conekta::Customer.create({
+#        :name => "James Howlett",
+#        :email => "james.howlett@forces.gov",
+#        :phone => "55-5555-5555",
+#        :cards => ["tok_test_visa_4242"]
+#      })
+#      p customer
+#      customer.create_subscription({
+#          :plan => "gold-plan"
+#        })
+#      p customer
+#      customer.subscription.update({:plan => "gold-plan3"})
+#      p customer
+#    end
   end
   describe :plan_tests do
 #    it "get plan" do
