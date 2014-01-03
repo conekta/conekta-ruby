@@ -270,10 +270,16 @@ describe :conekta_tests do
 #    end
   end
   describe :event_tests do
-    it "test succesful where"
+    it "test succesful where" do
       events = Conekta::Event.where
       events.class_name.should eq("ConektaObject")
       events[0].class_name.should eq("Event")
+    end
+  end
+  describe :token_tests do
+    it "test succesful where" do
+      token = Conekta::Token.get("tok_test_visa_4242")
+      token.class_name.should eq("Token")
     end
   end
   describe :plan_tests do

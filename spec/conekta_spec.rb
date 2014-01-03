@@ -2,12 +2,12 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 describe :conekta_tests do
   Conekta.api_key = '1tv5yJp3xnVZ7eK67m4h'
   describe :charge_tests do
+#    p "charge tests"
 #    before :each do
 #      @valid_payment_method = {amount: 2000, currency: 'mxn', description: 'Some desc'}
 #      @invalid_payment_method = {amount: 10, currency: 'mxn', description: 'Some desc'}
 #      @valid_visa_card = {card: 'tok_test_visa_4242'}
 #    end
-#    p "charge tests"
 #    it "succesful get charge" do
 #      pm = @valid_payment_method
 #      card = @valid_visa_card
@@ -78,6 +78,7 @@ describe :conekta_tests do
 #    end
   end
   describe :customer_tests do
+#    p "customer tests"
 #    it "successful customer create" do
 #      customer = Conekta::Customer.create({
 #        :cards => ["tok_test_visa_4242"],
@@ -206,6 +207,7 @@ describe :conekta_tests do
 #    end
   end
   describe :error_tests do
+#    p "error tests"
 #    it "test no id error" do
 #      begin
 #        charge = Conekta::Charge.get(nil)
@@ -270,10 +272,18 @@ describe :conekta_tests do
 #    end
   end
   describe :event_tests do
+    p "event tests"
     it "test succesful where" do
       events = Conekta::Event.where
       events.class_name.should eq("ConektaObject")
       events[0].class_name.should eq("Event")
+    end
+  end
+  describe :token_tests do
+    p "token tests"
+    it "test succesful where" do
+      token = Conekta::Token.get("tok_test_visa_4242")
+      token.class_name.should eq("Token")
     end
   end
   describe :plan_tests do
