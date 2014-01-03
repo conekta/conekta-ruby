@@ -269,6 +269,13 @@ describe :conekta_tests do
 #      end
 #    end
   end
+  describe :event_tests do
+    it "test succesful where" do
+      events = Conekta::Event.where
+      events.class_name.should eq("ConektaObject")
+      events[0].class_name.should eq("Event")
+    end
+  end
   describe :plan_tests do
 #    it "get plan" do
 #      p "get plan"

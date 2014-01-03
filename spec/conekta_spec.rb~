@@ -206,67 +206,74 @@ describe :conekta_tests do
 #    end
   end
   describe :error_tests do
-    it "test no id error" do
-      begin
-        charge = Conekta::Charge.get(nil)
-      rescue Conekta::Error => e
-        e.message.should eq('Could not get the id of Charge instance.')
-      end
-    end
-    it "test no connection error" do
-      api_url = Conekta::api_base
-      Conekta::api_base = 'http://localhost:3001'
-      begin
-        customer = Conekta::Customer.create({cards: ["tok_test_visa_4242"]})
-      rescue Exception => e
-        e.class_name.should eq("NoConnectionError")
-      end
-      Conekta::api_base = api_url
-    end
-    it "test api error" do
-      begin
-        customer = Conekta::Customer.create({cards: {0=>"tok_test_visa_4242"}})
-      rescue Conekta::Error => e
-        e.class_name.should eq("ApiError")
-      end
-    end
-    it "test authentication error" do
-      Conekta::api_key = ""
-      begin
-        customer = Conekta::Customer.create({cards: ["tok_test_visa_4242"]})
-      rescue Conekta::Error => e
-        e.class_name.should eq("AuthenticationError")
-      end
-      Conekta.api_key = '1tv5yJp3xnVZ7eK67m4h'
-    end
-    it "test parameter validation error" do
-      begin
-        plan = Conekta::Plan.create({id: 'gold-plan'})
-      rescue Conekta::Error => e
-        e.class_name.should eq("ParameterValidationError")
-      end
-    end
-    it "test processing error" do
-      charge = nil
-      charges = Conekta::Charge.where()
-      charges.each do |(k,v)|
-        if v.status == "pre_authorized"
-          charge = v
-          break
-        end
-      end
-      begin
-        charge.capture
-      rescue Conekta::Error => e
-        e.class_name.should eq("ProcessingError")
-      end
-    end
-    it "test resource not found error" do
-      begin
-        charge = Conekta::Charge.get(1)
-      rescue Conekta::Error => e
-        e.class_name.should eq("ResourceNotFoundError")
-      end
+#    it "test no id error" do
+#      begin
+#        charge = Conekta::Charge.get(nil)
+#      rescue Conekta::Error => e
+#        e.message.should eq('Could not get the id of Charge instance.')
+#      end
+#    end
+#    it "test no connection error" do
+#      api_url = Conekta::api_base
+#      Conekta::api_base = 'http://localhost:3001'
+#      begin
+#        customer = Conekta::Customer.create({cards: ["tok_test_visa_4242"]})
+#      rescue Exception => e
+#        e.class_name.should eq("NoConnectionError")
+#      end
+#      Conekta::api_base = api_url
+#    end
+#    it "test api error" do
+#      begin
+#        customer = Conekta::Customer.create({cards: {0=>"tok_test_visa_4242"}})
+#      rescue Conekta::Error => e
+#        e.class_name.should eq("ApiError")
+#      end
+#    end
+#    it "test authentication error" do
+#      Conekta::api_key = ""
+#      begin
+#        customer = Conekta::Customer.create({cards: ["tok_test_visa_4242"]})
+#      rescue Conekta::Error => e
+#        e.class_name.should eq("AuthenticationError")
+#      end
+#      Conekta.api_key = '1tv5yJp3xnVZ7eK67m4h'
+#    end
+#    it "test parameter validation error" do
+#      begin
+#        plan = Conekta::Plan.create({id: 'gold-plan'})
+#      rescue Conekta::Error => e
+#        e.class_name.should eq("ParameterValidationError")
+#      end
+#    end
+#    it "test processing error" do
+#      charge = nil
+#      charges = Conekta::Charge.where()
+#      charges.each do |(k,v)|
+#        if v.status == "pre_authorized"
+#          charge = v
+#          break
+#        end
+#      end
+#      begin
+#        charge.capture
+#      rescue Conekta::Error => e
+#        e.class_name.should eq("ProcessingError")
+#      end
+#    end
+#    it "test resource not found error" do
+#      begin
+#        charge = Conekta::Charge.get(1)
+#      rescue Conekta::Error => e
+#        e.class_name.should eq("ResourceNotFoundError")
+#      end
+#    end
+  end
+  describe :event_tests do
+    it "test succesful where"
+      events = Conekta::Event.where
+      events.class_name.should eq("ConektaObject")
+      events[0].class_name.should eq("Event")
     end
   end
   describe :plan_tests do

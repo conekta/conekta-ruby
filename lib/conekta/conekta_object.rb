@@ -47,6 +47,9 @@ module Conekta
     def self.class_name
       self.name.split('::')[-1]
     end
+    def class_name
+      self.class.name.split('::')[-1]
+    end
     def create_attr(k,v)
         create_method( "#{k}=".to_sym ) { |val| 
             instance_variable_set( "@" + k, val)

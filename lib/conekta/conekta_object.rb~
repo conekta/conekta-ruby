@@ -35,11 +35,11 @@ module Conekta
     end
     def inspect
       if self.respond_to? :each
-#        if self.class.class_name != "ConektaObject"
+        if self.class.class_name != "ConektaObject"
           self.to_s
-#        else
-#          self.to_a.map{|x| x[1] }
-#        end
+        else
+          self.to_a.map{|x| x[1] }
+        end
       else
         super
       end
