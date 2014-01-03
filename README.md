@@ -1,6 +1,6 @@
 # Conekta
 
-TODO: Write a gem description
+This is a ruby library that allows interaction with https://api.conekta.io API.
 
 ## Installation
 

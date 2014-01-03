@@ -1,4 +1,4 @@
-Copyright (c) 2013 MauricioMurga
+Copyright (c) 2013- Conekta (http://conekta.mx)
 
 MIT License
 
