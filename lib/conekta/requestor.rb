@@ -30,11 +30,11 @@ module Conekta
             req.body = params.to_json
           end
         end
-        if response.status != 200
-          Error.error_handler(JSON.parse(response.body), response.status)
-        end
       rescue Exception => e
-        raise Error.new(e.message)
+        Error.error_handler(e.message, "")
+      end
+      if response.status != 200
+        Error.error_handler(JSON.parse(response.body), response.status)
       end
       return JSON.parse(response.body)
     end

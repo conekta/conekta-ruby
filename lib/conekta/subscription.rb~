@@ -17,6 +17,5 @@ module Conekta
     def cancel
       custom_action(:post, 'cancel')
     end
-
   end
 end

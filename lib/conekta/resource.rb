@@ -4,7 +4,7 @@ module Conekta
       "/#{CGI.escape(self.class_name.downcase)}s"
     end
     def url
-      if id == nil
+      if id == nil || id == ""
         raise Error.new('Could not get the id of ' + self.class.class_name + ' instance.')
       end
       self.class.url + "/" + id

@@ -11,6 +11,9 @@ module Conekta
       @code = code
       @param = param
     end
+    def class_name
+      self.class.name.split('::')[-1]
+    end
     def self.error_handler(resp, code)
       if resp.instance_of?(Hash)
         @message = resp["message"] if resp.has_key?('message')
@@ -18,7 +21,7 @@ module Conekta
         @code = resp["code"] if resp.has_key?('code')
         @param = resp["param"] if resp.has_key?('param')
       end
-      if code == nil or code == 0
+      if code == nil or code == 0 or code == nil or code == ""
         raise NoConnectionError.new("Could not connect to #{Conekta.api_base}", @type, @code, @param)
       end
       case code
