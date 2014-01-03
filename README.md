@@ -18,12 +18,42 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    Conekta.api_key = '1tv5yJp3xnVZ7eK67m4h'
+    @my_card = {number: '4242424242424242', exp_month: 5, exp_year: 2015, cvc: 123, name: 'Mario Moreno'}
+    begin
+      charge = Conekta::Charge.create({card: @my_card, description: 'Some desc', amount: 2000, currency: 'mxn'})
+      p charge
+    rescue Conekta::Error
+      # Catch all exceptions including validation errors.
+      e.message
+    end
 
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+    {
+        "id": "5286828b8ee31e64b7001739",
+        "livemode": false,
+        "created_at": 1384546955,
+        "status": "paid",
+        "currency": "MXN",
+        "description": "Some desc",
+        "reference_id": null,
+        "failure_code": null,
+        "failure_message": null,
+        "object": "charge",
+        "amount": 2000,
+        "fee": 371,
+        "payment_method": {
+            "name": "Mario Moreno",
+            "exp_month": "05",
+            "exp_year": "15",
+            "auth_code": "861491",
+            "object": "card_payment",
+            "last4": "4242",
+            "brand": "visa"
+        },
+        "details": {
+            "name": null,
+            "phone": null,
+            "email": null,
+            "line_items": []
+        }
+    }

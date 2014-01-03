@@ -44,7 +44,7 @@ describe :conekta_tests do
       card = @valid_visa_card
       begin
         cpm = Conekta::Charge.create(pm.merge(card))
-      rescue Conekta::Error => e
+      rescue Exception => e
         e.message.should eq("The minimum purchase is 3 MXN pesos for card payments")
       end
     end
@@ -63,7 +63,7 @@ describe :conekta_tests do
       cpm.status.should eq("paid")
       begin
         cpm.refund(3000)
-      rescue Conekta::Error => e
+      rescue Exception => e
         e.message.should eq("The order does not exist or the amount to refund is invalid")
       end
     end
@@ -116,7 +116,7 @@ describe :conekta_tests do
         customer = Conekta::Customer.create({
           :cards => ["tok_test_visa_4241"],
         })
-      rescue Conekta::Error => e
+      rescue Exception => e
         e.message.should eq("Token 'tok_test_visa_4241' could not be found.")
       end
     end
@@ -156,7 +156,7 @@ describe :conekta_tests do
       subscription = customer.create_subscription({plan: 'gold-plan'})
       begin
         plan = Conekta::Plan.get('gold-plan2')
-      rescue Conekta::Error => e
+      rescue Exception => e
         plan = Conekta::Plan.create({
           id: "gold-plan2",
           name: "Gold Plan",
@@ -177,7 +177,7 @@ describe :conekta_tests do
       })
       begin
         subscription = customer.create_subscription({plan: 'unexistent-plan'})
-      rescue Conekta::Error => e
+      rescue Exception => e
         e.message.should eq("Plan 'unexistent-plan' does not exist and cannot be used to create a new subsription.")
       end
     end
@@ -211,7 +211,7 @@ describe :conekta_tests do
     it "test no id error" do
       begin
         charge = Conekta::Charge.get(nil)
-      rescue Conekta::Error => e
+      rescue Exception => e
         e.message.should eq('Could not get the id of Charge instance.')
       end
     end
@@ -228,7 +228,7 @@ describe :conekta_tests do
     it "test api error" do
       begin
         customer = Conekta::Customer.create({cards: {0=>"tok_test_visa_4242"}})
-      rescue Conekta::Error => e
+      rescue Exception => e
         e.class_name.should eq("ApiError")
       end
     end
@@ -236,7 +236,7 @@ describe :conekta_tests do
       Conekta::api_key = ""
       begin
         customer = Conekta::Customer.create({cards: ["tok_test_visa_4242"]})
-      rescue Conekta::Error => e
+      rescue Exception => e
         e.class_name.should eq("AuthenticationError")
       end
       Conekta.api_key = '1tv5yJp3xnVZ7eK67m4h'
@@ -244,7 +244,7 @@ describe :conekta_tests do
     it "test parameter validation error" do
       begin
         plan = Conekta::Plan.create({id: 'gold-plan'})
-      rescue Conekta::Error => e
+      rescue Exception => e
         e.class_name.should eq("ParameterValidationError")
       end
     end
@@ -259,14 +259,14 @@ describe :conekta_tests do
       end
       begin
         charge.capture
-      rescue Conekta::Error => e
+      rescue Exception => e
         e.class_name.should eq("ProcessingError")
       end
     end
     it "test resource not found error" do
       begin
         charge = Conekta::Charge.get(1)
-      rescue Conekta::Error => e
+      rescue Exception => e
         e.class_name.should eq("ResourceNotFoundError")
       end
     end
