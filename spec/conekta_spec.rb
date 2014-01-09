@@ -13,7 +13,7 @@ describe :conekta_tests do
       card = @valid_visa_card
       cpm = Conekta::Charge.create(pm.merge(card))
       cpm.status.should eq("paid")
-      pm = Conekta::Charge.get(cpm.id)
+      pm = Conekta::Charge.find(cpm.id)
       pm.class.class_name.should eq("Charge")
     end
     it "test succesful where" do
@@ -89,7 +89,7 @@ describe :conekta_tests do
       c = Conekta::Customer.create({
         :cards => ["tok_test_visa_4242"],
       })
-      customer = Conekta::Customer.get(c.id)
+      customer = Conekta::Customer.find(c.id)
       customer.class.class_name.should eq("Customer")
     end
     it "successful customer where" do
@@ -155,7 +155,7 @@ describe :conekta_tests do
       })
       subscription = customer.create_subscription({plan: 'gold-plan'})
       begin
-        plan = Conekta::Plan.get('gold-plan2')
+        plan = Conekta::Plan.find('gold-plan2')
       rescue Conekta::Error => e
         plan = Conekta::Plan.create({
           id: "gold-plan2",
@@ -210,7 +210,7 @@ describe :conekta_tests do
     p "error tests"
     it "test no id error" do
       begin
-        charge = Conekta::Charge.get(nil)
+        charge = Conekta::Charge.find(nil)
       rescue Conekta::Error => e
         e.message.should eq('Could not get the id of Charge instance.')
       end
@@ -267,7 +267,7 @@ describe :conekta_tests do
     end
     it "test resource not found error" do
       begin
-        charge = Conekta::Charge.get(1)
+        charge = Conekta::Charge.find(1)
       rescue Conekta::Error => e
         e.class_name.should eq("ResourceNotFoundError")
       end
@@ -284,7 +284,7 @@ describe :conekta_tests do
   describe :token_tests do
     p "token tests"
     it "test succesful where" do
-      token = Conekta::Token.get("tok_test_visa_4242")
+      token = Conekta::Token.find("tok_test_visa_4242")
       token.class_name.should eq("Token")
     end
   end
@@ -293,7 +293,7 @@ describe :conekta_tests do
     it "test succesful get plan" do
       plans = Conekta::Plan.where
       p = plans.first;
-      plan = Conekta::Plan.get(p.id)
+      plan = Conekta::Plan.find(p.id)
       plan.class_name.should eq("Plan")
     end
     it "test succesful where" do

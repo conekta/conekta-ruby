@@ -1,6 +1,6 @@
 module Conekta
   class Charge < Resource
-    include Conekta::Operations::Get
+    include Conekta::Operations::Find
     include Conekta::Operations::Where
     include Conekta::Operations::Create
     include Conekta::Operations::CustomAction

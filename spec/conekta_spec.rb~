@@ -126,7 +126,7 @@ describe :conekta_tests do
       })
       card = customer.create_card(:token => 'tok_test_visa_1881')
       customer.cards.count.should eq(2)
-      customer.cards.first.last4.should eq('1881')
+      customer.cards.last.last4.should eq('1881')
     end
     it "test delete card" do
       customer = Conekta::Customer.create({
