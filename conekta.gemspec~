@@ -23,5 +23,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "faraday"
   spec.add_development_dependency "json"
+  spec.add_development_dependency "cgi"
   spec.add_development_dependency "sys-uname"
 end
