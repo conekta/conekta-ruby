@@ -1,5 +1,5 @@
-#require 'faraday'
-#require 'base64'
+require 'faraday'
+require 'base64'
 module Conekta
   class Requestor
     require 'sys/uname'
