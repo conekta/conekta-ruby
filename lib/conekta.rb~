@@ -2,7 +2,7 @@ require 'json'
 
 require "conekta/version"
 
-require "conekta/operations/get"
+require "conekta/operations/find"
 require "conekta/operations/where"
 require "conekta/operations/create"
 require "conekta/operations/delete"
