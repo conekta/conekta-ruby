@@ -25,8 +25,7 @@ require "conekta/token"
 require "conekta/event"
 
 module Conekta
-#  @api_base = 'https://api.conekta.io'
-  @api_base = 'http://localhost:3000'
+  @api_base = 'https://api.conekta.io'
   @api_version = '0.3.0'
   def self.api_base
     @api_base
