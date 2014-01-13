@@ -1,8 +1,16 @@
 module Conekta
   module Operations
-    module Get
+    module Find
       module ClassMethods
-        def get(id)
+        def find(id)
+          instance = self.new(id)
+          url = instance.url
+          requestor = Requestor.new
+          response = requestor.request(:get, url)
+          instance.load_from(response)
+          instance
+        end
+        def retrieve(id)
           instance = self.new(id)
           url = instance.url
           requestor = Requestor.new
