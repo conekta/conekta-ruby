@@ -2,4 +2,4 @@
 
 * Deprecate retrieve and all methods and replaced them with find and where respectively.
 * Add payment method model.
-* Objects' properties are now accessible with the T_OBJECT_OPERATOR.
+* Objects' properties are now via methods named equally.
