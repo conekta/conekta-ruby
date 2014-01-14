@@ -1,4 +1,4 @@
-Copyright (c) 2013- Conekta (http://conekta.mx)
+Copyright (c) 2013- Conekta (https://www.conekta.io)
 
 MIT License
 
