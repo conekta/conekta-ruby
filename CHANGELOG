@@ -1,4 +1,4 @@
-=== 1.9.0 2013-01-13
+=== 0.3.5 2013-01-13
 
 * Deprecate retrieve and all methods and replaced them with find and where respectively.
 * Add payment method model.
