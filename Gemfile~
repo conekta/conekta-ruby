@@ -1,0 +1,7 @@
+source 'https://rubygems.org'
+gem 'sys-uname', :require => false
+gem 'rspec', :require => false
+gem 'faraday', :require => false
+gem 'json', :require => false
+# Specify your gem's dependencies in conekta.gemspec
+gemspec
