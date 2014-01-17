@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "conekta"
   spec.version       = Conekta::VERSION
   spec.authors       = ["MauricioMurga"]
-  spec.email         = ["mauricio@conekta.io"]
+  spec.email         = ["soporte@conekta.io"]
   spec.description   = %q{Ruby library for https://api.conekta.io}
   spec.summary       = %q{This library provides https://api.conekta.io operations}
   spec.homepage      = "https://www.conekta.io"
