@@ -17,7 +17,7 @@ module Conekta
       meth = meth.downcase
       begin
         conn = Faraday.new(:ssl => {
-            :ca_file      => File.dirname(__FILE__) + '/../ssl_data/ca-certificates.crt'
+            :ca_file      => File.dirname(__FILE__) + '/../ssl_data/ca_bundle.crt'
           }) do |faraday|
           faraday.adapter  Faraday.default_adapter
         end
