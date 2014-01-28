@@ -36,6 +36,9 @@ module Conekta
   def self.api_version
     @api_version
   end
+  def self.api_version=(api_version)
+    @api_version = api_version
+  end
   def self.api_key
     @api_key
   end
