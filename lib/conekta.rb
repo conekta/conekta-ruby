@@ -23,6 +23,11 @@ require "conekta/subscription"
 require "conekta/plan"
 require "conekta/token"
 require "conekta/event"
+require "conekta/payee"
+require "conekta/payout"
+require "conekta/payout_method"
+require "conekta/method"
+require "conekta/webhook_log"
 
 module Conekta
   @api_base = 'https://api.conekta.io'

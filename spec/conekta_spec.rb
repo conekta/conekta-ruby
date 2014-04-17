@@ -1,6 +1,66 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 describe :conekta_tests do
   Conekta.api_key = '1tv5yJp3xnVZ7eK67m4h'
+  describe :payouts_tests do
+    p "payout tests"
+    before :each do
+      @valid_payment_method = {amount: 2000, currency: 'mxn', description: 'Some desc'}
+      @invalid_payment_method = {amount: 10, currency: 'mxn', description: 'Some desc'}
+      @valid_visa_card = {card: 'tok_test_visa_4242'}
+    end
+    it "succesful get payout" do
+      payee = Conekta::Payee.create(name: "John Doe",
+              email: "j_d@radcorp.com",
+              phone: "555555555",
+              bank: {
+                account_number: '123456789012345678',
+                account_holder: 'J D - Radcorp',
+                bank: 'Banorte',
+                description: 'Conekta To JD',
+                statement_description: 'Conekta To JD 111111111',
+                statement_reference: '111111111'
+              },
+              billing_address:{
+                company_name: 'Rad Corp',
+                tax_id: 'tax121212abc',
+                street1: 'Guadalupe 73',
+                street2: 'Despacho 32',
+                street3: 'Condesa',
+                city: 'Cuauhtemoc',
+                state: 'DF',
+                country: 'MX',
+                zip: '06100'
+              })
+      payee.class.class_name.should eq("Payee")
+
+      payee.phone.should eq("555555555")
+      payee.payout_methods.first.account_number.should eq('123456789012345678')
+      payee.payout_methods.first.account_holder.should eq('J D - Radcorp')
+      payee.payout_methods.first.bank.should eq('Banorte')
+      payee.default_payout_method_id.should_not eq(nil)
+
+      payee.payout_methods.first.description.should eq('Conekta To JD')
+      payee.payout_methods.first.statement_description.should eq('Conekta To JD 111111111')
+      payee.payout_methods.first.statement_reference.should eq('111111111')
+
+      payee.billing_address.company_name.should eq('Rad Corp')
+      payee.billing_address.tax_id.should eq('tax121212abc')
+      payee.billing_address.zip.should eq('06100')
+
+      payout = Conekta::Payout.create(amount: 5000,
+              currency: "MXN",
+              payee: payee.id)
+      payout.class.class_name.should eq("Payout")
+      payout.amount.should eq(5000)
+      payout.currency.should eq("MXN")
+
+      payout.method.account_number.should eq('123456789012345678')
+      payout.method.account_holder.should eq('J D - Radcorp')
+      payout.method.bank.should eq('Banorte')
+#      payout.payout_transaction_id.should_not eq(nil)
+      payout.transactions.count.should eq(0)
+    end
+  end
   describe :charge_tests do
     p "charge tests"
     before :each do
@@ -45,7 +105,7 @@ describe :conekta_tests do
       begin
         cpm = Conekta::Charge.create(pm.merge(card))
       rescue Conekta::Error => e
-        e.message.should eq("The minimum purchase is 3 MXN pesos for card payments")
+        e.message.should eq("The minimum for card payments is 3 pesos. Check that the amount is in cents as explained in the documentation.")
       end
     end
     it "test susccesful refund" do
@@ -117,7 +177,7 @@ describe :conekta_tests do
           :cards => ["tok_test_visa_4241"],
         })
       rescue Conekta::Error => e
-        e.message.should eq("Token 'tok_test_visa_4241' could not be found.")
+        e.message.should eq("Object tok_test_visa_4241 could not be found.")
       end
     end
     it "add card to customer" do
@@ -178,7 +238,7 @@ describe :conekta_tests do
       begin
         subscription = customer.create_subscription({plan: 'unexistent-plan'})
       rescue Conekta::Error => e
-        e.message.should eq("Plan 'unexistent-plan' does not exist and cannot be used to create a new subsription.")
+        e.message.should eq("Object Plan unexistent-plan could not be found.")
       end
     end
     it "test succesful pause subscription" do
@@ -279,14 +339,13 @@ describe :conekta_tests do
       events = Conekta::Event.where
       events.class_name.should eq("ConektaObject")
       events[0].class_name.should eq("Event")
+      if !events[0].webhook_logs.empty?
+        events[0].webhook_logs.first.class_name.should eq("WebhookLog")
+      end
     end
   end
   describe :token_tests do
     p "token tests"
-    it "test succesful where" do
-      token = Conekta::Token.find("tok_test_visa_4242")
-      token.class_name.should eq("Token")
-    end
   end
   describe :plan_tests do
     p "plan tests"
@@ -304,7 +363,7 @@ describe :conekta_tests do
     it "test succesful create plan" do
       plans = Conekta::Plan.where
       plan = Conekta::Plan.create({
-					id: "gold-plan#{plans.count}",
+					id: ((0...8).map { (65 + rand(26)).chr }.join),
 					name: "Gold Plan",
 					amount: 10000,
 					currency: "MXN",

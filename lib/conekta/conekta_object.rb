@@ -73,7 +73,7 @@ module Conekta
     end
     def load_from_enumerable(k,v)
       if v.respond_to? :each and !v.instance_of?(ConektaObject)
-        v = Conekta::Util.convert_to_conekta_object(v)
+        v = Conekta::Util.convert_to_conekta_object(k,v)
       end
       if self.instance_of?(ConektaObject)
         self[k] = v
