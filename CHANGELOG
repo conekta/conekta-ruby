@@ -16,3 +16,7 @@
 * Add payout and payee models with specs.
 * Add webhook logs for events.
 * Ameliorate convert_to_conekta_object logic.
+
+=== 0.4.1 2014-04-16
+
+* Remove active support and add custom methods in util file.
