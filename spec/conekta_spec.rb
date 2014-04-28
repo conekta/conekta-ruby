@@ -13,7 +13,7 @@ describe :conekta_tests do
               email: "j_d@radcorp.com",
               phone: "555555555",
               bank: {
-                account_number: '123456789012345678',
+                account_number: '032180000118359719',
                 account_holder: 'J D - Radcorp',
                 bank: 'Banorte',
                 description: 'Conekta To JD',
@@ -34,9 +34,9 @@ describe :conekta_tests do
       payee.class.class_name.should eq("Payee")
 
       payee.phone.should eq("555555555")
-      payee.payout_methods.first.account_number.should eq('123456789012345678')
+      payee.payout_methods.first.account_number.should eq('032180000118359719')
       payee.payout_methods.first.account_holder.should eq('J D - Radcorp')
-      payee.payout_methods.first.bank.should eq('Banorte')
+      payee.payout_methods.first.bank.should eq('ixe')
       payee.default_payout_method_id.should_not eq(nil)
 
       payee.payout_methods.first.description.should eq('Conekta To JD')
@@ -54,9 +54,9 @@ describe :conekta_tests do
       payout.amount.should eq(5000)
       payout.currency.should eq("MXN")
 
-      payout.method.account_number.should eq('123456789012345678')
+      payout.method.account_number.should eq('032180000118359719')
       payout.method.account_holder.should eq('J D - Radcorp')
-      payout.method.bank.should eq('Banorte')
+      payout.method.bank.should eq('ixe')
 #      payout.payout_transaction_id.should_not eq(nil)
       payout.transactions.count.should eq(0)
     end

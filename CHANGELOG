@@ -20,3 +20,7 @@
 === 0.4.1 2014-04-16
 
 * Remove active support and add custom methods in util file.
+
+=== 0.4.2 2014-04-28
+
+* Fix Payout specs.
