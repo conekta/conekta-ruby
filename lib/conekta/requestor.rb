@@ -18,7 +18,8 @@ module Conekta
       begin
         conn = Faraday.new(:ssl => {
             :ca_file      => File.dirname(__FILE__) + '/../ssl_data/ca_bundle.crt'
-          }) do |faraday|
+          }
+          ) do |faraday|
           faraday.adapter  Faraday.default_adapter
         end
         response = conn.method(meth).call do |req|

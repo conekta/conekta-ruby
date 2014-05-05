@@ -36,7 +36,7 @@ describe :conekta_tests do
       payee.phone.should eq("555555555")
       payee.payout_methods.first.account_number.should eq('032180000118359719')
       payee.payout_methods.first.account_holder.should eq('J D - Radcorp')
-      payee.payout_methods.first.bank.should eq('ixe')
+      payee.payout_methods.first.bank.should eq('Banorte')
       payee.default_payout_method_id.should_not eq(nil)
 
       payee.payout_methods.first.description.should eq('Conekta To JD')
@@ -56,7 +56,7 @@ describe :conekta_tests do
 
       payout.method.account_number.should eq('032180000118359719')
       payout.method.account_holder.should eq('J D - Radcorp')
-      payout.method.bank.should eq('ixe')
+      payout.method.bank.should eq('Banorte')
 #      payout.payout_transaction_id.should_not eq(nil)
       payout.transactions.count.should eq(0)
     end
