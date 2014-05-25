@@ -17,7 +17,9 @@ Or install it yourself as:
     $ gem install conekta
 
 ## Usage
-
+    # This change the Accept-Language Header to the locale specified
+    Conekta.locale = :es
+    
     Conekta.api_key = '1tv5yJp3xnVZ7eK67m4h'
     @my_card = {number: '4242424242424242', exp_month: 5, exp_year: 2015, cvc: 123, name: 'Mario Moreno'}
     begin
@@ -26,6 +28,9 @@ Or install it yourself as:
     rescue Conekta::Error
       # Catch all exceptions including validation errors.
       e.message
+      
+      # Error message translated
+      e.message_to_purchaser
     end
 
     {
