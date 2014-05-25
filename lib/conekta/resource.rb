@@ -5,7 +5,7 @@ module Conekta
     end
     def url
       if id == nil || id == ""
-        raise Error.new('Could not get the id of ' + self.class.class_name + ' instance.', 'No se pudo obtener el id de la instancia de ' + self.class.class_name + '.')
+        raise Error.new(I18n.t('error.resource.id',  {resource: self.class.class_name, locale: :en}), I18n.t('error.resource.id',  {resource: self.class.class_name, locale: Conekta.locale.to_sym}))
       end
       self.class.url + "/" + id
     end

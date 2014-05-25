@@ -1,0 +1,7 @@
+# encoding: UTF-8
+en:
+  error:
+    resource: 
+        id: 'Could not get the id of %{resource} instance.'
+    requestor:
+        connection: 'Could not connect to %{base}.'

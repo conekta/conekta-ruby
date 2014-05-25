@@ -1,0 +1,7 @@
+# encoding: UTF-8
+es:
+  error:
+    resource:
+        id: 'No se pudo obtener el id de la instancia de %{resource}.'
+    requestor:
+        connection: 'No se pudo conectar a %{base}.'

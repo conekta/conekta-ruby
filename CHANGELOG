@@ -27,4 +27,4 @@
 
 === 0.4.3 2014-05-25
 
-* Add message_to_purchaser (spanish) message.
+* Add locale and message_to_purchaser.

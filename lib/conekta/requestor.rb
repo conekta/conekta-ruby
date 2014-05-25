@@ -28,6 +28,7 @@ module Conekta
           req.headers['X-Conekta-Client-User-Agent'] = set_headers.to_json
           req.headers['User-Agent'] = 'Conekta/v1 RubyBindings/' + Conekta::VERSION
           req.headers['Accept'] = "application/vnd.conekta-v#{Conekta.api_version}+json"
+          req.headers['Accept-Language'] = Conekta.locale
           req.headers['Authorization'] = "Basic #{ Base64.encode64("#{self.api_key}" + ':')}"
           if params
             req.headers['Content-Type'] = 'application/json'
