@@ -56,7 +56,6 @@ describe :conekta_tests do
       payout.method.account_number.should eq('032180000118359719')
       payout.method.account_holder.should eq('J D - Radcorp')
       payout.method.bank.should eq('ixe')
-#      payout.payout_transaction_id.should_not eq(nil)
       payout.transactions.count.should eq(0)
     end
   end

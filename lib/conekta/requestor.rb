@@ -35,7 +35,7 @@ module Conekta
           end
         end
       rescue Exception => e
-        Error.error_handler(e.message, "")
+        Error.error_handler(e, "")
       end
       if response.status != 200
         Error.error_handler(JSON.parse(response.body), response.status)
