@@ -6,7 +6,7 @@ module Conekta
           instance = ConektaObject.new
           url = Util.types[self.class_name.downcase].url
           requestor = Requestor.new
-          response = requestor.request(:get, url)
+          response = requestor.request(:get, url,params)
           instance.load_from(response)
           instance
         end
