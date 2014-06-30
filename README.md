@@ -21,17 +21,27 @@ Or install it yourself as:
     Conekta.locale = :es
     
     Conekta.api_key = '1tv5yJp3xnVZ7eK67m4h'
-    @my_card = {number: '4242424242424242', exp_month: 5, exp_year: 2015, cvc: 123, name: 'Mario Moreno'}
+    
     begin
-      charge = Conekta::Charge.create({card: @my_card, description: 'Some desc', amount: 2000, currency: 'mxn'})
-      p charge
+        charge = Conekta::Charge.create({
+                    amount: 51000,
+                    currency: "MXN",
+                    description: "Pizza Delivery",
+                    reference_id: "orden_de_id_interno",
+                    card: params[:conektaTokenId] 
+                    #"tok_a4Ff0dD2xYZZq82d9"
+                    })
+    rescue Conekta::ParameterValidationError => e
+        puts e.message 
+        #alguno de los parámetros fueron inválidos
+    rescue Conekta::ProcessingError => e
+        puts e.message 
+        #la tarjeta no pudo ser procesada
     rescue Conekta::Error
-      # Catch all exceptions including validation errors.
-      e.message
-      
-      # Error message translated
-      e.message_to_purchaser
+        puts e.message 
+        #un error ocurrió que no sucede en el flujo normal de cobros como por ejemplo un auth_key incorrecto
     end
+    
 
     {
         "id": "5286828b8ee31e64b7001739",
