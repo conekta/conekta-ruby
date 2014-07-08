@@ -2,13 +2,13 @@ module Conekta
   module Operations
     module CreateMember
       def create_member(member, params)
-        url = self.url + "/" + member
+        url = [self.url, member].join('/')
         member = member.to_sym
-        requestor = Requestor.new
-        response = requestor.request(:post, url, params)
+        response = Requestor.new.request(:post, url, params)
+
         if self.method(member).call and self.method(member).call.class.class_name == "ConektaObject"
           arr = []
-          self.method(member).call.values.each do |(k,v)|
+          self.method(member).call.values.each do |_,v|
             arr << v.to_hash
           end
           arr << response
