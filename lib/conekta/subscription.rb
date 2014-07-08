@@ -3,9 +3,8 @@ module Conekta
     include Conekta::Operations::Update
     include Conekta::Operations::CustomAction
     def url
-      if id == nil || id == ""
-        raise Error.new('Could not get the id of ' + self.class.class_name + ' instance.')
-      end
+      raise Error.new('Could not get the id of ' + self.class.class_name + ' instance.') if (id.nil? || id.empty?)
+
       self.customer.url + "/subscription"
     end
     def pause
