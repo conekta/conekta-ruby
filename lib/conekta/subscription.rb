@@ -3,8 +3,9 @@ module Conekta
     include Conekta::Operations::Update
     include Conekta::Operations::CustomAction
     def url
-      raise Error.new('Could not get the id of ' + self.class.class_name + ' instance.') if (id.nil? || id.empty?)
-
+      raise Error.new(
+        I18n.t('error.resource.id',  { resource: self.class.class_name, locale: :en }),
+        I18n.t('error.resource.id_purchaser',  { locale: Conekta.locale.to_sym })) if (id.nil? || id.empty?)
       self.customer.url + "/subscription"
     end
     def pause

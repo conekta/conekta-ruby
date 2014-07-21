@@ -36,3 +36,7 @@
 === 0.4.5 2014-07-08
 
 * Sprinkling small Ruby style conventions here and there (antillas21).
+
+=== 0.4.6 2014-07-08
+
+* Add message_to_purchaser internal errors.

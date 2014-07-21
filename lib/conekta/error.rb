@@ -25,7 +25,9 @@ module Conekta
         @param = resp["param"] if resp.has_key?('param')
       end
       if code == nil or code == 0 or code == nil or code == ""
-        raise NoConnectionError.new(I18n.t('error.requestor.connection',  {base: Conekta.api_base, locale: :en}), I18n.t('error.requestor.connection',  {base: Conekta.api_base, locale: Conekta.locale.to_sym}))
+        raise NoConnectionError.new(
+          I18n.t('error.requestor.connection',  { base: Conekta.api_base, locale: :en }),
+          I18n.t('error.requestor.connection_purchaser',  { locale: Conekta.locale.to_sym }))
       end
       case code
       when 400

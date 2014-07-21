@@ -287,7 +287,7 @@ describe :conekta_tests do
       begin
         customer = Conekta::Customer.create({cards: {0=>"tok_test_visa_4242"}})
       rescue Conekta::Error => e
-        e.class_name.should eq("ApiError")
+        e.class_name.should eq("ParameterValidationError")
       end
     end
     it "test authentication error" do
