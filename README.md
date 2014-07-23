@@ -74,3 +74,7 @@ Or install it yourself as:
             "line_items": []
         }
     }
+
+License
+-------
+Developed by [Conekta](https://www.conekta.io). Available with [MIT License](LICENSE).
