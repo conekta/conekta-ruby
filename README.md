@@ -1,3 +1,5 @@
+![alt tag](https://raw.github.com/conekta/conekta-ruby/master/readme_files/cover.png)
+
 # Conekta
 
 This is a ruby library that allows interaction with https://api.conekta.io API.
