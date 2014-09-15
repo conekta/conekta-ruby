@@ -1,4 +1,5 @@
-require 'json'
+require "json"
+require "i18n"
 
 require "conekta/version"
 
@@ -28,13 +29,14 @@ require "conekta/payout"
 require "conekta/payout_method"
 require "conekta/method"
 require "conekta/webhook_log"
-require "i18n"
 
 module Conekta
-	I18n.load_path = Dir[File.join(File.expand_path('../..', __FILE__), 'locales', '*.{rb,yml}').to_s]
+  I18n.load_path += Dir[File.join(File.expand_path('../..', __FILE__), 'locales', '*.{rb,yml}').to_s]
+
   @api_base = 'https://api.conekta.io'
   @api_version = '0.3.0'
   @locale = 'es'
+
   def self.api_base
     @api_base
   end
