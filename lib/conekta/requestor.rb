@@ -17,21 +17,21 @@ module Conekta
       meth = meth.downcase
       begin      
         conn = Faraday.new(
-	 	:url => url,
-		:ssl => { :ca_file=> File.dirname(__FILE__) + '/../ssl_data/ca_bundle.crt'}
-          ) do |faraday|
+         :url => url,
+         :ssl => { :ca_file=> File.dirname(__FILE__) + '/../ssl_data/ca_bundle.crt'}
+         ) do |faraday|
           faraday.adapter  Faraday.default_adapter
         end
-	  conn.headers['X-Conekta-Client-User-Agent'] = set_headers.to_json
-          conn.headers['User-Agent'] = 'Conekta/v1 RubyBindings/' + Conekta::VERSION
-          conn.headers['Accept'] = "application/vnd.conekta-v#{Conekta.api_version}+json"
-          conn.headers['Accept-Language'] = Conekta.locale
-          conn.headers['Authorization'] = "Basic #{ Base64.encode64("#{self.api_key}" + ':')}"
-	  if params
-	     conn.params = params
-	  end
-	  response = conn.method(meth).call
-     rescue Exception => e
+        conn.headers['X-Conekta-Client-User-Agent'] = set_headers.to_json
+        conn.headers['User-Agent'] = 'Conekta/v1 RubyBindings/' + Conekta::VERSION
+        conn.headers['Accept'] = "application/vnd.conekta-v#{Conekta.api_version}+json"
+        conn.headers['Accept-Language'] = Conekta.locale
+        conn.headers['Authorization'] = "Basic #{ Base64.encode64("#{self.api_key}" + ':')}"
+        if params
+          conn.params = params
+        end
+        response = conn.method(meth).call
+      rescue Exception => e
         Error.error_handler(e, "")
       end
       if response.status != 200
