@@ -15,7 +15,7 @@ module Conekta
     def request(meth, url, params=nil)
       url = self.api_url(url)
       meth = meth.downcase
-      begin      
+      begin
         conn = Faraday.new(
          :url => url,
          :ssl => { :ca_file=> File.dirname(__FILE__) + '/../ssl_data/ca_bundle.crt'}
@@ -25,7 +25,7 @@ module Conekta
         conn.headers['X-Conekta-Client-User-Agent'] = set_headers.to_json
         conn.headers['User-Agent'] = 'Conekta/v1 RubyBindings/' + Conekta::VERSION
         conn.headers['Accept'] = "application/vnd.conekta-v#{Conekta.api_version}+json"
-        conn.headers['Accept-Language'] = Conekta.locale
+        conn.headers['Accept-Language'] = Conekta.locale.to_s
         conn.headers['Authorization'] = "Basic #{ Base64.encode64("#{self.api_key}" + ':')}"
         if params
           conn.params = params
