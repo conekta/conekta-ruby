@@ -34,7 +34,7 @@ module Conekta
   I18n.load_path += Dir[File.join(File.expand_path('../..', __FILE__), 'locales', '*.{rb,yml}').to_s]
 
   @api_base = 'https://api.conekta.io'
-  @api_version = '0.3.0'
+  @api_version = '1.0.0'
   @locale = 'es'
 
   def self.api_base
