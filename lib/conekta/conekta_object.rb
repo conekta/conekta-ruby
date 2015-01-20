@@ -51,6 +51,9 @@ module Conekta
       self.class.name.split('::')[-1]
     end
     def create_attr(k,v)
+        # Conflict with Resource Class Url
+        k = "webhook_url" if k.to_s == "url"
+        # Conflict with Resource Class Url
         create_method( "#{k}=".to_sym ) { |val| 
             instance_variable_set( "@" + k, val)
         }

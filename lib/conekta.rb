@@ -28,6 +28,7 @@ require "conekta/payee"
 require "conekta/payout"
 require "conekta/payout_method"
 require "conekta/method"
+require "conekta/webhook"
 require "conekta/webhook_log"
 
 module Conekta

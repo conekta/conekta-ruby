@@ -2,6 +2,7 @@ module Conekta
   module Util
     def self.types
       @types ||= {
+        'webhook' => Webhook,
         'webhook_log' => WebhookLog,
         'bank_transfer_payout_method' => Method,
         'payout' => Payout,
