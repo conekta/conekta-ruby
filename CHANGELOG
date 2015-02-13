@@ -48,3 +48,7 @@
 === 0.5.0 2015-01-20
 
 * Add Webhook module.
+
+=== 0.5.2 2015-01-20
+
+* Change rspec dependency to development.
