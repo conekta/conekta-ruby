@@ -20,11 +20,20 @@ Or install it yourself as:
 
 ## Usage
 ```ruby
+# Set your configuration variables
+
 # This change the Accept-Language Header to the locale specified
 Conekta.locale = :es
-    
+
 Conekta.api_key = '1tv5yJp3xnVZ7eK67m4h'
-    
+
+# Or via an initializer in config/initializers/conekta.rb
+Conekta.config do |c|
+  c.locale = :es
+  c.api_key = '1tv5yJp3xnVZ7eK67m4h'
+  c.api_version = '1.0.0'
+end
+
 begin
   charge = Conekta::Charge.create({
     amount: 51000,
