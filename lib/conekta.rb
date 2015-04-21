@@ -38,27 +38,38 @@ module Conekta
   @api_version = '1.0.0'
   @locale = 'es'
 
+  def self.config
+    yield self
+  end
+
   def self.api_base
     @api_base
   end
+
   def self.api_base=(api_base)
     @api_base = api_base
   end
+
   def self.api_version
     @api_version
   end
+
   def self.api_version=(api_version)
     @api_version = api_version
   end
+
   def self.api_key
     @api_key
   end
+
   def self.api_key=(api_key)
     @api_key = api_key
   end
+
   def self.locale
     @locale
   end
+
   def self.locale=(locale)
     @locale = locale
   end

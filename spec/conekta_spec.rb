@@ -1,13 +1,16 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 describe :conekta_tests do
-  Conekta.api_key = '1tv5yJp3xnVZ7eK67m4h'
+  before(:all) { Conekta.api_key = '1tv5yJp3xnVZ7eK67m4h' }
+
   describe :payouts_tests do
     p "payout tests"
+
     before :each do
       @valid_payment_method = {amount: 2000, currency: 'mxn', description: 'Some desc'}
       @invalid_payment_method = {amount: 10, currency: 'mxn', description: 'Some desc'}
       @valid_visa_card = {card: 'tok_test_visa_4242'}
     end
+
     it "succesful get payout" do
       payee = Conekta::Payee.create(name: "John Doe",
               email: "j_d@radcorp.com",
@@ -59,6 +62,7 @@ describe :conekta_tests do
       payout.transactions.count.should eq(0)
     end
   end
+
   describe :charge_tests do
     p "charge tests"
     before :each do
@@ -347,44 +351,49 @@ describe :conekta_tests do
   end
   describe :plan_tests do
     p "plan tests"
+
     it "test succesful get plan" do
       plans = Conekta::Plan.where
       p = plans.first;
       plan = Conekta::Plan.find(p.id)
       plan.class_name.should eq("Plan")
     end
+
     it "test succesful where" do
       plans = Conekta::Plan.where
       plans.class_name.should eq("ConektaObject")
       plans.first.class_name.should eq("Plan")
     end
+
     it "test succesful create plan" do
-      plans = Conekta::Plan.where
       plan = Conekta::Plan.create({
-					id: ((0...8).map { (65 + rand(26)).chr }.join),
-					name: "Gold Plan",
-					amount: 10000,
-					currency: "MXN",
-					interval: "month",
-					frequency: 10,
-					trial_period_days: 15,
-					expiry_count: 12
-					}
-			)
+        id: ((0...8).map { (65 + rand(26)).chr }.join),
+        name: "Gold Plan",
+        amount: 10000,
+        currency: "MXN",
+        interval: "month",
+        frequency: 10,
+        trial_period_days: 15,
+        expiry_count: 12
+      }
+                                 )
       plan.class_name.should eq("Plan")
     end
+
     it "test update plan" do
       plans = Conekta::Plan.where
       plan = plans.first
       plan.update({name: "Silver Plan"})
       plan.name.should eq("Silver Plan")
     end
+
     it "test delete plan" do
       plans = Conekta::Plan.where
       plan = plans.first
       plan.delete
       plan.deleted.should eq(true)
     end
+
   end
   describe :webhook_tests do
     p "webhook tests"
@@ -413,6 +422,26 @@ describe :conekta_tests do
       webhook.update({url: "http://localhost:2000/my_listener"})
       webhook.webhook_url.should eq("http://localhost:2000/my_listener")
       webhook.delete
+    end
+  end
+
+  describe ".config" do
+    it "sets the api key initializer style" do
+      Conekta.config { |c| c.api_key = "abc" }
+
+      expect(Conekta.api_key).to eq("abc")
+    end
+
+    it "sets the api version initializer style" do
+      Conekta.config { |c| c.api_version = "1.0" }
+
+      expect(Conekta.api_version).to eq("1.0")
+    end
+
+    it "sets the api locale initializer style" do
+      Conekta.config { |c| c.locale = "es" }
+
+      expect(Conekta.locale).to eq("es")
     end
   end
 end
