@@ -33,33 +33,33 @@ describe :conekta_tests do
                 country: 'MX',
                 zip: '06100'
               })
-      payee.class.class_name.should eq("Payee")
+      expect(payee.class.class_name).to eq("Payee")
 
-      payee.phone.should eq("555555555")
-      payee.payout_methods.first.account_number.should eq('032180000118359719')
-      payee.payout_methods.first.account_holder.should eq('J D - Radcorp')
-      payee.payout_methods.first.bank.should eq('ixe')
-      payee.default_payout_method_id.should_not eq(nil)
+      expect(payee.phone).to eq("555555555")
+      expect(payee.payout_methods.first.account_number).to eq('032180000118359719')
+      expect(payee.payout_methods.first.account_holder).to eq('J D - Radcorp')
+      expect(payee.payout_methods.first.bank).to eq('ixe')
+      expect(payee.default_payout_method_id).not_to eq(nil)
 
-      payee.payout_methods.first.description.should eq('Conekta To JD')
-      payee.payout_methods.first.statement_description.should eq('Conekta To JD 111111111')
-      payee.payout_methods.first.statement_reference.should eq('111111111')
+      expect(payee.payout_methods.first.description).to eq('Conekta To JD')
+      expect(payee.payout_methods.first.statement_description).to eq('Conekta To JD 111111111')
+      expect(payee.payout_methods.first.statement_reference).to eq('111111111')
 
-      payee.billing_address.company_name.should eq('Rad Corp')
-      payee.billing_address.tax_id.should eq('tax121212abc')
-      payee.billing_address.zip.should eq('06100')
+      expect(payee.billing_address.company_name).to eq('Rad Corp')
+      expect(payee.billing_address.tax_id).to eq('tax121212abc')
+      expect(payee.billing_address.zip).to eq('06100')
 
       payout = Conekta::Payout.create(amount: 5000,
               currency: "MXN",
               payee: payee.id)
-      payout.class.class_name.should eq("Payout")
-      payout.amount.should eq(5000)
-      payout.currency.should eq("MXN")
+      expect(payout.class.class_name).to eq("Payout")
+      expect(payout.amount).to eq(5000)
+      expect(payout.currency).to eq("MXN")
 
-      payout.method.account_number.should eq('032180000118359719')
-      payout.method.account_holder.should eq('J D - Radcorp')
-      payout.method.bank.should eq('ixe')
-      payout.transactions.count.should eq(0)
+      expect(payout.method.account_number).to eq('032180000118359719')
+      expect(payout.method.account_holder).to eq('J D - Radcorp')
+      expect(payout.method.bank).to eq('ixe')
+      expect(payout.transactions.count).to eq(0)
     end
   end
 
@@ -74,32 +74,32 @@ describe :conekta_tests do
       pm = @valid_payment_method
       card = @valid_visa_card
       cpm = Conekta::Charge.create(pm.merge(card))
-      cpm.status.should eq("paid")
+      expect(cpm.status).to eq("paid")
       pm = Conekta::Charge.find(cpm.id)
-      pm.class.class_name.should eq("Charge")
+      expect(pm.class.class_name).to eq("Charge")
     end
     it "test succesful where" do
       charges = Conekta::Charge.where
-      charges.class.class_name.should eq("ConektaObject")
-      charges[0].class.class_name.should eq("Charge")
+      expect(charges.class.class_name).to eq("ConektaObject")
+      expect(charges[0].class.class_name).to eq("Charge")
     end
     it "tests succesful bank pm create" do
       pm = @valid_payment_method
       bank = {bank: {'type' => 'banorte'}}
       bpm = Conekta::Charge.create(pm.merge(bank))
-      bpm.status.should eq("pending_payment")
+      expect(bpm.status).to eq("pending_payment")
     end
     it "tests succesful card pm create" do
       pm = @valid_payment_method
       card = @valid_visa_card
       cpm = Conekta::Charge.create(pm.merge(card))
-      cpm.status.should eq("paid")
+      expect(cpm.status).to eq("paid")
     end
     it "tests succesful oxxo pm create" do
       pm = @valid_payment_method
       oxxo = {cash: {'type' => 'oxxo'}}
       bpm = Conekta::Charge.create(pm.merge(oxxo))
-      bpm.status.should eq("pending_payment")
+      expect(bpm.status).to eq("pending_payment")
     end
     it "test unsuccesful pm create" do
       pm = @invalid_payment_method
@@ -107,26 +107,26 @@ describe :conekta_tests do
       begin
         cpm = Conekta::Charge.create(pm.merge(card))
       rescue Conekta::Error => e
-        e.message.should eq("The minimum for card payments is 3 pesos. Check that the amount is in cents as explained in the documentation.")
+        expect(e.message).to eq("The minimum for card payments is 3 pesos. Check that the amount is in cents as explained in the documentation.")
       end
     end
     it "test susccesful refund" do
       pm = @valid_payment_method
       card = @valid_visa_card
       cpm = Conekta::Charge.create(pm.merge(card))
-      cpm.status.should eq("paid")
+      expect(cpm.status).to eq("paid")
       cpm.refund
-      cpm.status.should eq("refunded")
+      expect(cpm.status).to eq("refunded")
     end
     it "test unsusccesful refund" do
       pm = @valid_payment_method
       card = @valid_visa_card
       cpm = Conekta::Charge.create(pm.merge(card))
-      cpm.status.should eq("paid")
+      expect(cpm.status).to eq("paid")
       begin
         cpm.refund(3000)
       rescue Conekta::Error => e
-        e.message.should eq("The order does not exist or the amount to refund is invalid")
+        expect(e.message).to eq("The order does not exist or the amount to refund is invalid")
       end
     end
     it "tests succesful card pm create" do
@@ -134,9 +134,9 @@ describe :conekta_tests do
       card = @valid_visa_card
       capture = {capture: false}
       cpm = Conekta::Charge.create(pm.merge(card).merge(capture))
-      cpm.status.should eq("pre_authorized")
+      expect(cpm.status).to eq("pre_authorized")
       cpm.capture
-      cpm.status.should eq("paid")
+      expect(cpm.status).to eq("paid")
     end
   end
   describe :customer_tests do
@@ -145,33 +145,33 @@ describe :conekta_tests do
       customer = Conekta::Customer.create({
         :cards => ["tok_test_visa_4242"],
       })
-      customer.class.class_name.should eq("Customer")
+      expect(customer.class.class_name).to eq("Customer")
     end
     it "successful customer get" do
       c = Conekta::Customer.create({
         :cards => ["tok_test_visa_4242"],
       })
       customer = Conekta::Customer.find(c.id)
-      customer.class.class_name.should eq("Customer")
+      expect(customer.class.class_name).to eq("Customer")
     end
     it "successful customer where" do
       customers = Conekta::Customer.where
-      customers.class.class_name.should eq("ConektaObject")
-      customers[0].class.class_name.should eq("Customer")
+      expect(customers.class.class_name).to eq("ConektaObject")
+      expect(customers[0].class.class_name).to eq("Customer")
     end
     it "successful customer delete" do
       customer = Conekta::Customer.create({
         :cards => ["tok_test_visa_4242"],
       })
       customer.delete
-      customer.deleted.should eq(true)
+      expect(customer.deleted).to eq(true)
     end
     it "successful customer update" do
       customer = Conekta::Customer.create({
         :cards => ["tok_test_visa_4242"],
       })
       customer.update({name: 'Logan', email: 'logan@x-men.org'})
-      customer.name.should eq('Logan')
+      expect(customer.name).to eq('Logan')
     end
     it "successful customer update" do
       begin
@@ -179,7 +179,7 @@ describe :conekta_tests do
           :cards => ["tok_test_visa_4241"],
         })
       rescue Conekta::Error => e
-        e.message.should eq("Object tok_test_visa_4241 could not be found.")
+        expect(e.message).to eq("Object tok_test_visa_4241 could not be found.")
       end
     end
     it "add card to customer" do
@@ -187,29 +187,29 @@ describe :conekta_tests do
         :cards => ["tok_test_visa_4242"],
       })
       card = customer.create_card(:token => 'tok_test_visa_1881')
-      customer.cards.count.should eq(2)
-      customer.cards.last.last4.should eq('1881')
+      expect(customer.cards.count).to eq(2)
+      expect(customer.cards.last.last4).to eq('1881')
     end
     it "test delete card" do
       customer = Conekta::Customer.create({
         :cards => ["tok_test_visa_4242"],
       })
       card = customer.cards[0].delete
-      card.deleted.should eq(true)
+      expect(card.deleted).to eq(true)
     end
     it "test update card" do
       customer = Conekta::Customer.create({
         :cards => ["tok_test_visa_4242"],
       })
       customer.cards[0].update({token: 'tok_test_mastercard_4444', active: false})
-      customer.cards[0].last4.should eq('4444')
+      expect(customer.cards[0].last4).to eq('4444')
     end
     it "test succesful create subscription" do
       customer = Conekta::Customer.create({
         :cards => ["tok_test_visa_4242"],
       })
       subscription = customer.create_subscription({plan: 'gold-plan'})
-      subscription.class.class_name.should eq('Subscription')
+      expect(subscription.class.class_name).to eq('Subscription')
     end
     it "test succesful update subscription" do
       customer = Conekta::Customer.create({
@@ -231,7 +231,7 @@ describe :conekta_tests do
         })
       end
       subscription.update({plan: plan.id})
-      subscription.plan_id.should eq('gold-plan2')
+      expect(subscription.plan_id).to eq('gold-plan2')
     end
     it "test unsuccesful create subscription" do
       customer = Conekta::Customer.create({
@@ -240,7 +240,7 @@ describe :conekta_tests do
       begin
         subscription = customer.create_subscription({plan: 'unexistent-plan'})
       rescue Conekta::Error => e
-        e.message.should eq("Object Plan unexistent-plan could not be found.")
+        expect(e.message).to eq("Object Plan unexistent-plan could not be found.")
       end
     end
     it "test succesful pause subscription" do
@@ -249,7 +249,7 @@ describe :conekta_tests do
       })
       subscription = customer.create_subscription({plan: 'gold-plan'})
       subscription.pause
-      subscription.status.should eq('paused')
+      expect(subscription.status).to eq('paused')
     end
     it "test succesful resume subscription" do
       customer = Conekta::Customer.create({
@@ -257,7 +257,7 @@ describe :conekta_tests do
       })
       subscription = customer.create_subscription({plan: 'gold-plan'})
       subscription.resume
-      subscription.status.should eq('active')
+      expect(subscription.status).to eq('active')
     end
     it "test succesful cancel subscription" do
       customer = Conekta::Customer.create({
@@ -265,7 +265,7 @@ describe :conekta_tests do
       })
       subscription = customer.create_subscription({plan: 'gold-plan'})
       subscription.cancel
-      subscription.status.should eq('canceled')
+      expect(subscription.status).to eq('canceled')
     end
   end
   describe :error_tests do
@@ -274,7 +274,7 @@ describe :conekta_tests do
       begin
         charge = Conekta::Charge.find(nil)
       rescue Conekta::Error => e
-        e.message.should eq('Could not get the id of Charge instance.')
+        expect(e.message).to eq('Could not get the id of Charge instance.')
       end
     end
     it "test no connection error" do
@@ -283,7 +283,7 @@ describe :conekta_tests do
       begin
         customer = Conekta::Customer.create({cards: ["tok_test_visa_4242"]})
       rescue Exception => e
-        e.class_name.should eq("NoConnectionError")
+        expect(e.class_name).to eq("NoConnectionError")
       end
       Conekta::api_base = api_url
     end
@@ -291,7 +291,7 @@ describe :conekta_tests do
       begin
         customer = Conekta::Customer.create({cards: {0=>"tok_test_visa_4242"}})
       rescue Conekta::Error => e
-        e.class_name.should eq("ParameterValidationError")
+        expect(e.class_name).to eq("ParameterValidationError")
       end
     end
     it "test authentication error" do
@@ -299,7 +299,7 @@ describe :conekta_tests do
       begin
         customer = Conekta::Customer.create({cards: ["tok_test_visa_4242"]})
       rescue Conekta::Error => e
-        e.class_name.should eq("AuthenticationError")
+        expect(e.class_name).to eq("AuthenticationError")
       end
       Conekta.api_key = '1tv5yJp3xnVZ7eK67m4h'
     end
@@ -307,7 +307,7 @@ describe :conekta_tests do
       begin
         plan = Conekta::Plan.create({id: 'gold-plan'})
       rescue Conekta::Error => e
-        e.class_name.should eq("ParameterValidationError")
+        expect(e.class_name).to eq("ParameterValidationError")
       end
     end
     it "test processing error" do
@@ -324,14 +324,14 @@ describe :conekta_tests do
           charge.capture
         end
       rescue Conekta::Error => e
-        e.class_name.should eq("ProcessingError")
+        expect(e.class_name).to eq("ProcessingError")
       end
     end
     it "test resource not found error" do
       begin
         charge = Conekta::Charge.find(1)
       rescue Conekta::Error => e
-        e.class_name.should eq("ResourceNotFoundError")
+        expect(e.class_name).to eq("ResourceNotFoundError")
       end
     end
   end
@@ -339,10 +339,10 @@ describe :conekta_tests do
     p "event tests"
     it "test succesful where" do
       events = Conekta::Event.where
-      events.class_name.should eq("ConektaObject")
-      events[0].class_name.should eq("Event")
+      expect(events.class_name).to eq("ConektaObject")
+      expect(events[0].class_name).to eq("Event")
       if !events[0].webhook_logs.empty?
-        events[0].webhook_logs.first.class_name.should eq("WebhookLog")
+        expect(events[0].webhook_logs.first.class_name).to eq("WebhookLog")
       end
     end
   end
@@ -356,13 +356,13 @@ describe :conekta_tests do
       plans = Conekta::Plan.where
       p = plans.first;
       plan = Conekta::Plan.find(p.id)
-      plan.class_name.should eq("Plan")
+      expect(plan.class_name).to eq("Plan")
     end
 
     it "test succesful where" do
       plans = Conekta::Plan.where
-      plans.class_name.should eq("ConektaObject")
-      plans.first.class_name.should eq("Plan")
+      expect(plans.class_name).to eq("ConektaObject")
+      expect(plans.first.class_name).to eq("Plan")
     end
 
     it "test succesful create plan" do
@@ -377,21 +377,21 @@ describe :conekta_tests do
         expiry_count: 12
       }
                                  )
-      plan.class_name.should eq("Plan")
+      expect(plan.class_name).to eq("Plan")
     end
 
     it "test update plan" do
       plans = Conekta::Plan.where
       plan = plans.first
       plan.update({name: "Silver Plan"})
-      plan.name.should eq("Silver Plan")
+      expect(plan.name).to eq("Silver Plan")
     end
 
     it "test delete plan" do
       plans = Conekta::Plan.where
       plan = plans.first
       plan.delete
-      plan.deleted.should eq(true)
+      expect(plan.deleted).to eq(true)
     end
 
   end
@@ -416,11 +416,11 @@ describe :conekta_tests do
       events = @events
       url = @url
       webhook =  Conekta::Webhook.create(url.merge(events))
-      webhook.webhook_url.should eq(url[:url])
+      expect(webhook.webhook_url).to eq(url[:url])
       webhook = Conekta::Webhook.find(webhook.id)
-      webhook.webhook_url.should eq(url[:url])
+      expect(webhook.webhook_url).to eq(url[:url])
       webhook.update({url: "http://localhost:2000/my_listener"})
-      webhook.webhook_url.should eq("http://localhost:2000/my_listener")
+      expect(webhook.webhook_url).to eq("http://localhost:2000/my_listener")
       webhook.delete
     end
   end
