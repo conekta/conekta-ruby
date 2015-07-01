@@ -9,5 +9,5 @@ require 'conekta'
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
-  
+  config.before(:all) { Conekta.api_key = '1tv5yJp3xnVZ7eK67m4h' }
 end

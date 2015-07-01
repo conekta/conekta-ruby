@@ -2,7 +2,6 @@ require 'spec_helper'
 # require 'conekta'
 
 describe Conekta::Payee do
-  before(:all) { Conekta.api_key = '1tv5yJp3xnVZ7eK67m4h' }
 
   describe 'an instance' do
     let(:payee_attributes) do
