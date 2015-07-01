@@ -2,66 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 describe :conekta_tests do
   before(:all) { Conekta.api_key = '1tv5yJp3xnVZ7eK67m4h' }
 
-  describe :payouts_tests do
-    p "payout tests"
-
-    before :each do
-      @valid_payment_method = {amount: 2000, currency: 'mxn', description: 'Some desc'}
-      @invalid_payment_method = {amount: 10, currency: 'mxn', description: 'Some desc'}
-      @valid_visa_card = {card: 'tok_test_visa_4242'}
-    end
-
-    it "succesful get payout" do
-      payee = Conekta::Payee.create(name: "John Doe",
-              email: "j_d@radcorp.com",
-              phone: "555555555",
-              bank: {
-                account_number: '032180000118359719',
-                account_holder: 'J D - Radcorp',
-                description: 'Conekta To JD',
-                statement_description: 'Conekta To JD 111111111',
-                statement_reference: '111111111'
-              },
-              billing_address:{
-                company_name: 'Rad Corp',
-                tax_id: 'tax121212abc',
-                street1: 'Guadalupe 73',
-                street2: 'Despacho 32',
-                street3: 'Condesa',
-                city: 'Cuauhtemoc',
-                state: 'DF',
-                country: 'MX',
-                zip: '06100'
-              })
-      expect(payee.class.class_name).to eq("Payee")
-
-      expect(payee.phone).to eq("555555555")
-      expect(payee.payout_methods.first.account_number).to eq('032180000118359719')
-      expect(payee.payout_methods.first.account_holder).to eq('J D - Radcorp')
-      expect(payee.payout_methods.first.bank).to eq('ixe')
-      expect(payee.default_payout_method_id).not_to eq(nil)
-
-      expect(payee.payout_methods.first.description).to eq('Conekta To JD')
-      expect(payee.payout_methods.first.statement_description).to eq('Conekta To JD 111111111')
-      expect(payee.payout_methods.first.statement_reference).to eq('111111111')
-
-      expect(payee.billing_address.company_name).to eq('Rad Corp')
-      expect(payee.billing_address.tax_id).to eq('tax121212abc')
-      expect(payee.billing_address.zip).to eq('06100')
-
-      payout = Conekta::Payout.create(amount: 5000,
-              currency: "MXN",
-              payee: payee.id)
-      expect(payout.class.class_name).to eq("Payout")
-      expect(payout.amount).to eq(5000)
-      expect(payout.currency).to eq("MXN")
-
-      expect(payout.method.account_number).to eq('032180000118359719')
-      expect(payout.method.account_holder).to eq('J D - Radcorp')
-      expect(payout.method.bank).to eq('ixe')
-      expect(payout.transactions.count).to eq(0)
-    end
-  end
+  # moved Payout specs to spec/lib/payout_spec.rb
 
   describe :charge_tests do
     p "charge tests"
