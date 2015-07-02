@@ -52,7 +52,8 @@ describe Conekta::Payout do
       expect(payout).to be_a(Conekta::Payout)
     end
 
-    it 'has a :method attribute'
-    # For some reason :method this attribute always returns nil
+    it 'has a :method attribute' do
+      expect(@payee.payout_methods.first).to be_a(Conekta::Method)
+    end
   end
 end
