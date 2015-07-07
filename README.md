@@ -49,7 +49,7 @@ begin
   rescue Conekta::ProcessingError => e
     puts e.message 
     #la tarjeta no pudo ser procesada
-  rescue Conekta::Error
+  rescue Conekta::Error => e
     puts e.message 
     #un error ocurrió que no sucede en el flujo normal de cobros como por ejemplo un auth_key incorrecto
   end
