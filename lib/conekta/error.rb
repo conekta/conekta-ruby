@@ -1,5 +1,5 @@
 module Conekta
-  class Error < Exception
+  class Error < StandardError
     attr_reader :message
     attr_reader :message_to_purchaser
     attr_reader :type
