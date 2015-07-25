@@ -24,7 +24,7 @@ module Conekta
       begin
         connection = build_connection(url, params)
         response = connection.method(meth).call
-      rescue Exception => e
+      rescue StandardError => e
         Error.error_handler(e, "")
       end
 
