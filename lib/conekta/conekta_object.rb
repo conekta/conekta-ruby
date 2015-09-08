@@ -8,9 +8,11 @@ module Conekta
     end
     def set_val(k,v)
       @values[k] = v
+      self[k] = v
     end
     def unset_key(k)
       @values.delete(k)
+      self.delete(k)
     end
     def first
       self[0]
