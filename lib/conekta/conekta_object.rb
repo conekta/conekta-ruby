@@ -5,13 +5,14 @@ module Conekta
     def initialize(id=nil)
       @values = Hash.new
       @id = id.to_s
-      self["foo"] = "bar"
     end
     def set_val(k,v)
       @values[k] = v
+      self[k] = v
     end
     def unset_key(k)
       @values.delete(k)
+      self.delete(k)
     end
     def first
       self[0]
