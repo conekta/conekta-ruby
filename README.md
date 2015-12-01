@@ -1,6 +1,6 @@
 ![alt tag](https://raw.github.com/conekta/conekta-ruby/master/readme_files/cover.png)
 
-# Conekta Ruby v.0.5.4
+# Conekta Ruby v.0.5.5
 
 This is a ruby library that allows interaction with https://api.conekta.io API.
 
@@ -40,20 +40,20 @@ begin
     currency: "MXN",
     description: "Pizza Delivery",
     reference_id: "orden_de_id_interno",
-    card: params[:conektaTokenId] 
+    card: params[:conektaTokenId]
     #"tok_a4Ff0dD2xYZZq82d9"
   })
   rescue Conekta::ParameterValidationError => e
-    puts e.message 
+    puts e.message
     #alguno de los parámetros fueron inválidos
   rescue Conekta::ProcessingError => e
-    puts e.message 
+    puts e.message
     #la tarjeta no pudo ser procesada
   rescue Conekta::Error => e
-    puts e.message 
+    puts e.message
     #un error ocurrió que no sucede en el flujo normal de cobros como por ejemplo un auth_key incorrecto
   end
-    
+
   {
     "id": "5286828b8ee31e64b7001739",
     "livemode": false,
@@ -92,6 +92,5 @@ Developed by [Conekta](https://www.conekta.io). Available with [MIT License](LIC
 We are hiring
 -------------
 
-If you are a comfortable working with a range of backend languages (Java, Python, Ruby, PHP, etc) and frameworks, you have solid foundation in data structures, algorithms and software design with strong analytical and debugging skills. 
+If you are a comfortable working with a range of backend languages (Java, Python, Ruby, PHP, etc) and frameworks, you have solid foundation in data structures, algorithms and software design with strong analytical and debugging skills.
 Send your CV, github to quieroser@conekta.io
-

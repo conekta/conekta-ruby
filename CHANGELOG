@@ -60,3 +60,7 @@
 == 0.5.4 2015-09-08
 
 * Update ConektaObject with the attribute 'values'.
+
+== 0.5.5 2015-12-01
+
+* Add find method to Event class.
