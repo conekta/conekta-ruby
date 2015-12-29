@@ -23,7 +23,9 @@ module Conekta
 
       begin
         connection = build_connection(url, params)
-        response = connection.method(meth).call
+        response = connection.method(meth).call do |req|
+          req.body = params.to_json if params
+        end
       rescue Exception => e
         Error.error_handler(e, "")
       end
@@ -43,11 +45,11 @@ module Conekta
       end
 
       set_headers_for(connection)
-      connection.params = params if params
       return connection
     end
 
     def set_headers_for(connection)
+      connection.headers['Content-Type'] = 'application/json'
       connection.headers['X-Conekta-Client-User-Agent'] = conekta_headers.to_json
       connection.headers['User-Agent'] = 'Conekta/v1 RubyBindings/' + Conekta::VERSION
       connection.headers['Accept'] = "application/vnd.conekta-v#{Conekta.api_version}+json"

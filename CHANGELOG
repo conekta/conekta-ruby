@@ -64,3 +64,7 @@
 == 0.5.5 2015-12-01
 
 * Add find method to Event class.
+
+== 0.5.6 2015-12-29
+
+* Change parameter serialization using request body instead of connection params.
