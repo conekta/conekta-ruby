@@ -2,11 +2,11 @@ module Conekta
   class Subscription < Resource
     include Conekta::Operations::Update
     include Conekta::Operations::CustomAction
-    def url
+    def _url
       raise Error.new(
         I18n.t('error.resource.id',  { resource: self.class.class_name, locale: :en }),
         I18n.t('error.resource.id_purchaser',  { locale: Conekta.locale.to_sym })) if (id.nil? || id.empty?)
-      self.customer.url + "/subscription"
+      self.customer._url + "/subscription"
     end
     def pause
       custom_action(:post, 'pause')

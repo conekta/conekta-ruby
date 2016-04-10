@@ -4,7 +4,7 @@ module Conekta
       module ClassMethods
         def find(id)
           instance = self.new(id)
-          response = Requestor.new.request(:get, instance.url)
+          response = Requestor.new.request(:get, instance._url)
           instance.load_from(response)
           instance
         end

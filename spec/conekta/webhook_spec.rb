@@ -23,11 +23,11 @@ describe Conekta::Webhook do
 
   it "succesfully gets charge" do
     webhook =  Conekta::Webhook.create(url.merge(events))
-    expect(webhook.webhook_url).to eq(url[:url])
+    expect(webhook.url).to eq(url[:url])
     webhook = Conekta::Webhook.find(webhook.id)
-    expect(webhook.webhook_url).to eq(url[:url])
+    expect(webhook.url).to eq(url[:url])
     webhook.update({url: "http://localhost:2000/my_listener"})
-    expect(webhook.webhook_url).to eq("http://localhost:2000/my_listener")
+    expect(webhook.url).to eq("http://localhost:2000/my_listener")
     webhook.delete
   end
 end
