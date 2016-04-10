@@ -2,9 +2,9 @@ module Conekta
   module Operations
     module CreateMember
       def create_member(member, params)
-        url = [self.url, member].join('/')
+        _url = [self._url, member].join('/')
         member = member.to_sym
-        response = Requestor.new.request(:post, url, params)
+        response = Requestor.new.request(:post, _url, params)
 
         if self.method(member).call and self.method(member).call.class.class_name == "ConektaObject"
           arr = []

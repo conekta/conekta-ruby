@@ -53,17 +53,17 @@ module Conekta
       self.class.name.split('::')[-1]
     end
     def create_attr(k,v)
-        # Conflict with Resource Class Url
-        k = "webhook_url" if k.to_s == "url"
-        # Conflict with Resource Class Url
+      # Conflict with Resource Class Url
+      if ! k.to_s.match(/-/) and ! k.to_s.match(/^[0-9]+/)
         create_method( "#{k}=".to_sym ) { |val| 
             instance_variable_set( "@" + k, val)
         }
         self.send("#{k}=".to_sym, v)
         self.class.send(:remove_method, "#{k}=".to_sym)
         create_method( k.to_sym ) { 
-            instance_variable_get( "@" + k ) 
+          instance_variable_get( "@" + k ) 
         }
+      end
     end
     protected
     def to_hash

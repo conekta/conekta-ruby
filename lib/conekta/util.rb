@@ -2,22 +2,26 @@ module Conekta
   module Util
     def self.types
       @types ||= {
-        'webhook' => Webhook,
-        'webhook_log' => WebhookLog,
-        'bank_transfer_payout_method' => Method,
-        'payout' => Payout,
-        'payee' => Payee,
-        'payout_method' => PayoutMethod,
         'bank_transfer_payment' => PaymentMethod,
+        'bank_transfer_payout_method' => Method,
+        'card' => Card,
         'card_payment' => PaymentMethod,
         'cash_payment' => PaymentMethod,
         'charge' => Charge,
         'customer' => Customer,
-        'card' => Card,
-        'subscription' => Subscription,
+        'event' => Event,
+        'log' => Log,
+        'payee' => Payee,
+        'payout' => Payout,
+        'payout_method' => PayoutMethod,
         'plan' => Plan,
+        'subscription' => Subscription,
+        'payee' => Payee,
+        'payout' => Payout,
+        'payout_method' => PayoutMethod,
         'token' => Token,
-        'event' => Event
+        'webhook' => Webhook,
+        'webhook_log' => WebhookLog,
       }
     end
     def self.convert_to_conekta_object(name,resp)

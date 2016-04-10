@@ -12,17 +12,17 @@ module Conekta
       @api_key = Conekta.api_key
     end
 
-    def api_url(url='')
+    def api_url(_url='')
       api_base = Conekta.api_base
-      api_base + url
+      api_base + _url
     end
 
-    def request(meth, url, params=nil)
-      url = self.api_url(url)
+    def request(meth, _url, params=nil)
+      _url = self.api_url(_url)
       meth = meth.downcase
 
       begin
-        connection = build_connection(url, params)
+        connection = build_connection(_url, params)
         response = connection.method(meth).call do |req|
           req.body = params.to_json if params
         end
@@ -36,9 +36,9 @@ module Conekta
 
     private
 
-    def build_connection(url, params = nil)
+    def build_connection(_url, params = nil)
       connection = Faraday.new(
-       :url => url,
+       :url => _url,
        :ssl => { :ca_file=> File.dirname(__FILE__) + '/../ssl_data/ca_bundle.crt'}
        ) do |faraday|
         faraday.adapter  Faraday.default_adapter

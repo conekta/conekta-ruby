@@ -3,14 +3,46 @@ require 'spec_helper'
 describe Conekta::Charge do
   let(:payment_method) do
     {
-      amount: 2000, currency: 'mxn', description: 'Some desc'
+      amount: 2000, 
+      currency: 'mxn', 
+      description: 'Some desc',
+      details: {
+        name: "Wolverine",
+        email: "logan.thomas@xmen.org",
+        phone: "403-342-0642",
+        line_items: [{
+          name: "Shades",
+          description: "Imported From Mex.",
+          unit_price: 20000,
+          quantity: 1,
+          sku: "cohb_s1",
+          category: "eyewear"
+        }]
+      }
     }
   end
+
   let(:invalid_payment_method) do
     {
-      amount: 10, currency: 'mxn', description: 'Some desc'
+      amount: 10, 
+      currency: 'mxn', 
+      description: 'Some desc',
+      details: {
+        name: "Wolverine",
+        email: "logan.thomas@xmen.org",
+        phone: "403-342-0642",
+        line_items: [{
+          name: "Shades",
+          description: "Imported From Mex.",
+          unit_price: 20000,
+          quantity: 1,
+          sku: "cohb_s1",
+          category: "eyewear"
+        }]
+      }
     }
   end
+
   let(:card) { { card: 'tok_test_visa_4242' } }
 
   context "get" do

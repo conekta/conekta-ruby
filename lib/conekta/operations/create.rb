@@ -3,8 +3,8 @@ module Conekta
     module Create
       module ClassMethods
         def create(params)
-          url = Util.types[self.class_name.downcase].url
-          response = Requestor.new.request(:post, url, params)
+          _url = Util.types[self.class_name.downcase]._url
+          response = Requestor.new.request(:post, _url, params)
           instance = self.new
           instance.load_from(response)
           instance
