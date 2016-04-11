@@ -89,6 +89,22 @@ License
 -------
 Developed by [Conekta](https://www.conekta.io). Available with [MIT License](LICENSE).
 
+Development and Testing
+-----------------------
+Feel free to play with our library and make pull requests if you find any bugs.  You can run the test suite with rspec from the library's root directory:
+
+```shell
+bundle exec rspec
+```
+
+To facilitate the development and testing process you can use one our ruby docker, docker preloaded with rvm and ruby versions 1.9.3, 2.1.9, 2.2.4 and 2.3.0:
+
+```shell
+docker pull conekta/conekta-ruby
+
+docker run -ti conekta/conekta-ruby /bin/bash --login
+```
+
 We are hiring
 -------------
 
