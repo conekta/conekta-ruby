@@ -17,14 +17,14 @@ module Conekta
       api_base + _url
     end
 
-    def request(meth, _url, params=nil)
+    def request(meth, _url, params = nil)
       _url = self.api_url(_url)
       meth = meth.downcase
 
       begin
         connection = build_connection(_url, params)
         response = connection.method(meth).call do |req|
-          req.body = params.to_json if params
+          (if meth == :get then req.params = params else req.body = params.to_json end) if params
         end
       rescue Exception => e
         Error.error_handler(e, "")

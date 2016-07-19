@@ -21,13 +21,15 @@ describe Conekta::Webhook do
   end
   let(:url) { { url: "http://localhost:3000/my_listener" } }
 
-  it "succesfully gets charge" do
-    webhook =  Conekta::Webhook.create(url.merge(events))
-    expect(webhook.url).to eq(url[:url])
-    webhook = Conekta::Webhook.find(webhook.id)
-    expect(webhook.url).to eq(url[:url])
-    webhook.update({url: "http://localhost:2000/my_listener"})
-    expect(webhook.url).to eq("http://localhost:2000/my_listener")
-    webhook.delete
-  end
+  # This spec was commented to avoid webhook creation saturation.
+  # 
+  # it "succesfully gets charge" do
+  #   webhook =  Conekta::Webhook.create(url.merge(events))
+  #   expect(webhook.url).to eq(url[:url])
+  #   webhook = Conekta::Webhook.find(webhook.id)
+  #   expect(webhook.url).to eq(url[:url])
+  #   webhook.update({url: "http://localhost:2000/my_listener"})
+  #   expect(webhook.url).to eq("http://localhost:2000/my_listener")
+  #   webhook.delete
+  # end
 end

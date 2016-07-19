@@ -68,3 +68,7 @@
 == 0.5.6 2015-12-29
 
 * Change parameter serialization using request body instead of connection params.
+
+== 0.5.7 2016-07-19
+
+* Fix parameter handling for get requests.

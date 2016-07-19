@@ -58,6 +58,18 @@ describe Conekta::Charge do
       charge = charges.first
       expect(charge).to be_a(Conekta::Charge)
     end
+    it "test succesful where status 'pending_payment'" do
+      charges = Conekta::Charge.where({status: 'pending_payment'})
+      charges.map{|index, charge|
+        expect(charge.status).to eq("pending_payment")
+      }
+    end
+    it "test succesful where status 'paid'" do
+      charges = Conekta::Charge.where({status: 'paid'})
+      charges.map{|index, charge|
+        expect(charge.status).to eq("paid")
+      }
+    end
   end
 
   context "creating charges" do
