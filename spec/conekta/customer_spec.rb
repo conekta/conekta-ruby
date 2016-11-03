@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Conekta::Customer do
-  let(:customer_data) { { :cards => ["tok_test_visa_4242"] } }
+  let(:customer_data) { { :cards => ["tok_test_visa_4242"], email: "test@gmail.com", name: "Mario" } }
 
   context "creating customers" do
     it "successful customer create" do
@@ -13,7 +13,7 @@ describe Conekta::Customer do
       expect { Conekta::Customer.create(
         :cards => ["tok_test_visa_4241"]
       ) }.to raise_error(
-        Conekta::ResourceNotFoundError,
+        Conekta::ParameterValidationError,
         "Object tok_test_visa_4241 could not be found."
       )
     end
