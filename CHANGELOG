@@ -72,3 +72,7 @@
 == 0.5.7 2016-07-19
 
 * Fix parameter handling for get requests.
+
+== 0.5.8 2016-07-19
+
+* Add new models for parsing.

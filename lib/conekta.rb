@@ -32,6 +32,9 @@ require "conekta/subscription"
 require "conekta/token"
 require "conekta/webhook"
 require "conekta/webhook_log"
+require "conekta/refund"
+require "conekta/line_item"
+require "conekta/address"
 
 module Conekta
   I18n.load_path += Dir[File.join(File.expand_path('../..', __FILE__), 'locales', '*.{rb,yml}').to_s]

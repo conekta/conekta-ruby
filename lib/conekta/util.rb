@@ -19,6 +19,9 @@ module Conekta
         'token' => Token,
         'webhook' => Webhook,
         'webhook_log' => WebhookLog,
+        'refund' => Refund,
+        'line_item' => LineItem,
+        'address' => Address
       }
     end
     def self.convert_to_conekta_object(name,resp)
