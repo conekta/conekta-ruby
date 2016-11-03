@@ -11,10 +11,12 @@ describe Conekta::Customer do
 
     it "successful customer create" do
       expect { Conekta::Customer.create(
-        :cards => ["tok_test_visa_4241"]
+        :cards => ["tok_test_visa_4241"],
+        :name => "Mario",
+        :email => "test@gmail.com"
       ) }.to raise_error(
         Conekta::ParameterValidationError,
-        "Object tok_test_visa_4241 could not be found."
+        "The token does not exist."
       )
     end
   end
@@ -37,6 +39,8 @@ describe Conekta::Customer do
     it "successful customer update" do
       customer = Conekta::Customer.create({
         :cards => ["tok_test_visa_4242"],
+        :name => "Mario",
+        :email => "test@gmail.com"
       })
       customer.update({name: 'Logan', email: 'logan@x-men.org'})
       expect(customer.name).to eq('Logan')
