@@ -9,7 +9,7 @@ describe Conekta::Customer do
       expect(customer).to be_a(Conekta::Customer)
     end
 
-    it "successful customer create" do
+    it "unsuccessful customer create" do
       expect { Conekta::Customer.create(
         :cards => ["tok_test_visa_4241"],
         :name => "Mario",
