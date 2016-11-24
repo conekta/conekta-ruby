@@ -6,7 +6,7 @@ module Conekta
         member = member.to_sym
         response = Requestor.new.request(:post, _url, params)
 
-        if self.method(member).call and self.method(member).call.class.class_name == "List"
+        if self.method(member).call and self.method(member).call.class.class_name == "ConektaObject"
           arr = []
           self.method(member).call.values.each do |_,v|
             arr << v.to_hash

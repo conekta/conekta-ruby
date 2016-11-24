@@ -11,7 +11,7 @@ describe Conekta::Plan do
 
     it "test succesful where" do
       plans = Conekta::Plan.where
-      expect(plans.class_name).to eq("List")
+      expect(plans.class_name).to eq("ConektaObject")
       expect(plans.first).to be_a(Conekta::Plan)
     end
   end
