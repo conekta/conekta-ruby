@@ -1,10 +1,8 @@
 module Conekta
-  class ConektaObject < Hash
-    attr_reader :id
+  class List < Hash
     attr_reader :values
-    def initialize(id=nil)
+    def initialize
       @values = Hash.new
-      @id = id.to_s
     end
     def set_val(k,v)
       @values[k] = v
@@ -37,7 +35,7 @@ module Conekta
     end
     def inspect
       if self.respond_to? :each
-        if self.class.class_name != "ConektaObject"
+        if self.class.class_name != "List"
           self.to_s
         else
           self.to_a.map{|x| x[1] }
@@ -77,10 +75,10 @@ module Conekta
         self.class.send( :define_method, name, &block )
     end
     def load_from_enumerable(k,v)
-      if v.respond_to? :each and !v.instance_of?(ConektaObject)
-        v = Conekta::Util.convert_to_conekta_object(k,v)
+      if v.respond_to? :each and !v.instance_of?(List)
+        v = Conekta::Util.convert_to_list(k,v)
       end
-      if self.instance_of?(ConektaObject)
+      if self.instance_of?(List)
         self[k] = v
       else
         self.create_attr(k,v)

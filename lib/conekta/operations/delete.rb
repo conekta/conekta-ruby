@@ -10,7 +10,7 @@ module Conekta
         parent = parent.to_sym
         member = member.to_sym
         obj = self.method(parent).call.method(member).call
-        if obj.class.class_name == "ConektaObject"
+        if obj.class.class_name == "List"
           self.method(parent).call.method(member).call.each do |(k, v)|
             if v.id == self.id
               self.method(parent).call.method(member).call[k] = nil

@@ -1,5 +1,10 @@
 module Conekta
-  class Resource < ConektaObject
+  class Resource < List
+    attr_reader :id
+    def initialize(id=nil)
+      @id = id.to_s
+      super()
+    end
     def self._url()
       "/#{CGI.escape(self.class_name.downcase)}s"
     end

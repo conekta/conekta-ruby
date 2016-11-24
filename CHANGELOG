@@ -15,7 +15,7 @@
 
 * Add payout and payee models with specs.
 * Add webhook logs for events.
-* Ameliorate convert_to_conekta_object logic.
+* Ameliorate convert_to_list logic.
 
 === 0.4.1 2014-04-16
 
@@ -59,7 +59,7 @@
 
 == 0.5.4 2015-09-08
 
-* Update ConektaObject with the attribute 'values'.
+* Update List with the attribute 'values'.
 
 == 0.5.5 2015-12-01
 

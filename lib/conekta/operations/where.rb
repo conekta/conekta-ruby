@@ -3,7 +3,7 @@ module Conekta
     module Where
       module ClassMethods
         def where(params=nil)
-          instance = ConektaObject.new
+          instance = List.new
           _url = Util.types[self.class_name.downcase]._url
           response = Requestor.new.request(:get, _url, params)
           instance.load_from(response)
