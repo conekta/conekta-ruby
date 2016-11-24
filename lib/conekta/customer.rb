@@ -13,10 +13,11 @@ module Conekta
       end
       customer = self
       method   = self.respond_to?(:cards) ? "cards" : "sources"
+
       self.send(method).each do |k,v|
         if !v.respond_to? :deleted or !v.deleted
           v.create_attr('customer', customer)
-          self.cards.set_val(k,v)
+          self.send(method).set_val(k,v)
         end
       end
       if self.respond_to? :subscription and self.subscription
@@ -25,6 +26,9 @@ module Conekta
     end
     def create_card(params)
       self.create_member('cards', params)
+    end
+    def create_source(params)
+      self.create_member('sources', params)
     end
     def create_subscription(params)
       self.create_member('subscription', params)
