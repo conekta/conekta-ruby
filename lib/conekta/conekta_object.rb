@@ -1,10 +1,8 @@
 module Conekta
   class ConektaObject < Hash
-    attr_reader :id
     attr_reader :values
-    def initialize(id=nil)
+    def initialize
       @values = Hash.new
-      @id = id.to_s
     end
     def set_val(k,v)
       @values[k] = v
