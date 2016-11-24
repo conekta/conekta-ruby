@@ -39,4 +39,10 @@ describe Conekta::Source do
       }.to raise_error(Conekta::ParameterValidationError)
     end
   end
+
+  after(:all) do
+    Conekta.api_base = "https://api.conekta.io"
+    Conekta.api_key = '1tv5yJp3xnVZ7eK67m4h'
+    Conekta.api_version = "1.0.0"
+  end
 end
