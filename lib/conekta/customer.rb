@@ -12,7 +12,8 @@ module Conekta
         super
       end
       customer = self
-      self.cards.each do |k,v|
+      method   = self.respond_to?(:cards) ? "cards" : "sources"
+      self.send(method).each do |k,v|
         if !v.respond_to? :deleted or !v.deleted
           v.create_attr('customer', customer)
           self.cards.set_val(k,v)
