@@ -11,6 +11,7 @@ require "conekta/operations/update"
 require "conekta/operations/custom_action"
 require "conekta/operations/create_member"
 
+require "conekta/conekta_object"
 require "conekta/list"
 require "conekta/resource"
 require "conekta/requestor"

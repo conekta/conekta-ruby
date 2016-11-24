@@ -1,8 +1,8 @@
 module Conekta
-  class Resource < List
-    attr_reader :id
+  class Resource < ConektaObject
+    attr_accessor :id
     def initialize(id=nil)
-      @id = id.to_s
+      @id = id
       super()
     end
     def self._url()
@@ -11,7 +11,7 @@ module Conekta
     def _url
       raise Error.new(
         I18n.t('error.resource.id',  { resource: self.class.class_name, locale: :en }),
-        I18n.t('error.resource.id_purchaser',  { locale: Conekta.locale.to_sym })) if (id.nil? || id.empty?)
+        I18n.t('error.resource.id_purchaser',  { locale: Conekta.locale.to_sym })) if (id.nil? || id.to_s.empty?)
 
       return [self.class._url, id].join('/')
     end

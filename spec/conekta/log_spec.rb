@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Conekta::Log do
   it "test successful where" do
     events = Conekta::Log.where
-    expect(events.class_name).to eq("List")
+    expect(events.class_name).to eq("ConektaObject")
     expect(events[0].class_name).to eq("Log")
   end
 

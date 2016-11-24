@@ -9,9 +9,9 @@ describe Conekta::Order do
   end
 
   after(:all) do
-    Conekta.api_key = '1tv5yJp3xnVZ7eK67m4h'
     Conekta.api_base = "https://api.conekta.io"
     Conekta.api_version = "1.0.0"
+    Conekta.api_key = "1tv5yJp3xnVZ7eK67m4h"
   end
 
   let(:customer_info) do
@@ -128,8 +128,7 @@ describe Conekta::Order do
 
     it "test successful where" do
       orders = Conekta::Order.where
-      puts orders
-
+      expect(orders).to be_a(Conekta::List)
       expect(orders.first).to be_a(Conekta::Order)
     end
   end

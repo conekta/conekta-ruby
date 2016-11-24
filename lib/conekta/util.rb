@@ -26,7 +26,7 @@ module Conekta
         'source' => Source
       }
     end
-    def self.convert_to_list(name,resp)
+    def self.convert_to_conekta_object(name,resp)
       if resp.kind_of?(Hash) 
         if resp.has_key?('object') and types[resp['object']]
           instance = types[resp['object']].new()
@@ -36,7 +36,7 @@ module Conekta
           name = "event_data" if camelize(name) == "Data"
           name = "obj" if camelize(name) == "Object"
           if !Object.const_defined?(camelize(name))
-            instance = Object.const_set(camelize(name), Class.new(List)).new
+            instance = Object.const_set(camelize(name), Class.new(ConektaObject)).new
           else
             instance = constantize(camelize(name)).new
           end
@@ -45,11 +45,11 @@ module Conekta
         end
       end
       if resp.kind_of?(Array)
-        instance = List.new
+        instance = ConektaObject.new
         instance.load_from(resp)
         if !resp.empty? and resp.first.instance_of? Hash and !resp.first["object"]
           resp.each_with_index do |r, i|
-            obj = convert_to_list(name,r)
+            obj = convert_to_conekta_object(name,r)
             instance.set_val(i,obj)
             instance[i] = obj
           end
