@@ -30,7 +30,7 @@ describe Conekta::Customer do
 
     it "successful customer where" do
       customers = Conekta::Customer.where
-      expect(customers.class.class_name).to eq("ConektaObject")
+      expect(customers.class.class_name).to eq("List")
       expect(customers.first).to be_a(Conekta::Customer)
     end
   end

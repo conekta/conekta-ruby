@@ -22,7 +22,8 @@ module Conekta
         'refund' => Refund,
         'line_item' => LineItem,
         'address' => Address,
-        'order' => Order
+        'order' => Order,
+        'source' => Source
       }
     end
     def self.convert_to_conekta_object(name,resp)
