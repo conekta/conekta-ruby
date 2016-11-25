@@ -42,7 +42,6 @@ module Conekta
 
     private
     def move_cursor(limit)
-      @values = Hash.new
       @params["limit"] = limit if !limit.nil? && !limit.to_s.empty?
       _url = Util.types[@elements_type.downcase]._url
       response = Requestor.new.request(:get, _url, @params)
