@@ -31,12 +31,15 @@ module Conekta
       @params["starting_after"] = nil
       move_cursor(options[:limit])
     end
-    
+
     def load_from(response)
       @starting_after = response["starting_after"]
       @ending_before = response["ending_before"]
       @has_more = response["has_more"]
       @total = response["total"]
+
+      self.map{|key, _| self.unset_key(key) }
+
       super(response["data"])
     end
 
