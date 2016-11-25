@@ -27,11 +27,17 @@ module Conekta
           (if meth == :get then req.params = params else req.body = params.to_json end) if params
         end
       rescue Exception => e
-        Error.error_handler(e, "")
+        if Conekta.api_version == "1.1.0"
+          json_response = {"details" => []}
+        else
+          json_response = {}
+        end
+        ErrorList.error_handler(json_response, nil)
       end
-
-      return Error.error_handler(JSON.parse(response.body), response.status) if response.status != 200
-      JSON.parse(response.body)
+      
+      json_response = JSON.parse(response.body)
+      return ErrorList.error_handler(json_response, response.status) if response.status != 200
+      json_response
     end
 
     private
