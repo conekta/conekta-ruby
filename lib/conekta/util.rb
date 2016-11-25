@@ -25,7 +25,8 @@ module Conekta
         'address' => Address,
         'order' => Order,
         'source' => Source,
-        'tax_line' => TaxLine
+        'tax_line' => TaxLine,
+        'shipping_line' => ShippingLine
       }
     end
 
