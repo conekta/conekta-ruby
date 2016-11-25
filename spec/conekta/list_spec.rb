@@ -29,6 +29,16 @@ describe Conekta::List do
       first_window.previous(1)
       expect(first_window).to be_empty
     end
-    it "cannot move forward"
+    # this spec is only a reference to be tested in the future
+    xit "cannot move forward" do
+      expect(list).not_to be_empty
+      loop do
+        list.next
+        break if list.size == 0
+      end
+      expect(list).to be_empty
+      list.next
+      expect(list).to be_empty
+    end
   end
 end

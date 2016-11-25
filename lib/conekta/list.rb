@@ -9,20 +9,24 @@ module Conekta
     end
 
     def next(limit=nil)
-      if !@ending_before.nil?
-        @params["starting_after"] = self.first.id
-      else
-        @params["starting_after"] = self.last.id
+      if self.size > 0
+        if !@ending_before.nil?
+          @params["starting_after"] = self.first.id
+        else
+          @params["starting_after"] = self.last.id
+        end
       end
       @params["ending_before"] = nil
       move_cursor(limit)
     end
 
     def previous(limit=nil)
-      if !@ending_before.nil?
-        @params["ending_before"] = self.last.id
-      else
-        @params["ending_before"] = self.first.id
+      if self.size > 0
+        if !@ending_before.nil?
+          @params["ending_before"] = self.last.id
+        else
+          @params["ending_before"] = self.first.id
+        end
       end
       @params["starting_after"] = nil
       move_cursor(limit)
