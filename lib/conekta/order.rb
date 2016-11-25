@@ -12,7 +12,7 @@ module Conekta
       end
 
       order     = self
-      submodels = [:line_items, :tax_lines, :shipping_lines]
+      submodels = [:line_items, :tax_lines, :shipping_lines, :discount_lines]
 
       submodels.each do |submodel|
         self.send(submodel).each do |k,v|
@@ -38,5 +38,8 @@ module Conekta
       self.create_member('shipping_lines', params)
     end
 
+    def create_discount_line(params)
+      self.create_memeber('discount_lines', params)
+    end
   end
 end
