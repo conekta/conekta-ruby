@@ -1,13 +1,17 @@
 module Conekta
   class Resource < ConektaObject
+
     attr_accessor :id
+
     def initialize(id=nil)
       @id = id
       super()
     end
+
     def self._url()
-      "/#{CGI.escape(self.class_name.downcase)}s"
+      "/#{CGI.escape(underscored_class)}s"
     end
+
     def _url
       if (id.nil? || id.to_s.empty?)
         exception = Error.new({
@@ -23,6 +27,10 @@ module Conekta
       end
 
       return [self.class._url, id].join('/')
+    end
+
+    def self.underscored_class
+      Conekta::Util.underscore(self.to_s)
     end
   end
 end

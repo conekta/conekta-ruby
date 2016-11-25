@@ -31,7 +31,7 @@ module Conekta
       @params["starting_after"] = nil
       move_cursor(options[:limit])
     end
-    
+
     def load_from(response)
       @starting_after = response["starting_after"]
       @ending_before = response["ending_before"]

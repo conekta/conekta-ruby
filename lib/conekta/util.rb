@@ -1,5 +1,6 @@
 module Conekta
   module Util
+
     def self.types
       @types ||= {
         'bank_transfer_payment' => PaymentMethod,
@@ -23,11 +24,13 @@ module Conekta
         'line_item' => LineItem,
         'address' => Address,
         'order' => Order,
-        'source' => Source
+        'source' => Source,
+        'tax_line' => TaxLine
       }
     end
+
     def self.convert_to_conekta_object(name,resp)
-      if resp.kind_of?(Hash) 
+      if resp.kind_of?(Hash)
         if resp.has_key?('object') and types[resp['object']]
           instance = types[resp['object']].new()
           instance.load_from(resp)
@@ -40,10 +43,13 @@ module Conekta
           else
             instance = constantize(camelize(name)).new
           end
+
           instance.load_from(resp)
+
           return instance
         end
       end
+
       if resp.kind_of?(Array)
         instance = ConektaObject.new
         instance.load_from(resp)
@@ -58,10 +64,21 @@ module Conekta
       end
       return instance
     end
+
+    def self.underscore(str)
+      str.split(/::/).last.
+        gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
+        gsub(/([a-z\d])([A-Z])/,'\1_\2').
+        tr("-", "_").
+        downcase
+    end
+
     protected
+
     def self.camelize(str)
       str.split('_').map{|e| e.capitalize}.join
     end
+
     def self.constantize(camel_cased_word)
       names = camel_cased_word.split('::')
 

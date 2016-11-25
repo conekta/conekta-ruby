@@ -1,5 +1,5 @@
 module Conekta
-  class LineItem < Resource
+  class TaxLine < Resource
     include Conekta::Operations::Delete
     include Conekta::Operations::Update
     include Conekta::Operations::CustomAction
@@ -13,7 +13,7 @@ module Conekta
     end
 
     def delete
-      self.delete_member('order','line_items')
+      self.delete_member('order', 'tax_lines')
     end
   end
 end
