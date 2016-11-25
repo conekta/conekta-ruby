@@ -9,5 +9,10 @@ module Conekta
     def create_line_item(params)
       self.create_member('line_items', params)
     end
+
+    def create_tax_line(params)
+      self.create_member('tax_lines', params)
+    end
+
   end
 end
