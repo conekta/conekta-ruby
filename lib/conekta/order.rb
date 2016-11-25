@@ -12,7 +12,7 @@ module Conekta
       end
 
       order     = self
-      submodels = [:line_items]
+      submodels = [:line_items, :tax_lines]
 
       submodels.each do |submodel|
         self.send(submodel).each do |k,v|
