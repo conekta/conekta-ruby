@@ -27,12 +27,11 @@ describe Conekta::LineItem do
       line_items: line_items
     }
   end
+  let(:order)     { Conekta::Order.create(order_data) }
+  let(:line_item) { order.line_items.first }
 
   context "deleting line items" do
     it "successful line item delete" do
-      order     = Conekta::Order.create(order_data)
-      line_item = order.line_items.first
-
       line_item.delete
 
       expect(line_item.deleted).to eq(true)
@@ -41,9 +40,6 @@ describe Conekta::LineItem do
 
   context "updating line items" do
     it "successful line item update" do
-      order     = Conekta::Order.create(order_data)
-      line_item = order.line_items.first
-
       line_item.update(unit_price: 1000)
 
       expect(line_item.unit_price).to eq(1000)
