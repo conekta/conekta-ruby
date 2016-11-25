@@ -32,7 +32,7 @@ describe Conekta::Source do
     it "unsuccessful source update" do
       expect {
         source.update(token_id: "tok_test_visa_4241")
-      }.to raise_error(Conekta::ParameterValidationError)
+      }.to raise_error(Conekta::ErrorList)
     end
   end
 end

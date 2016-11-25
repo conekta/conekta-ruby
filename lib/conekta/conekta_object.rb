@@ -52,7 +52,7 @@ module Conekta
     end
     def create_attr(k,v)
       # Conflict with Resource Class Url
-      k = "_#{k}" if Object.respond_to?(k.to_sym)
+      k = "_#{k}" if Object.respond_to?(k)
 
       if ! k.to_s.match(/-/) and ! k.to_s.match(/^[0-9]+/)
         create_method( "#{k}=".to_sym ) { |val|
