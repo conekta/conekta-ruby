@@ -129,6 +129,7 @@ describe Conekta::Order do
     it "test successful where" do
       orders = Conekta::Order.where
       expect(orders).to be_a(Conekta::List)
+      expect(orders.elements_type).to eq("Order")
       expect(orders.first).to be_a(Conekta::Order)
     end
   end
