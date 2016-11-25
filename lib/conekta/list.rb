@@ -8,7 +8,7 @@ module Conekta
       @params = (params || {})
     end
 
-    def next(limit=nil)
+    def next(options={})
       if self.size > 0
         if !@ending_before.nil?
           @params["starting_after"] = self.first.id
@@ -17,10 +17,10 @@ module Conekta
         end
       end
       @params["ending_before"] = nil
-      move_cursor(limit)
+      move_cursor(options[:limit])
     end
 
-    def previous(limit=nil)
+    def previous(options={})
       if self.size > 0
         if !@ending_before.nil?
           @params["ending_before"] = self.last.id
@@ -29,7 +29,7 @@ module Conekta
         end
       end
       @params["starting_after"] = nil
-      move_cursor(limit)
+      move_cursor(options[:limit])
     end
     
     def load_from(response)

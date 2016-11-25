@@ -11,13 +11,13 @@ describe Conekta::List do
   context "moving cursor" do
     it "moves cursor forward" do
       first_window = Conekta::Order.where({"limit" => 10})
-      first_window.next(1)
+      first_window.next(limit: 1)
       id = first_window.first.id
       expect(id).to eq(list[10].id)
     end
     it "moves cursor backwards" do
       last_window = Conekta::Order.where({"limit" => 10, "starting_after" => list[9].id})
-      last_window.previous(1)
+      last_window.previous(limit: 1)
       id = last_window.first.id
       expect(id).to eq(list[9].id)
     end
@@ -26,7 +26,7 @@ describe Conekta::List do
   context "testing has more" do
     it "cannot move backwards" do
       first_window = Conekta::Order.where({"limit" => 10})
-      first_window.previous(1)
+      first_window.previous(limit: 1)
       expect(first_window).to be_empty
     end
     # this spec is only a reference to be tested in the future
