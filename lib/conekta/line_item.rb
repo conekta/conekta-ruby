@@ -12,6 +12,10 @@ module Conekta
       "/orders/#{self.parent_id}/#{self.class._url}/#{id}"
     end
 
+    def order
+      Conekta::Order.find(self.parent_id)
+    end
+
     def delete
       self.delete_member('order','line_items')
     end
