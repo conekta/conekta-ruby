@@ -17,6 +17,7 @@ require "conekta/resource"
 require "conekta/requestor"
 require "conekta/util"
 require "conekta/error"
+require "conekta/error_list"
 
 require "conekta/event"
 require "conekta/charge"

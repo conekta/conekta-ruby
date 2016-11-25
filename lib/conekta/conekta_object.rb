@@ -19,8 +19,6 @@ module Conekta
       self[self.count - 1]
     end
     def load_from(response)
-      self.map{|key, _| self.unset_key(key) }
-
       if response.instance_of?(Array)
         response.each_with_index do |v, i|
           load_from_enumerable(i,v)
