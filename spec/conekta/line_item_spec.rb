@@ -1,12 +1,7 @@
 require 'spec_helper'
 
 describe Conekta::LineItem do
-  #include_context "API 1.1.0"
-  before(:all) do
-    Conekta.api_base    = "http://0.0.0.0:3000"
-    Conekta.api_version = "1.1.0"
-    Conekta.api_key     = "FAKIOXUSc4ca4238a0b9"
-  end
+  include_context "API 1.1.0"
 
   let(:line_items) do
     [{
@@ -28,7 +23,7 @@ describe Conekta::LineItem do
   end
   let(:order_data) do
     {
-      currency: 'mxn',
+      currency:   'mxn',
       line_items: line_items
     }
   end
