@@ -2,9 +2,9 @@ module Conekta
   module Operations
     module Where
 
-      def self.handle_type_of_paging(response)
+      def self.handle_type_of_paging(response, class_name, params)
         if response.kind_of?(Hash) && response["object"] == "list"
-          List.new
+          List.new(class_name, params)
         else
           ConektaObject.new
         end
@@ -14,7 +14,7 @@ module Conekta
         def where(params=nil)
           _url = Util.types[self.class_name.downcase]._url
           response = Requestor.new.request(:get, _url, params)
-          instance = ::Conekta::Operations::Where.handle_type_of_paging(response)
+          instance = ::Conekta::Operations::Where.handle_type_of_paging(response, self.class_name, params)
           instance.load_from(response)
           instance
         end
