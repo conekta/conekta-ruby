@@ -52,14 +52,16 @@ module Conekta
     end
     def create_attr(k,v)
       # Conflict with Resource Class Url
+      k = "_#{k}" if Object.respond_to?(k.to_sym)
+
       if ! k.to_s.match(/-/) and ! k.to_s.match(/^[0-9]+/)
-        create_method( "#{k}=".to_sym ) { |val| 
+        create_method( "#{k}=".to_sym ) { |val|
             instance_variable_set( "@" + k, val)
         }
         self.send("#{k}=".to_sym, v)
         self.class.send(:remove_method, "#{k}=".to_sym)
-        create_method( k.to_sym ) { 
-          instance_variable_get( "@" + k ) 
+        create_method( k.to_sym ) {
+          instance_variable_get( "@" + k )
         }
       end
     end
