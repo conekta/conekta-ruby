@@ -48,7 +48,7 @@ describe Conekta::LineItem do
     it "unsuccessful line item update" do
       expect {
         line_item.update(type: nil)
-      }.to raise_error(Conekta::ParameterValidationError)
+      }.to raise_error(Conekta::ErrorList)
     end
   end
 

@@ -80,7 +80,6 @@ describe Conekta::Order do
             customer_id:   customer.id
           }
 
-          
           expect_to_raise_error_list(Conekta::ErrorList, nil, Conekta::ParameterValidationError) \
             { Conekta::Order.create(order_data_with_charges.merge(customer_params)) }
         end

@@ -15,7 +15,7 @@ end
 def expect_to_raise_error_list(klass, message, subklass, &block)
   expect { block.call }.to raise_error(Conekta::ErrorList, nil)
   begin
-    block.call 
+    block.call
   rescue Conekta::ErrorList => exception
     expect(exception.details).to be_instance_of(Array)
     expect(exception.details).not_to be_empty
