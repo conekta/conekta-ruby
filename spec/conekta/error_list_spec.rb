@@ -3,12 +3,6 @@ require 'spec_helper'
 describe Conekta::ErrorList do
   include_context "API 1.1.0"
 
-  RSpec::Matchers.define :be_a_multiple_of do |expected|
-    match do |actual|
-      actual % expected == 0
-    end
-  end
-
   let(:card) { { cards: ["tok_test_visa_4242"] } }
 
   it "test no id error" do
