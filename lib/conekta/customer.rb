@@ -12,7 +12,7 @@ module Conekta
         super
       end
       customer = self
-      method   = self.respond_to?(:cards) ? "cards" : "sources"
+      method   = Conekta.api_version == "1.1.0" ? "sources" : "cards"
 
       self.send(method).each do |k,v|
         if !v.respond_to? :deleted or !v.deleted
