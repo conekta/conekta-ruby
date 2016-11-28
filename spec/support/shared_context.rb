@@ -27,3 +27,13 @@ shared_context "order" do
     }
   end
 end
+
+shared_context "customer" do
+  let(:customer_data) do
+    {
+      email:   "hola@hola.com",
+      name:    "John Constantine",
+      sources:  [ { token_id: "tok_test_visa_4242", type: "card" }]
+    }
+  end
+end

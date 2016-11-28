@@ -2,14 +2,7 @@ require 'spec_helper'
 
 describe Conekta::Source do
   include_context "API 1.1.0"
-
-  let(:customer_data) do
-    {
-      email:   "hola@hola.com",
-      name:    "John Constantine",
-      sources:  [ { token_id: "tok_test_visa_4242", type: "card" }]
-    }
-  end
+  include_context "customer"
 
   let(:customer) { Conekta::Customer.create(customer_data) }
   let(:source)   { customer.sources.first }

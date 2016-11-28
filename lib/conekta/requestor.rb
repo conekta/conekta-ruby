@@ -34,7 +34,7 @@ module Conekta
         end
         ErrorList.error_handler(json_response, nil)
       end
-      
+
       json_response = JSON.parse(response.body)
       return ErrorList.error_handler(json_response, response.status) if response.status != 200
       json_response
