@@ -20,9 +20,7 @@ module Conekta
         raise exception
       end
 
-      res = self.send(parent)._url + "/fiscal_entities/" + id
-      puts "RES #{res}"
-      res
+      self.send(parent)._url + "/fiscal_entities/" + id
     end
 
     def parent
