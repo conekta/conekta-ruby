@@ -27,7 +27,8 @@ module Conekta
         'source' => Source,
         'tax_line' => TaxLine,
         'shipping_line' => ShippingLine,
-        'discount_line' => DiscountLine
+        'discount_line' => DiscountLine,
+        'fiscal_entity' => FiscalEntity
       }
     end
 

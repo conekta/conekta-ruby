@@ -24,6 +24,10 @@ module Conekta
         end
       end
 
+      if self.respond_to?(:fiscal_entity) && self.fiscal_entity
+        self.fiscal_entity.create_attr('order', order)
+      end
+
     end
 
     def create_line_item(params)
@@ -40,6 +44,10 @@ module Conekta
 
     def create_discount_line(params)
       self.create_memeber('discount_lines', params)
+    end
+
+    def create_fiscal_entity(params)
+      self.create_member('fiscal_entity', params)
     end
   end
 end
