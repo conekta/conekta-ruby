@@ -36,6 +36,21 @@ describe Conekta::Order do
         type: "physical"
     }]
   end
+  let(:fiscal_entity) do
+    {
+      tax_id: "AMGH851205MN1",
+      company_name: "Nike SA de CV",
+      address: {
+        street1: "250 Alexis St",
+        internal_number: 19,
+        external_number: 91,
+        city: "Red Deer",
+        state: "Alberta",
+        country: "CA",
+        zip: "T4N 0B8"
+      }
+    }
+  end
   let(:order_data) do
     {
       currency: 'mxn',
@@ -51,6 +66,12 @@ describe Conekta::Order do
       order = Conekta::Order.create(order_data)
 
       expect(order).to be_a(Conekta::Order)
+    end
+
+    it "successful order with fiscal_entity create" do
+      order = Conekta::Order.create(order_data.merge(fiscal_entity: fiscal_entity))
+      expect(order.fiscal_entity).to be_a(Conekta::FiscalEntity)
+      expect(order.fiscal_entity.order).to eq(order)
     end
 
     it "unsuccessful order create" do

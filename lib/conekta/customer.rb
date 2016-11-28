@@ -11,13 +11,19 @@ module Conekta
       if response
         super
       end
-      customer = self
-      method   = Conekta.api_version == "1.1.0" ? "sources" : "cards"
+      customer  =  self
+      submodels = if Conekta.api_version == "1.1.0"
+                    [:fiscal_entities, :sources]
+                  else
+                    [:cards]
+                  end
 
-      self.send(method).each do |k,v|
-        if !v.respond_to? :deleted or !v.deleted
-          v.create_attr('customer', customer)
-          self.send(method).set_val(k,v)
+      submodels.each do |submodel|
+        self.send(submodel).each do |k,v|
+          if !v.respond_to? :deleted or !v.deleted
+            v.create_attr('customer', customer)
+            self.send(submodel).set_val(k,v)
+          end
         end
       end
       if self.respond_to? :subscription and self.subscription
@@ -32,6 +38,9 @@ module Conekta
     end
     def create_subscription(params)
       self.create_member('subscription', params)
+    end
+    def create_fiscal_entity(params)
+      self.create_member('fiscal_entities', params)
     end
   end
 end
