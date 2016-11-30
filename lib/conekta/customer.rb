@@ -13,7 +13,7 @@ module Conekta
       end
       customer  =  self
       submodels = if Conekta.api_version == "1.1.0"
-                    [:fiscal_entities, :sources]
+                    [:fiscal_entities, :sources, :shipping_contacts]
                   else
                     [:cards]
                   end
