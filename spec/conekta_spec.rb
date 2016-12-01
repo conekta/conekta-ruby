@@ -19,5 +19,11 @@ describe Conekta do
 
       expect(Conekta.locale).to eq("es")
     end
+
+    it "sets the plugin initializer style" do
+      Conekta.config { |c| c.plugin = "magento" }
+
+      expect(Conekta.plugin).to eq("magento")
+    end
   end
 end
