@@ -21,9 +21,9 @@ describe Conekta do
     end
 
     it "sets the plugin initializer style" do
-      Conekta.config { |c| c.plugin = "magento" }
+      Conekta.config { |c| c.plugin = "spree" }
 
-      expect(Conekta.plugin).to eq("magento")
+      expect(Conekta.plugin).to eq("spree")
     end
   end
 end
