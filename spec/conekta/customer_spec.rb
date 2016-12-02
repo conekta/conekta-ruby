@@ -45,6 +45,56 @@ describe Conekta::Customer do
       customer.update({name: 'Logan', email: 'logan@x-men.org'})
       expect(customer.name).to eq('Logan')
     end
+
+    context "creating submodels" do
+      include_context "API 1.1.0"
+      include_context "customer"
+
+      let(:customer) { Conekta::Customer.create(customer_data) }
+
+      let(:classes) do
+        {
+          shipping_contact: "ShippingContact",
+          source:           "Source"
+        }
+      end
+
+      let(:source_params) do
+        {
+          type:     "card",
+          token_id: "tok_test_visa_4242"
+        }
+      end
+
+      let(:shipping_contact_params) do
+        {
+          email: "rogue@xmen.org",
+          address: {
+            street1: "250 Alexis St",
+            city: "Red Deer",
+            state: "Alberta",
+            country: "CA",
+            zip: "T4N 0B8",
+          }
+        }
+      end
+
+      let(:submodel_params) do
+        {
+          source:           source_params,
+          shipping_contact: shipping_contact_params
+        }
+      end
+
+      [:source, :shipping_contact].each do |submodel|
+        it "successfully creates #{submodel} for customer" do
+          new_submodel =
+            customer.send("create_#{submodel}", submodel_params[submodel])
+
+          expect(new_submodel.class.to_s).to eq("Conekta::#{classes[submodel]}")
+        end
+      end
+    end
   end
 
   context "deleting customers" do

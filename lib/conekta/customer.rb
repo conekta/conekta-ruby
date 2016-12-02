@@ -42,5 +42,8 @@ module Conekta
     def create_fiscal_entity(params)
       self.create_member('fiscal_entities', params)
     end
+    def create_shipping_contact(params)
+      self.create_member('shipping_contacts', params)
+    end
   end
 end
