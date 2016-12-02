@@ -43,11 +43,11 @@ module Conekta
     end
 
     def create_discount_line(params)
-      self.create_memeber('discount_lines', params)
+      self.create_member('discount_lines', params)
     end
 
     def create_fiscal_entity(params)
-      self.create_member('fiscal_entity', params)
+      self.update(fiscal_entity: params).fiscal_entity
     end
   end
 end
