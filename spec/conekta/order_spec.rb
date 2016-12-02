@@ -121,6 +121,91 @@ describe Conekta::Order do
       expect_to_raise_error_list(Conekta::ErrorList, nil, Conekta::ParameterValidationError) \
             { order.update(charges: charges) }
     end
+
+    context "creating submodels" do
+      let(:classes) do
+        {
+          line_item: "LineItem",
+          tax_line:  "TaxLine",
+          shipping_line: "ShippingLine",
+          discount_line: "DiscountLine",
+          fiscal_entity: "FiscalEntity"
+        }
+      end
+
+      let(:line_item_params) do
+        {
+          name: "Box of Cohiba S1s",
+          description: "Imported From Mex.",
+          unit_price: 35000,
+          quantity: 1,
+          tags: ["food", "mexican food"],
+          type: "physical"
+        }
+      end
+
+      let(:tax_line_params) do
+        {
+          description: "IVA",
+          amount:      600
+        }
+      end
+
+      let(:shipping_line_params) do
+        {
+          description:     "Otro Shipping",
+          amount:          40,
+          tracking_number: "TRACK124",
+          carrier:         "USPS",
+          method:          "Train",
+        }
+      end
+
+      let(:fiscal_entity_params) do
+        {
+          tax_id: "AMGH851205MN2",
+          company_name: "Nike SA de CV",
+          address: {
+            street1: "250 Alexis St",
+            internal_number: 20,
+            external_number: 02,
+            city: "Red Deer",
+            state: "Alberta",
+            country: "CA",
+            zip: "T4N 0B8"
+          }
+        }
+      end
+
+      let(:discount_line_params) do
+        {
+          description: "Cupon de descuento",
+          kind:        "loyalty",
+          amount:      10
+        }
+      end
+
+      let(:submodel_params) do
+        {
+          line_item: line_item_params,
+          tax_line: tax_line_params,
+          shipping_line: shipping_line_params,
+          discount_line: discount_line_params,
+          fiscal_entity: fiscal_entity_params
+        }
+      end
+
+      [:line_item, :tax_line, :shipping_line, :discount_line, :fiscal_entity].
+        each do |submodel|
+        it "successfully creates #{submodel} for order" do
+          new_submodel =
+            order.send("create_#{submodel}", submodel_params[submodel])
+
+          expect(new_submodel.class.to_s).to eq("Conekta::#{classes[submodel]}")
+        end
+      end
+
+    end
   end
 
   context "get" do
