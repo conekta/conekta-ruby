@@ -65,13 +65,17 @@ module Conekta
     end
 
     def conekta_headers
-      @conekta_headers ||= {
+      params = {
         bindings_version: Conekta::VERSION,
         lang: 'ruby',
         lang_version: RUBY_VERSION,
         publisher: 'conekta',
         uname: Uname.uname
       }
+
+      params.merge!(plugin: Conekta.plugin) if Conekta.plugin.to_s.length > 0
+
+      @conekta_headers ||= params
     end
   end
 end

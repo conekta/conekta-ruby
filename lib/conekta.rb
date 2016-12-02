@@ -56,6 +56,14 @@ module Conekta
     yield self
   end
 
+  def self.plugin
+    @plugin
+  end
+
+  def self.plugin=(plugin)
+    @plugin = plugin
+  end
+
   def self.api_base
     @api_base
   end
