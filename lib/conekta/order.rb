@@ -49,5 +49,9 @@ module Conekta
     def create_fiscal_entity(params)
       self.update(fiscal_entity: params).fiscal_entity
     end
+
+    def create_charge(params)
+      self.create_member('charges', params)
+    end
   end
 end
