@@ -52,13 +52,6 @@ describe Conekta::Customer do
 
       let(:customer) { Conekta::Customer.create(customer_data) }
 
-      let(:classes) do
-        {
-          shipping_contact: "ShippingContact",
-          source:           "Source"
-        }
-      end
-
       let(:source_params) do
         {
           type:     "card",
@@ -69,6 +62,8 @@ describe Conekta::Customer do
       let(:shipping_contact_params) do
         {
           email: "rogue@xmen.org",
+          phone: "+5213353319758",
+          receiver: "Test Conekta",
           address: {
             street1: "250 Alexis St",
             city: "Red Deer",
@@ -79,20 +74,19 @@ describe Conekta::Customer do
         }
       end
 
-      let(:submodel_params) do
-        {
-          source:           source_params,
-          shipping_contact: shipping_contact_params
-        }
+      it "successfully creates source for customer" do
+        source = customer.create_source(source_params)
+
+        expect(source.class.to_s).to eq("Conekta::Source")
+        expect(customer.sources.class.to_s).to eq("Conekta::List")
       end
 
-      [:source, :shipping_contact].each do |submodel|
-        it "successfully creates #{submodel} for customer" do
-          new_submodel =
-            customer.send("create_#{submodel}", submodel_params[submodel])
+      it "successfully creates shipping contact for customer" do
+        shipping_contact =
+          customer.create_shipping_contact(shipping_contact_params)
 
-          expect(new_submodel.class.to_s).to eq("Conekta::#{classes[submodel]}")
-        end
+        expect(shipping_contact.class.to_s).to eq("Conekta::ShippingContact")
+        expect(customer.shipping_contacts.class.to_s).to eq("Conekta::List")
       end
     end
   end

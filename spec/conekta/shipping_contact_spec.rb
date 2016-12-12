@@ -6,16 +6,20 @@ describe Conekta::ShippingContact do
 
   let(:shipping_contacts) do
     [{
-      email: "thomas.logan@xmen.org",
-      address: {
-        street1: "250 Alexis St",
-        city: "Red Deer",
-        state: "Alberta",
-        country: "CA",
-        zip: "T4N 0B8",
-      }
+       receiver: "John Williams",
+       phone: "+5213353319758",
+       email: "thomas.logan@xmen.org",
+       address: {
+         street1: "250 Alexis St",
+         city: "Red Deer",
+         state: "Alberta",
+         country: "CA",
+         zip: "T4N 0B8",
+       }
      },
      {
+       receiver: "John Williams",
+       phone: "+5213353319758",
        email: "rogue@xmen.org",
        address: {
          street1: "250 Alexis St",

@@ -29,15 +29,22 @@ module Conekta
         'shipping_line' => ShippingLine,
         'discount_line' => DiscountLine,
         'fiscal_entity' => FiscalEntity,
-        'shipping_contact' => ShippingContact
+        'shipping_contact' => ShippingContact,
+        'list'             => List
       }
     end
 
     def self.convert_to_conekta_object(name,resp)
       if resp.kind_of?(Hash)
         if resp.has_key?('object') and types[resp['object']]
-          instance = types[resp['object']].new()
+          if resp['object'] == "list"
+            instance = types[resp['object']].new(name, resp)
+          else
+            instance = types[resp['object']].new()
+          end
+
           instance.load_from(resp)
+
           return instance
         elsif name.instance_of? String
           name = "event_data" if camelize(name) == "Data"

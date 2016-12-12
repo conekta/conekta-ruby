@@ -13,19 +13,21 @@ module Conekta
         super
       end
 
-      customer  =  self
-      submodels = if Conekta.api_version == "1.1.0"
-                    [:fiscal_entities, :sources, :shipping_contacts]
-                  else
-                    [:cards]
-                  end
+      customer = self
 
-      submodels.each do |submodel|
-        self.send(submodel).each do |k,v|
-          if !v.respond_to? :deleted or !v.deleted
-            v.create_attr('customer', customer)
+      if Conekta.api_version == "1.1.0"
+        submodels = [:fiscal_entities, :sources, :shipping_contacts]
+        create_submodels_lists(customer, submodels)
+      else
+        submodels = [:cards]
 
-            self.send(submodel).set_val(k,v)
+        submodels.each do |submodel|
+          self.send(submodel).each do |k,v|
+            if !v.respond_to? :deleted or !v.deleted
+              v.create_attr('customer', customer)
+
+              self.send(submodel).set_val(k,v)
+            end
           end
         end
       end
@@ -53,6 +55,16 @@ module Conekta
 
     def create_shipping_contact(params)
       self.create_member('shipping_contacts', params)
+    end
+
+    def create_submodels_lists(customer, submodels)
+      submodels.each do |submodel|
+        self.send(submodel).each do |k, v|
+          v.create_attr('customer', customer)
+
+          self.send(submodel).set_val(k,v)
+        end
+      end
     end
   end
 end
