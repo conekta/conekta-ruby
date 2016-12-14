@@ -26,7 +26,7 @@ describe Conekta::DiscountLine do
   let(:discount_line) { order.discount_lines.first }
 
   context "deleting discount lines" do
-    xit "successful discount line delete" do
+    it "successful discount line delete" do
       discount_line.delete
 
       expect(discount_line.deleted).to eq(true)
@@ -34,7 +34,7 @@ describe Conekta::DiscountLine do
   end
 
   context "updating discount lines" do
-    xit "successful discount line update" do
+    it "successful discount line update" do
       discount_line.update(amount: 11)
 
       expect(discount_line.amount).to eq(11)

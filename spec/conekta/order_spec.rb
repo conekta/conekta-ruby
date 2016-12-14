@@ -130,16 +130,6 @@ describe Conekta::Order do
   end
 
   context "creating submodels" do
-    let(:classes) do
-      {
-        line_item: "LineItem",
-        tax_line:  "TaxLine",
-        shipping_line: "ShippingLine",
-        discount_line: "DiscountLine",
-        fiscal_entity: "FiscalEntity"
-      }
-    end
-
     let(:line_item_params) do
       {
         name: "Box of Cohiba S1s",
@@ -202,6 +192,28 @@ describe Conekta::Order do
       }
     end
 
+    let(:shipping_contact_params) do
+      {
+        id: "1jap4jmcjnwh34",
+        email: "thomas.logan@xmen.org",
+        phone: "+5213353319758",
+        receiver: "Marvin Fuller",
+        between_streets: {
+          street1: "Ackerman Crescent",
+        },
+        address: {
+          street1: "250 Alexis St",
+          city: "Red Deer",
+          state: "Alberta",
+          country: "MX",
+          zip: "78219",
+          residential: true
+        }
+      }
+    end
+
+    let(:order) { Conekta::Order.create(order_data) }
+
     it "successfully creates charge for order" do
       other_params = {
         currency: 'mxn',
@@ -212,45 +224,53 @@ describe Conekta::Order do
         }
       }
 
-      order = Conekta::Order.create(order_data.merge(other_params))
-      new_submodel = order.create_charge charge_params
+      order  = Conekta::Order.create(order_data.merge(other_params))
+      charge = order.create_charge(charge_params)
 
-      expect(new_submodel.class.to_s).to eq("Conekta::Charge")
+      expect(charge.class.to_s).to eq("Conekta::Charge")
+      expect(order.charges.class.to_s).to eq("Conekta::List")
     end
 
     it "successfully creates line item for order" do
-      order = Conekta::Order.create order_data
-      new_submodel = order.create_line_item line_item_params
+      line_item = order.create_line_item(line_item_params)
 
-      expect(new_submodel.class.to_s).to eq("Conekta::LineItem")
+      expect(line_item.class.to_s).to eq("Conekta::LineItem")
+      expect(order.line_items.class.to_s).to eq("Conekta::List")
     end
 
     it "successfully creates tax line for order" do
-      order = Conekta::Order.create order_data
-      new_submodel = order.create_tax_line tax_line_params
+      tax_line     = order.create_tax_line(tax_line_params)
+      new_tax_line = order.create_tax_line(description: "ISR", amount: 2)
 
-      expect(new_submodel.class.to_s).to eq("Conekta::TaxLine")
+      expect(tax_line.class.to_s).to eq("Conekta::TaxLine")
+      expect(order.tax_lines.class.to_s).to eq("Conekta::List")
+      expect(order.tax_lines.total).to eq(2)
     end
 
     it "successfully creates shipping line for order" do
-      order = Conekta::Order.create order_data
-      new_submodel = order.create_shipping_line shipping_line_params
+      shipping_line = order.create_shipping_line(shipping_line_params)
 
-      expect(new_submodel.class.to_s).to eq("Conekta::ShippingLine")
+      expect(shipping_line.class.to_s).to eq("Conekta::ShippingLine")
+      expect(order.shipping_lines.class.to_s).to eq("Conekta::List")
     end
 
     it "successfully creates discount line for order" do
-      order = Conekta::Order.create order_data
-      new_submodel = order.create_discount_line discount_line_params
+      discount_line = order.create_discount_line(discount_line_params)
 
-      expect(new_submodel.class.to_s).to eq("Conekta::DiscountLine")
+      expect(discount_line.class.to_s).to eq("Conekta::DiscountLine")
+      expect(order.discount_lines.class.to_s).to eq("Conekta::List")
     end
 
     it "successfully creates fiscal entity for order" do
-      order = Conekta::Order.create order_data
-      new_submodel = order.create_fiscal_entity fiscal_entity_params
+      fiscal_entity = order.create_fiscal_entity(fiscal_entity_params)
 
-      expect(new_submodel.class.to_s).to eq("Conekta::FiscalEntity")
+      expect(fiscal_entity.class.to_s).to eq("Conekta::FiscalEntity")
+    end
+
+    it "successfully create shipping contact for order" do
+      shipping_contact = order.create_shipping_contact(shipping_contact_params)
+
+      expect(shipping_contact.class.to_s).to eq("Conekta::ShippingContact")
     end
   end
 

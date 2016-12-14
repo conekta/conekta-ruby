@@ -8,6 +8,17 @@ module Conekta
       @params = (params || {})
     end
 
+    def add_element(element)
+      element =
+        Conekta::Util.convert_to_conekta_object(element['object'], element)
+
+      self[@total]        = element
+      self.values[@total] = element
+      @total              = @total + 1
+
+      self
+    end
+
     def next(options={})
       if self.size > 0
         if !@ending_before.nil?
@@ -42,6 +53,7 @@ module Conekta
     end
 
     private
+
     def move_cursor(limit)
       @params["limit"] = limit if !limit.nil? && !limit.to_s.empty?
       _url = Util.types[@elements_type.downcase]._url
