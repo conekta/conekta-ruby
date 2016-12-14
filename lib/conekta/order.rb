@@ -5,6 +5,7 @@ module Conekta
     include Conekta::Operations::Create
     include Conekta::Operations::Update
     include Conekta::Operations::CreateMember
+    include Conekta::Operations::CustomAction
 
     def load_from(response = nil)
       if response
@@ -49,6 +50,12 @@ module Conekta
       self.update(shipping_contact: params).shipping_contact
     end
 
+    def capture_order
+      custom_action(:put, 'capture')
+    end
+
+    private
+
     def create_submodels_lists(order, submodels)
       submodels.each do |submodel|
         self.send(submodel).each do |k, v|
@@ -58,5 +65,6 @@ module Conekta
         end
       end
     end
+
   end
 end

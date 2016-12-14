@@ -291,4 +291,14 @@ describe Conekta::Order do
       expect(orders.first).to be_a(Conekta::Order)
     end
   end
+
+  it "successfully captures an order" do
+    order = Conekta::Order.create(order_data_with_charges.
+                                    merge(customer_info: customer_info, capture: false))
+    expect(order.capture).to eq(false)
+
+    order.capture_order
+
+    expect(order.capture).to eq(true)
+  end
 end
