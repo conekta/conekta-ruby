@@ -239,10 +239,12 @@ describe Conekta::Order do
     end
 
     it "successfully creates tax line for order" do
-      tax_line = order.create_tax_line(tax_line_params)
+      tax_line     = order.create_tax_line(tax_line_params)
+      new_tax_line = order.create_tax_line(description: "ISR", amount: 2)
 
       expect(tax_line.class.to_s).to eq("Conekta::TaxLine")
       expect(order.tax_lines.class.to_s).to eq("Conekta::List")
+      expect(order.tax_lines.total).to eq(2)
     end
 
     it "successfully creates shipping line for order" do
