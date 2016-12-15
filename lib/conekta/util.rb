@@ -30,7 +30,8 @@ module Conekta
         'discount_line' => DiscountLine,
         'fiscal_entity' => FiscalEntity,
         'shipping_contact' => ShippingContact,
-        'list'             => List
+        'list' => List,
+        'return' => Return
       }
     end
 
