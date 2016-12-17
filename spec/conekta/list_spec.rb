@@ -15,6 +15,7 @@ describe Conekta::List do
       id = first_window.first.id
       expect(id).to eq(list[10].id)
     end
+
     it "moves cursor backwards" do
       last_window = Conekta::Order.where({"limit" => 10, "starting_after" => list[9].id})
       last_window.previous(limit: 1)
