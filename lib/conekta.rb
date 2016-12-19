@@ -43,6 +43,7 @@ require "conekta/webhook"
 require "conekta/webhook_log"
 require "conekta/refund"
 require "conekta/line_item"
+require "conekta/return"
 require "conekta/address"
 
 module Conekta

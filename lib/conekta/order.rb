@@ -14,7 +14,7 @@ module Conekta
 
       order     = self
       submodels = [:line_items, :tax_lines, :shipping_lines, :discount_lines,
-                   :returns, :charges]
+                   :charges, :returns]
       create_submodels_lists(order, submodels)
 
       if self.respond_to?(:fiscal_entity) && self.fiscal_entity
@@ -40,6 +40,10 @@ module Conekta
 
     def create_charge(params)
       self.create_member('charges', params)
+    end
+
+    def create_return(params)
+      self.create_member('returns', params)
     end
 
     def create_fiscal_entity(params)

@@ -29,6 +29,16 @@ describe Conekta::Order do
     }]
   end
 
+  let(:card_charges) do
+    [{
+      source: {
+        type: "card",
+        token_id: "tok_test_visa_4242",
+      },
+      amount: 35000
+    }]
+  end
+
   let(:line_items) do
     [{
       name: "Box of Cohiba S1s",
@@ -65,6 +75,10 @@ describe Conekta::Order do
 
   let(:order_data_with_charges) do
     order_data.merge(charges: charges)
+  end
+
+  let(:order_data_with_card_charges) do
+    order_data.merge(charges: card_charges)
   end
 
   context "creating orders" do
@@ -300,5 +314,26 @@ describe Conekta::Order do
     order.capture_order
 
     expect(order.capture).to eq(true)
+  end
+
+  context "returns" do
+    let(:order_return) do
+      {
+        amount: 35000,
+        reason: "Reason return",
+        currency: "MXN"
+      }
+    end
+
+    it "test successful return" do
+      order = Conekta::Order.create(order_data_with_card_charges.
+                                    merge(customer_info: customer_info).
+                                    merge(line_items: line_items))
+      order.create_return(order_return.merge(order_id: order.id))
+      returned_order = Conekta::Order.find(order.id)
+
+      expect(returned_order.status).to eq("returned")
+      expect(returned_order.returns.first).to be_a(Conekta::Return)
+    end
   end
 end
