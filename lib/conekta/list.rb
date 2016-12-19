@@ -5,7 +5,7 @@ module Conekta
     def initialize(elements_type, params)
       super()
       @elements_type = elements_type
-      @params = (params || {})
+      @params        = (params || {})
     end
 
     def add_element(element)
@@ -21,33 +21,29 @@ module Conekta
 
     def next(options={})
       if self.size > 0
-        if !@ending_before.nil?
-          @params["starting_after"] = self.first.id
-        else
-          @params["starting_after"] = self.last.id
-        end
+        @params["starting_after"] = self.last.id
       end
+
       @params["ending_before"] = nil
+
       move_cursor(options[:limit])
     end
 
     def previous(options={})
       if self.size > 0
-        if !@ending_before.nil?
-          @params["ending_before"] = self.last.id
-        else
-          @params["ending_before"] = self.first.id
-        end
+        @params["ending_before"] = self.first.id
       end
+
       @params["starting_after"] = nil
+
       move_cursor(options[:limit])
     end
 
     def load_from(response)
       @starting_after = response["starting_after"]
-      @ending_before = response["ending_before"]
-      @has_more = response["has_more"]
-      @total = response["total"]
+      @ending_before  = response["ending_before"]
+      @has_more       = response["has_more"]
+      @total          = response["total"]
       self.map{|key, _| self.unset_key(key) }
       super(response["data"])
     end
