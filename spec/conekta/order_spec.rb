@@ -69,7 +69,10 @@ describe Conekta::Order do
   let(:order_data) do
     {
       currency: 'mxn',
-      line_items: line_items
+      line_items: line_items,
+      metadata: {
+        test: true
+      }
     }
   end
 
@@ -86,6 +89,7 @@ describe Conekta::Order do
       order = Conekta::Order.create(order_data)
 
       expect(order).to be_a(Conekta::Order)
+      expect(order.metadata.test).to eq(true)
     end
 
     it "successful order with fiscal_entity create" do

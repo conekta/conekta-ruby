@@ -19,3 +19,4 @@ bin/
 tags
 *.swp
 *.un~
+.byebug_history
