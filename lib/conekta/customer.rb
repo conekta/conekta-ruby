@@ -9,7 +9,6 @@ module Conekta
     include Conekta::Operations::CreateMember
 
     def load_from(response=nil)
-      puts response.inspect
       if response
         super
       end
