@@ -194,8 +194,8 @@ describe Conekta::Order do
 
     let(:discount_line_params) do
       {
-        description: "Cupon de descuento",
-        kind:        "loyalty",
+        code: "Cupon de descuento",
+        type:        "loyalty",
         amount:      10
       }
     end

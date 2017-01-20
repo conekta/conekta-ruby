@@ -7,13 +7,13 @@ describe Conekta::DiscountLine do
   let(:discount_lines) do
     [
       {
-        description: "Cupon de descuento",
-        kind:        "loyalty",
+        code: "Cupon de descuento",
+        type:        "loyalty",
         amount:      10
       },
       {
-        description: "Cupon de descuento",
-        kind:        "loyalty",
+        code: "Cupon de descuento",
+        type:        "loyalty",
         amount:      5
       }
     ]
