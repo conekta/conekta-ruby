@@ -8,7 +8,6 @@ describe Conekta::ShippingContact do
     [{
        receiver: "John Williams",
        phone: "+5213353319758",
-       email: "thomas.logan@xmen.org",
        address: {
          street1: "250 Alexis St",
          city: "Red Deer",
@@ -20,7 +19,6 @@ describe Conekta::ShippingContact do
      {
        receiver: "John Williams",
        phone: "+5213353319758",
-       email: "rogue@xmen.org",
        address: {
          street1: "250 Alexis St",
          city: "Red Deer",
@@ -48,14 +46,14 @@ describe Conekta::ShippingContact do
 
   context "updating shipping contacts" do
     it "successful shipping contact update" do
-      shipping_contact.update(email: "hola@hola.com")
+      shipping_contact.update(receiver: "Mario Moreno")
 
-      expect(shipping_contact.email).to eq("hola@hola.com")
+      expect(shipping_contact.receiver).to eq("Mario Moreno")
     end
 
     it "unsuccessful shipping contact update" do
       expect {
-        shipping_contact.update(email: 123)
+        shipping_contact.update(receiver: 123)
       }.to raise_error(Conekta::ErrorList)
     end
   end

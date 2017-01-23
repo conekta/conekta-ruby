@@ -36,6 +36,7 @@ module Conekta
     end
 
     def self.convert_to_conekta_object(name,resp)
+      return resp if name == "data" # event data should not be parsed into objects
       if resp.kind_of?(Hash)
         if resp.has_key?('object') and types[resp['object']]
           if resp['object'] == "list"

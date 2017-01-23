@@ -1,6 +1,6 @@
 module Conekta
   class List < ConektaObject
-    attr_reader :elements_type, :params, :starting_after, :ending_before, :has_more, :total
+    attr_reader :elements_type, :params, :has_more, :total
 
     def initialize(elements_type, params)
       super()
@@ -21,27 +21,25 @@ module Conekta
 
     def next(options={})
       if self.size > 0
-        @params["starting_after"] = self.last.id
+        @params["next"] = self.last.id
       end
 
-      @params["ending_before"] = nil
+      @params["previous"] = nil
 
       move_cursor(options[:limit])
     end
 
     def previous(options={})
       if self.size > 0
-        @params["ending_before"] = self.first.id
+        @params["previous"] = self.first.id
       end
 
-      @params["starting_after"] = nil
+      @params["next"] = nil
 
       move_cursor(options[:limit])
     end
 
     def load_from(response)
-      @starting_after = response["starting_after"]
-      @ending_before  = response["ending_before"]
       @has_more       = response["has_more"]
       @total          = response["total"]
       self.map{|key, _| self.unset_key(key) }
