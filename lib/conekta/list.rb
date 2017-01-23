@@ -1,6 +1,6 @@
 module Conekta
   class List < ConektaObject
-    attr_reader :elements_type, :params, :next, :previous, :has_more, :total
+    attr_reader :elements_type, :params, :has_more, :total
 
     def initialize(elements_type, params)
       super()
@@ -40,8 +40,6 @@ module Conekta
     end
 
     def load_from(response)
-      @next = response["next"]
-      @previous  = response["previous"]
       @has_more       = response["has_more"]
       @total          = response["total"]
       self.map{|key, _| self.unset_key(key) }
