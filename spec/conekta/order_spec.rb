@@ -216,9 +216,7 @@ describe Conekta::Order do
         email: "thomas.logan@xmen.org",
         phone: "+5213353319758",
         receiver: "Marvin Fuller",
-        between_streets: {
-          street1: "Ackerman Crescent",
-        },
+        between_streets: "Ackerman Crescent",
         address: {
           street1: "250 Alexis St",
           city: "Red Deer",
