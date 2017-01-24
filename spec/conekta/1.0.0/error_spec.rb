@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Conekta::Error do
+  include_context "API 1.0.0"
   let(:card) { { cards: ["tok_test_visa_4242"] } }
 
   it "test no id error" do

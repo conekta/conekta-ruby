@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Conekta::Payout do
+  include_context "API 1.0.0"
   let(:payee_attributes) do
     {
       name: "John Doe", email: "j_d@radcorp.com", phone: "555555555",

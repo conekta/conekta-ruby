@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Conekta::Plan do
+  include_context "API 1.0.0"
   context "get/where" do
     it "test succesful get plan" do
       plans = Conekta::Plan.where

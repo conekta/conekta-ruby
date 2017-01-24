@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Conekta::Customer do
+  include_context "API 1.0.0"
   let(:customer_data) { { :cards => ["tok_test_visa_4242"], email: "test@gmail.com", name: "Mario" } }
 
   context "creating customers" do

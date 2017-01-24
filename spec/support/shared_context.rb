@@ -8,6 +8,16 @@ shared_context "API 2.0.0" do
   end
 end
 
+shared_context "API 1.0.0" do
+  before(:all) do
+    Conekta.api_version = "1.0.0"
+  end
+
+  after(:all) do
+    Conekta.api_version = "2.0.0"
+  end
+end
+
 shared_context "order" do
   let(:line_items) do
     [{

@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Conekta::Webhook do
+  include_context "API 1.0.0"
   let!(:events) do
     {
       events: [
