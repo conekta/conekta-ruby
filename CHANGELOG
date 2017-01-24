@@ -76,3 +76,7 @@
 == 0.5.8 2016-07-19
 
 * Add new models for parsing.
+
+== 1.0.0 2017-01-24
+
+* Add support for API 2.0.

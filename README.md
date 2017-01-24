@@ -1,6 +1,6 @@
 ![alt tag](https://raw.github.com/conekta/conekta-ruby/master/readme_files/cover.png)
 
-# Conekta Ruby v.0.5.8
+# Conekta Ruby v.1.0.0
 
 This is a ruby library that allows interaction with https://api.conekta.io API.
 
@@ -31,58 +31,80 @@ Conekta.api_key = '1tv5yJp3xnVZ7eK67m4h'
 Conekta.config do |c|
   c.locale = :es
   c.api_key = '1tv5yJp3xnVZ7eK67m4h'
-  c.api_version = '1.0.0'
+  c.api_version = '2.0.0'
 end
 
 begin
-  charge = Conekta::Charge.create({
-    amount: 51000,
-    currency: "MXN",
-    description: "Pizza Delivery",
-    reference_id: "orden_de_id_interno",
-    card: params[:conektaTokenId]
-    #"tok_a4Ff0dD2xYZZq82d9"
-  })
-  rescue Conekta::ParameterValidationError => e
-    puts e.message
-    #alguno de los parámetros fueron inválidos
-  rescue Conekta::ProcessingError => e
-    puts e.message
-    #la tarjeta no pudo ser procesada
-  rescue Conekta::Error => e
-    puts e.message
-    #un error ocurrió que no sucede en el flujo normal de cobros como por ejemplo un auth_key incorrecto
+  order = Conekta::Order.create(order_data_with_charges.
+          merge(customer_info: customer_info))
+rescue Conekta::ErrorList => error_list
+  for error_detail in error_list.details do
+    puts error_detail.message
   end
+end
 
-  {
-    "id": "5286828b8ee31e64b7001739",
-    "livemode": false,
-    "created_at": 1384546955,
-    "status": "paid",
-    "currency": "MXN",
-    "description": "Some desc",
-    "reference_id": null,
-    "failure_code": null,
-    "failure_message": null,
-    "object": "charge",
-    "amount": 2000,
-    "fee": 371,
-    "payment_method": {
-      "name": "Mario Moreno",
-      "exp_month": "05",
-      "exp_year": "15",
-      "auth_code": "861491",
-      "object": "card_payment",
-      "last4": "4242",
-      "brand": "visa"
-    },
-    "details": {
-      "name": null,
-      "phone": null,
-      "email": null,
-      "line_items": []
+{
+  "livemode": false,
+  "amount": 35000,
+  "status": "created",
+  "currency": "MXN",
+  "capture": true,
+  "last_payment_info": {
+    "charge_id": "5887772aedbb6ea3a30056c5",
+    "payment_method": "OxxoPayment",
+    "status": "pending_payment"
+  },
+  "customer_info": {
+    "email": "hola@hola.com",
+    "phone": "+5213353319758",
+    "name": "John Constantine",
+    "first_paid_at": 0
+  },
+  "object": "order",
+  "id": "ord_2ftyJuymR9FZczvPg",
+  "metadata": {
+    "test": true
+  },
+  "created_at": 1485272874,
+  "updated_at": 1485272874,
+  "line_items": {
+    "0": {
+      "name": "Box of Cohiba S1s",
+      "description": "Imported From Mex.",
+      "unit_price": 35000,
+      "quantity": 1,
+      "tags": ["food", "mexican food"],
+      "type": "physical",
+      "object": "line_item",
+      "id": "line_item_2ftyJuymR9FZczvPe",
+      "parent_id": "ord_2ftyJuymR9FZczvPg",
+      "metadata": {}
+    }
+  },
+  "charges": {
+    "0": {
+      "id": "5887772aedbb6ea3a30056c5",
+      "livemode": false,
+      "created_at": 1485272874,
+      "currency": "MXN",
+      "payment_method": {
+        "barcode_url": "https://s3.amazonaws.com/cash_payment_barcodes/sandbox_reference.png",
+        "service_name": "OxxoPay",
+        "object": "cash_payment",
+        "type": "oxxo",
+        "expires_at": 1485276473,
+        "store_name": "OXXO",
+        "reference": "93345678901234"
+      },
+      "object": "charge",
+      "status": "pending_payment",
+      "amount": 35000,
+      "fee": 1421,
+      "customer_id": "",
+      "order_id": "ord_2ftyJuymR9FZczvPg"
     }
   }
+}
 ```
 
 License

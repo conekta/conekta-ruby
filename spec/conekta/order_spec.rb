@@ -107,7 +107,7 @@ describe Conekta::Order do
       it "successful order create" do
         order = Conekta::Order.create(order_data_with_charges.
                                       merge(customer_info: customer_info))
-
+puts order.inspect
         expect(order).to be_a(Conekta::Order)
       end
 
