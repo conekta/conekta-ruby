@@ -21,7 +21,7 @@ describe Conekta::Order do
 
   let(:charges) do
     [{
-      source: {
+      payment_source: {
         type: "oxxo_cash",
         expires_at: (Time.now + 3600).to_i
       },
@@ -31,7 +31,7 @@ describe Conekta::Order do
 
   let(:card_charges) do
     [{
-      source: {
+      payment_source: {
         type: "card",
         token_id: "tok_test_visa_4242",
       },
@@ -202,7 +202,7 @@ describe Conekta::Order do
 
     let(:charge_params) do
       {
-        source: {
+        payment_source: {
           type: "oxxo_cash",
           expires_at: (Time.now + 3600).to_i
         },

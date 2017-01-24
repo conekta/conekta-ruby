@@ -15,6 +15,7 @@ module Conekta
         'payee' => Payee,
         'payout' => Payout,
         'payout_method' => PayoutMethod,
+        'destination' => Destination,
         'plan' => Plan,
         'subscription' => Subscription,
         'token' => Token,
@@ -24,7 +25,7 @@ module Conekta
         'line_item' => LineItem,
         'address' => Address,
         'order' => Order,
-        'source' => Source,
+        'payment_source' => PaymentSource,
         'tax_line' => TaxLine,
         'shipping_line' => ShippingLine,
         'discount_line' => DiscountLine,
@@ -49,6 +50,7 @@ module Conekta
 
           return instance
         elsif name.instance_of? String
+          name = "shippin_line_method" if name == "method"
           name = "event_data" if camelize(name) == "Data"
           name = "obj" if camelize(name) == "Object"
           if !Object.const_defined?(camelize(name))

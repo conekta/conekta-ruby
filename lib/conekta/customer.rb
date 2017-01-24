@@ -8,6 +8,19 @@ module Conekta
     include Conekta::Operations::CustomAction
     include Conekta::Operations::CreateMember
 
+    attr_accessor :livemode, :name, :email, :phone, :default_shipping_contact_id,
+                  :default_fiscal_entity_id, :referrer, :account_age,
+                  :paid_transactions, :first_paid_at, :corporate, :default_payment_source_id,
+                  :fiscal_entities, :shipping_contacts, :subscription, :payment_sources, :cards
+
+    def initialize(id=nil)
+      @id = id
+      @payment_sources ||= List.new("PaymentSource", {})
+      @fiscal_entities ||= List.new("FiscalEntity", {})
+      @shipping_contacts ||= List.new("ShippingContacts", {})
+      super(id)
+    end
+
     def load_from(response=nil)
       if response
         super
@@ -16,7 +29,7 @@ module Conekta
       customer = self
 
       if Conekta.api_version == "1.1.0"
-        submodels = [:fiscal_entities, :sources, :shipping_contacts]
+        submodels = [:fiscal_entities, :payment_sources, :shipping_contacts]
         create_submodels_lists(customer, submodels)
       else
         submodels = [:cards]
@@ -41,8 +54,8 @@ module Conekta
       self.create_member('cards', params)
     end
 
-    def create_source(params)
-      self.create_member('sources', params)
+    def create_payment_source(params)
+      self.create_member('payment_sources', params)
     end
 
     def create_subscription(params)
@@ -63,7 +76,7 @@ module Conekta
           v.create_attr('customer', customer)
 
           self.send(submodel).set_val(k,v)
-        end
+        end if self.respond_to?(submodel) && !self.send(submodel).nil?
       end
     end
   end

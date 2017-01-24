@@ -1,5 +1,8 @@
 module Conekta
   class Return < Resource
+
+    attr_accessor :livemode, :amount, :currency, :charge_id, :reason,
+                  :created_at, :parent_id
     def _url
       if (id.nil? || id.to_s.empty?)
         exception = Error.new({
