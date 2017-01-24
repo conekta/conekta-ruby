@@ -1,6 +1,6 @@
-shared_context "API 1.1.0" do
+shared_context "API 2.0.0" do
   before(:all) do
-    Conekta.api_version = "1.1.0"
+    Conekta.api_version = "2.0.0"
   end
 
   after(:all) do

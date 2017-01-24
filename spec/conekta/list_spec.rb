@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Conekta::List do
 
-  include_context "API 1.1.0"
+  include_context "API 2.0.0"
 
   let(:list) do
     response = JSON.parse(File.read("spec/support/fixtures/orders.json"))

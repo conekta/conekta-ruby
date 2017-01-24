@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Conekta::ErrorList do
-  include_context "API 1.1.0"
+  include_context "API 2.0.0"
 
   let(:card) { { cards: ["tok_test_visa_4242"] } }
 

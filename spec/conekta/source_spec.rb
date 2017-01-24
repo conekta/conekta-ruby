@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Conekta::PaymentSource do
-  include_context "API 1.1.0"
+  include_context "API 2.0.0"
   include_context "customer"
 
   let(:customer) { Conekta::Customer.create(customer_data) }
