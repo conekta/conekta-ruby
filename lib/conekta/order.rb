@@ -7,6 +7,22 @@ module Conekta
     include Conekta::Operations::CreateMember
     include Conekta::Operations::CustomAction
 
+    attr_accessor :livemode, :amount, :status, :customer_id, :currency, :capture,
+                  :metadata, :created_at, :updated_at, :tax_lines, :line_items,
+                  :shipping_lines, :discount_lines, :shipping_contact, :fiscal_entity,
+                  :charges, :returns
+
+    def initialize(id=nil)
+      @id = id
+      @line_items ||= List.new("LineItem", {})
+      @tax_lines ||= List.new("TaxLine", {})
+      @shipping_lines ||= List.new("ShippingLine", {})
+      @discount_lines ||= List.new("DiscountLine", {})
+      @charges ||= List.new("Charge", {})
+      @returns ||= List.new("Return", {})
+      super(id)
+    end
+
     def load_from(response = nil)
       if response
         super
@@ -66,7 +82,7 @@ module Conekta
           v.create_attr('order', order)
 
           self.send(submodel).set_val(k,v)
-        end
+        end if self.respond_to?(submodel) && !self.send(submodel).nil?
       end
     end
 

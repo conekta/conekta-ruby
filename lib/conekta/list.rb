@@ -6,6 +6,7 @@ module Conekta
       super()
       @elements_type = elements_type
       @params        = (params || {})
+      @total         = 0
     end
 
     def add_element(element)

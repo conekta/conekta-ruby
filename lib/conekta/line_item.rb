@@ -4,6 +4,10 @@ module Conekta
     include Conekta::Operations::Update
     include Conekta::Operations::CustomAction
 
+    attr_accessor :name, :description, :unit_price, :quantity,
+                  :sku, :shippable, :tags, :brand, :type,
+                  :parent_id
+
     def _url
       if (id.nil? || id.to_s.empty?)
         exception = Error.new({

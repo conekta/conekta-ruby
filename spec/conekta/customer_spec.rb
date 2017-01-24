@@ -75,10 +75,10 @@ describe Conekta::Customer do
       end
 
       it "successfully creates source for customer" do
-        source = customer.create_source(source_params)
+        source = customer.create_payment_source(source_params)
 
-        expect(source.class.to_s).to eq("Conekta::Source")
-        expect(customer.sources.class.to_s).to eq("Conekta::List")
+        expect(source.class.to_s).to eq("Conekta::PaymentSource")
+        expect(customer.payment_sources.class.to_s).to eq("Conekta::List")
       end
 
       it "successfully creates shipping contact for customer" do

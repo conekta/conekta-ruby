@@ -33,7 +33,7 @@ shared_context "customer" do
     {
       email:   "hola@hola.com",
       name:    "John Constantine",
-      sources:  [ { token_id: "tok_test_visa_4242", type: "card" }]
+      payment_sources:  [ { token_id: "tok_test_visa_4242", type: "card" }]
     }
   end
 end

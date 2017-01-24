@@ -4,6 +4,9 @@ module Conekta
     include Conekta::Operations::Update
     include Conekta::Operations::CustomAction
 
+    attr_accessor :tax_id, :company_name, :phone, :email, :created_at,
+                  :parent_id, :default
+
     def _url
       if (id.nil? || id.to_s.empty?)
         exception = Error.new({

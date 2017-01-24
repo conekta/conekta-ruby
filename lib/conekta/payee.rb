@@ -7,6 +7,10 @@ module Conekta
     include Conekta::Operations::Update
     include Conekta::Operations::CustomAction
     include Conekta::Operations::CreateMember
+
+    attr_accessor :email, :name, :phone, :livemode, :default_destination_id,
+                  :created_at
+
     def load_from(response=nil)
       if response
         super
