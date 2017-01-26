@@ -13,7 +13,7 @@ describe Conekta::ShippingContact do
          city: "Red Deer",
          state: "Alberta",
          country: "CA",
-         zip: "T4N 0B8",
+         postal_code: "T4N 0B8",
        }
      },
      {
@@ -24,7 +24,7 @@ describe Conekta::ShippingContact do
          city: "Red Deer",
          state: "Alberta",
          country: "CA",
-         zip: "T4N 0B8",
+         postal_code: "T4N 0B8",
        }
      }]
   end

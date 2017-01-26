@@ -7,28 +7,28 @@ describe Conekta::FiscalEntity do
   let(:fiscal_entities) do
     [{
        tax_id: "AMGH851205MN1",
-       company_name: "Nike SA de CV",
+       name: "Nike SA de CV",
        address: {
          street1: "250 Alexis St",
-         internal_number: 19,
-         external_number: 91,
+         internal_number: "19",
+         external_number: "91",
          city: "Red Deer",
          state: "Alberta",
          country: "CA",
-         zip: "T4N 0B8"
+         postal_code: "T4N 0B8"
        }
      },
      {
        tax_id: "AMGH851205MN2",
-       company_name: "Nike SA de CV",
+       name: "Nike SA de CV",
        address: {
          street1: "250 Alexis St",
-         internal_number: 20,
-         external_number: 02,
+         internal_number: "20",
+         external_number: "02",
          city: "Red Deer",
          state: "Alberta",
          country: "CA",
-         zip: "T4N 0B8"
+         postal_code: "T4N 0B8"
        }
      }]
   end
@@ -41,7 +41,11 @@ describe Conekta::FiscalEntity do
 
   context "deleting fiscal entities" do
     it "successful fiscal entity delete" do
-      fiscal_entity.delete
+      begin
+        fiscal_entity.delete
+      rescue Conekta::ErrorList => list
+        puts list.details.map{|d|d.message}.inspect
+      end
 
       expect(fiscal_entity.deleted).to eq(true)
     end
@@ -49,9 +53,9 @@ describe Conekta::FiscalEntity do
 
   context "updating fiscal entities" do
     it "successful fiscal entity update" do
-      fiscal_entity.update(company_name: "Adidas")
+      fiscal_entity.update(name: "Adidas")
 
-      expect(fiscal_entity.company_name).to eq("Adidas")
+      expect(fiscal_entity.name).to eq("Adidas")
     end
 
     it "unsuccessful fiscal entity update" do

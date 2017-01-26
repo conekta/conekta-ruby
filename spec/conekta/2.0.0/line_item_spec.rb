@@ -9,16 +9,14 @@ describe Conekta::LineItem do
        description: "Imported From Mex.",
        unit_price: 35000,
        quantity: 1,
-       tags: ["food", "mexican food"],
-       type: "physical"
+       tags: ["food", "mexican food"]
      },
      {
        name: "Other item",
        description: "other description",
        unit_price: 35000,
        quantity: 1,
-       tags: ["food"],
-       type: "physical"
+       tags: ["food"]
      }]
   end
   let(:order_data) do
@@ -47,7 +45,7 @@ describe Conekta::LineItem do
 
     it "unsuccessful line item update" do
       expect {
-        line_item.update(type: nil)
+        line_item.update(description: nil)
       }.to raise_error(Conekta::ErrorList)
     end
   end
