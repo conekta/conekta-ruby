@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Conekta::Customer do
+  include_context "API 1.0.0"
   let(:customer_data) { { :cards => ["tok_test_visa_4242"], email: "test@gmail.com", name: "Mario" } }
 
   context "creating customers" do
@@ -9,7 +10,7 @@ describe Conekta::Customer do
       expect(customer).to be_a(Conekta::Customer)
     end
 
-    it "successful customer create" do
+    it "unsuccessful customer create" do
       expect { Conekta::Customer.create(
         :cards => ["tok_test_visa_4241"],
         :name => "Mario",
@@ -88,7 +89,7 @@ describe Conekta::Customer do
         expect { customer.create_subscription({plan: 'unexistent-plan'}) }.to \
           raise_error(
             Conekta::ResourceNotFoundError,
-            "Object Plan unexistent-plan could not be found."
+            "The object Plan unexistent-plan could not be found."
           )
       end
     end

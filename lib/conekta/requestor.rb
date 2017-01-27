@@ -27,11 +27,17 @@ module Conekta
           (if meth == :get then req.params = params else req.body = params.to_json end) if params
         end
       rescue Exception => e
-        Error.error_handler(e, "")
+        if Conekta.api_version == "2.0.0"
+          json_response = {"details" => []}
+        else
+          json_response = {}
+        end
+        ErrorList.error_handler(json_response, nil)
       end
 
-      return Error.error_handler(JSON.parse(response.body), response.status) if response.status != 200
-      JSON.parse(response.body)
+      json_response = JSON.parse(response.body)
+      return ErrorList.error_handler(json_response, response.status) if response.status != 200
+      json_response
     end
 
     private
@@ -59,13 +65,17 @@ module Conekta
     end
 
     def conekta_headers
-      @conekta_headers ||= {
+      params = {
         bindings_version: Conekta::VERSION,
         lang: 'ruby',
         lang_version: RUBY_VERSION,
         publisher: 'conekta',
         uname: Uname.uname
       }
+
+      params.merge!(plugin: Conekta.plugin) if Conekta.plugin.to_s.length > 0
+
+      @conekta_headers ||= params
     end
   end
 end

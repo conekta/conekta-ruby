@@ -7,26 +7,77 @@ module Conekta
     include Conekta::Operations::Update
     include Conekta::Operations::CustomAction
     include Conekta::Operations::CreateMember
+
+    attr_accessor :livemode, :name, :email, :phone, :default_shipping_contact_id,
+                  :default_fiscal_entity_id, :referrer, :account_age,
+                  :paid_transactions, :first_paid_at, :corporate, :default_payment_source_id,
+                  :fiscal_entities, :shipping_contacts, :subscription, :payment_sources, :cards
+
+    def initialize(id=nil)
+      @id = id
+      @payment_sources ||= List.new("PaymentSource", {})
+      @fiscal_entities ||= List.new("FiscalEntity", {})
+      @shipping_contacts ||= List.new("ShippingContacts", {})
+      super(id)
+    end
+
     def load_from(response=nil)
       if response
         super
       end
+
       customer = self
-      self.cards.each do |k,v|
-        if !v.respond_to? :deleted or !v.deleted
-          v.create_attr('customer', customer)
-          self.cards.set_val(k,v)
+
+      if Conekta.api_version == "2.0.0"
+        submodels = [:fiscal_entities, :payment_sources, :shipping_contacts]
+        create_submodels_lists(customer, submodels)
+      else
+        submodels = [:cards]
+
+        submodels.each do |submodel|
+          self.send(submodel).each do |k,v|
+            if !v.respond_to? :deleted or !v.deleted
+              v.create_attr('customer', customer)
+
+              self.send(submodel).set_val(k,v)
+            end
+          end
         end
       end
+
       if self.respond_to? :subscription and self.subscription
          self.subscription.create_attr('customer', customer)
       end
     end
+
     def create_card(params)
       self.create_member('cards', params)
     end
+
+    def create_payment_source(params)
+      self.create_member('payment_sources', params)
+    end
+
     def create_subscription(params)
       self.create_member('subscription', params)
+    end
+
+    def create_fiscal_entity(params)
+      self.create_member('fiscal_entities', params)
+    end
+
+    def create_shipping_contact(params)
+      self.create_member('shipping_contacts', params)
+    end
+
+    def create_submodels_lists(customer, submodels)
+      submodels.each do |submodel|
+        self.send(submodel).each do |k, v|
+          v.create_attr('customer', customer)
+
+          self.send(submodel).set_val(k,v)
+        end if self.respond_to?(submodel) && !self.send(submodel).nil?
+      end
     end
   end
 end

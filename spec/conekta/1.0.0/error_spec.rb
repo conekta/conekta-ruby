@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Conekta::Error do
+  include_context "API 1.0.0"
   let(:card) { { cards: ["tok_test_visa_4242"] } }
 
   it "test no id error" do
@@ -27,12 +28,13 @@ describe Conekta::Error do
   end
 
   it "test authentication error" do
+    api_key = Conekta::api_key
     Conekta::api_key = ""
     expect { Conekta::Customer.create({ cards: ["tok_test_visa_4242"] }) }.to \
       raise_error(Conekta::AuthenticationError)
 
     # cleanup
-    Conekta.api_key = '1tv5yJp3xnVZ7eK67m4h'
+    Conekta.api_key = api_key
   end
 
   it "test parameter validation error" do

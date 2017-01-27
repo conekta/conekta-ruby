@@ -1,8 +1,11 @@
 module Conekta
-  class PayoutMethod < Resource
+  class TaxLine < Resource
     include Conekta::Operations::Delete
     include Conekta::Operations::Update
     include Conekta::Operations::CustomAction
+
+    attr_accessor :description, :amount, :parent_id, :metadata
+
     def _url
       if (id.nil? || id.to_s.empty?)
         exception = Error.new({
@@ -16,10 +19,12 @@ module Conekta
         end
         raise exception
       end
-      self.payee._url + self.class._url + "/" + id
+
+      "#{self.order._url}#{self.class._url}/#{id}"
     end
+
     def delete
-      self.delete_member('payee','payout_methods')
+      self.delete_member('order', 'tax_lines')
     end
   end
 end

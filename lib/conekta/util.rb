@@ -1,5 +1,6 @@
 module Conekta
   module Util
+
     def self.types
       @types ||= {
         'bank_transfer_payment' => PaymentMethod,
@@ -14,6 +15,7 @@ module Conekta
         'payee' => Payee,
         'payout' => Payout,
         'payout_method' => PayoutMethod,
+        'destination' => Destination,
         'plan' => Plan,
         'subscription' => Subscription,
         'token' => Token,
@@ -21,16 +23,34 @@ module Conekta
         'webhook_log' => WebhookLog,
         'refund' => Refund,
         'line_item' => LineItem,
-        'address' => Address
+        'address' => Address,
+        'order' => Order,
+        'payment_source' => PaymentSource,
+        'tax_line' => TaxLine,
+        'shipping_line' => ShippingLine,
+        'discount_line' => DiscountLine,
+        'fiscal_entity' => FiscalEntity,
+        'shipping_contact' => ShippingContact,
+        'list' => List,
+        'return' => Return
       }
     end
+
     def self.convert_to_conekta_object(name,resp)
-      if resp.kind_of?(Hash) 
+      return resp if name == "data" # event data should not be parsed into objects
+      if resp.kind_of?(Hash)
         if resp.has_key?('object') and types[resp['object']]
-          instance = types[resp['object']].new()
+          if resp['object'] == "list"
+            instance = types[resp['object']].new(name, resp)
+          else
+            instance = types[resp['object']].new()
+          end
+
           instance.load_from(resp)
+
           return instance
         elsif name.instance_of? String
+          name = "shippin_line_method" if name == "method"
           name = "event_data" if camelize(name) == "Data"
           name = "obj" if camelize(name) == "Object"
           if !Object.const_defined?(camelize(name))
@@ -38,10 +58,13 @@ module Conekta
           else
             instance = constantize(camelize(name)).new
           end
+
           instance.load_from(resp)
+
           return instance
         end
       end
+
       if resp.kind_of?(Array)
         instance = ConektaObject.new
         instance.load_from(resp)
@@ -56,10 +79,21 @@ module Conekta
       end
       return instance
     end
+
+    def self.underscore(str)
+      str.split(/::/).last.
+        gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
+        gsub(/([a-z\d])([A-Z])/,'\1_\2').
+        tr("-", "_").
+        downcase
+    end
+
     protected
+
     def self.camelize(str)
       str.split('_').map{|e| e.capitalize}.join
     end
+
     def self.constantize(camel_cased_word)
       names = camel_cased_word.split('::')
 

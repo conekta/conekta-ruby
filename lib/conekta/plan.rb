@@ -7,5 +7,10 @@ module Conekta
     include Conekta::Operations::Update
     include Conekta::Operations::CustomAction
     include Conekta::Operations::CreateMember
+
+    attr_accessor :livemode, :created_at, :name, :amount, :currency,
+                  :interval, :frequency, :expiry_count, :trial_period_days,
+                  :created_at
+
   end
 end

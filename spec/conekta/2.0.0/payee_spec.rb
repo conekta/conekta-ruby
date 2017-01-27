@@ -16,7 +16,7 @@ describe Conekta::Payee do
           city: 'Cuauhtemoc',
           state: 'DF',
           country: 'MX',
-          zip: '06100'
+          postal_code: '06100'
         }
       }
     end

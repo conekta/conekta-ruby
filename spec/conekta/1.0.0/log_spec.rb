@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Conekta::Log do
+  include_context "API 1.0.0"
   it "test successful where" do
     events = Conekta::Log.where
     expect(events.class_name).to eq("ConektaObject")

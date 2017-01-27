@@ -11,3 +11,14 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 RSpec.configure do |config|
   config.before(:all) { Conekta.api_key = '1tv5yJp3xnVZ7eK67m4h' }
 end
+
+def expect_to_raise_error_list(klass, message, subklass, &block)
+  expect { block.call }.to raise_error(Conekta::ErrorList, nil)
+  begin
+    block.call
+  rescue Conekta::ErrorList => exception
+    expect(exception.details).to be_instance_of(Array)
+    expect(exception.details).not_to be_empty
+    expect(exception.details.first).to be_instance_of(subklass)
+  end
+end

@@ -2,19 +2,28 @@ module Conekta
   module Operations
     module CreateMember
       def create_member(member, params)
-        _url = [self._url, member].join('/')
-        member = member.to_sym
+        _url     = [self._url, member].join('/')
+        member   = member.to_sym
         response = Requestor.new.request(:post, _url, params)
 
-        if self.method(member).call and self.method(member).call.class.class_name == "ConektaObject"
+        if self.send(member) &&
+           (self.send(member).class.class_name == "ConektaObject" ||
+            self.send(member).class.class_name == "List")
           arr = []
-          self.method(member).call.values.each do |_,v|
-            arr << v.to_hash
+
+          if self.send(member).class.class_name == "List"
+            self.send(member).add_element(response)
+          else
+            self.method(member).call.values.each do |_,v|
+              arr << v.to_hash
+            end
+
+            arr << response
+            self.send(member).load_from(arr)
+            self.load_from
           end
-          arr << response
-          self.method(member).call.load_from(arr)
-          self.load_from
-          instances = self.method(member).call
+
+          instances = self.send(member)
           instance = instances.last
         else
           instance = Util.types[member.to_s].new()
@@ -23,6 +32,7 @@ module Conekta
           self.set_val(member.to_sym, instance)
           self.load_from
         end
+
         instance
       end
     end
