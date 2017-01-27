@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Conekta::ErrorList do
-  include_context "API 1.1.0"
+  include_context "API 2.0.0"
 
   let(:card) { { cards: ["tok_test_visa_4242"] } }
 
@@ -34,8 +34,7 @@ describe Conekta::ErrorList do
       { Conekta::Order.find(1) }
   end
 
-  # Api changes pending
-  xit "test authentication error" do
+  it "test authentication error" do
     api_key = Conekta::api_key
     Conekta::api_key = ""
     expect_to_raise_error_list(Conekta::ErrorList, nil, Conekta::AuthenticationError) \

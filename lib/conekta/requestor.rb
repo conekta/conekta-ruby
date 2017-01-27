@@ -27,7 +27,7 @@ module Conekta
           (if meth == :get then req.params = params else req.body = params.to_json end) if params
         end
       rescue Exception => e
-        if Conekta.api_version == "1.1.0"
+        if Conekta.api_version == "2.0.0"
           json_response = {"details" => []}
         else
           json_response = {}

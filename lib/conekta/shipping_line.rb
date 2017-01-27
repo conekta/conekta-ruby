@@ -14,7 +14,7 @@ module Conekta
           "message_to_purchaser" => I18n.t('error.resource.id_purchaser',  { locale: Conekta.locale.to_sym })
         })
 
-        if Conekta.api_version == "1.1.0"
+        if Conekta.api_version == "2.0.0"
           error_list = Conekta::ErrorList.new
           error_list.details << exception
           exception = error_list

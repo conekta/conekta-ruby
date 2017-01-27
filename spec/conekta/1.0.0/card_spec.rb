@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Conekta::Card do
+  include_context "API 1.0.0"
   let(:customer_data) do
     {
       email: "hola@hola.com",

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Conekta::ShippingLine do
-  include_context "API 1.1.0"
+  include_context "API 2.0.0"
   include_context "order"
 
   let(:shipping_lines) do

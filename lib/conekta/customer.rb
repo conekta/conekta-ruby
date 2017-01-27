@@ -28,7 +28,7 @@ module Conekta
 
       customer = self
 
-      if Conekta.api_version == "1.1.0"
+      if Conekta.api_version == "2.0.0"
         submodels = [:fiscal_entities, :payment_sources, :shipping_contacts]
         create_submodels_lists(customer, submodels)
       else

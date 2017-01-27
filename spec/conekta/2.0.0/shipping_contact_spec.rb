@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Conekta::ShippingContact do
-  include_context "API 1.1.0"
+  include_context "API 2.0.0"
   include_context "customer"
 
   let(:shipping_contacts) do
@@ -13,7 +13,7 @@ describe Conekta::ShippingContact do
          city: "Red Deer",
          state: "Alberta",
          country: "CA",
-         zip: "T4N 0B8",
+         postal_code: "T4N 0B8",
        }
      },
      {
@@ -24,7 +24,7 @@ describe Conekta::ShippingContact do
          city: "Red Deer",
          state: "Alberta",
          country: "CA",
-         zip: "T4N 0B8",
+         postal_code: "T4N 0B8",
        }
      }]
   end

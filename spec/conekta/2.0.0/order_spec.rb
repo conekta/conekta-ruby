@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Conekta::Order do
-  include_context "API 1.1.0"
+  include_context "API 2.0.0"
 
   let(:customer_info) do
     {
@@ -45,8 +45,7 @@ describe Conekta::Order do
       description: "Imported From Mex.",
       unit_price: 35000,
       quantity: 1,
-      tags: ["food", "mexican food"],
-      type: "physical"
+      tags: ["food", "mexican food"]
     }]
   end
 
@@ -56,12 +55,12 @@ describe Conekta::Order do
       company_name: "Nike SA de CV",
       address: {
         street1: "250 Alexis St",
-        internal_number: 19,
-        external_number: 91,
+        internal_number: "19",
+        external_number: "91",
         city: "Red Deer",
         state: "Alberta",
         country: "CA",
-        zip: "T4N 0B8"
+        postal_code: "T4N 0B8"
       }
     }
   end
@@ -116,18 +115,6 @@ describe Conekta::Order do
           expect_to_raise_error_list(Conekta::ErrorList, nil, Conekta::ParameterValidationError) \
             { Conekta::Order.create(order_data_with_charges) }
         end
-
-        xit "with both customer_info and customer_id" do
-          customer = Conekta::Customer.create(customer_data)
-
-          customer_params = {
-            customer_info: customer_info,
-            customer_id:   customer.id
-          }
-
-          expect_to_raise_error_list(Conekta::ErrorList, nil, Conekta::ParameterValidationError) \
-            { Conekta::Order.create(order_data_with_charges.merge(customer_params)) }
-        end
       end
     end
   end
@@ -154,8 +141,7 @@ describe Conekta::Order do
         description: "Imported From Mex.",
         unit_price: 35000,
         quantity: 1,
-        tags: ["food", "mexican food"],
-        type: "physical"
+        tags: ["food", "mexican food"]
       }
     end
 
@@ -182,12 +168,12 @@ describe Conekta::Order do
         company_name: "Nike SA de CV",
         address: {
           street1: "250 Alexis St",
-          internal_number: 20,
-          external_number: 02,
+          internal_number: "20",
+          external_number: "02",
           city: "Red Deer",
           state: "Alberta",
           country: "CA",
-          zip: "T4N 0B8"
+          postal_code: "T4N 0B8"
         }
       }
     end
@@ -222,7 +208,7 @@ describe Conekta::Order do
           city: "Red Deer",
           state: "Alberta",
           country: "MX",
-          zip: "78219",
+          postal_code: "78219",
           residential: true
         }
       }
@@ -310,12 +296,12 @@ describe Conekta::Order do
 
   it "successfully captures an order" do
     order = Conekta::Order.create(order_data_with_charges.
-                                    merge(customer_info: customer_info, capture: false))
-    expect(order.capture).to eq(false)
+                                    merge(customer_info: customer_info, preauthorize: true))
+    expect(order.preauthorize).to eq(true)
 
     order.capture_order
 
-    expect(order.capture).to eq(true)
+    expect(order.preauthorize).to eq(false)
   end
 
   context "returns" do
