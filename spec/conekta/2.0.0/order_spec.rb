@@ -308,7 +308,7 @@ describe Conekta::Order do
     let(:order_return) do
       {
         amount: 35000,
-        reason: "Reason return",
+        reason: "requested_by_client",
         currency: "MXN"
       }
     end
