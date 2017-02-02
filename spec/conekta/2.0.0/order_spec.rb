@@ -259,6 +259,8 @@ describe Conekta::Order do
     it "successfully creates discount line for order" do
       discount_line = order.create_discount_line(discount_line_params)
 
+      discount_line.update({amount: 1000})
+
       expect(discount_line.class.to_s).to eq("Conekta::DiscountLine")
       expect(order.discount_lines.class.to_s).to eq("Conekta::List")
     end

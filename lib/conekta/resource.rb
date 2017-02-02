@@ -32,5 +32,12 @@ module Conekta
     def self.underscored_class
       Conekta::Util.underscore(self.to_s)
     end
+
+    def create_member_with_relation(member, params, parent)
+      parent_klass = parent.class.underscored_class
+      child = self.create_member(member, params)
+      child.create_attr(parent_klass.to_s, parent)
+      return child
+    end
   end
 end
