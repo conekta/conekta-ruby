@@ -39,19 +39,19 @@ module Conekta
     end
 
     def create_line_item(params)
-      self.create_member('line_items', params)
+      self.create_member_with_relation('line_items', params, self)
     end
 
     def create_tax_line(params)
-      self.create_member('tax_lines', params)
+      self.create_member_with_relation('tax_lines', params, self)
     end
 
     def create_shipping_line(params)
-      self.create_member('shipping_lines', params)
+      self.create_member_with_relation('shipping_lines', params, self)
     end
 
     def create_discount_line(params)
-      self.create_member('discount_lines', params)
+      self.create_member_with_relation('discount_lines', params, self)
     end
 
     def create_charge(params)

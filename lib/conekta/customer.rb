@@ -51,11 +51,11 @@ module Conekta
     end
 
     def create_card(params)
-      self.create_member('cards', params)
+      self.create_member_with_relation('cards', params, self)
     end
 
     def create_payment_source(params)
-      self.create_member('payment_sources', params)
+      self.create_member_with_relation('payment_sources', params, self)
     end
 
     def create_subscription(params)
@@ -63,11 +63,11 @@ module Conekta
     end
 
     def create_fiscal_entity(params)
-      self.create_member('fiscal_entities', params)
+      self.create_member_with_relation('fiscal_entities', params, self)
     end
 
     def create_shipping_contact(params)
-      self.create_member('shipping_contacts', params)
+      self.create_member_with_relation('shipping_contacts', params, self)
     end
 
     def create_submodels_lists(customer, submodels)
