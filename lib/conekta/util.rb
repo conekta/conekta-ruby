@@ -3,41 +3,46 @@ module Conekta
 
     def self.types
       @types ||= {
-        'bank_transfer_payment' => PaymentMethod,
-        'bank_transfer_payout_method' => Method,
-        'card' => Card,
-        'card_payment' => PaymentMethod,
-        'cash_payment' => PaymentMethod,
-        'charge' => Charge,
-        'customer' => Customer,
-        'event' => Event,
-        'log' => Log,
-        'payee' => Payee,
-        'payout' => Payout,
-        'payout_method' => PayoutMethod,
-        'destination' => Destination,
-        'plan' => Plan,
-        'subscription' => Subscription,
-        'token' => Token,
-        'webhook' => Webhook,
-        'webhook_log' => WebhookLog,
-        'refund' => Refund,
-        'line_item' => LineItem,
-        'address' => Address,
-        'order' => Order,
-        'payment_source' => PaymentSource,
-        'tax_line' => TaxLine,
-        'shipping_line' => ShippingLine,
-        'discount_line' => DiscountLine,
-        'fiscal_entity' => FiscalEntity,
-        'shipping_contact' => ShippingContact,
-        'list' => List,
-        'return' => Return
+        'customer_info' => ::Conekta::CustomerInfo,
+        'details' => ::Conekta::Details,
+        'bank_transfer_payment' => ::Conekta::PaymentMethod,
+        'bank_transfer_payout_method' => ::Conekta::Method,
+        'card' => ::Conekta::Card,
+        'card_payment' => ::Conekta::PaymentMethod,
+        'cash_payment' => ::Conekta::PaymentMethod,
+        'charge' => ::Conekta::Charge,
+        'customer' => ::Conekta::Customer,
+        'event' => ::Conekta::Event,
+        'log' => ::Conekta::Log,
+        'payee' => ::Conekta::Payee,
+        'payout' => ::Conekta::Payout,
+        'payout_method' => ::Conekta::PayoutMethod,
+        'destination' => ::Conekta::Destination,
+        'plan' => ::Conekta::Plan,
+        'subscription' => ::Conekta::Subscription,
+        'token' => ::Conekta::Token,
+        'webhook' => ::Conekta::Webhook,
+        'webhook_log' => ::Conekta::WebhookLog,
+        'refund' => ::Conekta::Refund,
+        'line_item' => ::Conekta::LineItem,
+        'address' => ::Conekta::Address,
+        'billing_address' => ::Conekta::Address,
+        'shipping_address' => ::Conekta::Address,
+        'order' => ::Conekta::Order,
+        'payment_source' => ::Conekta::PaymentSource,
+        'tax_line' => ::Conekta::TaxLine,
+        'shipping_line' => ::Conekta::ShippingLine,
+        'discount_line' => ::Conekta::DiscountLine,
+        'fiscal_entity' => ::Conekta::FiscalEntity,
+        'shipping_contact' => ::Conekta::ShippingContact,
+        'list' => ::Conekta::List,
+        'return' => ::Conekta::Return
       }
     end
 
     def self.convert_to_conekta_object(name,resp)
-      return resp if name == "data" # event data should not be parsed into objects
+      # these json strings should not be parsed into objects
+      return resp if ["data", "request_body", "request_headers", "response_headers", "response_body", "query_string", "metadata", "vertical_info"].include?(name)
       if resp.kind_of?(Hash)
         if resp.has_key?('object') and types[resp['object']]
           if resp['object'] == "list"
@@ -56,7 +61,11 @@ module Conekta
           if !Object.const_defined?(camelize(name))
             instance = Object.const_set(camelize(name), Class.new(ConektaObject)).new
           else
-            instance = constantize(camelize(name)).new
+            begin
+              instance = constantize("Conekta::"+camelize(name)).new
+            rescue # Class is not defined
+              instance = constantize(camelize(name)).new
+            end
           end
 
           instance.load_from(resp)
