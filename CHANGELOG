@@ -88,3 +88,7 @@
 == 1.1.1 2017-02-01
 
 * Fix submodels updates.
+
+== 1.1.2 2017-02-08
+
+* Avoid class name conflicts.

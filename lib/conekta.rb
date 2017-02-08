@@ -19,6 +19,8 @@ require "conekta/util"
 require "conekta/error"
 require "conekta/error_list"
 
+require "conekta/customer_info"
+require "conekta/details"
 require "conekta/event"
 require "conekta/charge"
 require "conekta/customer"

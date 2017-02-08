@@ -89,7 +89,7 @@ describe Conekta::Customer do
         expect { customer.create_subscription({plan: 'unexistent-plan'}) }.to \
           raise_error(
             Conekta::ResourceNotFoundError,
-            "The object Plan unexistent-plan could not be found."
+            'The object Plan "unexistent-plan" could not be found.'
           )
       end
     end
