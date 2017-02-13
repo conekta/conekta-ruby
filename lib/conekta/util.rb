@@ -42,7 +42,7 @@ module Conekta
 
     def self.convert_to_conekta_object(name,resp)
       # these json strings should not be parsed into objects
-      return resp if ["data", "request_body", "request_headers", "response_headers", "response_body", "query_string", "metadata", "vertical_info"].include?(name)
+      return resp if ["data", "request_body", "request_headers", "response_headers", "response_body", "query_string", "metadata", "antifraud_info"].include?(name)
       if resp.kind_of?(Hash)
         if resp.has_key?('object') and types[resp['object']]
           if resp['object'] == "list"
