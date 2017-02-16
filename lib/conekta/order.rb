@@ -59,6 +59,7 @@ module Conekta
 
 		#State transitions
     def capture(params={})
+      puts "executing capture"
       custom_action(:post, 'capture', params)
     end
 
