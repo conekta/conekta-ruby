@@ -258,6 +258,8 @@ describe Conekta::Order do
     expect(order.payment_status).to eq("pre_authorized")
 
     order.capture
+    puts order.id
+    puts order.inspect
 
     expect(order.payment_status).to eq("paid")
   end
