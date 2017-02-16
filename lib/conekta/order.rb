@@ -58,15 +58,15 @@ module Conekta
     end
 
 		#State transitions
-    def capture(params=nil)
+    def capture(params={})
       custom_action(:post, 'capture', params)
     end
 
-    def void(params=nil)
+    def void(params={})
       custom_action(:post, 'void', params)
     end
 
-    def refund(params=nil)
+    def refund(params={})
       custom_action(:post, 'refund', params)
     end
 
