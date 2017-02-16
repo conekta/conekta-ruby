@@ -8,16 +8,9 @@
     {
       "livemode": false,
       "amount": 20000,
-      "status": "created",
+      "payment_status": "pending_payment",
       "customer_id": null,
       "currency": "MXN",
-      "capture": true,
-      "last_payment_info": {
-        "charge_id": "58865636dba34dd852000afe",
-        "payment_method": "OxxoPayment",
-        "payment_brand": null,
-        "status": "pending_payment"
-      },
       "customer_info": {
         "email": "hola@hola.com",
         "phone": "+5213353319758",
@@ -28,7 +21,6 @@
         "first_paid_at": 0
       },
       "shipping_contact": null,
-      "fiscal_entity": null,
       "object": "order",
       "id": "ord_2fth5M3rEuYiegi7R",
       "metadata": {
@@ -131,29 +123,14 @@
             }
           }
         ]
-      },
-      "returns": {
-        "starting_after": null,
-        "ending_before": null,
-        "object": "list",
-        "has_more": false,
-        "total": 0,
-        "data": []
       }
     },
     {
       "livemode": false,
       "amount": 20000,
-      "status": "returned",
+      "payment_status": "refunded",
       "customer_id": null,
       "currency": "MXN",
-      "capture": true,
-      "last_payment_info": {
-        "charge_id": "5886562ddba34dd35d000aad",
-        "payment_method": "CreditCardPayment",
-        "payment_brand": "VISA",
-        "status": "paid"
-      },
       "customer_info": {
         "email": "hola@hola.com",
         "phone": "+5213353319758",
@@ -164,7 +141,6 @@
         "first_paid_at": 0
       },
       "shipping_contact": null,
-      "fiscal_entity": null,
       "object": "order",
       "id": "ord_2fth5EQUZ7UtB9fQT",
       "metadata": {
@@ -282,59 +258,15 @@
             }
           }
         ]
-      },
-      "returns": {
-        "starting_after": null,
-        "ending_before": null,
-        "object": "list",
-        "has_more": false,
-        "total": 1,
-        "data": [
-          {
-            "livemode": false,
-            "amount": 20000,
-            "currency": "MXN",
-            "charge_id": "5886562ddba34dd35d000aad",
-            "reason": "Reason return",
-            "id": "ord_ret_2fth5KdEjehMzxpTh",
-            "object": "return",
-            "created_at": 1485198900,
-            "parent_id": "ord_2fth5EQUZ7UtB9fQT"
-          }
-        ]
       }
     },
     {
       "livemode": false,
       "amount": 20000,
-      "status": "created",
       "customer_id": null,
       "currency": "MXN",
-      "capture": true,
-      "last_payment_info": null,
       "customer_info": null,
       "shipping_contact": null,
-      "fiscal_entity": {
-        "tax_id": "AMGH851205MN1",
-        "company_name": "Test SA de CV",
-        "phone": "+5213353319758",
-        "email": "test@conekta.io",
-        "address": {
-          "street1": "250 Alexis St",
-          "street2": null,
-          "street3": null,
-          "internal_number": 19,
-          "external_number": 10,
-          "city": "Red Deer",
-          "state": "Alberta",
-          "zip": "78216",
-          "country": "mx",
-          "object": "fiscal_entity_address"
-        },
-        "id": "fis_ent_2fth5Diga4CBE9Q5g",
-        "object": "fiscal_entity",
-        "created_at": 1485198892
-      },
       "object": "order",
       "id": "ord_2fth5Cys3rdXXRmmH",
       "metadata": {
@@ -400,27 +332,15 @@
         "has_more": false,
         "total": 0,
         "data": []
-      },
-      "returns": {
-        "starting_after": null,
-        "ending_before": null,
-        "object": "list",
-        "has_more": false,
-        "total": 0,
-        "data": []
       }
     },
     {
       "livemode": false,
       "amount": 20000,
-      "status": "created",
       "customer_id": null,
       "currency": "MXN",
-      "capture": true,
-      "last_payment_info": null,
       "customer_info": null,
       "shipping_contact": null,
-      "fiscal_entity": null,
       "object": "order",
       "id": "ord_2fth5CF3Xf4syc56p",
       "metadata": {
@@ -486,27 +406,15 @@
         "has_more": false,
         "total": 0,
         "data": []
-      },
-      "returns": {
-        "starting_after": null,
-        "ending_before": null,
-        "object": "list",
-        "has_more": false,
-        "total": 0,
-        "data": []
       }
     },
     {
       "livemode": false,
       "amount": 20000,
-      "status": "created",
       "customer_id": null,
       "currency": "MXN",
-      "capture": true,
-      "last_payment_info": null,
       "customer_info": null,
       "shipping_contact": null,
-      "fiscal_entity": null,
       "object": "order",
       "id": "ord_2fth5BWE1TWEMLQcN",
       "metadata": {
@@ -583,27 +491,17 @@
         "has_more": false,
         "total": 0,
         "data": []
-      },
-      "returns": {
-        "starting_after": null,
-        "ending_before": null,
-        "object": "list",
-        "has_more": false,
-        "total": 0,
-        "data": []
       }
     },
     {
       "livemode": false,
       "amount": 20066,
-      "status": "created",
       "customer_id": null,
       "currency": "MXN",
       "capture": true,
       "last_payment_info": null,
       "customer_info": null,
       "shipping_contact": null,
-      "fiscal_entity": null,
       "object": "order",
       "id": "ord_2fth59yZRv6zGdkks",
       "metadata": {
@@ -686,27 +584,15 @@
         "has_more": false,
         "total": 0,
         "data": []
-      },
-      "returns": {
-        "starting_after": null,
-        "ending_before": null,
-        "object": "list",
-        "has_more": false,
-        "total": 0,
-        "data": []
       }
     },
     {
       "livemode": false,
       "amount": 40000,
-      "status": "created",
       "customer_id": null,
       "currency": "MXN",
-      "capture": true,
-      "last_payment_info": null,
       "customer_info": null,
       "shipping_contact": null,
-      "fiscal_entity": null,
       "object": "order",
       "id": "ord_2fth58SfvN6sWdVms",
       "metadata": {
@@ -790,27 +676,15 @@
         "has_more": false,
         "total": 0,
         "data": []
-      },
-      "returns": {
-        "starting_after": null,
-        "ending_before": null,
-        "object": "list",
-        "has_more": false,
-        "total": 0,
-        "data": []
       }
     },
     {
       "livemode": false,
       "amount": 20000,
-      "status": "created",
       "customer_id": null,
       "currency": "MXN",
-      "capture": true,
-      "last_payment_info": null,
       "customer_info": null,
       "shipping_contact": null,
-      "fiscal_entity": null,
       "object": "order",
       "id": "ord_2fth56EDMmQvWQZtr",
       "metadata": {
@@ -876,27 +750,15 @@
         "has_more": false,
         "total": 0,
         "data": []
-      },
-      "returns": {
-        "starting_after": null,
-        "ending_before": null,
-        "object": "list",
-        "has_more": false,
-        "total": 0,
-        "data": []
       }
     },
     {
       "livemode": false,
       "amount": 20000,
-      "status": "created",
       "customer_id": null,
       "currency": "MXN",
-      "capture": true,
-      "last_payment_info": null,
       "customer_info": null,
       "shipping_contact": null,
-      "fiscal_entity": null,
       "object": "order",
       "id": "ord_2fth54kaKNHdPHBKk",
       "metadata": {
@@ -962,27 +824,15 @@
         "has_more": false,
         "total": 0,
         "data": []
-      },
-      "returns": {
-        "starting_after": null,
-        "ending_before": null,
-        "object": "list",
-        "has_more": false,
-        "total": 0,
-        "data": []
       }
     },
     {
       "livemode": false,
       "amount": 60000,
-      "status": "created",
       "customer_id": null,
       "currency": "USD",
-      "capture": true,
-      "last_payment_info": null,
       "customer_info": null,
       "shipping_contact": null,
-      "fiscal_entity": null,
       "object": "order",
       "id": "ord_2fth5451GKboLvQfW",
       "metadata": {
@@ -1048,29 +898,14 @@
         "has_more": false,
         "total": 0,
         "data": []
-      },
-      "returns": {
-        "starting_after": null,
-        "ending_before": null,
-        "object": "list",
-        "has_more": false,
-        "total": 0,
-        "data": []
       }
     },
     {
       "livemode": false,
       "amount": 20000,
-      "status": "created",
+      "payment_status": "pending_payment",
       "customer_id": null,
       "currency": "MXN",
-      "capture": true,
-      "last_payment_info": {
-        "charge_id": "5886561ddba34dd852000ad8",
-        "payment_method": "OxxoPayment",
-        "payment_brand": null,
-        "status": "pending_payment"
-      },
       "customer_info": {
         "email": "hola@hola.com",
         "phone": "+5213353319758",
@@ -1081,7 +916,6 @@
         "first_paid_at": 0
       },
       "shipping_contact": null,
-      "fiscal_entity": null,
       "object": "order",
       "id": "ord_2fth51uaEsBnzUthh",
       "metadata": {
@@ -1184,29 +1018,14 @@
             }
           }
         ]
-      },
-      "returns": {
-        "starting_after": null,
-        "ending_before": null,
-        "object": "list",
-        "has_more": false,
-        "total": 0,
-        "data": []
       }
     },
     {
       "livemode": false,
       "amount": 20000,
-      "status": "fulfilled",
+      "payment_status": "paid",
       "customer_id": null,
       "currency": "MXN",
-      "capture": true,
-      "last_payment_info": {
-        "charge_id": "5886561bedbb6ede090004cf",
-        "payment_method": "OxxoPayment",
-        "payment_brand": null,
-        "status": "pending_payment"
-      },
       "customer_info": {
         "email": "hola@hola.com",
         "phone": "+5213353319758",
@@ -1217,7 +1036,6 @@
         "first_paid_at": 0
       },
       "shipping_contact": null,
-      "fiscal_entity": null,
       "object": "order",
       "id": "ord_2fth51Akifd9NDEDA",
       "metadata": {
@@ -1320,27 +1138,16 @@
             }
           }
         ]
-      },
-      "returns": {
-        "starting_after": null,
-        "ending_before": null,
-        "object": "list",
-        "has_more": false,
-        "total": 0,
-        "data": []
       }
     },
     {
       "livemode": false,
       "amount": 20000,
-      "status": "created",
+      "status": "pending_payment",
       "customer_id": null,
       "currency": "MXN",
-      "capture": true,
-      "last_payment_info": null,
       "customer_info": null,
       "shipping_contact": null,
-      "fiscal_entity": null,
       "object": "order",
       "id": "ord_2fth4yh7gGVrC7s6p",
       "metadata": {
@@ -1406,29 +1213,14 @@
         "has_more": false,
         "total": 0,
         "data": []
-      },
-      "returns": {
-        "starting_after": null,
-        "ending_before": null,
-        "object": "list",
-        "has_more": false,
-        "total": 0,
-        "data": []
       }
     },
     {
       "livemode": false,
       "amount": 2000,
-      "status": "fulfilled",
+      "status": "paid",
       "customer_id": null,
       "currency": "MXN",
-      "capture": true,
-      "last_payment_info": {
-        "charge_id": "588655e8c835f06c7b000a13",
-        "payment_method": "CreditCardPayment",
-        "payment_brand": "VISA",
-        "status": "paid"
-      },
       "customer_info": {
         "email": "logan@x-men.org",
         "phone": "4033420642",
@@ -1439,7 +1231,6 @@
         "first_paid_at": 0
       },
       "shipping_contact": null,
-      "fiscal_entity": null,
       "object": "order",
       "id": "ord_2fth4kLBsbdqQ2UBT",
       "metadata": {},
@@ -1544,29 +1335,14 @@
             }
           }
         ]
-      },
-      "returns": {
-        "starting_after": null,
-        "ending_before": null,
-        "object": "list",
-        "has_more": false,
-        "total": 0,
-        "data": []
       }
     },
     {
       "livemode": false,
       "amount": 2000,
-      "status": "fulfilled",
+      "payment_status": "paid",
       "customer_id": null,
       "currency": "MXN",
-      "capture": true,
-      "last_payment_info": {
-        "charge_id": "588655d5dba34dd35d000a5d",
-        "payment_method": "OxxoPayment",
-        "payment_brand": null,
-        "status": "paid"
-      },
       "customer_info": {
         "email": "logan@x-men.org",
         "phone": "403-342-0642",
@@ -1577,7 +1353,6 @@
         "first_paid_at": 0
       },
       "shipping_contact": null,
-      "fiscal_entity": null,
       "object": "order",
       "id": "ord_2fth4kLBsbdqQ2UBQ",
       "metadata": {},
@@ -1675,29 +1450,14 @@
             }
           }
         ]
-      },
-      "returns": {
-        "starting_after": null,
-        "ending_before": null,
-        "object": "list",
-        "has_more": false,
-        "total": 0,
-        "data": []
       }
     },
     {
       "livemode": false,
       "amount": 2000,
-      "status": "fulfilled",
+      "payment_status": "paid",
       "customer_id": null,
       "currency": "MXN",
-      "capture": true,
-      "last_payment_info": {
-        "charge_id": "588655cedba34dd852000aa9",
-        "payment_method": "SpeiPayment",
-        "payment_brand": null,
-        "status": "paid"
-      },
       "customer_info": {
         "email": "logan@x-men.org",
         "phone": "403-342-0642",
@@ -1708,7 +1468,6 @@
         "first_paid_at": 0
       },
       "shipping_contact": null,
-      "fiscal_entity": null,
       "object": "order",
       "id": "ord_2fth4kLBsbdqQ2UB9",
       "metadata": {},
@@ -1816,29 +1575,14 @@
             }
           }
         ]
-      },
-      "returns": {
-        "starting_after": null,
-        "ending_before": null,
-        "object": "list",
-        "has_more": false,
-        "total": 0,
-        "data": []
       }
     },
     {
       "livemode": false,
       "amount": 2000,
-      "status": "fulfilled",
+      "payment_status": "paid",
       "customer_id": null,
       "currency": "MXN",
-      "capture": true,
-      "last_payment_info": {
-        "charge_id": "588655e1dba34dd35d000a6f",
-        "payment_method": "CreditCardPayment",
-        "payment_brand": "VISA",
-        "status": "paid"
-      },
       "customer_info": {
         "email": "logan@x-men.org",
         "phone": "4033420642",
@@ -1849,7 +1593,6 @@
         "first_paid_at": 0
       },
       "shipping_contact": null,
-      "fiscal_entity": null,
       "object": "order",
       "id": "ord_2fth4kLBsbdqQ2UAx",
       "metadata": {},
@@ -1954,29 +1697,14 @@
             }
           }
         ]
-      },
-      "returns": {
-        "starting_after": null,
-        "ending_before": null,
-        "object": "list",
-        "has_more": false,
-        "total": 0,
-        "data": []
       }
     },
     {
       "livemode": false,
       "amount": 2000,
-      "status": "returned",
+      "payment_status": "refunded",
       "customer_id": null,
       "currency": "MXN",
-      "capture": true,
-      "last_payment_info": {
-        "charge_id": "588655d9c835f0fde2000aa1",
-        "payment_method": "CreditCardPayment",
-        "payment_brand": "VISA",
-        "status": "refunded"
-      },
       "customer_info": {
         "email": "logan@x-men.org",
         "phone": "4033420642",
@@ -1987,7 +1715,6 @@
         "first_paid_at": 0
       },
       "shipping_contact": null,
-      "fiscal_entity": null,
       "object": "order",
       "id": "ord_2fth4kLBsbdqQ2UAg",
       "metadata": {},
@@ -2100,41 +1827,14 @@
             }
           }
         ]
-      },
-      "returns": {
-        "starting_after": null,
-        "ending_before": null,
-        "object": "list",
-        "has_more": false,
-        "total": 1,
-        "data": [
-          {
-            "livemode": false,
-            "amount": -2000,
-            "currency": "MXN",
-            "charge_id": "588655d9c835f0fde2000aa1",
-            "reason": "unknown",
-            "id": "ord_ret_2fth4kLBsbdqQ2UAj",
-            "object": "return",
-            "created_at": 1485198855,
-            "parent_id": "ord_2fth4kLBsbdqQ2UAg"
-          }
-        ]
       }
     },
     {
       "livemode": false,
       "amount": 2000,
-      "status": "fulfilled",
+      "payment_status": "paid",
       "customer_id": null,
       "currency": "MXN",
-      "capture": true,
-      "last_payment_info": {
-        "charge_id": "588655cddba34dd35d000a49",
-        "payment_method": "BanortePayment",
-        "payment_brand": null,
-        "status": "paid"
-      },
       "customer_info": {
         "email": "logan@x-men.org",
         "phone": "403-342-0642",
@@ -2145,7 +1845,6 @@
         "first_paid_at": 0
       },
       "shipping_contact": null,
-      "fiscal_entity": null,
       "object": "order",
       "id": "ord_2fth4kLBsbdqQ2UAa",
       "metadata": {},
@@ -2242,29 +1941,14 @@
             }
           }
         ]
-      },
-      "returns": {
-        "starting_after": null,
-        "ending_before": null,
-        "object": "list",
-        "has_more": false,
-        "total": 0,
-        "data": []
       }
     },
     {
       "livemode": false,
       "amount": 2000,
-      "status": "fulfilled",
+      "payment_status": "paid",
       "customer_id": null,
       "currency": "MXN",
-      "capture": true,
-      "last_payment_info": {
-        "charge_id": "588655cedba34dd35d000a53",
-        "payment_method": "CreditCardPayment",
-        "payment_brand": "VISA",
-        "status": "paid"
-      },
       "customer_info": {
         "email": "logan@x-men.org",
         "phone": "4033420642",
@@ -2275,7 +1959,6 @@
         "first_paid_at": 0
       },
       "shipping_contact": null,
-      "fiscal_entity": null,
       "object": "order",
       "id": "ord_2fth4jbNMQ5Bmkofq",
       "metadata": {},
@@ -2380,14 +2063,6 @@
             }
           }
         ]
-      },
-      "returns": {
-        "starting_after": null,
-        "ending_before": null,
-        "object": "list",
-        "has_more": false,
-        "total": 0,
-        "data": []
       }
     }
   ]

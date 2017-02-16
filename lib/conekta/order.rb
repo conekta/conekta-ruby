@@ -7,10 +7,9 @@ module Conekta
     include Conekta::Operations::CreateMember
     include Conekta::Operations::CustomAction
 
-    attr_accessor :livemode, :amount, :status, :customer_id, :currency, :capture,
+    attr_accessor :livemode, :amount, :payment_status, :customer_id, :currency,
                   :metadata, :created_at, :updated_at, :tax_lines, :line_items,
-                  :shipping_lines, :discount_lines, :shipping_contact, :fiscal_entity,
-                  :charges, :returns
+                  :shipping_lines, :discount_lines, :shipping_contact, :charges
 
     def initialize(id=nil)
       @id = id
@@ -19,7 +18,6 @@ module Conekta
       @shipping_lines ||= List.new("ShippingLine", {})
       @discount_lines ||= List.new("DiscountLine", {})
       @charges ||= List.new("Charge", {})
-      @returns ||= List.new("Return", {})
       super(id)
     end
 
@@ -30,14 +28,11 @@ module Conekta
 
       order     = self
       submodels = [:line_items, :tax_lines, :shipping_lines, :discount_lines,
-                   :charges, :returns]
+                   :charges]
       create_submodels_lists(order, submodels)
-
-      if self.respond_to?(:fiscal_entity) && self.fiscal_entity
-        self.fiscal_entity.create_attr('order', order)
-      end
     end
 
+    #Attribute accessors
     def create_line_item(params)
       self.create_member_with_relation('line_items', params, self)
     end
@@ -58,20 +53,21 @@ module Conekta
       self.create_member('charges', params)
     end
 
-    def create_return(params)
-      self.create_member('returns', params)
-    end
-
-    def create_fiscal_entity(params)
-      self.update(fiscal_entity: params).fiscal_entity
-    end
-
     def create_shipping_contact(params)
       self.update(shipping_contact: params).shipping_contact
     end
 
-    def capture_order
-      custom_action(:put, 'capture')
+		#State transitions
+    def authorize_capture(params={})
+      custom_action(:post, 'capture', params)
+    end
+
+    def void(params={})
+      custom_action(:post, 'void', params)
+    end
+
+    def refund(params={})
+      custom_action(:post, 'refund', params)
     end
 
     private

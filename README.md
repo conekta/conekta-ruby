@@ -46,14 +46,8 @@ end
 {
   "livemode": false,
   "amount": 35000,
-  "status": "created",
+  "payment_status": "pending_payment",
   "currency": "MXN",
-  "capture": true,
-  "last_payment_info": {
-    "charge_id": "5887772aedbb6ea3a30056c5",
-    "payment_method": "OxxoPayment",
-    "status": "pending_payment"
-  },
   "customer_info": {
     "email": "hola@hola.com",
     "phone": "+5213353319758",

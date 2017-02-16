@@ -9,14 +9,13 @@ module Conekta
     include Conekta::Operations::CreateMember
 
     attr_accessor :livemode, :name, :email, :phone, :default_shipping_contact_id,
-                  :default_fiscal_entity_id, :referrer, :account_age,
+                  :referrer, :account_age,
                   :paid_transactions, :first_paid_at, :corporate, :default_payment_source_id,
-                  :fiscal_entities, :shipping_contacts, :subscription, :payment_sources, :cards
+                  :shipping_contacts, :subscription, :payment_sources, :cards
 
     def initialize(id=nil)
       @id = id
       @payment_sources ||= List.new("PaymentSource", {})
-      @fiscal_entities ||= List.new("FiscalEntity", {})
       @shipping_contacts ||= List.new("ShippingContacts", {})
       super(id)
     end
@@ -29,7 +28,7 @@ module Conekta
       customer = self
 
       if Conekta.api_version == "2.0.0"
-        submodels = [:fiscal_entities, :payment_sources, :shipping_contacts]
+        submodels = [:payment_sources, :shipping_contacts]
         create_submodels_lists(customer, submodels)
       else
         submodels = [:cards]
@@ -60,10 +59,6 @@ module Conekta
 
     def create_subscription(params)
       self.create_member('subscription', params)
-    end
-
-    def create_fiscal_entity(params)
-      self.create_member_with_relation('fiscal_entities', params, self)
     end
 
     def create_shipping_contact(params)

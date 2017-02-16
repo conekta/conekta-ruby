@@ -14,6 +14,7 @@ module Conekta
     def capture
       custom_action(:post, 'capture')
     end
+
     def refund(params=nil)
       params = { 'amount' => (params || self.amount) }
       custom_action(:post, 'refund', params)

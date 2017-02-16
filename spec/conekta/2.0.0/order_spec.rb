@@ -21,7 +21,7 @@ describe Conekta::Order do
 
   let(:charges) do
     [{
-      payment_source: {
+      payment_method: {
         type: "oxxo_cash",
         expires_at: (Time.now + 3600).to_i
       },
@@ -31,7 +31,7 @@ describe Conekta::Order do
 
   let(:card_charges) do
     [{
-      payment_source: {
+      payment_method: {
         type: "card",
         token_id: "tok_test_visa_4242",
       },
@@ -47,22 +47,6 @@ describe Conekta::Order do
       quantity: 1,
       tags: ["food", "mexican food"]
     }]
-  end
-
-  let(:fiscal_entity) do
-    {
-      tax_id: "AMGH851205MN1",
-      company_name: "Nike SA de CV",
-      address: {
-        street1: "250 Alexis St",
-        internal_number: "19",
-        external_number: "91",
-        city: "Red Deer",
-        state: "Alberta",
-        country: "CA",
-        postal_code: "T4N 0B8"
-      }
-    }
   end
 
   let(:order_data) do
@@ -89,12 +73,6 @@ describe Conekta::Order do
 
       expect(order).to be_a(Conekta::Order)
       expect(order.metadata["test"]).to eq(true)
-    end
-
-    it "successful order with fiscal_entity create" do
-      order = Conekta::Order.create(order_data.merge(fiscal_entity: fiscal_entity))
-      expect(order.fiscal_entity).to be_a(Conekta::FiscalEntity)
-      expect(order.fiscal_entity.order).to eq(order)
     end
 
     it "unsuccessful order create" do
@@ -162,22 +140,6 @@ describe Conekta::Order do
       }
     end
 
-    let(:fiscal_entity_params) do
-      {
-        tax_id: "AMGH851205MN2",
-        company_name: "Nike SA de CV",
-        address: {
-          street1: "250 Alexis St",
-          internal_number: "20",
-          external_number: "02",
-          city: "Red Deer",
-          state: "Alberta",
-          country: "CA",
-          postal_code: "T4N 0B8"
-        }
-      }
-    end
-
     let(:discount_line_params) do
       {
         code: "Cupon de descuento",
@@ -188,7 +150,7 @@ describe Conekta::Order do
 
     let(:charge_params) do
       {
-        payment_source: {
+        payment_method: {
           type: "oxxo_cash",
           expires_at: (Time.now + 3600).to_i
         },
@@ -265,12 +227,6 @@ describe Conekta::Order do
       expect(order.discount_lines.class.to_s).to eq("Conekta::List")
     end
 
-    it "successfully creates fiscal entity for order" do
-      fiscal_entity = order.create_fiscal_entity(fiscal_entity_params)
-
-      expect(fiscal_entity.class.to_s).to eq("Conekta::FiscalEntity")
-    end
-
     it "successfully create shipping contact for order" do
       shipping_contact = order.create_shipping_contact(shipping_contact_params)
 
@@ -297,33 +253,36 @@ describe Conekta::Order do
   end
 
   it "successfully captures an order" do
-    order = Conekta::Order.create(order_data_with_charges.
-                                    merge(customer_info: customer_info, preauthorize: true))
-    expect(order.preauthorize).to eq(true)
+    order = Conekta::Order.create(order_data_with_card_charges.
+                                  merge(customer_info: customer_info, pre_authorize: true))
+    expect(order.payment_status).to eq("pre_authorized")
 
-    order.capture_order
+    order.authorize_capture
 
-    expect(order.preauthorize).to eq(false)
+    expect(order.payment_status).to eq("paid")
   end
 
-  context "returns" do
-    let(:order_return) do
+  context "refund" do
+    let(:order_refund) do
       {
         amount: 35000,
-        reason: "requested_by_client",
-        currency: "MXN"
+        reason: "requested_by_client"
       }
     end
 
-    it "test successful return" do
+    it "test successful refund" do
       order = Conekta::Order.create(order_data_with_card_charges.
                                     merge(customer_info: customer_info).
                                     merge(line_items: line_items))
-      order.create_return(order_return.merge(order_id: order.id))
-      returned_order = Conekta::Order.find(order.id)
+      begin
+				order.refund(order_refund)
+      rescue Exception => e
+				puts e.details.map{|d| d.message}
+      end
 
-      expect(returned_order.status).to eq("returned")
-      expect(returned_order.returns.first).to be_a(Conekta::Return)
+      refunded_order = Conekta::Order.find(order.id)
+
+      expect(refunded_order.payment_status).to eq("refunded")
     end
   end
 end

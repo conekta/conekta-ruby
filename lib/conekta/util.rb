@@ -33,10 +33,8 @@ module Conekta
         'tax_line' => ::Conekta::TaxLine,
         'shipping_line' => ::Conekta::ShippingLine,
         'discount_line' => ::Conekta::DiscountLine,
-        'fiscal_entity' => ::Conekta::FiscalEntity,
         'shipping_contact' => ::Conekta::ShippingContact,
-        'list' => ::Conekta::List,
-        'return' => ::Conekta::Return
+        'list' => ::Conekta::List
       }
     end
 
