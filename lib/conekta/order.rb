@@ -7,7 +7,7 @@ module Conekta
     include Conekta::Operations::CreateMember
     include Conekta::Operations::CustomAction
 
-    attr_accessor :livemode, :amount, :payment_status, :customer_id, :currency, :pre_authorize,
+    attr_accessor :livemode, :amount, :payment_status, :customer_id, :currency,
                   :metadata, :created_at, :updated_at, :tax_lines, :line_items,
                   :shipping_lines, :discount_lines, :shipping_contact, :charges
 
