@@ -58,8 +58,7 @@ module Conekta
     end
 
 		#State transitions
-    def capture(params={})
-      puts "executing capture"
+    def authorize_capture(params={})
       custom_action(:post, 'capture', params)
     end
 

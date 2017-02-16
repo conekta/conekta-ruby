@@ -257,10 +257,7 @@ describe Conekta::Order do
                                   merge(customer_info: customer_info, pre_authorize: true))
     expect(order.payment_status).to eq("pre_authorized")
 
-    puts "about to capture"
-    puts order.capture
-    puts order.id
-    puts order.inspect
+    order.capture
 
     expect(order.payment_status).to eq("paid")
   end
