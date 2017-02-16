@@ -36,6 +36,10 @@ module Conekta
       end
 
       json_response = JSON.parse(response.body)
+      puts _url
+      puts meth
+      puts request_body.inspect
+      puts json_response.inspect
       return ErrorList.error_handler(json_response, response.status) if response.status != 200
       json_response
     end
