@@ -1,5 +1,5 @@
 module Conekta
-  class Error < Exception
+  class Error < StandardError
     attr_reader :message, :message_to_purchaser, :param, :code
     # NEW FIELDS
     attr_reader :validation_error, :custom_message
