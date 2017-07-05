@@ -26,7 +26,7 @@ module Conekta
         response = connection.method(meth).call do |req|
           (if meth == :get then req.params = params else req.body = params.to_json end) if params
         end
-      rescue Exception => e
+      rescue StandardError => e
         if Conekta.api_version == "2.0.0"
           json_response = {"details" => []}
         else

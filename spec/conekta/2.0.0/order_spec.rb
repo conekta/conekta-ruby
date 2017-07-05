@@ -276,7 +276,7 @@ describe Conekta::Order do
                                     merge(line_items: line_items))
       begin
 				order.refund(order_refund)
-      rescue Exception => e
+      rescue StandardError => e
 				puts e.details.map{|d| d.message}
       end
 

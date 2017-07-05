@@ -1,5 +1,5 @@
 module Conekta
-  class ErrorList < Exception
+  class ErrorList < StandardError
     attr_accessor :details
 
     def initialize
