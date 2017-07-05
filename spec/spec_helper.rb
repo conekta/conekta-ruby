@@ -20,5 +20,6 @@ def expect_to_raise_error_list(klass, message, subklass, &block)
     expect(exception.details).to be_instance_of(Array)
     expect(exception.details).not_to be_empty
     expect(exception.details.first).to be_instance_of(subklass)
+    expect(exception.class).to be < StandardError
   end
 end
