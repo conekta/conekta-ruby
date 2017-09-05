@@ -103,6 +103,6 @@
 ## [0.3.5]() - 2013-01-13
 ### Deprecate
 - Deprecate retrieve and all methods and replaced them with find and where respectively
-## Feature
+### Feature
 - Add payment method model
 - Objects' properties are now accessible via methods of the same of name
