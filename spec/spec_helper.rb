@@ -9,7 +9,7 @@ require 'conekta'
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
-  config.before(:all) { Conekta.api_key = '1tv5yJp3xnVZ7eK67m4h' }
+  config.before(:all) { Conekta.api_key = 'key_ZLy4aP2szht1HqzkCezDEA' }
 end
 
 def expect_to_raise_error_list(klass, message, subklass, &block)
