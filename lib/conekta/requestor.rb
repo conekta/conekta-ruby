@@ -60,7 +60,7 @@ module Conekta
       connection.headers['User-Agent'] = 'Conekta/v1 RubyBindings/' + Conekta::VERSION
       connection.headers['Accept'] = "application/vnd.conekta-v#{Conekta.api_version}+json"
       connection.headers['Accept-Language'] = Conekta.locale.to_s
-      connection.headers['Authorization'] = "Basic #{ Base64.encode64("#{self.api_key}" + ':')}"
+      connection.headers['Authorization'] = "Basic #{ Base64.strict_encode64("#{self.api_key}" + ':')}"
       return connection
     end
 
