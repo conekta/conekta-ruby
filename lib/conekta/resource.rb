@@ -13,18 +13,7 @@ module Conekta
     end
 
     def _url
-      if (id.nil? || id.to_s.empty?)
-        exception = Error.new({
-          "message" => I18n.t('error.resource.id',  { resource: self.class.class_name, locale: :en }),
-          "message_to_purchaser" => I18n.t('error.resource.id_purchaser',  { locale: Conekta.locale.to_sym })
-        })
-        if Conekta.api_version == "2.0.0"
-          error_list = Conekta::ErrorList.new
-          error_list.details << exception
-          exception = error_list
-        end
-        raise exception
-      end
+      ensure_id
 
       return [self.class._url, id].join('/')
     end
@@ -38,6 +27,28 @@ module Conekta
       child = self.create_member(member, params)
       child.create_attr(parent_klass.to_s, parent)
       return child
+    end
+
+    private
+    def ensure_id
+      if (id.nil? || id.to_s.empty?)
+        exception = Error.error_handler({
+          "details" => [{
+            "debug_message" => I18n.t(
+              'error.resource.id',
+              { resource: self.class.class_name, locale: :en }
+            ),
+            "message" => I18n.t(
+              'error.resource.id_purchaser',
+              { locale: Conekta.locale.to_sym }
+            ),
+            "param" => "id",
+            "code" => "error.resource.id"
+          }]
+        }, -2)
+
+        raise exception
+      end
     end
   end
 end

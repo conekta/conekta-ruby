@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Conekta::Charge do
   include_context "API 1.0.0"
+
   let(:payment_method) do
     {
       amount: 2000, 

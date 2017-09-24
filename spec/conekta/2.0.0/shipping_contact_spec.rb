@@ -54,7 +54,7 @@ describe Conekta::ShippingContact do
     it "unsuccessful shipping contact update" do
       expect {
         shipping_contact.update(receiver: 123)
-      }.to raise_error(Conekta::ErrorList)
+      }.to raise_error(Conekta::Error)
     end
   end
 end
