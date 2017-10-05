@@ -43,7 +43,7 @@ describe Conekta::DiscountLine do
     it "unsuccessful discount line update" do
       expect {
         discount_line.update(amount: -1)
-      }.to raise_error(Conekta::ErrorList)
+      }.to raise_error(Conekta::ParameterValidationError)
     end
   end
 end

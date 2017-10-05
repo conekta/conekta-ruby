@@ -76,8 +76,9 @@ describe Conekta::Order do
     end
 
     it "unsuccessful order create" do
-      expect_to_raise_error_list(Conekta::ErrorList, nil, Conekta::ParameterValidationError) \
-        { Conekta::Order.create({}) }
+      expect{
+        Conekta::Order.create({})
+      }.to raise_error(Conekta::ParameterValidationError)
     end
 
     context "with charges" do
@@ -90,8 +91,9 @@ describe Conekta::Order do
 
       context "unsuccessful order create" do
         it "with missing customer_info and customer_id" do
-          expect_to_raise_error_list(Conekta::ErrorList, nil, Conekta::ParameterValidationError) \
-            { Conekta::Order.create(order_data_with_charges) }
+          expect{
+            Conekta::Order.create(order_data_with_charges)
+          }.to raise_error(Conekta::ParameterValidationError)
         end
       end
     end
@@ -107,8 +109,9 @@ describe Conekta::Order do
     end
 
     it "unsuccessful order update" do
-      expect_to_raise_error_list(Conekta::ErrorList, nil, Conekta::ParameterValidationError) \
-        { order.update(charges: charges) }
+      expect{
+        order.update(charges: charges)
+      }.to raise_error(Conekta::ParameterValidationError)
     end
   end
 

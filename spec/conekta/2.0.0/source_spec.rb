@@ -25,7 +25,7 @@ describe Conekta::PaymentSource do
     it "unsuccessful payment_source update" do
       expect {
         payment_source.update(token_id: "tok_test_visa_4241")
-      }.to raise_error(Conekta::ErrorList)
+      }.to raise_error(Conekta::ParameterValidationError)
     end
   end
 end

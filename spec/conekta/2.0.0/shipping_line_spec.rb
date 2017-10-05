@@ -47,7 +47,7 @@ describe Conekta::ShippingLine do
     it "unsuccessful shipping line update" do
       expect {
         shipping_line.update(amount: -1)
-      }.to raise_error(Conekta::ErrorList)
+      }.to raise_error(Conekta::ParameterValidationError)
     end
   end
 end

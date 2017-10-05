@@ -17,7 +17,7 @@ require "conekta/resource"
 require "conekta/requestor"
 require "conekta/util"
 require "conekta/error"
-require "conekta/error_list"
+require "conekta/error_details"
 
 require "conekta/customer_info"
 require "conekta/details"

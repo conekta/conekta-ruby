@@ -38,7 +38,7 @@ describe Conekta::TaxLine do
     it "unsuccessful tax line update" do
       expect {
         tax_line.update(amount: -1)
-      }.to raise_error(Conekta::ErrorList)
+      }.to raise_error(Conekta::Error)
     end
   end
 end

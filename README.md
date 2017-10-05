@@ -37,8 +37,8 @@ end
 begin
   order = Conekta::Order.create(order_data_with_charges.
           merge(customer_info: customer_info))
-rescue Conekta::ErrorList => error_list
-  for error_detail in error_list.details do
+rescue Conekta::Error => error
+  for error_detail in error.details do
     puts error_detail.message
   end
 end
