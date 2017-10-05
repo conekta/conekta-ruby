@@ -1,3 +1,7 @@
+## [2.1.0](https://github.com/conekta/conekta-ruby/releases/tag/2.0.1) - 2017-02-15
+### Change
+- Error list refactor and byebug implementation
+
 ## [2.0.1](https://github.com/conekta/conekta-ruby/releases/tag/2.0.1) - 2017-02-15
 ### Feature
 - Order model, submodels and methods as well as enhanced Errors and lists
