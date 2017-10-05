@@ -1,4 +1,4 @@
-## [2.1.0](https://github.com/conekta/conekta-ruby/releases/tag/2.0.1) - 2017-02-15
+## [2.1.0](https://github.com/conekta/conekta-ruby/releases/tag/2.1.0) - 2017-10-05
 ### Change
 - Error list refactor and byebug implementation
 
