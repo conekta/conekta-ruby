@@ -7,6 +7,7 @@ module Conekta
     end
 
     def set_val(k,v)
+      @values ||= {}
       @values[k] = v
       self[k] = v
     end
@@ -21,7 +22,7 @@ module Conekta
     end
 
     def last
-      self[self.count - 1]
+      self[self.keys.last]
     end
 
     def load_from(response)
