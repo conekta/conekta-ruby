@@ -7,6 +7,7 @@ module Conekta
     end
 
     def set_val(k,v)
+      @values ||= {}
       @values[k] = v
       self[k] = v
     end
