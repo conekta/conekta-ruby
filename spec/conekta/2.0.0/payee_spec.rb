@@ -2,11 +2,12 @@ require 'spec_helper'
 # require 'conekta'
 
 describe Conekta::Payee do
+  include_context "API 2.0.0"
 
   describe 'an instance' do
     let(:payee_attributes) do
       {
-        name: "John Doe", email: "j_d@radcorp.com", phone: "555555555",
+        name: "John Doe", email: "j_d@radcorp2.com", phone: "555555555",
         billing_address:{
           company_name: 'Rad Corp',
           tax_id: 'tax121212abc',
@@ -30,26 +31,24 @@ describe Conekta::Payee do
       let!(:payee) { Conekta::Payee.create(payee_attributes) }
       let(:bank_attributes) do
         {
-          account_number: '032180000118359719',
-          account_holder: 'J D - Radcorp',
-          description: 'Conekta To JD',
-          statement_description: 'Conekta To JD 111111111',
-          statement_reference: '111111111'
+          type: "bank_account",
+          account_number: '072225008217746674',
+          account_holder_name: 'J D - Radcorp'
         }
       end
 
       it 'can create payout methods' do
-        payout_method = payee.create_payout_method(bank_attributes)
-        expect(payout_method).to be_a(Conekta::Method)
+        payout_method = payee.create_destination(bank_attributes)
+        expect(payout_method).to be_a(Conekta::Destination)
         # I'm sure this should be a Conekta::PayoutMethod,
         # just not sure why it's reporting back as a Conekta::Method
       end
 
       it 'assigns default_payout_method_id to first payout method created' do
-        payout_method = payee.create_payout_method(bank_attributes)
+        payout_method = payee.create_destination(bank_attributes)
         # refetch the payee object
         payee = Conekta::Payee.find(payout_method.payee_id)
-        expect(payee.default_payout_method_id).to eq(payout_method.id)
+        expect(payee.default_destination_id).to eq(payout_method.id)
       end
     end
   end
