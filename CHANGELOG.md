@@ -1,3 +1,7 @@
+## [2.2.0](https://github.com/conekta/conekta-ruby/releases/tag/2.1.0) - 2017-10-05
+### Fix
+- Payee module implementation for api 2
+
 ## [2.1.0](https://github.com/conekta/conekta-ruby/releases/tag/2.1.0) - 2017-10-05
 ### Change
 - Error list refactor and byebug implementation
