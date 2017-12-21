@@ -12,8 +12,8 @@ module Conekta
                   :checkout_id, :checkout_order_count
 
     # Usage: charge_reference.capture(2000)
-    def capture(params={})
-      params = { 'amount' => (params || self.amount) }
+    def capture(capture_amount=nil)
+      params = { 'amount' => (capture_amount || self.amount) }
       custom_action(:post, 'capture', params)
     end
 
