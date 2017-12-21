@@ -133,4 +133,20 @@ describe Conekta::Charge do
       )
     end
   end
+
+  context 'capturing charges' do
+    it 'captures an existing charge' do
+      amount_before_capture = 2000
+      amount_after_capture  = 1000
+      capture = { capture: false }
+       transaction = Conekta::Charge.create(
+        payment_method.merge(card).merge(capture)
+      )
+      expect(transaction.status).to eq('pre_authorized')
+      expect(transaction.amount).to be == amount_before_capture 
+      transaction.capture(1000)
+      expect(transaction.amount).to be == amount_after_capture
+      expect(transaction.status).to eq("paid")
+    end
+  end
 end
