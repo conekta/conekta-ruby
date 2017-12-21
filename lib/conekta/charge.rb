@@ -11,8 +11,10 @@ module Conekta
                   :exchange_rate, :foreign_currency, :amount_in_foreign_currency,
                   :checkout_id, :checkout_order_count
 
-    def capture
-      custom_action(:post, 'capture')
+    # Usage: charge_reference.capture(2000)
+    def capture(params={})
+      params = { 'amount' => (params || self.amount) }
+      custom_action(:post, 'capture', params)
     end
 
     def refund(params=nil)
