@@ -1,4 +1,8 @@
-## [2.2.0](https://github.com/conekta/conekta-ruby/releases/tag/2.1.0) - 2017-10-05
+## [2.3.0](https://github.com/conekta/conekta-ruby/releases/tag/2.3.0) - 2017-10-05
+### Fix
+- Capture allow pass amount in api v1 
+
+## [2.2.0](https://github.com/conekta/conekta-ruby/releases/tag/2.2.0) - 2017-10-05
 ### Fix
 - Payee module implementation for api 2
 
