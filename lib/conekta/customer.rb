@@ -57,6 +57,10 @@ module Conekta
       self.create_member_with_relation('payment_sources', params, self)
     end
 
+    def create_offline_recurrent_reference(params)
+      self.create_member_with_relation('payment_sources', params, self)
+    end
+
     def create_subscription(params)
       self.create_member('subscription', params)
     end

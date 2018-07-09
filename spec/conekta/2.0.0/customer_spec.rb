@@ -8,6 +8,24 @@ describe Conekta::Customer do
 
       let(:customer) { Conekta::Customer.create(customer_data) }
 
+      let(:customer_oxxo) {
+        {
+          payment_sources: [{
+            type: 'oxxo_recurrent',
+            expires_at: 157_559_040_0
+          }],
+          email: 'test@gmail.com',
+          name: 'Mario'
+        }
+      }
+
+      let(:oxxo_source_params) do
+        {
+          type: 'oxxo_recurrent',
+          expires_at: 157_559_040_0
+        }
+      end
+
       let(:source_params) do
         {
           type:     "card",
@@ -31,10 +49,20 @@ describe Conekta::Customer do
       end
 
       it "successfully creates source for customer" do
-        source = customer.create_payment_source(source_params)
+        customer = Conekta::Customer.create(customer_oxxo)
+        source = customer.payment_sources.first
+
+        expect(source.class.to_s).to eq('Conekta::PaymentSource')
+        expect(customer.payment_sources.class.to_s).to eq('Conekta::List')
+        expect(source.reference.size).to eq(14)
+      end
+
+      it 'successfully creates oxxo recurrent reference for customer' do
+        source = customer.create_offline_recurrent_reference(oxxo_source_params)
 
         expect(source.class.to_s).to eq("Conekta::PaymentSource")
         expect(customer.payment_sources.class.to_s).to eq("Conekta::List")
+        expect(source.reference.size).to eq(14)
       end
 
       it "successfully creates shipping contact for customer" do
