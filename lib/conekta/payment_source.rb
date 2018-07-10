@@ -11,7 +11,7 @@ module Conekta
     end
 
     def delete
-      self.delete_member('customer','payment_sources')
+      self.delete_member('customer', 'payment_sources')
     end
   end
 end
