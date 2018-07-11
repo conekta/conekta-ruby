@@ -1,6 +1,6 @@
 ![README Cover Image](readme_cover.png)
 
-# Conekta Ruby v.2.3.0
+# Conekta Ruby v.2.4.0
 
 This is a ruby library that allows interaction with https://api.conekta.io API.
 

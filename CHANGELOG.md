@@ -1,3 +1,7 @@
+## [2.4.0](https://github.com/conekta/conekta-ruby/releases/tag/2.4.0) - 2017-10-05
+### Added oxxo recurrent support
+- Added new method create_offline_recurrent_reference.
+
 ## [2.3.0](https://github.com/conekta/conekta-ruby/releases/tag/2.3.0) - 2017-10-05
 ### Fix
 - Capture allow pass amount in api v1 
