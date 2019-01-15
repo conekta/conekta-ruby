@@ -8,7 +8,7 @@ describe Conekta::Customer do
 
       let(:customer) { Conekta::Customer.create(customer_data) }
 
-      let(:customer_oxxo) {
+      let(:customer_oxxo) do
         {
           payment_sources: [{
             type: 'oxxo_recurrent',
@@ -17,7 +17,19 @@ describe Conekta::Customer do
           email: 'test@gmail.com',
           name: 'Mario'
         }
-      }
+      end
+
+      let(:customer_with_reference) do
+        {
+          payment_sources: [{
+            type: 'oxxo_recurrent',
+            reference: '5512345678',
+            expires_at: 157_559_040_0
+          }],
+          email: 'rick.sanchez@conekta.com',
+          name: 'Rick Sánchez'
+        }
+      end
 
       let(:oxxo_source_params) do
         {
@@ -71,6 +83,15 @@ describe Conekta::Customer do
 
         expect(shipping_contact.class.to_s).to eq("Conekta::ShippingContact")
         expect(customer.shipping_contacts.class.to_s).to eq("Conekta::List")
+      end
+
+      it 'successfully sets the reference for customer from the merchant request' do
+        skip
+        customer = Conekta::Customer.create(customer_with_reference)
+        source = customer.payment_sources.first
+
+        expect(source.reference).to eq('5512345678')
+        expect(source.reference.size).to eq(10)
       end
     end
   end
