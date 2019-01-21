@@ -3,10 +3,15 @@
 
 # Conekta Ruby v.2.4.0
 
-[![Made with Ruby](https://img.shields.io/badge/made%20with-ruby-red.svg?style=for-the-badge&colorA=ED4040&colorB=C12C2D)](https://www.ruby-lang.org) [![By Conekta](https://img.shields.io/badge/by-conekta-red.svg?style=for-the-badge&colorA=ee6130&colorB=00a4ac)](https://conekta.com)
+[![Made with Ruby](https://img.shields.io/badge/made%20with-ruby-red.svg?style=for-the-badge&colorA=ED4040&colorB=C12C2D&logo=ruby&logoColor=white)](https://www.ruby-lang.org)
+[![By Conekta](https://img.shields.io/badge/by-conekta-red.svg?style=for-the-badge&colorA=ee6130&colorB=00a4ac)](https://conekta.com)
 </div>
 
-This is a ruby library that allows interaction with https://api.conekta.io API.
+This is a [Ruby](https://www.ruby-lang.org/) library that allows interaction with [Conekta's API](https://api.conekta.io).
+
+## Requeriments
+
+Add them!
 
 ## Installation
 
@@ -16,17 +21,17 @@ Add this line to your application's Gemfile:
 
 And then execute:
 
-    $ bundle
+    bundle
 
 Or install it yourself as:
 
-    $ gem install conekta
+    gem install conekta
 
 ## Usage
 ```ruby
 # Set your configuration variables
 
-# This change the Accept-Language Header to the locale specified
+# This changes the Accept-Language Header to the locale specified
 Conekta.locale = :es
 
 Conekta.api_key = '1tv5yJp3xnVZ7eK67m4h'
@@ -105,25 +110,26 @@ end
 }
 ```
 
+## Documentation
+
+Please visit the [official API reference](https://developers.conekta.com/api) for an up-to-date documentation.
+
 Development and Testing
 -----------------------
-Feel free to play with our library and make pull requests if you find any bugs.  You can run the test suite with rspec from the library's root directory:
+Feel free to play with our library and make pull requests if you find any bugs. 
+You can run the test suite with [rspec](https://github.com/rspec/rspec-rails) from the library's root directory:
 
 ```shell
 bundle exec rspec
 ```
 
-To facilitate the development and testing process you can use one our ruby docker, docker preloaded with rvm and ruby versions 1.9.3, 2.1.9, 2.2.4 and 2.3.0:
+To facilitate the development and testing process you can use one of our Docker containers that come with [RVM](https://github.com/rvm/rvm) and [Ruby](https://www.ruby-lang.org/) versions 1.9.3, 2.1.9, 2.2.4 and 2.3.0:
 
 ```shell
 docker pull conekta/conekta-ruby
 
 docker run -ti conekta/conekta-ruby /bin/bash --login
 ```
-
-## License
-
-Developed in Mexico by [Conekta](https://www.conekta.com) in. Available with [MIT License](LICENSE).
 
 ***
 
@@ -164,3 +170,11 @@ Developed in Mexico by [Conekta](https://www.conekta.com) in. Available with [MI
 ## We are always hiring!
 
 If you are a comfortable working with a range of backend languages (Java, Python, Ruby, PHP, etc) and frameworks, you have solid foundation in data structures, algorithms and software design with strong analytical and debugging skills, check our open positions: https://www.conekta.com/careers
+
+### License
+
+<div align="center">
+
+Developed in :mexico: Mexico by [Conekta](https://www.conekta.com). Available with [MIT License](LICENSE).
+
+</div>
