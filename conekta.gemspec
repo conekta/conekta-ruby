@@ -6,11 +6,11 @@ require 'conekta/version'
 Gem::Specification.new do |spec|
   spec.name          = "conekta"
   spec.version       = Conekta::VERSION
-  spec.authors       = ["MauricioMurga"]
-  spec.email         = ["soporte@conekta.io"]
+  spec.authors       = ["Conekta"]
+  spec.email         = ["soporte@conekta.com"]
   spec.description   = %q{Ruby library for https://api.conekta.io}
   spec.summary       = %q{This library provides https://api.conekta.io operations}
-  spec.homepage      = "https://www.conekta.io"
+  spec.homepage      = "https://www.conekta.com"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
