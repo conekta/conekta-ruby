@@ -1,10 +1,12 @@
-![README Cover Image](readme_cover.png)
 <div align="center">
 
-# Conekta Ruby v.2.4.0
+![banner](readme_files/banner.png)
 
-[![Made with Ruby](https://img.shields.io/badge/made%20with-ruby-red.svg?style=for-the-badge&colorA=ED4040&colorB=C12C2D&logo=ruby&logoColor=white)](https://www.ruby-lang.org)
-[![By Conekta](https://img.shields.io/badge/by-conekta-red.svg?style=for-the-badge&colorA=ee6130&colorB=00a4ac)](https://conekta.com)
+ # Conekta Ruby v.2.4.0
+
+![ruby badge](readme_files/ruby-badge.png)
+![conekta badge](readme_files/conekta-badge.png)
+
 </div>
 
 This is a [Ruby](https://www.ruby-lang.org/) library that allows interaction with [Conekta's API](https://api.conekta.io).
@@ -116,7 +118,7 @@ Please visit the [official API reference](https://developers.conekta.com/api) fo
 
 Development and Testing
 -----------------------
-Feel free to play with our library and make pull requests if you find any bugs. 
+Feel free to play with our library and make pull requests if you find any bugs.
 You can run the test suite with [rspec](https://github.com/rspec/rspec-rails) from the library's root directory:
 
 ```shell
@@ -136,7 +138,7 @@ docker run -ti conekta/conekta-ruby /bin/bash --login
 ## How to contribute to the project
 
 1. Fork the repository
- 
+
 2. Clone the repository
 ```
     git clone git@github.com:yourUserName/conekta-ruby.git
@@ -147,7 +149,7 @@ docker run -ti conekta/conekta-ruby /bin/bash --login
     git pull origin develop
     # You should choose the name of your branch
     git checkout -b <feature/my_branch>
-```    
+```
 4. Make necessary changes and commit those changes
 ```
     git add .
