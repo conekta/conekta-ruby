@@ -47,11 +47,11 @@ module Conekta
     def raise_version_error(version)
       exception = Error.error_handler({
         "details" => [{
-          "debug_message" => I18n.t(
+          "debug_message" => I18n.translate(
             'error.conflict.version.unspecified',
             { resource: self.class.class_name, locale: :en }
           ),
-          "message" => I18n.t(
+          "message" => I18n.translate(
             'error.conflict.version.unspecified_purchaser',
             { locale: Conekta.locale.to_sym }
           ),

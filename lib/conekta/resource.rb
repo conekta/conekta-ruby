@@ -34,13 +34,14 @@ module Conekta
       if (id.nil? || id.to_s.empty?)
         exception = Error.error_handler({
           "details" => [{
-            "debug_message" => I18n.t(
+            "debug_message" => I18n.translate(
               'error.resource.id',
-              { resource: self.class.class_name, locale: :en }
+              locale: :en,
+              resource: self.class.class_name
             ),
-            "message" => I18n.t(
+            "message" => I18n.translate(
               'error.resource.id_purchaser',
-              { locale: Conekta.locale.to_sym }
+              locale: Conekta.locale.to_sym
             ),
             "param" => "id",
             "code" => "error.resource.id"
