@@ -12,7 +12,7 @@ describe Conekta::Customer do
         {
           payment_sources: [{
             type: 'oxxo_recurrent',
-            expires_at: 157_559_040_0
+            expires_at: (Time.now + 60 * 60 * 24 * 30).to_i
           }],
           email: 'test@gmail.com',
           name: 'Mario'
@@ -22,7 +22,7 @@ describe Conekta::Customer do
       let(:oxxo_source_params) do
         {
           type: 'oxxo_recurrent',
-          expires_at: 157_559_040_0
+          expires_at: (Time.now + 60 * 60 * 24 * 30).to_i
         }
       end
 

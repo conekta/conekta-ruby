@@ -32,13 +32,14 @@ module Conekta
         NoConnectionError.new({
           "details" => [
             {
-              "debug_message" => I18n.t(
+              "debug_message" => I18n.translate(
                 'error.requestor.connection',
-                { base: Conekta.api_base, locale: :en }
+                locale: :en,
+                base: Conekta.api_base
               ),
-              "message" => I18n.t(
+              "message" => I18n.translate(
                 'error.requestor.connection_purchaser',
-                { locale: Conekta.locale.to_sym }
+                locale: Conekta.locale.to_sym
               ),
               "code" => "error.requestor.connection"
             }
