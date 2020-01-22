@@ -1,3 +1,8 @@
+## [2.4.2](https://github.com/conekta/conekta-ruby/releases/tag/2.4.2) - 2020-01-22
+### Ruby 2.7 Cleanup
+- Corrects warnings related to translate in Ruby 2.7
+- Corrects a spec which had a hard coded `expires_at` field
+
 ## [2.4.0](https://github.com/conekta/conekta-ruby/releases/tag/2.4.0) - 2017-10-05
 ### Added oxxo recurrent support
 - Added new method create_offline_recurrent_reference.

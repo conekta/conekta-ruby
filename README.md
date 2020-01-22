@@ -2,7 +2,7 @@
 
 ![banner](readme_files/banner.png)
 
- # Conekta Ruby v.2.4.0
+ # Conekta Ruby
 
 ![ruby badge](readme_files/ruby-badge.png)
 ![conekta badge](readme_files/conekta-badge.png)
