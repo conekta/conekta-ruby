@@ -1,3 +1,9 @@
+## [2.5.0](https://github.com/conekta/conekta-ruby/releases/tag/2.5.0) - 2020-06-08
+### Deprecate List Total attribute
+- Remove total attribute logic for lists as it is deprecated and will be removed.
+  Going forward use the has_more attribute of lists to determine whether you
+  should keep paginating.
+
 ## [2.4.2](https://github.com/conekta/conekta-ruby/releases/tag/2.4.2) - 2020-01-22
 ### Ruby 2.7 Cleanup
 - Corrects warnings related to translate in Ruby 2.7
