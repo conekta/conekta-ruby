@@ -9,9 +9,10 @@ module Conekta
 
     attr_accessor :livemode, :amount, :payment_status, :customer_id, :currency,
                   :metadata, :created_at, :updated_at, :tax_lines, :line_items,
-                  :shipping_lines, :discount_lines, :shipping_contact, :charges
+                  :shipping_lines, :discount_lines, :shipping_contact, :charges,
+                  :checkout
 
-    def initialize(id=nil)
+    def initialize(id = nil)
       @id = id
       @line_items ||= List.new("LineItem", {})
       @tax_lines ||= List.new("TaxLine", {})
@@ -26,7 +27,7 @@ module Conekta
         super
       end
 
-      order     = self
+      order = self
       submodels = [:line_items, :tax_lines, :shipping_lines, :discount_lines,
                    :charges]
       create_submodels_lists(order, submodels)
@@ -34,40 +35,40 @@ module Conekta
 
     #Attribute accessors
     def create_line_item(params)
-      self.create_member_with_relation('line_items', params, self)
+      self.create_member_with_relation("line_items", params, self)
     end
 
     def create_tax_line(params)
-      self.create_member_with_relation('tax_lines', params, self)
+      self.create_member_with_relation("tax_lines", params, self)
     end
 
     def create_shipping_line(params)
-      self.create_member_with_relation('shipping_lines', params, self)
+      self.create_member_with_relation("shipping_lines", params, self)
     end
 
     def create_discount_line(params)
-      self.create_member_with_relation('discount_lines', params, self)
+      self.create_member_with_relation("discount_lines", params, self)
     end
 
     def create_charge(params)
-      self.create_member('charges', params)
+      self.create_member("charges", params)
     end
 
     def create_shipping_contact(params)
       self.update(shipping_contact: params).shipping_contact
     end
 
-		#State transitions
-    def authorize_capture(params={})
-      custom_action(:post, 'capture', params)
+    #State transitions
+    def authorize_capture(params = {})
+      custom_action(:post, "capture", params)
     end
 
-    def void(params={})
-      custom_action(:post, 'void', params)
+    def void(params = {})
+      custom_action(:post, "void", params)
     end
 
-    def refund(params={})
-      custom_action(:post, 'refund', params)
+    def refund(params = {})
+      custom_action(:post, "refund", params)
     end
 
     private
@@ -75,12 +76,11 @@ module Conekta
     def create_submodels_lists(order, submodels)
       submodels.each do |submodel|
         self.send(submodel).each do |k, v|
-          v.create_attr('order', order)
+          v.create_attr("order", order)
 
-          self.send(submodel).set_val(k,v)
+          self.send(submodel).set_val(k, v)
         end if self.respond_to?(submodel) && !self.send(submodel).nil?
       end
     end
-
   end
 end
