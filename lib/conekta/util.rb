@@ -11,6 +11,7 @@ module Conekta
         'card_payment' => ::Conekta::PaymentMethod,
         'cash_payment' => ::Conekta::PaymentMethod,
         'charge' => ::Conekta::Charge,
+        'checkout' => ::Conekta::Checkout,
         'customer' => ::Conekta::Customer,
         'event' => ::Conekta::Event,
         'log' => ::Conekta::Log,

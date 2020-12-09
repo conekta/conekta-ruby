@@ -1,3 +1,7 @@
+## [2.5.0](https://github.com/conekta/conekta-ruby/releases/tag/2.5.0) - 2020-11-22
+### Payment link
+- Add models to support payment link (aka checkout).
+
 ## [2.4.2](https://github.com/conekta/conekta-ruby/releases/tag/2.4.2) - 2020-01-22
 ### Ruby 2.7 Cleanup
 - Corrects warnings related to translate in Ruby 2.7
