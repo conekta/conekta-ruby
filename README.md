@@ -1,13 +1,4 @@
-<div align="center">
-
-![banner](readme_files/banner.png)
-
- # Conekta Ruby
-
-![ruby badge](readme_files/ruby-badge.png)
-![conekta badge](readme_files/conekta-badge.png)
-
-</div>
+# Conekta Ruby
 
 This is a [Ruby](https://www.ruby-lang.org/) library that allows interaction with [Conekta's API](https://api.conekta.io).
 
