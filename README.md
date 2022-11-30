@@ -1,13 +1,4 @@
-<div align="center">
-
-![banner](readme_files/banner.png)
-
- # Conekta Ruby
-
-![ruby badge](readme_files/ruby-badge.png)
-![conekta badge](readme_files/conekta-badge.png)
-
-</div>
+# Conekta Ruby
 
 This is a [Ruby](https://www.ruby-lang.org/) library that allows interaction with [Conekta's API](https://api.conekta.io).
 
@@ -35,7 +26,6 @@ Or install it yourself as:
 
 # This changes the Accept-Language Header to the locale specified
 Conekta.locale = :es
-
 Conekta.api_key = '1tv5yJp3xnVZ7eK67m4h'
 
 # Or via an initializer in config/initializers/conekta.rb
@@ -45,71 +35,45 @@ Conekta.config do |c|
   c.api_version = '2.0.0'
 end
 
+YOUR_DOMAIN = 'localhost:9292'.freeze
+
+# Order creation example
 begin
-  order = Conekta::Order.create(order_data_with_charges.
-          merge(customer_info: customer_info))
+  customer = Conekta::Customer.create(
+    {
+      name: 'Matz',
+      email: 'matz@rules.com'
+    }
+  )
+
+  order_params =
+    {
+      currency: 'MXN',
+      customer_info: {
+        customer_id: customer.id
+      },
+      line_items: [
+        {
+          name: 'T-Rex',
+          unit_price: 10000,
+          quantity: 1
+        }
+      ],
+      checkout: {
+        type: 'HostedPayment',
+        name: 'Checkout Dummy',
+        allowed_payment_methods: %w[cash card bank_transfer],
+        success_url: YOUR_DOMAIN + '/success.html',
+        failure_url: YOUR_DOMAIN + '/cancel.html',
+      }
+    }
+
+  order = Conekta::Order.create(order_params)
 rescue Conekta::Error => error
-  for error_detail in error.details do
+  error.details.each do |error_details|
     puts error_detail.message
   end
 end
-
-{
-  "livemode": false,
-  "amount": 35000,
-  "payment_status": "pending_payment",
-  "currency": "MXN",
-  "customer_info": {
-    "email": "hola@hola.com",
-    "phone": "+5213353319758",
-    "name": "John Constantine",
-    "first_paid_at": 0
-  },
-  "object": "order",
-  "id": "ord_2ftyJuymR9FZczvPg",
-  "metadata": {
-    "test": true
-  },
-  "created_at": 1485272874,
-  "updated_at": 1485272874,
-  "line_items": {
-    "0": {
-      "name": "Box of Cohiba S1s",
-      "description": "Imported From Mex.",
-      "unit_price": 35000,
-      "quantity": 1,
-      "tags": ["food", "mexican food"],
-      "type": "physical",
-      "object": "line_item",
-      "id": "line_item_2ftyJuymR9FZczvPe",
-      "parent_id": "ord_2ftyJuymR9FZczvPg",
-      "metadata": {}
-    }
-  },
-  "charges": {
-    "0": {
-      "id": "5887772aedbb6ea3a30056c5",
-      "livemode": false,
-      "created_at": 1485272874,
-      "currency": "MXN",
-      "payment_method": {
-        "barcode_url": "https://s3.amazonaws.com/cash_payment_barcodes/sandbox_reference.png",
-        "service_name": "OxxoPay",
-        "object": "cash_payment",
-        "type": "oxxo",
-        "expires_at": 1485276473,
-        "store_name": "OXXO",
-        "reference": "93345678901234"
-      },
-      "object": "charge",
-      "status": "pending_payment",
-      "amount": 35000,
-      "fee": 1421,
-      "customer_id": "",
-      "order_id": "ord_2ftyJuymR9FZczvPg"
-    }
-  }
-}
 ```
 
 ## Documentation
