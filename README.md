@@ -2,10 +2,6 @@
 
 This is a [Ruby](https://www.ruby-lang.org/) library that allows interaction with [Conekta's API](https://api.conekta.io).
 
-## Requeriments
-
-Add them!
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -78,26 +74,7 @@ end
 
 ## Documentation
 
-Please visit the [official API reference](https://developers.conekta.com/api) for an up-to-date documentation.
-
-Development and Testing
------------------------
-Feel free to play with our library and make pull requests if you find any bugs.
-You can run the test suite with [rspec](https://github.com/rspec/rspec-rails) from the library's root directory:
-
-```shell
-bundle exec rspec
-```
-
-To facilitate the development and testing process you can use one of our Docker containers that come with [RVM](https://github.com/rvm/rvm) and [Ruby](https://www.ruby-lang.org/) versions 1.9.3, 2.1.9, 2.2.4 and 2.3.0:
-
-```shell
-docker pull conekta/conekta-ruby
-
-docker run -ti conekta/conekta-ruby /bin/bash --login
-```
-
-***
+Please visit the [Rdoc](https://www.rubydoc.info/gems/conekta/2.6.0/Conekta) or you can take a look to the [official API reference](https://developers.conekta.com/api) for an up-to-date documentation.
 
 ## How to contribute to the project
 
