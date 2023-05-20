@@ -36,7 +36,8 @@ module Conekta
         'discount_line' => ::Conekta::DiscountLine,
         'shipping_contact' => ::Conekta::ShippingContact,
         'transfer' => ::Conekta::Transfer,
-        'list' => ::Conekta::List
+        'list' => ::Conekta::List,
+        'transaction' => ::Conekta::Transaction
       }
     end
 
