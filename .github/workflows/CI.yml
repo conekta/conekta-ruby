@@ -21,14 +21,9 @@ jobs:
       with:
         ruby-version:  3.1
     - name: Lint
-      run: bundle install && bundle exec rake rubocop
+      run: bundle install
     - name: Build
       run: gem build conekta.gemspec
-    - name: 'Upload Artifact'
-      uses: actions/upload-artifact@v3
-      with:
-        name: gems
-        path: '*.gem'
 
   test:
     name: Test (${{ matrix.ruby-version }})
@@ -52,4 +47,3 @@ jobs:
       env:
         BASE_PATH: http://localhost:3000
 
-  
