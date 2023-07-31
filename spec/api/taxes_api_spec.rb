@@ -43,7 +43,20 @@ describe 'TaxesApi' do
   # @return [UpdateOrderTaxResponse]
   describe 'orders_create_taxes test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = 'ord_2tVyWPnCPWbrV37mW'
+      order_tax_request = Conekta::OrderTaxRequest.new({
+                                                         amount: 100,
+                                                         description: "test",
+                                                         metadata: { "key": "value" }
+                                                       })
+
+      response = @api_instance.orders_create_taxes(id, order_tax_request)
+
+      expect(response).to be_instance_of(Conekta::UpdateOrderTaxResponse)
+      expect(response.amount).to eq(100)
+      expect(response.description).to eq("test postman")
+      expect(response.parent_id).to eq(id)
+      expect(response.id).to be_truthy
     end
   end
 
@@ -58,7 +71,14 @@ describe 'TaxesApi' do
   # @return [UpdateOrderTaxResponse]
   describe 'orders_delete_taxes test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = 'ord_2tVyWPnCPWbrV37mW'
+      tax_id = 'tax_lin_2tVzVp6AAptCRHhgt'
+
+      response = @api_instance.orders_delete_taxes(id, tax_id)
+
+      expect(response).to be_instance_of(Conekta::UpdateOrderTaxResponse)
+      expect(response.id).to eq(tax_id)
+      expect(response.parent_id).to eq(id)
     end
   end
 
@@ -74,7 +94,16 @@ describe 'TaxesApi' do
   # @return [UpdateOrderTaxResponse]
   describe 'orders_update_taxes test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = 'ord_2tVyWPnCPWbrV37mW'
+      tax_id = 'tax_lin_2tVzVp6AAptCRHhgt'
+      update_order_tax_request = Conekta::UpdateOrderTaxRequest.new({amount: 99})
+
+      response = @api_instance.orders_update_taxes(id, tax_id, update_order_tax_request)
+
+      expect(response).to be_instance_of(Conekta::UpdateOrderTaxResponse)
+      expect(response.id).to eq(tax_id)
+      expect(response.parent_id).to eq(id)
+      expect(response.amount).to eq(update_order_tax_request.amount)
     end
   end
 

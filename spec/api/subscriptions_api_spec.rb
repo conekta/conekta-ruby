@@ -42,7 +42,14 @@ describe 'SubscriptionsApi' do
   # @return [SubscriptionResponse]
   describe 'cancel_subscription test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      customer_id = 'cus_2tZWxbTPtQgGJGh8P'
+
+      response = @api_instance.cancel_subscription(customer_id, { accept_language: 'es' })
+
+      expect(response).to be_instance_of(Conekta::SubscriptionResponse)
+      expect(response.customer_id).to eq(customer_id)
+      expect(response.status).to eq('canceled')
+      expect(response.canceled_at).to eq(1679431258)
     end
   end
 
@@ -57,7 +64,17 @@ describe 'SubscriptionsApi' do
   # @return [SubscriptionResponse]
   describe 'create_subscription test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      customer_id = 'cus_2tXx8KUxw6311kEbs'
+      subscription_request = Conekta::SubscriptionRequest.new({plan_id: "contracargos-plan"})
+
+      response = @api_instance.create_subscription(customer_id, subscription_request)
+
+      expect(response).to be_instance_of(Conekta::SubscriptionResponse)
+      expect(response.customer_id).to eq(customer_id)
+      expect(response.status).to eq('past_due')
+      expect(response.object).to eq('subscription')
+      expect(response.plan_id).to eq(subscription_request.plan_id)
+      expect(response.created_at).to eq(1679431660)
     end
   end
 
@@ -71,7 +88,11 @@ describe 'SubscriptionsApi' do
   # @return [SubscriptionEventsResponse]
   describe 'get_all_events_from_subscription test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+
+      response = @api_instance.get_all_events_from_subscription('cus_2rKpeXQpapLonfVke', { accept_language: 'es' })
+
+      expect(response).to be_instance_of(Conekta::SubscriptionEventsResponse)
+      expect(response.has_more).to eq(false)
     end
   end
 
@@ -83,7 +104,11 @@ describe 'SubscriptionsApi' do
   # @return [SubscriptionResponse]
   describe 'get_subscription test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      response = @api_instance.get_subscription('cus_2tZWxbTPtQgGJGh8P', { accept_language: 'es' })
+
+      expect(response).to be_instance_of(Conekta::SubscriptionResponse)
+      expect(response.customer_id).to eq('cus_2tZWxbTPtQgGJGh8P')
+      expect(response.object).to eq('subscription')
     end
   end
 
@@ -97,7 +122,14 @@ describe 'SubscriptionsApi' do
   # @return [SubscriptionResponse]
   describe 'pause_subscription test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      customer_id = 'cus_2tZWxbTPtQgGJGh8P'
+
+      response = @api_instance.pause_subscription(customer_id, { accept_language: 'es' })
+
+      expect(response).to be_instance_of(Conekta::SubscriptionResponse)
+      expect(response.customer_id).to eq(customer_id)
+      expect(response.status).to eq('paused')
+      expect(response.paused_at).to eq(1679429155)
     end
   end
 
@@ -111,7 +143,14 @@ describe 'SubscriptionsApi' do
   # @return [SubscriptionResponse]
   describe 'resume_subscription test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      customer_id = 'cus_2tZWxbTPtQgGJGh8P'
+
+      response = @api_instance.resume_subscription(customer_id, { accept_language: 'es' })
+
+      expect(response).to be_instance_of(Conekta::SubscriptionResponse)
+      expect(response.customer_id).to eq(customer_id)
+      expect(response.status).to eq('active')
+      expect(response.paused_at).to be_nil
     end
   end
 
@@ -126,7 +165,12 @@ describe 'SubscriptionsApi' do
   # @return [SubscriptionResponse]
   describe 'update_subscription test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      customer_id = 'cus_2tZWxbTPtQgGJGh8P'
+      subscription_update_request = Conekta::SubscriptionUpdateRequest.new({ trial_end: 1679752328})
+
+      response = @api_instance.update_subscription(customer_id, subscription_update_request, { accept_language: 'es' })
+
+      expect(response).to be_instance_of(Conekta::SubscriptionResponse)
     end
   end
 

@@ -43,7 +43,17 @@ describe 'DiscountsApi' do
   # @return [DiscountLinesResponse]
   describe 'orders_create_discount_line test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = 'ord_2tVyWPnCPWbrV37mW'
+      request = Conekta::OrderDiscountLinesRequest.new({
+                                                         amount: 500,
+                                                         code: "track",
+                                                         type: "loyalty"
+                                                       })
+      response = @api_instance.orders_create_discount_line(id, request)
+
+      expect(response).to be_instance_of(Conekta::DiscountLinesResponse)
+      expect(response.parent_id).to eq(id)
+      expect(response.amount).to eq(request.amount)
     end
   end
 
@@ -58,7 +68,15 @@ describe 'DiscountsApi' do
   # @return [DiscountLinesResponse]
   describe 'orders_delete_discount_lines test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = 'ord_2tVyWPnCPWbrV37mW'
+      discount_line_id = 'dis_lin_2tVyahK8Nts7rKRMZ'
+
+      response = @api_instance.orders_delete_discount_lines(id, discount_line_id)
+
+      expect(response).to be_instance_of(Conekta::DiscountLinesResponse)
+      expect(response.parent_id).to eq(id)
+      expect(response.id).to eq(discount_line_id)
+
     end
   end
 
@@ -73,7 +91,13 @@ describe 'DiscountsApi' do
   # @return [DiscountLinesResponse]
   describe 'orders_get_discount_line test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = 'ord_2tkwrBmcvGnA9zdU9'
+      discount_line_id = 'dis_lin_2tkwrBmcvGnA9zdU6'
+      response = @api_instance.orders_get_discount_line(id, discount_line_id)
+
+      expect(response).to be_instance_of(Conekta::DiscountLinesResponse)
+      expect(response.parent_id).to eq(id)
+      expect(response.id).to eq(discount_line_id)
     end
   end
 
@@ -91,7 +115,12 @@ describe 'DiscountsApi' do
   # @return [GetOrderDiscountLinesResponse]
   describe 'orders_get_discount_lines test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = 'ord_2tVyWPnCPWbrV37mW'
+      response = @api_instance.orders_get_discount_lines(id)
+
+      expect(response).to be_instance_of(Conekta::GetOrderDiscountLinesResponse)
+      expect(response.data.length).to eq(2)
+      expect(response.has_more).to be_falsey
     end
   end
 
@@ -107,7 +136,17 @@ describe 'DiscountsApi' do
   # @return [DiscountLinesResponse]
   describe 'orders_update_discount_lines test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = 'ord_2tVyWPnCPWbrV37mW'
+      discount_lines_id = 'dis_lin_2tVyahK8Nts7rKRMZ'
+      request = Conekta::UpdateOrderDiscountLinesRequest.new({
+                                                               amount: 100
+                                                             })
+
+      response = @api_instance.orders_update_discount_lines(id, discount_lines_id, request)
+
+      expect(response).to be_instance_of(Conekta::DiscountLinesResponse)
+      expect(response.parent_id).to eq(id)
+      expect(response.id).to eq(discount_lines_id)
     end
   end
 

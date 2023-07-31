@@ -41,7 +41,35 @@ describe 'TokensApi' do
   # @return [TokenResponse]
   describe 'create_token test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      token = Conekta::Token.new({
+                                   card: {
+                                     name: "Jorge López",
+                                     expMonth: "12",
+                                     expYear: "25",
+                                     cvc: "123",
+                                     number: "5475040095304607"
+                                   }
+                                 })
+
+      response = @api_instance.create_token(token)
+
+      expect(response).to be_instance_of(Conekta::TokenResponse)
+      expect(response.id).to eq('tok_2toPJUcZ27AH5LsZk')
+      expect(response.used).to eq(false)
+      expect(response.livemode).to eq(true)
+      expect(response.checkout).to be_nil
+    end
+    it 'empty token' do
+      token = Conekta::Token.new({
+                                   checkout: Conekta::TokenCheckout.new({returns_control_on: "Token"})
+                                 })
+
+      response = @api_instance.create_token(token)
+
+      expect(response).to be_instance_of(Conekta::TokenResponse)
+      expect(response.id).to eq('tok_2toNoPZpJgRU4PvgZ')
+      expect(response.checkout).not_to be_nil
+      expect(response.checkout.status).to eq('Issued')
     end
   end
 

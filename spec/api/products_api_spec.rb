@@ -43,7 +43,20 @@ describe 'ProductsApi' do
   # @return [ProductOrderResponse]
   describe 'orders_create_product test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = "ord_2tVyWPnCPWbrV37mW"
+      request = Conekta::Product.new({
+                                       description: "Mes de marz.",
+                                       name: "Pago Mensualidad test",
+                                       quantity: 1,
+                                       unit_price: 1000,
+                                       tags: ["Pago 2", "Pago mensualidad 2"]
+                                     })
+
+      response = @api_instance.orders_create_product(id, request)
+
+      expect(response).to be_instance_of(Conekta::ProductOrderResponse)
+      expect(response.parent_id).to eq(id)
+      expect(response.object).to eq('line_item')
     end
   end
 
@@ -58,7 +71,11 @@ describe 'ProductsApi' do
   # @return [ProductOrderResponse]
   describe 'orders_delete_product test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      response = @api_instance.orders_delete_product('ord_2tVyWPnCPWbrV37mW', 'line_item_2tVz8UkyWhSxLfUd7')
+
+      expect(response).to be_instance_of(Conekta::ProductOrderResponse)
+      expect(response.id).to eq('line_item_2tVz8UkyWhSxLfUd7')
+      expect(response.parent_id).to eq('ord_2tVyWPnCPWbrV37mW')
     end
   end
 
@@ -74,7 +91,15 @@ describe 'ProductsApi' do
   # @return [ProductOrderResponse]
   describe 'orders_update_product test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = "ord_2tVyWPnCPWbrV37mW"
+      product_id = "line_item_2tVz8UkyWhSxLfUd7"
+      request = Conekta::UpdateProduct.new({description: "Pago Mensualidad"})
+
+      response = @api_instance.orders_update_product(id, product_id, request)
+
+      expect(response).to be_instance_of(Conekta::ProductOrderResponse)
+      expect(response.parent_id).to eq(id)
+      expect(response.id).to eq(product_id)
     end
   end
 

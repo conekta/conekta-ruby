@@ -42,7 +42,12 @@ describe 'EventsApi' do
   # @return [EventResponse]
   describe 'get_event test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id= '63fe3d2ddf70970001cfb41a'
+      response = @api_instance.get_event(id, {accept_language: 'en'})
+
+      expect(response).to be_instance_of(Conekta::EventResponse)
+      expect(response.id).to eq(id)
+      expect(response.webhook_logs.length).to eq(1)
     end
   end
 
@@ -58,7 +63,12 @@ describe 'EventsApi' do
   # @return [GetEventsResponse]
   describe 'get_events test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      response = @api_instance.get_events({accept_language: 'es'})
+
+      expect(response).to be_instance_of(Conekta::GetEventsResponse)
+      expect(response.has_more).to be_truthy
+      expect(response.previous_page_url).to be_nil
+      expect(response.next_page_url).not_to be_nil
     end
   end
 
@@ -72,7 +82,14 @@ describe 'EventsApi' do
   # @return [EventsResendResponse]
   describe 'resend_event test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      event_id= '6463d6e35a4c3e001819e760'
+      webhook_log_id= 'webhl_2svd2sh6GbqzyWBNZ'
+
+      response = @api_instance.resend_event(event_id, webhook_log_id)
+
+      expect(response).to be_instance_of(Conekta::EventsResendResponse)
+      expect(response.id).to eq(webhook_log_id)
+      expect(response.last_http_response_status).to eq(405)
     end
   end
 

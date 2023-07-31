@@ -43,7 +43,16 @@ describe 'PaymentMethodsApi' do
   # @return [CreateCustomerPaymentMethodsResponse]
   describe 'create_customer_payment_methods test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = "cus_2tXyF9BwPG14UMkkg"
+      request = Conekta::PaymentMethodCashRequest.new({ type: 'oxxo_recurrent' })
+
+      response = @api_instance.create_customer_payment_methods(id, request)
+
+      expect(response).to be_instance_of(Conekta::PaymentMethodCashResponse)
+      expect(response.parent_id).to eq(id)
+      expect(response.id).to be_truthy
+      expect(response.barcode_url).to be_truthy
+
     end
   end
 
@@ -58,7 +67,14 @@ describe 'PaymentMethodsApi' do
   # @return [UpdateCustomerPaymentMethodsResponse]
   describe 'delete_customer_payment_methods test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = "cus_2tZWxbTPtQgGJGh8P"
+      payment_method_id = "src_2tZWxbTPtQgGJGh8R"
+
+      response = @api_instance.delete_customer_payment_methods(id, payment_method_id, { accept_language: 'en' })
+
+      expect(response).to be_instance_of(Conekta::PaymentMethodCardResponse)
+      expect(response.parent_id).to eq(id)
+      expect(response.id).to eq(payment_method_id)
     end
   end
 
@@ -76,7 +92,15 @@ describe 'PaymentMethodsApi' do
   # @return [GetPaymentMethodResponse]
   describe 'get_customer_payment_methods test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = 'src_2tbd5Bgy67RL9oycM'
+      response = @api_instance.get_customer_payment_methods(id)
+
+      expect(response).to be_instance_of(Conekta::GetPaymentMethodResponse)
+      expect(response.data.first).to be_instance_of(Conekta::PaymentMethodCardResponse)
+      expect(response.data.first.id).to eq(id)
+      expect(response.next_page_url).to be_falsey
+      expect(response.previous_page_url).to be_falsey
+      expect(response.has_more).to be_falsey
     end
   end
 
@@ -92,7 +116,18 @@ describe 'PaymentMethodsApi' do
   # @return [UpdateCustomerPaymentMethodsResponse]
   describe 'update_customer_payment_methods test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = "cus_2tZWxbTPtQgGJGh8P"
+      payment_method_id = "src_2tZWxbTPtQgGJGh8R"
+      request = Conekta::UpdatePaymentMethods.new({
+                                                    name: 'name of person'
+                                                  })
+
+      response = @api_instance.update_customer_payment_methods(id, payment_method_id, request)
+
+      expect(response).to be_instance_of(Conekta::PaymentMethodCardResponse)
+      expect(response.name).to eq(request.name)
+      expect(response.parent_id).to eq(id)
+      expect(response.id).to eq(payment_method_id)
     end
   end
 

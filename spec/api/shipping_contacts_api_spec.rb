@@ -43,7 +43,24 @@ describe 'ShippingContactsApi' do
   # @return [CustomerShippingContactsResponse]
   describe 'create_customer_shipping_contacts test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = "cus_2tXyF9BwPG14UMkkg"
+      request = Conekta::CustomerShippingContacts.new({
+                                                        address: Conekta::CustomerShippingContactsAddress.new({
+                                                                                                                street1: "av siem",
+                                                                                                                city: "mexico",
+                                                                                                                country: "mx",
+                                                                                                                postal_code: "11000"
+                                                                                                              }),
+                                                        phone: "1234567890",
+                                                        receiver: "receiver"
+                                                      })
+      response = @api_instance.create_customer_shipping_contacts(id, request)
+
+      expect(response).to be_instance_of(Conekta::CustomerShippingContactsResponse)
+      expect(response.parent_id).to eq(id)
+      expect(response.address.country).to eq(request.address.country)
+      expect(response.id).to be_truthy
+      expect(response.created_at).to eq(1679009479)
     end
   end
 
@@ -58,7 +75,14 @@ describe 'ShippingContactsApi' do
   # @return [CustomerShippingContactsResponse]
   describe 'delete_customer_shipping_contacts test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = 'cus_2tZWxbTPtQgGJGh8P'
+      shipping_contact_id = 'ship_cont_2tZWzJPBf87C6TcoQ'
+
+      response = @api_instance.delete_customer_shipping_contacts(id, shipping_contact_id)
+
+      expect(response).to be_instance_of(Conekta::CustomerShippingContactsResponse)
+      expect(response.parent_id).to eq(id)
+      expect(response.id).to eq(shipping_contact_id)
     end
   end
 
@@ -74,7 +98,19 @@ describe 'ShippingContactsApi' do
   # @return [CustomerShippingContactsResponse]
   describe 'update_customer_shipping_contacts test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = "cus_2tZWxbTPtQgGJGh8P";
+      shipping_contacts_id = "ship_cont_2tZWzJPBf87C6TcoQ"
+      request = Conekta::CustomerUpdateShippingContacts.new({
+                                                              phone: "3143145050"
+                                                            })
+
+      response = @api_instance.update_customer_shipping_contacts(id, shipping_contacts_id, request)
+
+      expect(response).to be_instance_of(Conekta::CustomerShippingContactsResponse)
+      expect(response.phone).to eq(request.phone)
+      expect(response.parent_id).to eq(id)
+      expect(response.id).to eq(shipping_contacts_id)
+      expect(response.default).to eq(false)
     end
   end
 

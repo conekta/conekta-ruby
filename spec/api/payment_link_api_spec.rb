@@ -41,7 +41,13 @@ describe 'PaymentLinkApi' do
   # @return [CheckoutResponse]
   describe 'cancel_checkout test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = "c7734ada-e1e9-4b22-90f6-b80a1b2006d4"
+
+      response = @api_instance.cancel_checkout(id, { accept_language: 'es' })
+
+      expect(response).to be_instance_of(Conekta::CheckoutResponse)
+      expect(response.status).to eq('Cancelled')
+      expect(response.id).to eq(id)
     end
   end
 
@@ -53,8 +59,49 @@ describe 'PaymentLinkApi' do
   # @option opts [String] :x_child_company_id In the case of a holding company, the company id of the child company to which will process the request.
   # @return [CheckoutResponse]
   describe 'create_checkout test' do
-    it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+    it 'without customer info' do
+
+      checkout = Conekta::Checkout.new({
+                                         allowed_payment_methods: %w[card cash bank_transfer],
+                                         type: "PaymentLink",
+                                         name: "Payment Link Name netcore sdk",
+                                         recurrent: false,
+                                         needs_shipping_contact: false,
+                                         expires_at: (DateTime.now + 200).to_time.to_i,
+                                         order_template: Conekta::CheckoutOrderTemplate.new({ currency: "MXN", line_items: [
+                                           Conekta::Product.new({ name: "toshiba", quantity: 1, unit_price: 500 })] })
+                                       })
+
+      response = @api_instance.create_checkout(checkout)
+
+      expect(response).to be_instance_of(Conekta::CheckoutResponse)
+      expect(response.expires_at).to eq(checkout.expires_at)
+      expect(response.id).to eq('e4bcbed2-194c-4540-a922-b6d7531925a3')
+    end
+    it 'with customer info' do
+      customer_info = Conekta::CustomerInfo.new({
+                                                  name: 'steven',
+                                                  email: 'steven@gmail.com',
+                                                  phone: '5555555555'
+                                                })
+      checkout = Conekta::Checkout.new({
+                                         allowed_payment_methods: %w[card cash bank_transfer],
+                                         type: "PaymentLink",
+                                         name: "Payment Link Name netcore sdk",
+                                         recurrent: true,
+                                         needs_shipping_contact: false,
+                                         expires_at: (DateTime.now + 200).to_time.to_i,
+                                         order_template: Conekta::CheckoutOrderTemplate.new({
+                                                                                              currency: "MXN",
+                                                                                              customer_info: customer_info,
+                                                                                              line_items: [
+                                                                                                Conekta::Product.new({ name: "toshiba", quantity: 1, unit_price: 500 })] })
+                                       })
+
+      response = @api_instance.create_checkout(checkout)
+
+      expect(response.expires_at).to eq(checkout.expires_at)
+      expect(response.id).to eq('4b57dde6-1080-4529-8a7c-7299812a3b1a')
     end
   end
 
@@ -68,7 +115,15 @@ describe 'PaymentLinkApi' do
   # @return [CheckoutResponse]
   describe 'email_checkout test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = "102bdf5c-3ee6-48ec-a9ff-40ec6f5f054b"
+      request = Conekta::EmailCheckoutRequest.new({ email: 'example@conekta.com' })
+
+      response = @api_instance.email_checkout(id, request)
+
+      expect(response).to be_instance_of(Conekta::CheckoutResponse)
+      expect(response.emails_sent).to eq(1)
+      expect(response.sms_sent).to eq(0)
+      expect(response.id).to eq(id)
     end
   end
 
@@ -81,7 +136,13 @@ describe 'PaymentLinkApi' do
   # @return [CheckoutResponse]
   describe 'get_checkout test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = "bac0ed14-6888-4d1d-927a-c80d3f55c009"
+
+      response = @api_instance.get_checkout(id, { accept_language: 'es' })
+
+      expect(response).to be_instance_of(Conekta::CheckoutResponse)
+      expect(response.id).to eq(id)
+      expect(response.status).to eq('Expired')
     end
   end
 
@@ -98,7 +159,11 @@ describe 'PaymentLinkApi' do
   # @return [CheckoutsResponse]
   describe 'get_checkouts test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      response = @api_instance.get_checkouts({ accept_language: 'en' })
+
+      expect(response).to be_instance_of(Conekta::CheckoutsResponse)
+      expect(response.data.length).to eq(20)
+      expect(response.next_page_url).to eq('https://api-core.stg.conekta.io/checkouts?next=bac0ed14-6888-4d1d-927a-c80d3f55c009')
     end
   end
 
@@ -112,7 +177,15 @@ describe 'PaymentLinkApi' do
   # @return [CheckoutResponse]
   describe 'sms_checkout test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = "ce1076bb-5ee6-4d08-a0e2-ec0bfbc49883"
+      request = Conekta::SmsCheckoutRequest.new({ phonenumber: '5566982090' })
+
+      response = @api_instance.sms_checkout(id, request)
+
+      expect(response).to be_instance_of(Conekta::CheckoutResponse)
+      expect(response.id).to eq(id)
+      expect(response.sms_sent).to eq(1)
+      expect(response.emails_sent).to eq(0)
     end
   end
 

@@ -42,7 +42,13 @@ describe 'TransactionsApi' do
   # @return [TransactionResponse]
   describe 'get_transaction test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = '6456b6dfac0fd40001a64eb8'
+
+      response = @api_instance.get_transaction(id)
+
+      expect(response).to be_instance_of(Conekta::TransactionResponse)
+      expect(response.object).to eq('transaction')
+      expect(response.id).to eq(id)
     end
   end
 
@@ -59,7 +65,17 @@ describe 'TransactionsApi' do
   # @return [GetTransactionsResponse]
   describe 'get_transactions test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      response = @api_instance.get_transactions({limit: 2})
+
+      expect(response).to be_instance_of(Conekta::GetTransactionsResponse)
+      expect(response.object).to eq('list')
+      expect(response.has_more).to eq(true)
+      expect(response.next_page_url).not_to be_nil
+      expect(response.previous_page_url).to be_nil
+      expect(response.data).not_to be_nil
+      expect(response.data.size).to eq(2)
+      expect(response.data[0].id).to eq('644acceb0a49bb001b2a04aa')
+      expect(response.data[1].id).to eq('644ac60691882d001bec62b3')
     end
   end
 

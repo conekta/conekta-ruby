@@ -42,7 +42,15 @@ describe 'TransfersApi' do
   # @return [TransferResponse]
   describe 'get_transfer test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = '64462930651b2600017b6d43'
+
+      response= @api_instance.get_transfer(id)
+
+      expect(response).to be_instance_of(Conekta::TransferResponse)
+      expect(response.id).to eq(id)
+      expect(response.destination).not_to be_nil
+      expect(response.destination.type).to eq('bank_transfer')
+      expect(response.destination).to be_instance_of(Conekta::TransferDestinationResponse)
     end
   end
 
@@ -59,7 +67,29 @@ describe 'TransfersApi' do
   # @return [GetTransfersResponse]
   describe 'get_transfers test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      limit = 5
+
+      response = @api_instance.get_transfers({limit: limit})
+
+      expect(response).to be_instance_of(Conekta::GetTransfersResponse)
+      expect(response.data).not_to be_nil
+      expect(response.data).to be_instance_of(Array)
+      expect(response.data.length).to eq(limit)
+      expect(response.data[0]).to be_instance_of(Conekta::TransfersResponse)
+    end
+    it 'with next' do
+      limit = 6
+      _next = '6419562fdb5c8a0001e1cd61'
+
+      response = @api_instance.get_transfers({limit: limit, _next: _next})
+
+      expect(response).to be_instance_of(Conekta::GetTransfersResponse)
+      expect(response.data).not_to be_nil
+      expect(response.data).to be_instance_of(Array)
+      expect(response.data.length).to eq(limit)
+      expect(response.data[0]).to be_instance_of(Conekta::TransfersResponse)
+      expect(response.next_page_url).not_to be_nil
+      expect(response.previous_page_url).not_to be_nil
     end
   end
 

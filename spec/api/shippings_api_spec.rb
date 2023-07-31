@@ -43,7 +43,16 @@ describe 'ShippingsApi' do
   # @return [ShippingOrderResponse]
   describe 'orders_create_shipping test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = "ord_2tVyWPnCPWbrV37mW"
+      shipping_request = Conekta::ShippingRequest.new({
+                                                        amount: 500
+                                                      })
+      response = @api_instance.orders_create_shipping(id, shipping_request)
+
+      expect(response).to be_instance_of(Conekta::ShippingOrderResponse)
+      expect(response.parent_id).to eq(id)
+      expect(response.amount).to eq(shipping_request.amount)
+      expect(response.object).to eq("shipping_line")
     end
   end
 
@@ -58,7 +67,14 @@ describe 'ShippingsApi' do
   # @return [ShippingOrderResponse]
   describe 'orders_delete_shipping test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = 'ord_2tVyWPnCPWbrV37mW'
+      shipping_id = 'ship_lin_2tVzNuDGSaDwreMg6'
+
+      response = @api_instance.orders_delete_shipping(id, shipping_id)
+
+      expect(response).to be_instance_of(Conekta::ShippingOrderResponse)
+      expect(response.parent_id).to eq(id)
+      expect(response.id).to eq(shipping_id)
     end
   end
 
@@ -74,7 +90,18 @@ describe 'ShippingsApi' do
   # @return [ShippingOrderResponse]
   describe 'orders_update_shipping test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = 'ord_2tVyWPnCPWbrV37mW'
+      shipping_id = 'ship_lin_2tVzNuDGSaDwreMg6'
+      shipping_request = Conekta::ShippingRequest.new({
+                                                        amount: 540
+                                                      })
+
+      response = @api_instance.orders_update_shipping(id, shipping_id, shipping_request)
+
+      expect(response).to be_instance_of(Conekta::ShippingOrderResponse)
+      expect(response.parent_id).to eq(id)
+      expect(response.id).to eq(shipping_id)
+      expect(response.amount).to eq(shipping_request.amount)
     end
   end
 

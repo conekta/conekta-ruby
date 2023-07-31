@@ -20,11 +20,6 @@ require 'json'
 describe 'LogsApi' do
   before do
     # run before each test
-    Conekta.configure do |config|
-      config.host = BaseTest.host
-      config.access_token = 'key_xxxxxx'
-      config.scheme = 'http'
-    end
     @api_instance = Conekta::LogsApi.new
   end
 

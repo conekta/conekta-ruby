@@ -42,7 +42,20 @@ describe 'PlansApi' do
   # @return [PlanResponse]
   describe 'create_plan test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      request = Conekta::PlanRequest.new({
+                                           name: "Gold Plan",
+                                           amount: 10000,
+                                           currency: "MXN",
+                                           interval: 'week',
+                                           frequency: 1
+                                         })
+
+      response = @api_instance.create_plan(request)
+
+      expect(response).to be_instance_of(Conekta::PlanResponse)
+      expect(response.expiry_count).to be_nil
+      expect(response.livemode).to be_truthy
+      expect(response.name).to eq(request.name)
     end
   end
 
@@ -54,7 +67,9 @@ describe 'PlansApi' do
   # @return [PlanResponse]
   describe 'delete_plan test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      response = @api_instance.delete_plan('plan_2tZb5q8Z3PYpg6SJd', { accept_language: 'es' })
+
+      expect(response).to be_instance_of(Conekta::PlanResponse)
     end
   end
 
@@ -67,7 +82,13 @@ describe 'PlansApi' do
   # @return [PlanResponse]
   describe 'get_plan test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = 'plan_2tZb5q8Z3PYpg6SJd'
+
+      response = @api_instance.get_plan(id, { accept_language: 'es' })
+
+      expect(response).to be_instance_of(Conekta::PlanResponse)
+      expect(response.id).to eq(id)
+      expect(response.currency).to eq('MXN')
     end
   end
 
@@ -83,7 +104,13 @@ describe 'PlansApi' do
   # @return [GetPlansResponse]
   describe 'get_plans test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      response = @api_instance.get_plans({ accept_language: 'es', limit: 20 })
+
+      expect(response).to be_instance_of(Conekta::GetPlansResponse)
+      expect(response.data.length).to eq(10)
+      expect(response.has_more).to be_falsey
+      expect(response.next_page_url).to be_nil
+      expect(response.previous_page_url).to be_nil
     end
   end
 
@@ -97,7 +124,15 @@ describe 'PlansApi' do
   # @return [PlanResponse]
   describe 'update_plan test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = 'plan_2tZb5q8Z3PYpg6SJd'
+      request = Conekta::PlanUpdateRequest.new({
+                                                 name: 'updated name'
+                                               })
+      response = @api_instance.update_plan(id, request)
+
+      expect(response).to be_instance_of(Conekta::PlanResponse)
+      expect(response.name).to eq(request.name)
+      expect(response.id).to eq(id)
     end
   end
 
