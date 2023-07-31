@@ -41,7 +41,14 @@ describe 'WebhooksApi' do
   # @return [WebhookResponse]
   describe 'create_webhook test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      webhook_request = Conekta::WebhookRequest.new({ url: 'https://webhook.site/0b8c9fa8-92c3-4a04-beea-a7ec037f6466', synchronous: false })
+
+      response = @api_instance.create_webhook(webhook_request)
+
+      expect(response).to be_instance_of(Conekta::WebhookResponse)
+      expect(response.status).to eq('listening')
+      expect(response.url).to eq('https://webhook.site/0b8c9fa8-92c3-4a04-beea-a7ec037f6466')
+      expect(response.synchronous).to eq(webhook_request.synchronous)
     end
   end
 
@@ -53,7 +60,13 @@ describe 'WebhooksApi' do
   # @return [WebhookResponse]
   describe 'delete_webhook test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = '641b1d5662d7e00001eaa46b'
+
+      response = @api_instance.delete_webhook(id, {accept_language: 'es'})
+
+      expect(response).to be_instance_of(Conekta::WebhookResponse)
+      expect(response.id).to eq(id)
+      expect(response.deleted).to eq(true)
     end
   end
 
@@ -66,7 +79,13 @@ describe 'WebhooksApi' do
   # @return [WebhookResponse]
   describe 'get_webhook test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+
+      id = '641b1d5662d7e00001eaa46b'
+
+      response = @api_instance.get_webhook(id, {accept_language: 'es'})
+
+      expect(response).to be_instance_of(Conekta::WebhookResponse)
+      expect(response.id).to eq(id)
     end
   end
 
@@ -83,7 +102,12 @@ describe 'WebhooksApi' do
   # @return [GetWebhooksResponse]
   describe 'get_webhooks test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      response = @api_instance.get_webhooks({accept_language: 'es', limit: 20})
+
+      expect(response).to be_instance_of(Conekta::GetWebhooksResponse)
+      expect(response.data).to be_instance_of(Array)
+      expect(response.data.length).to be > 0
+      expect(response.data[0]).to be_instance_of(Conekta::WebhookResponse)
     end
   end
 
@@ -96,7 +120,10 @@ describe 'WebhooksApi' do
   # @return [WebhookResponse]
   describe 'test_webhook test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      response = @api_instance.test_webhook('641b1d5662d7e00001eaa46b', {accept_language: 'es'})
+
+      expect(response).to be_instance_of(Conekta::WebhookResponse)
+      expect(response.id).to eq('641b1d5662d7e00001eaa46b')
     end
   end
 
@@ -111,7 +138,14 @@ describe 'WebhooksApi' do
   # @return [WebhookResponse]
   describe 'update_webhook test' do
     it 'should work' do
-      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      id = '641b1d5662d7e00001eaa46b'
+
+      response = @api_instance.update_webhook(id, Conekta::WebhookUpdateRequest.new({ url: 'https://updated.webhook.site/0b8c9fa8-92c3-4a04-beea-a7ec037f6466', synchronous: false }))
+
+      expect(response).to be_instance_of(Conekta::WebhookResponse)
+      expect(response.id).to eq(id)
+      expect(response.url).to eq('https://updated.webhook.site/0b8c9fa8-92c3-4a04-beea-a7ec037f6466')
+      expect(response.synchronous).to eq(false)
     end
   end
 
