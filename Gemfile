@@ -1,13 +1,9 @@
 source 'https://rubygems.org'
-gem 'sys-uname'
-gem 'rspec'
-gem 'faraday'
-gem 'json'
-gem 'i18n'
+
+gemspec
 
 group :development, :test do
-  gem 'byebug'
+  gem 'rake', '~> 13.0.1'
+  gem 'pry-byebug'
+  gem 'rubocop', '~> 0.66.0'
 end
-
-# Specify your gem's dependencies in conekta.gemspec
-gemspec

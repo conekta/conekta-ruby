@@ -1,0 +1,40 @@
+name: PUBLISH
+on:
+  release:
+    types: [created]
+
+jobs:
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check if release creator is a code owner
+      run: |
+        if [[ $(jq '.sender.type' $GITHUB_EVENT_PATH) == '"User"' ]]; then
+          creator_login=${{ github.event.release.author.login }}
+          if ! grep -q $creator_login .github/CODEOWNERS; then
+            echo "Release creator is not a code owner, skipping the rest of the workflow."
+            exit 1
+          fi
+        fi
+    - name: Validate release version
+      run: |
+        tag_name=${{ github.event.release.tag_name }}
+        version=$(cat VERSION)
+        if [ $tag_name != $version ]; then
+          echo "Release tag_name is not the same that in file VERSION"
+          exit 1
+        fi
+    - name: Download all workflow run artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: gems
+        path: gems
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version:  3.1
+    - name: Publish gems to Rubygems
+      run: gem push gems/*.gem
+      env:
+        GEM_HOST_API_KEY: ${{secrets.GEM_HOST_API_KEY}}
