@@ -8,6 +8,7 @@ jobs:
     name: Publish
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v3
     - name: Check if release creator is a code owner
       run: |
         if [[ $(jq '.sender.type' $GITHUB_EVENT_PATH) == '"User"' ]]; then
