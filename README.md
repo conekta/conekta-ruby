@@ -61,11 +61,7 @@ require 'conekta'
 # Setup authorization
 Conekta.configure do |config|
   # Configure Bearer authorization: bearerAuth
-  config.access_token = 'YOUR_BEARER_TOKEN'
-  # Configure a proc to get access tokens in lieu of the static access_token configuration
-  config.access_token_getter = -> { 'YOUR TOKEN GETTER PROC' } 
-  # Configure faraday connection
-  config.configure_faraday_connection { |connection| 'YOUR CONNECTION CONFIG PROC' }
+  config.access_token = '$API_KEY'
 end
 
 api_instance = Conekta::AntifraudApi.new
