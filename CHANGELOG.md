@@ -1,3 +1,11 @@
+## [6.0.0](https://github.com/conekta/conekta-ruby/releases/tag/6.0.0) - 2023-08-01
+## What's Changed
+* Fix i18n dependency load error by @juanolivas in https://github.com/conekta/conekta-ruby/pull/108
+* Removing ConektaList.total logic in favor of has_more by @leofischer in https://github.com/conekta/conekta-ruby/pull/105
+* Update README by @fernandosaenzconekta in https://github.com/conekta/conekta-ruby/pull/109
+* Readme changes by @fernandosaenzconekta in https://github.com/conekta/conekta-ruby/pull/110
+* Fix Specs by @nicocedron in https://github.com/conekta/conekta-ruby/pull/111
+* openapi by @fcarrero in https://github.com/conekta/conekta-ruby/pull/114
 ## [2.6.0](https://github.com/conekta/conekta-ruby/releases/tag/2.5.0) - 2020-06-08
 ### Deprecate List Total attribute
 - Remove total attribute logic for lists as it is deprecated and will be removed.
