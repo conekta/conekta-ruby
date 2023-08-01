@@ -22,8 +22,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Conekta"]
   s.email       = ["core@conekta.com"]
   s.homepage    = "https://www.conekta.com"
-  s.summary     = "%q{This library provides https://api.conekta.io operations}"
-  s.description = "%q{Ruby library for https://api.conekta.io}"
+  s.summary     = "This library provides https://api.conekta.io operations"
+  s.description = "Ruby library for https://api.conekta.io"
   s.license     = "MIT"
   s.required_ruby_version = ">= 2.6"
 
