@@ -26,11 +26,6 @@ jobs:
           echo "Release tag_name is not the same that in file VERSION"
           exit 1
         fi
-    - name: Download all workflow run artifacts
-      uses: actions/download-artifact@v3
-      with:
-        name: gems
-        path: gems
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
