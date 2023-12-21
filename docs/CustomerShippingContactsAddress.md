@@ -18,8 +18,8 @@
 require 'conekta'
 
 instance = Conekta::CustomerShippingContactsAddress.new(
-  street1: avenida siempre viva,
-  street2: fake street,
+  street1: Nuevo Leon 254,
+  street2: Departamento 404,
   postal_code: 06100,
   city: Ciudad de Mexico,
   state: Ciudad de Mexico,

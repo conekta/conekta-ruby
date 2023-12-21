@@ -13,6 +13,7 @@
 | **address** | [**CustomerShippingContactsResponseAddress**](CustomerShippingContactsResponseAddress.md) |  | [optional] |
 | **parent_id** | **String** |  | [optional] |
 | **default** | **Boolean** |  | [optional] |
+| **metadata** | **Hash&lt;String, Object&gt;** | Metadata associated with the shipping contact | [optional] |
 | **deleted** | **Boolean** |  | [optional] |
 
 ## Example
@@ -24,12 +25,13 @@ instance = Conekta::OrderResponseShippingContact.new(
   created_at: 1675715413,
   id: adr_1234567890,
   object: shipping_contact,
-  phone: +525511223344,
+  phone: 525511223344,
   receiver: Marvin Fuller,
   between_streets: Ackerman Crescent,
   address: null,
   parent_id: null,
   default: false,
+  metadata: null,
   deleted: false
 )
 ```

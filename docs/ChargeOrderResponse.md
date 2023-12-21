@@ -13,7 +13,6 @@
 | **device_fingerprint** | **String** |  | [optional] |
 | **failure_code** | **String** |  | [optional] |
 | **failure_message** | **String** |  | [optional] |
-| **fee** | **Integer** |  | [optional] |
 | **id** | **String** |  | [optional] |
 | **livemode** | **Boolean** |  | [optional] |
 | **monthly_installments** | **Integer** |  | [optional] |
@@ -40,7 +39,6 @@ instance = Conekta::ChargeOrderResponse.new(
   device_fingerprint: 6FR3chaU4Y1nGAW5NAGd1rcjAKa142Ba,
   failure_code: suspected_fraud,
   failure_message: Este cargo ha sido declinado porque el comportamiento del comprador es sospechoso.,
-  fee: 1160,
   id: 63efa757cf65380001aec040,
   livemode: true,
   monthly_installments: null,

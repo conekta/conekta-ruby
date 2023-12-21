@@ -18,7 +18,7 @@ instance = Conekta::CheckoutOrderTemplate.new(
   currency: MXN,
   customer_info: null,
   line_items: null,
-  metadata: {key&#x3D;value}
+  metadata: {&quot;key&quot;:&quot;value&quot;}
 )
 ```
 

@@ -1,0 +1,32 @@
+{
+  "gemAuthorEmail" : "core@conekta.com", 
+  "gemAuthor": "Conekta",
+  "gemName" : "conekta",
+  "gemLicense": "MIT",
+  "gemVersion": "6.0.1",
+  "hideGenerationTimestamp": false,
+  "moduleName": "Conekta",
+  "gemSummary" : "This library provides https://api.conekta.io operations",
+  "gemHomepage" : "https://www.conekta.com",
+  "gemDescription" : "Ruby library for https://api.conekta.io",
+  "library": "faraday",
+  "httpUserAgent": "Conekta/v2 RubyBindings/#{Conekta::VERSION}",
+  "gemRequiredRubyVersion" : ">= 2.6",
+  "templateDir": "local/templates/ruby",
+  "gitUserId" : "conekta",
+  "gitRepoId" : "conekta-ruby",
+  "files": {
+    "/local/CODE_OF_CONDUCT.md": {},
+    "/local/AUTHORS.md": {},
+    "/local/CONTRIBUTING.md": {},
+    "/local/LICENSE": {},
+    "/local/conekta.png": {},
+    "/local/ssl_data/ca_bundle.crt": {
+      "destinationFilename": "lib/ssl_data/ca_bundle.crt"
+    },
+    "CUSTOM_VERSION.mustache": {
+      "templateType": "SupportingFiles",
+      "destinationFilename": "VERSION"
+    }
+  }
+}

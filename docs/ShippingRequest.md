@@ -20,7 +20,7 @@ instance = Conekta::ShippingRequest.new(
   carrier: FEDEX,
   tracking_number: TRACK123,
   method: Same day,
-  metadata: {key&#x3D;value}
+  metadata: {&quot;key&quot;:&quot;value&quot;}
 )
 ```
 

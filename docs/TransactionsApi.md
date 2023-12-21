@@ -107,9 +107,12 @@ opts = {
   accept_language: 'es', # String | Use for knowing which language to use
   x_child_company_id: '6441b6376b60c3a638da80af', # String | In the case of a holding company, the company id of the child company to which will process the request.
   limit: 56, # Integer | The numbers of items to return, the maximum value is 250
-  search: 'search_example', # String | General order search, e.g. by mail, reference etc.
   _next: '_next_example', # String | next page
-  previous: 'previous_example' # String | previous page
+  previous: 'previous_example', # String | previous page
+  id: '65412a893cd69a0001c25892', # String | id of the object to be retrieved
+  charge_id: '65412a893cd69a0001c25892', # String | id of the charge used for filtering
+  type: 'capture', # String | type of the object to be retrieved
+  currency: 'MXN' # String | currency of the object to be retrieved
 }
 
 begin
@@ -146,9 +149,12 @@ end
 | **accept_language** | **String** | Use for knowing which language to use | [optional][default to &#39;es&#39;] |
 | **x_child_company_id** | **String** | In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 | **limit** | **Integer** | The numbers of items to return, the maximum value is 250 | [optional][default to 20] |
-| **search** | **String** | General order search, e.g. by mail, reference etc. | [optional] |
 | **_next** | **String** | next page | [optional] |
 | **previous** | **String** | previous page | [optional] |
+| **id** | **String** | id of the object to be retrieved | [optional] |
+| **charge_id** | **String** | id of the charge used for filtering | [optional] |
+| **type** | **String** | type of the object to be retrieved | [optional] |
+| **currency** | **String** | currency of the object to be retrieved | [optional] |
 
 ### Return type
 

@@ -20,7 +20,7 @@ require 'conekta'
 
 instance = Conekta::EventResponse.new(
   created_at: 1661445644,
-  data: {action&#x3D;ping, livemode&#x3D;true},
+  data: {&quot;action&quot;:&quot;ping&quot;,&quot;livemode&quot;:true},
   id: 6307a60c41de27127515a575,
   livemode: true,
   object: event,

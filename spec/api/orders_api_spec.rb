@@ -64,6 +64,7 @@ describe 'OrdersApi' do
     it 'error' do
       expect {
         request = Conekta::OrderRequest.new({
+                                              currency: "MXN",
                                               customer_info: Conekta::CustomerInfoJustCustomerId.new({ customer_id: 'cus_2tKcHxhTz7xU5SymF2' })
                                             })
 
@@ -97,7 +98,32 @@ describe 'OrdersApi' do
           pre_authorize: false,
           customer_info: Conekta::CustomerInfoJustCustomerId.new({ customer_id: 'cus_2tKcHxhTz7xU5SymF' }),
           line_items: products,
-          charges: charges
+          charges: charges,
+          shipping_contact: Conekta::CustomerShippingContacts.new(
+            {
+              address: Conekta::CustomerShippingContactsAddress.new(
+                {
+                  street1: "Calle 123, int 2",
+                  postal_code: "06100",
+                  country: "MX"
+
+                }
+              ),
+              metadata: { test: "true" }
+            }
+          ),
+          fiscal_entity: Conekta::OrderFiscalEntityRequest.new(
+            {
+              address: Conekta::FiscalEntityAddress.new(
+                {
+                  street1: "Calle 123, int 2",
+                  postal_code: "06100",
+                  country: "MX"
+                }
+              ),
+              metadata: { test: "true" }
+            }
+          )
         }
       )
 

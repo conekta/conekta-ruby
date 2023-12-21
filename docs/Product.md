@@ -20,14 +20,14 @@
 require 'conekta'
 
 instance = Conekta::Product.new(
-  antifraud_info: {key&#x3D;value},
+  antifraud_info: {&quot;key&quot;:&quot;value&quot;},
   brand: Cohiba,
   description: Imported From Mex.,
-  metadata: {key&#x3D;value},
+  metadata: {&quot;key&quot;:&quot;value&quot;},
   name: Box of Cohiba S1s,
   quantity: 1,
   sku: XYZ12345,
-  tags: [food, mexican food],
+  tags: [&quot;food&quot;,&quot;mexican food&quot;],
   unit_price: 20000
 )
 ```

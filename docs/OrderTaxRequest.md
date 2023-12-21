@@ -16,7 +16,7 @@ require 'conekta'
 instance = Conekta::OrderTaxRequest.new(
   amount: 100,
   description: testing,
-  metadata: {key&#x3D;value}
+  metadata: {&quot;key&quot;:&quot;value&quot;}
 )
 ```
 

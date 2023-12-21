@@ -36,7 +36,7 @@
 require 'conekta'
 
 instance = Conekta::CheckoutResponse.new(
-  allowed_payment_methods: [cash, card, bank_transfer],
+  allowed_payment_methods: [&quot;cash&quot;,&quot;card&quot;,&quot;bank_transfer&quot;],
   can_not_expire: false,
   emails_sent: 0,
   exclude_card_networks: null,
@@ -45,9 +45,9 @@ instance = Conekta::CheckoutResponse.new(
   force_3ds_flow: false,
   id: b0bf16c4-18b9-445e-ba24-01604f329dbf,
   livemode: true,
-  metadata: {key&#x3D;value},
+  metadata: {&quot;key&quot;:&quot;value&quot;},
   monthly_installments_enabled: false,
-  monthly_installments_options: [3, 6, 12],
+  monthly_installments_options: [3,6,12],
   name: Payment Link Name 1594138857,
   needs_shipping_contact: false,
   object: checkout,
