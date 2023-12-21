@@ -23,9 +23,6 @@ jobs:
       - name: Bundle Install
         run: bundle install
 
-      - name: Build
-        run: gem build conekta.gemspec
-
       - name: Run Mockoon CLI
         uses: mockoon/cli-action@v1
         with:
@@ -37,3 +34,5 @@ jobs:
         run: make ci-test
         env:
           BASE_PATH: http://localhost:3000
+      - name: Build
+        run: gem build conekta.gemspec
