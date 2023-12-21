@@ -35,7 +35,7 @@ instance = Conekta::Customer.new(
   metadata: null,
   name: miguel,
   payment_sources: null,
-  phone: +5215555555555,
+  phone: 5215555555555,
   plan_id: plan_987234823,
   shipping_contacts: null,
   subscription: null

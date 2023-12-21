@@ -33,7 +33,7 @@ Conekta.configure do |config|
 end
 
 api_instance = Conekta::CustomersApi.new
-customer = Conekta::Customer.new({email: 'miguel@gmail.com', name: 'miguel', phone: '+5215555555555'}) # Customer | requested field for customer
+customer = Conekta::Customer.new({email: 'miguel@gmail.com', name: 'miguel', phone: '5215555555555'}) # Customer | requested field for customer
 opts = {
   accept_language: 'es', # String | Use for knowing which language to use
   x_child_company_id: '6441b6376b60c3a638da80af' # String | In the case of a holding company, the company id of the child company to which will process the request.
@@ -109,7 +109,7 @@ end
 
 api_instance = Conekta::CustomersApi.new
 id = '6307a60c41de27127515a575' # String | Identifier of the resource
-customer_fiscal_entities_request = Conekta::CustomerFiscalEntitiesRequest.new({address: Conekta::CustomerFiscalEntitiesRequestAddress.new({street1: 'avenida siempre viva', postal_code: '06100', city: 'Ciudad de Mexico'})}) # CustomerFiscalEntitiesRequest | requested field for customer fiscal entities
+customer_fiscal_entities_request = Conekta::CustomerFiscalEntitiesRequest.new({address: Conekta::CustomerFiscalEntitiesRequestAddress.new({street1: 'Nuevo Leon 254', postal_code: '06100', city: 'Ciudad de Mexico'})}) # CustomerFiscalEntitiesRequest | requested field for customer fiscal entities
 opts = {
   accept_language: 'es', # String | Use for knowing which language to use
   x_child_company_id: '6441b6376b60c3a638da80af' # String | In the case of a holding company, the company id of the child company to which will process the request.

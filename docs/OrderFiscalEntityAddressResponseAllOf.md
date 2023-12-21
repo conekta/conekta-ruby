@@ -1,4 +1,4 @@
-# Conekta::OrderResponseFiscalEntityAddressAllOf
+# Conekta::OrderFiscalEntityAddressResponseAllOf
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'conekta'
 
-instance = Conekta::OrderResponseFiscalEntityAddressAllOf.new(
+instance = Conekta::OrderFiscalEntityAddressResponseAllOf.new(
   object: fiscal_entity_address
 )
 ```

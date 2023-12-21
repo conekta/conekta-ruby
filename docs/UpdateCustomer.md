@@ -29,7 +29,7 @@ instance = Conekta::UpdateCustomer.new(
   default_payment_source_id: src_1a2b3c4d5e6f7g8h,
   email: miguel@gmail.com,
   name: miguel,
-  phone: +5215555555555,
+  phone: 5215555555555,
   plan_id: plan_987234823,
   default_shipping_contact_id: ship_cont_1a2b3c4d5e6f7g8h,
   corporate: false,

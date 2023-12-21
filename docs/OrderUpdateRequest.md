@@ -9,6 +9,7 @@
 | **currency** | **String** | Currency with which the payment will be made. It uses the 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217) | [optional] |
 | **customer_info** | [**OrderUpdateRequestCustomerInfo**](OrderUpdateRequestCustomerInfo.md) |  | [optional] |
 | **discount_lines** | [**Array&lt;OrderDiscountLinesRequest&gt;**](OrderDiscountLinesRequest.md) | List of [discounts](https://developers.conekta.com/v2.1.0/reference/orderscreatediscountline) that are applied to the order. You must have at least one discount. | [optional] |
+| **fiscal_entity** | [**OrderUpdateFiscalEntityRequest**](OrderUpdateFiscalEntityRequest.md) |  | [optional] |
 | **line_items** | [**Array&lt;Product&gt;**](Product.md) | List of [products](https://developers.conekta.com/v2.1.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product. | [optional] |
 | **metadata** | **Hash&lt;String, String&gt;** |  | [optional] |
 | **pre_authorize** | **Boolean** | Indicates whether the order charges must be preauthorized | [optional][default to false] |
@@ -27,6 +28,7 @@ instance = Conekta::OrderUpdateRequest.new(
   currency: MXN,
   customer_info: null,
   discount_lines: null,
+  fiscal_entity: null,
   line_items: null,
   metadata: null,
   pre_authorize: null,

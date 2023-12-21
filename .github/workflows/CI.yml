@@ -38,7 +38,7 @@ jobs:
       uses: mockoon/cli-action@v1
       with:
         version: 'latest'
-        data-file: 'https://raw.githubusercontent.com/conekta/openapi/20230801/mocks/conekta_api.json'
+        data-file: 'https://raw.githubusercontent.com/conekta/openapi/main/mocks/conekta_api.json'
         port: 3000
     - name: test
       run: make ci-test

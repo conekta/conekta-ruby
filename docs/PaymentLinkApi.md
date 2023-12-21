@@ -103,7 +103,7 @@ Conekta.configure do |config|
 end
 
 api_instance = Conekta::PaymentLinkApi.new
-checkout = Conekta::Checkout.new({allowed_payment_methods: [cash,  card,  bank_transfer], expires_at: 1680397724, name: 'Payment Link Name 1594138857', order_template: Conekta::CheckoutOrderTemplate.new({currency: 'MXN', line_items: [Conekta::Product.new({name: 'Box of Cohiba S1s', quantity: 1, unit_price: 20000})]}), recurrent: false, type: 'PaymentLink'}) # Checkout | requested field for checkout
+checkout = Conekta::Checkout.new({allowed_payment_methods: ["cash", "card", "bank_transfer"], expires_at: 1680397724, name: 'Payment Link Name 1594138857', order_template: Conekta::CheckoutOrderTemplate.new({currency: 'MXN', line_items: [Conekta::Product.new({name: 'Box of Cohiba S1s', quantity: 1, unit_price: 20000})]}), recurrent: false, type: 'PaymentLink'}) # Checkout | requested field for checkout
 opts = {
   accept_language: 'es', # String | Use for knowing which language to use
   x_child_company_id: '6441b6376b60c3a638da80af' # String | In the case of a holding company, the company id of the child company to which will process the request.

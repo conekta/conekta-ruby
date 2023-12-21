@@ -22,10 +22,10 @@
 require 'conekta'
 
 instance = Conekta::Checkout.new(
-  allowed_payment_methods: [cash, card, bank_transfer],
+  allowed_payment_methods: [&quot;cash&quot;,&quot;card&quot;,&quot;bank_transfer&quot;],
   expires_at: 1680397724,
   monthly_installments_enabled: true,
-  monthly_installments_options: [3, 6, 12],
+  monthly_installments_options: [3,6,12],
   name: Payment Link Name 1594138857,
   needs_shipping_contact: false,
   on_demand_enabled: true,

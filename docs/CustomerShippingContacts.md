@@ -11,6 +11,7 @@
 | **parent_id** | **String** |  | [optional] |
 | **default** | **Boolean** |  | [optional] |
 | **deleted** | **Boolean** |  | [optional] |
+| **metadata** | **Hash&lt;String, Object&gt;** | Metadata associated with the shipping contact | [optional] |
 
 ## Example
 
@@ -18,13 +19,14 @@
 require 'conekta'
 
 instance = Conekta::CustomerShippingContacts.new(
-  phone: +525511223344,
+  phone: 525511223344,
   receiver: Marvin Fuller,
   between_streets: Ackerman Crescent,
   address: null,
   parent_id: null,
   default: null,
-  deleted: null
+  deleted: null,
+  metadata: null
 )
 ```
 

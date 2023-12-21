@@ -43,7 +43,7 @@ instance = Conekta::TokenResponseCheckout.new(
   force_3ds_flow: false,
   id: 524f9d2f-8c2e-4e64-a33d-6006711a91bd,
   livemode: true,
-  metadata: {key&#x3D;value},
+  metadata: {&quot;key&quot;:&quot;value&quot;},
   monthly_installments_enabled: false,
   monthly_installments_options: null,
   name: tok-2toNoPZpJgRU4PvgZ,

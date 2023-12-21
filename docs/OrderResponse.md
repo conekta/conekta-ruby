@@ -13,12 +13,13 @@
 | **currency** | **String** | The three-letter ISO 4217 currency code. The currency of the order. | [optional] |
 | **customer_info** | [**OrderResponseCustomerInfo**](OrderResponseCustomerInfo.md) |  | [optional] |
 | **discount_lines** | [**OrderResponseDiscountLines**](OrderResponseDiscountLines.md) |  | [optional] |
-| **fiscal_entity** | [**OrderResponseFiscalEntity**](OrderResponseFiscalEntity.md) |  | [optional] |
+| **fiscal_entity** | [**OrderFiscalEntityResponse**](OrderFiscalEntityResponse.md) |  | [optional] |
 | **id** | **String** |  | [optional] |
 | **is_refundable** | **Boolean** |  | [optional] |
 | **line_items** | [**OrderResponseProducts**](OrderResponseProducts.md) |  | [optional] |
 | **livemode** | **Boolean** | Whether the object exists in live mode or test mode | [optional] |
 | **metadata** | **Hash&lt;String, Object&gt;** | Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. | [optional] |
+| **next_action** | [**OrderNextActionResponse**](OrderNextActionResponse.md) |  | [optional] |
 | **object** | **String** | String representing the object’s type. Objects of the same type share the same value. | [optional] |
 | **payment_status** | **String** | The payment status of the order. | [optional] |
 | **processing_mode** | **String** | Indicates the processing mode for the order, either ecommerce, recurrent or validation. | [optional] |
@@ -46,6 +47,7 @@ instance = Conekta::OrderResponse.new(
   line_items: null,
   livemode: false,
   metadata: null,
+  next_action: null,
   object: order,
   payment_status: paid,
   processing_mode: ecommerce,
