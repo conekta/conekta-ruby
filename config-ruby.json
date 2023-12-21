@@ -12,19 +12,19 @@
   "library": "faraday",
   "httpUserAgent": "Conekta/v2 RubyBindings/#{Conekta::VERSION}",
   "gemRequiredRubyVersion" : ">= 2.6",
-  "templateDir": "templates/ruby",
+  "templateDir": "local/templates/ruby",
   "gitUserId" : "conekta",
   "gitRepoId" : "conekta-ruby",
   "files": {
-    "CODE_OF_CONDUCT.md" : {},
-    "AUTHORS.md" : {},
-    "CONTRIBUTING.md" : {},
-    "LICENSE" : {},
-    "conekta.png" : {},
-    "ssl_data/ca_bundle.crt": {
+    "/local/CODE_OF_CONDUCT.md": {},
+    "/local/AUTHORS.md": {},
+    "/local/CONTRIBUTING.md": {},
+    "/local/LICENSE": {},
+    "/local/conekta.png": {},
+    "/local/ssl_data/ca_bundle.crt": {
       "destinationFilename": "lib/ssl_data/ca_bundle.crt"
     },
-    "CUSTOM_VERSION.mustache" : {
+    "CUSTOM_VERSION.mustache": {
       "templateType": "SupportingFiles",
       "destinationFilename": "VERSION"
     }
