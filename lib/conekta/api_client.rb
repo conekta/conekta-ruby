@@ -18,6 +18,7 @@ require 'time'
 require 'faraday'
 require 'faraday/multipart' if Gem::Version.new(Faraday::VERSION) >= Gem::Version.new('2.0')
 
+
 module Conekta
   class ApiClient
     # The Configuration object holding settings to be used in the API client.
@@ -79,7 +80,7 @@ module Conekta
       end
 
       if opts[:return_type] == 'File' || opts[:return_type] == 'Binary'
-        data = deserialize_file(stream)
+        data = deserialize_file(response, stream)
       elsif opts[:return_type]
         data = deserialize(response, opts[:return_type])
       else
@@ -258,40 +259,10 @@ module Conekta
     # @param [String] return_type some examples: "User", "Array<User>", "Hash<String, Integer>"
     def deserialize(response, return_type)
       body = response.body
-
-      # handle file downloading - return the File instance processed in request callbacks
-      # note that response body is empty when the file is written in chunks in request on_body callback
-      if return_type == 'File'
-        if @config.return_binary_data == true
-          # return byte stream
-          encoding = body.encoding
-          return @stream.join.force_encoding(encoding)
-        else
-          # return file instead of binary data
-          content_disposition = response.headers['Content-Disposition']
-          if content_disposition && content_disposition =~ /filename=/i
-            filename = content_disposition[/filename=['"]?([^'"\s]+)['"]?/, 1]
-            prefix = sanitize_filename(filename)
-          else
-            prefix = 'download-'
-          end
-          prefix = prefix + '-' unless prefix.end_with?('-')
-          encoding = body.encoding
-          @tempfile = Tempfile.open(prefix, @config.temp_folder_path, encoding: encoding)
-          @tempfile.write(@stream.join.force_encoding(encoding))
-          @tempfile.close
-          @config.logger.info "Temp file written to #{@tempfile.path}, please copy the file to a proper folder "\
-                              "with e.g. `FileUtils.cp(tempfile.path, '/new/file/path')` otherwise the temp file "\
-                              "will be deleted automatically with GC. It's also recommended to delete the temp file "\
-                              "explicitly with `tempfile.delete`"
-          return @tempfile
-        end
-      end
-
       return nil if body.nil? || body.empty?
 
       # return response body directly for String return type
-      return body if return_type == 'String'
+      return body.to_s if return_type == 'String'
 
       # ensuring a default content type
       content_type = response.headers['Content-Type'] || 'application/json'

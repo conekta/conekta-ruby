@@ -1,4 +1,3 @@
-.gitlab-ci.yml
 .rspec
 .rubocop.yml
 AUTHORS.md
