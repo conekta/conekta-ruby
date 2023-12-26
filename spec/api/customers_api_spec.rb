@@ -68,7 +68,7 @@ describe 'CustomersApi' do
     it 'should work' do
       id = "cus_2tXyF9BwPG14UMkkg"
       request = Conekta::CustomerFiscalEntitiesRequest.new({
-                                                             address: Conekta::CustomerFiscalEntitiesRequestAddress.new({
+                                                             address: Conekta::CustomerAddress.new({
                                                                                                                           street1: "av siem",
                                                                                                                           city: "mexico",
                                                                                                                           country: "MX",
@@ -248,7 +248,7 @@ describe 'CustomersApi' do
     fiscal_entities = Array.new(1)
     fiscal_entities[0] =
       Conekta::CustomerFiscalEntitiesRequest.new({
-                                                   address: Conekta::CustomerFiscalEntitiesRequestAddress.new({
+                                                   address: Conekta::CustomerAddress.new({
                                                                                                                 street1: "av siempre viva",
                                                                                                                 street2: "condensa",
                                                                                                                 postal_code: "11011",
