@@ -22,7 +22,7 @@
 require 'conekta'
 
 instance = Conekta::CustomerShippingContactsDataResponse.new(
-  phone: 525511223344,
+  phone: +525511223344,
   receiver: Marvin Fuller,
   between_streets: Ackerman Crescent,
   address: null,

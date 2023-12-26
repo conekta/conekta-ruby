@@ -21,7 +21,7 @@ instance = Conekta::OrderFiscalEntityRequest.new(
   email: test@gmail.com,
   metadata: null,
   name: Conekta Inc,
-  phone: 525511223344,
+  phone: +525511223344,
   tax_id: AAA010101AAA
 )
 ```

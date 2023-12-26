@@ -28,7 +28,7 @@ instance = Conekta::OrderFiscalEntityResponse.new(
   id: fis_ent_2tN85VYaSMyDvjB3M,
   created_at: 1676328434,
   object: fiscal_entity,
-  phone: 525511223344
+  phone: +525511223344
 )
 ```
 

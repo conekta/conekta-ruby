@@ -1,3 +1,9 @@
+## [6.0.2](https://github.com/conekta/conekta-ruby/releases/tag/6.0.2) - 2023-12-26
+## What's Changed
+
+## [6.0.1](https://github.com/conekta/conekta-ruby/releases/tag/6.0.1) - 2023-12-21
+## What's Changed
+* update entities by @fcarrero in #116
 ## [6.0.0](https://github.com/conekta/conekta-ruby/releases/tag/6.0.0) - 2023-08-01
 ## What's Changed
 * Fix i18n dependency load error by @juanolivas in https://github.com/conekta/conekta-ruby/pull/108
