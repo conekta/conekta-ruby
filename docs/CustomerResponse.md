@@ -44,7 +44,7 @@ instance = Conekta::CustomerResponse.new(
   metadata: null,
   object: customer,
   payment_sources: null,
-  phone: 5215555555555,
+  phone: +5215555555555,
   shipping_contacts: null,
   subscription: null
 )
