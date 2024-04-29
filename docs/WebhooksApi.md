@@ -254,6 +254,7 @@ opts = {
   x_child_company_id: '6441b6376b60c3a638da80af', # String | In the case of a holding company, the company id of the child company to which will process the request.
   limit: 56, # Integer | The numbers of items to return, the maximum value is 250
   search: 'search_example', # String | General order search, e.g. by mail, reference etc.
+  url: 'url_example', # String | url for webhook filter
   _next: '_next_example', # String | next page
   previous: 'previous_example' # String | previous page
 }
@@ -293,6 +294,7 @@ end
 | **x_child_company_id** | **String** | In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 | **limit** | **Integer** | The numbers of items to return, the maximum value is 250 | [optional][default to 20] |
 | **search** | **String** | General order search, e.g. by mail, reference etc. | [optional] |
+| **url** | **String** | url for webhook filter | [optional] |
 | **_next** | **String** | next page | [optional] |
 | **previous** | **String** | previous page | [optional] |
 
