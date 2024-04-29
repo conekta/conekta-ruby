@@ -11,6 +11,7 @@
 | **monthly_installments_options** | **Array&lt;Integer&gt;** |  | [optional] |
 | **name** | **String** | Reason for payment | [optional] |
 | **on_demand_enabled** | **Boolean** |  | [optional] |
+| **redirection_time** | **Integer** | number of seconds to wait before redirecting to the success_url | [optional] |
 | **success_url** | **String** | Redirection url back to the site in case of successful payment, applies only to HostedPayment | [optional] |
 | **type** | **String** | This field represents the type of checkout | [optional] |
 
@@ -27,6 +28,7 @@ instance = Conekta::CheckoutRequest.new(
   monthly_installments_options: [3,6,12],
   name: null,
   on_demand_enabled: true,
+  redirection_time: 10,
   success_url: null,
   type: Integration
 )

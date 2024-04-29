@@ -23,6 +23,7 @@
 | **on_demand_enabled** | **Boolean** |  | [optional] |
 | **paid_payments_count** | **Integer** |  | [optional] |
 | **recurrent** | **Boolean** |  | [optional] |
+| **redirection_time** | **Integer** | number of seconds to wait before redirecting to the success_url | [optional] |
 | **slug** | **String** |  | [optional] |
 | **sms_sent** | **Integer** |  | [optional] |
 | **success_url** | **String** |  | [optional] |
@@ -56,6 +57,7 @@ instance = Conekta::OrderResponseCheckout.new(
   on_demand_enabled: true,
   paid_payments_count: 0,
   recurrent: false,
+  redirection_time: 2,
   slug: 6fca054a85194c43971ecea35cc519bb,
   sms_sent: 0,
   success_url: http://187.216.228.66:2222/SysVentasPagos/Acceso.aspx,

@@ -265,7 +265,14 @@ opts = {
   limit: 56, # Integer | The numbers of items to return, the maximum value is 250
   search: 'search_example', # String | General order search, e.g. by mail, reference etc.
   _next: '_next_example', # String | next page
-  previous: 'previous_example' # String | previous page
+  previous: 'previous_example', # String | previous page
+  payment_status: 'paid', # String | Filters by order status
+  last_payment_info_status: 'pending_payment', # String | Filters by last payment info status
+  created_at: 1612137600, # Integer | created equal to
+  created_at_gte: 1612137600, # Integer | created at greater than or equal to
+  created_at_lte: 1612137600, # Integer | created at less than or equal to
+  updated_at_gte: 1612137600, # Integer | updated at greater than or equal to
+  updated_at_lte: 1612137600 # Integer | updated at less than or equal to
 }
 
 begin
@@ -305,6 +312,13 @@ end
 | **search** | **String** | General order search, e.g. by mail, reference etc. | [optional] |
 | **_next** | **String** | next page | [optional] |
 | **previous** | **String** | previous page | [optional] |
+| **payment_status** | **String** | Filters by order status | [optional] |
+| **last_payment_info_status** | **String** | Filters by last payment info status | [optional] |
+| **created_at** | **Integer** | created equal to | [optional] |
+| **created_at_gte** | **Integer** | created at greater than or equal to | [optional] |
+| **created_at_lte** | **Integer** | created at less than or equal to | [optional] |
+| **updated_at_gte** | **Integer** | updated at greater than or equal to | [optional] |
+| **updated_at_lte** | **Integer** | updated at less than or equal to | [optional] |
 
 ### Return type
 

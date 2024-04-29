@@ -84,6 +84,7 @@ docs/DiscountsApi.md
 docs/EmailCheckoutRequest.md
 docs/Error.md
 docs/EventResponse.md
+docs/EventTypes.md
 docs/EventsApi.md
 docs/EventsResendResponse.md
 docs/FiscalEntityAddress.md
@@ -143,6 +144,14 @@ docs/PaymentMethodResponse.md
 docs/PaymentMethodSpeiRecurrent.md
 docs/PaymentMethodSpeiRequest.md
 docs/PaymentMethodsApi.md
+docs/Payout.md
+docs/PayoutMethod.md
+docs/PayoutOrder.md
+docs/PayoutOrderPayoutsItem.md
+docs/PayoutOrderResponse.md
+docs/PayoutOrderResponseCustomerInfo.md
+docs/PayoutOrdersApi.md
+docs/PayoutOrdersResponse.md
 docs/PlanRequest.md
 docs/PlanResponse.md
 docs/PlanUpdateRequest.md
@@ -211,6 +220,7 @@ lib/conekta/api/logs_api.rb
 lib/conekta/api/orders_api.rb
 lib/conekta/api/payment_link_api.rb
 lib/conekta/api/payment_methods_api.rb
+lib/conekta/api/payout_orders_api.rb
 lib/conekta/api/plans_api.rb
 lib/conekta/api/products_api.rb
 lib/conekta/api/shipping_contacts_api.rb
@@ -292,6 +302,7 @@ lib/conekta/models/discount_lines_response.rb
 lib/conekta/models/email_checkout_request.rb
 lib/conekta/models/error.rb
 lib/conekta/models/event_response.rb
+lib/conekta/models/event_types.rb
 lib/conekta/models/events_resend_response.rb
 lib/conekta/models/fiscal_entity_address.rb
 lib/conekta/models/get_api_keys_response.rb
@@ -346,6 +357,13 @@ lib/conekta/models/payment_method_cash_response.rb
 lib/conekta/models/payment_method_response.rb
 lib/conekta/models/payment_method_spei_recurrent.rb
 lib/conekta/models/payment_method_spei_request.rb
+lib/conekta/models/payout.rb
+lib/conekta/models/payout_method.rb
+lib/conekta/models/payout_order.rb
+lib/conekta/models/payout_order_payouts_item.rb
+lib/conekta/models/payout_order_response.rb
+lib/conekta/models/payout_order_response_customer_info.rb
+lib/conekta/models/payout_orders_response.rb
 lib/conekta/models/plan_request.rb
 lib/conekta/models/plan_response.rb
 lib/conekta/models/plan_update_request.rb
