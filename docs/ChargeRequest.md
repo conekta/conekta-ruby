@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **amount** | **Integer** |  | [optional] |
+| **amount** | **Integer** | Amount to be charged in cents | [optional] |
 | **payment_method** | [**ChargeRequestPaymentMethod**](ChargeRequestPaymentMethod.md) |  |  |
 | **reference_id** | **String** | Custom reference to add to the charge | [optional] |
 

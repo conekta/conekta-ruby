@@ -14,6 +14,7 @@
 | **service_name** | **String** |  | [optional] |
 | **store** | **String** |  | [optional] |
 | **store_name** | **String** |  | [optional] |
+| **customer_ip_address** | **String** |  | [optional] |
 
 ## Example
 
@@ -30,7 +31,8 @@ instance = Conekta::PaymentMethodCash.new(
   expires_at: 0,
   service_name: OxxoPay,
   store: 10MON50EDI,
-  store_name: OXXO
+  store_name: OXXO,
+  customer_ip_address: 0.0.0.0
 )
 ```
 

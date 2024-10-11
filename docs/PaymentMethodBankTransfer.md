@@ -22,6 +22,7 @@
 | **receiving_account_tax_id** | **String** |  | [optional] |
 | **reference_number** | **String** |  | [optional] |
 | **tracking_code** | **String** |  | [optional] |
+| **customer_ip_address** | **String** |  | [optional] |
 
 ## Example
 
@@ -46,7 +47,8 @@ instance = Conekta::PaymentMethodBankTransfer.new(
   receiving_account_bank: STP,
   receiving_account_tax_id: null,
   reference_number: null,
-  tracking_code: null
+  tracking_code: null,
+  customer_ip_address: 0.0.0.0
 )
 ```
 

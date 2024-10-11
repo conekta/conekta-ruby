@@ -7,6 +7,7 @@
 | **billing_cycle_start** | **Integer** |  | [optional] |
 | **billing_cycle_end** | **Integer** |  | [optional] |
 | **canceled_at** | **Integer** |  | [optional] |
+| **canceled_reason** | **String** | Reason for cancellation. This field appears when the subscription status is &#39;canceled&#39;. | [optional] |
 | **card_id** | **String** |  | [optional] |
 | **charge_id** | **String** |  | [optional] |
 | **created_at** | **Integer** |  | [optional] |
@@ -31,6 +32,7 @@ instance = Conekta::SubscriptionResponse.new(
   billing_cycle_start: 1677626827,
   billing_cycle_end: 1677626827,
   canceled_at: 1678258162,
+  canceled_reason: user_cancelation,
   card_id: src_2tKcHxhTz7xU5SymL,
   charge_id: 2tKcHxhTz7xU5SymL,
   created_at: 1677626837,

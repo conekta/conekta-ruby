@@ -51,6 +51,8 @@ module Conekta
 
     attr_accessor :tracking_code
 
+    attr_accessor :customer_ip_address
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -71,7 +73,8 @@ module Conekta
         :'receiving_account_bank' => :'receiving_account_bank',
         :'receiving_account_tax_id' => :'receiving_account_tax_id',
         :'reference_number' => :'reference_number',
-        :'tracking_code' => :'tracking_code'
+        :'tracking_code' => :'tracking_code',
+        :'customer_ip_address' => :'customer_ip_address'
       }
     end
 
@@ -100,7 +103,8 @@ module Conekta
         :'receiving_account_bank' => :'String',
         :'receiving_account_tax_id' => :'String',
         :'reference_number' => :'String',
-        :'tracking_code' => :'String'
+        :'tracking_code' => :'String',
+        :'customer_ip_address' => :'String'
       }
     end
 
@@ -116,7 +120,7 @@ module Conekta
         :'receiving_account_holder_name',
         :'receiving_account_tax_id',
         :'reference_number',
-        :'tracking_code'
+        :'tracking_code',
       ])
     end
 
@@ -217,6 +221,10 @@ module Conekta
       if attributes.key?(:'tracking_code')
         self.tracking_code = attributes[:'tracking_code']
       end
+
+      if attributes.key?(:'customer_ip_address')
+        self.customer_ip_address = attributes[:'customer_ip_address']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -261,7 +269,8 @@ module Conekta
           receiving_account_bank == o.receiving_account_bank &&
           receiving_account_tax_id == o.receiving_account_tax_id &&
           reference_number == o.reference_number &&
-          tracking_code == o.tracking_code
+          tracking_code == o.tracking_code &&
+          customer_ip_address == o.customer_ip_address
     end
 
     # @see the `==` method
@@ -273,7 +282,7 @@ module Conekta
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, object, bank, clabe, description, executed_at, expires_at, issuing_account_bank, issuing_account_number, issuing_account_holder_name, issuing_account_tax_id, payment_attempts, receiving_account_holder_name, receiving_account_number, receiving_account_bank, receiving_account_tax_id, reference_number, tracking_code].hash
+      [type, object, bank, clabe, description, executed_at, expires_at, issuing_account_bank, issuing_account_number, issuing_account_holder_name, issuing_account_tax_id, payment_attempts, receiving_account_holder_name, receiving_account_number, receiving_account_bank, receiving_account_tax_id, reference_number, tracking_code, customer_ip_address].hash
     end
 
     # Builds the object from hash

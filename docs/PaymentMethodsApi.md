@@ -31,7 +31,7 @@ end
 
 api_instance = Conekta::PaymentMethodsApi.new
 id = '6307a60c41de27127515a575' # String | Identifier of the resource
-create_customer_payment_methods_request = Conekta::PaymentMethodCardRequest.new({type: 'card | cash | spei', token_id: 'tok_32hj4g234as'}) # CreateCustomerPaymentMethodsRequest | requested field for customer payment methods
+create_customer_payment_methods_request = Conekta::PaymentMethodCashRequest.new({type: 'card | cash | spei'}) # CreateCustomerPaymentMethodsRequest | requested field for customer payment methods
 opts = {
   accept_language: 'es', # String | Use for knowing which language to use
   x_child_company_id: '6441b6376b60c3a638da80af' # String | In the case of a holding company, the company id of the child company to which will process the request.

@@ -5,7 +5,12 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **type** | **String** | Type of payment method |  |
-| **token_id** | **String** | Token id that will be used to create a \&quot;card\&quot; type payment method. See the (subscriptions)[https://developers.conekta.com/v2.1.0/reference/createsubscription] tutorial for more information on how to tokenize cards. |  |
+| **cvc** | **String** | Card security code |  |
+| **exp_month** | **String** | Card expiration month |  |
+| **exp_year** | **String** | Card expiration year |  |
+| **name** | **String** | Cardholder name |  |
+| **number** | **String** | Card number |  |
+| **customer_ip_address** | **String** | Optional field used to capture the customer&#39;s IP address for fraud prevention and security monitoring purposes | [optional] |
 
 ## Example
 
@@ -14,7 +19,12 @@ require 'conekta'
 
 instance = Conekta::PaymentMethodCardRequest.new(
   type: card | cash | spei,
-  token_id: tok_32hj4g234as
+  cvc: 198,
+  exp_month: 12,
+  exp_year: 2025,
+  name: John Doe,
+  number: 4242424242424242,
+  customer_ip_address: 0.0.0.0
 )
 ```
 

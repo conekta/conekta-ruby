@@ -6,17 +6,18 @@
 | ---- | ---- | ----------- | ----- |
 | **type** | **String** |  | [optional] |
 | **object** | **String** |  |  |
-| **account_type** | **String** |  | [optional] |
+| **account_type** | **String** | Account type of the card | [optional] |
 | **auth_code** | **String** |  | [optional] |
-| **brand** | **String** |  | [optional] |
+| **brand** | **String** | Brand of the card | [optional] |
 | **contract_id** | **String** | Id sent for recurrent charges. | [optional] |
-| **country** | **String** |  | [optional] |
-| **exp_month** | **String** |  | [optional] |
-| **exp_year** | **String** |  | [optional] |
+| **country** | **String** | Country of the card | [optional] |
+| **exp_month** | **String** | Expiration month of the card | [optional] |
+| **exp_year** | **String** | Expiration year of the card | [optional] |
 | **fraud_indicators** | **Array&lt;Object&gt;** |  | [optional] |
-| **issuer** | **String** |  | [optional] |
-| **last4** | **String** |  | [optional] |
-| **name** | **String** |  | [optional] |
+| **issuer** | **String** | Issuer of the card | [optional] |
+| **last4** | **String** | Last 4 digits of the card | [optional] |
+| **name** | **String** | Name of the cardholder | [optional] |
+| **customer_ip_address** | **String** | Optional field used to capture the customer&#39;s IP address for fraud prevention and security monitoring purposes | [optional] |
 
 ## Example
 
@@ -32,11 +33,12 @@ instance = Conekta::PaymentMethodCard.new(
   contract_id: S781317595,
   country: MX,
   exp_month: 02,
-  exp_year: 30,
+  exp_year: 2026,
   fraud_indicators: null,
   issuer: BANAMEX,
   last4: 4242,
-  name: Fulanito Perez
+  name: Fulanito Perez,
+  customer_ip_address: 0.0.0.0
 )
 ```
 

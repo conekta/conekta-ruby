@@ -16,6 +16,7 @@ require 'time'
 module Conekta
   # The charges to be made
   class ChargeRequest
+    # Amount to be charged in cents
     attr_accessor :amount
 
     attr_accessor :payment_method

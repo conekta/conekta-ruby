@@ -140,9 +140,11 @@ docs/PaymentMethodCardResponse.md
 docs/PaymentMethodCash.md
 docs/PaymentMethodCashRequest.md
 docs/PaymentMethodCashResponse.md
+docs/PaymentMethodGeneralRequest.md
 docs/PaymentMethodResponse.md
 docs/PaymentMethodSpeiRecurrent.md
 docs/PaymentMethodSpeiRequest.md
+docs/PaymentMethodTokenRequest.md
 docs/PaymentMethodsApi.md
 docs/Payout.md
 docs/PayoutMethod.md
@@ -354,9 +356,11 @@ lib/conekta/models/payment_method_card_response.rb
 lib/conekta/models/payment_method_cash.rb
 lib/conekta/models/payment_method_cash_request.rb
 lib/conekta/models/payment_method_cash_response.rb
+lib/conekta/models/payment_method_general_request.rb
 lib/conekta/models/payment_method_response.rb
 lib/conekta/models/payment_method_spei_recurrent.rb
 lib/conekta/models/payment_method_spei_request.rb
+lib/conekta/models/payment_method_token_request.rb
 lib/conekta/models/payout.rb
 lib/conekta/models/payout_method.rb
 lib/conekta/models/payout_order.rb

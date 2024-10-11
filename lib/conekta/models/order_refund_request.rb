@@ -15,10 +15,12 @@ require 'time'
 
 module Conekta
   class OrderRefundRequest
+    # Amount to be refunded in cents
     attr_accessor :amount
 
     attr_accessor :expires_at
 
+    # Reason for the refund
     attr_accessor :reason
 
     # Attribute mapping from ruby-style variable name to JSON key.

@@ -28,6 +28,9 @@ module Conekta
     # This field allows you to specify the number of months without interest.
     attr_accessor :monthly_installments_options
 
+    # Indicates the 3DS2 mode for the order, either smart or strict.
+    attr_accessor :three_ds_mode
+
     # Reason for charge
     attr_accessor :name
 
@@ -55,6 +58,7 @@ module Conekta
         :'expires_at' => :'expires_at',
         :'monthly_installments_enabled' => :'monthly_installments_enabled',
         :'monthly_installments_options' => :'monthly_installments_options',
+        :'three_ds_mode' => :'three_ds_mode',
         :'name' => :'name',
         :'needs_shipping_contact' => :'needs_shipping_contact',
         :'on_demand_enabled' => :'on_demand_enabled',
@@ -77,6 +81,7 @@ module Conekta
         :'expires_at' => :'Integer',
         :'monthly_installments_enabled' => :'Boolean',
         :'monthly_installments_options' => :'Array<Integer>',
+        :'three_ds_mode' => :'String',
         :'name' => :'String',
         :'needs_shipping_contact' => :'Boolean',
         :'on_demand_enabled' => :'Boolean',
@@ -131,6 +136,10 @@ module Conekta
         if (value = attributes[:'monthly_installments_options']).is_a?(Array)
           self.monthly_installments_options = value
         end
+      end
+
+      if attributes.key?(:'three_ds_mode')
+        self.three_ds_mode = attributes[:'three_ds_mode']
       end
 
       if attributes.key?(:'name')
@@ -224,6 +233,7 @@ module Conekta
           expires_at == o.expires_at &&
           monthly_installments_enabled == o.monthly_installments_enabled &&
           monthly_installments_options == o.monthly_installments_options &&
+          three_ds_mode == o.three_ds_mode &&
           name == o.name &&
           needs_shipping_contact == o.needs_shipping_contact &&
           on_demand_enabled == o.on_demand_enabled &&
@@ -242,7 +252,7 @@ module Conekta
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [allowed_payment_methods, expires_at, monthly_installments_enabled, monthly_installments_options, name, needs_shipping_contact, on_demand_enabled, order_template, payments_limit_count, recurrent, type].hash
+      [allowed_payment_methods, expires_at, monthly_installments_enabled, monthly_installments_options, three_ds_mode, name, needs_shipping_contact, on_demand_enabled, order_template, payments_limit_count, recurrent, type].hash
     end
 
     # Builds the object from hash
