@@ -265,11 +265,12 @@ describe 'CustomersApi' do
                                                  })
 
     payment_sources = Array.new(1)
+    payment_method_data = {
+      type: 'card',
+      token_id: 'ttest5214'
+    }
     payment_sources[0] =
-      Conekta::PaymentMethodCardRequest.new({
-                                              type: 'card',
-                                              token_id: 'tok_2tXyExrU6U7yiaTto'
-                                            })
+      Conekta::PaymentMethodCardRequest.new(payment_method_data)
     shipping_contacts = Array.new(1)
     shipping_contacts[0] = Conekta::CustomerShippingContacts.new({
                                                                    address: Conekta::CustomerShippingContactsAddress.new({
