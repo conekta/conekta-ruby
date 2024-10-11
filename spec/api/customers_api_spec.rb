@@ -267,7 +267,12 @@ describe 'CustomersApi' do
     payment_sources = Array.new(1)
     payment_method_data = {
       type: 'card',
-      token_id: 'ttest5214'
+      cvc: '123',
+      exp_month: '12',
+      exp_year: '2025',
+      name: 'John Doe',
+      number: '4242424242424242',
+      customer_ip_address: '127.0.0.1'
     }
     payment_sources[0] =
       Conekta::PaymentMethodCardRequest.new(payment_method_data)
