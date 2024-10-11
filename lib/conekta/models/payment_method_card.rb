@@ -19,28 +19,39 @@ module Conekta
 
     attr_accessor :object
 
+    # Account type of the card
     attr_accessor :account_type
 
     attr_accessor :auth_code
 
+    # Brand of the card
     attr_accessor :brand
 
     # Id sent for recurrent charges.
     attr_accessor :contract_id
 
+    # Country of the card
     attr_accessor :country
 
+    # Expiration month of the card
     attr_accessor :exp_month
 
+    # Expiration year of the card
     attr_accessor :exp_year
 
     attr_accessor :fraud_indicators
 
+    # Issuer of the card
     attr_accessor :issuer
 
+    # Last 4 digits of the card
     attr_accessor :last4
 
+    # Name of the cardholder
     attr_accessor :name
+
+    # Optional field used to capture the customer's IP address for fraud prevention and security monitoring purposes
+    attr_accessor :customer_ip_address
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -57,7 +68,8 @@ module Conekta
         :'fraud_indicators' => :'fraud_indicators',
         :'issuer' => :'issuer',
         :'last4' => :'last4',
-        :'name' => :'name'
+        :'name' => :'name',
+        :'customer_ip_address' => :'customer_ip_address'
       }
     end
 
@@ -81,7 +93,8 @@ module Conekta
         :'fraud_indicators' => :'Array<Object>',
         :'issuer' => :'String',
         :'last4' => :'String',
-        :'name' => :'String'
+        :'name' => :'String',
+        :'customer_ip_address' => :'String'
       }
     end
 
@@ -168,6 +181,10 @@ module Conekta
       if attributes.key?(:'name')
         self.name = attributes[:'name']
       end
+
+      if attributes.key?(:'customer_ip_address')
+        self.customer_ip_address = attributes[:'customer_ip_address']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -207,7 +224,8 @@ module Conekta
           fraud_indicators == o.fraud_indicators &&
           issuer == o.issuer &&
           last4 == o.last4 &&
-          name == o.name
+          name == o.name &&
+          customer_ip_address == o.customer_ip_address
     end
 
     # @see the `==` method
@@ -219,7 +237,7 @@ module Conekta
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, object, account_type, auth_code, brand, contract_id, country, exp_month, exp_year, fraud_indicators, issuer, last4, name].hash
+      [type, object, account_type, auth_code, brand, contract_id, country, exp_month, exp_year, fraud_indicators, issuer, last4, name, customer_ip_address].hash
     end
 
     # Builds the object from hash

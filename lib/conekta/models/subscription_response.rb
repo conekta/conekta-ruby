@@ -22,6 +22,9 @@ module Conekta
 
     attr_accessor :canceled_at
 
+    # Reason for cancellation. This field appears when the subscription status is 'canceled'.
+    attr_accessor :canceled_reason
+
     attr_accessor :card_id
 
     attr_accessor :charge_id
@@ -56,6 +59,7 @@ module Conekta
         :'billing_cycle_start' => :'billing_cycle_start',
         :'billing_cycle_end' => :'billing_cycle_end',
         :'canceled_at' => :'canceled_at',
+        :'canceled_reason' => :'canceled_reason',
         :'card_id' => :'card_id',
         :'charge_id' => :'charge_id',
         :'created_at' => :'created_at',
@@ -84,6 +88,7 @@ module Conekta
         :'billing_cycle_start' => :'Integer',
         :'billing_cycle_end' => :'Integer',
         :'canceled_at' => :'Integer',
+        :'canceled_reason' => :'String',
         :'card_id' => :'String',
         :'charge_id' => :'String',
         :'created_at' => :'Integer',
@@ -139,6 +144,10 @@ module Conekta
 
       if attributes.key?(:'canceled_at')
         self.canceled_at = attributes[:'canceled_at']
+      end
+
+      if attributes.key?(:'canceled_reason')
+        self.canceled_reason = attributes[:'canceled_reason']
       end
 
       if attributes.key?(:'card_id')
@@ -221,6 +230,7 @@ module Conekta
           billing_cycle_start == o.billing_cycle_start &&
           billing_cycle_end == o.billing_cycle_end &&
           canceled_at == o.canceled_at &&
+          canceled_reason == o.canceled_reason &&
           card_id == o.card_id &&
           charge_id == o.charge_id &&
           created_at == o.created_at &&
@@ -246,7 +256,7 @@ module Conekta
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [billing_cycle_start, billing_cycle_end, canceled_at, card_id, charge_id, created_at, customer_custom_reference, customer_id, id, last_billing_cycle_order_id, object, paused_at, plan_id, status, subscription_start, trial_start, trial_end].hash
+      [billing_cycle_start, billing_cycle_end, canceled_at, canceled_reason, card_id, charge_id, created_at, customer_custom_reference, customer_id, id, last_billing_cycle_order_id, object, paused_at, plan_id, status, subscription_start, trial_start, trial_end].hash
     end
 
     # Builds the object from hash

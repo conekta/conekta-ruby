@@ -35,6 +35,8 @@ module Conekta
 
     attr_accessor :store_name
 
+    attr_accessor :customer_ip_address
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -47,7 +49,8 @@ module Conekta
         :'expires_at' => :'expires_at',
         :'service_name' => :'service_name',
         :'store' => :'store',
-        :'store_name' => :'store_name'
+        :'store_name' => :'store_name',
+        :'customer_ip_address' => :'customer_ip_address'
       }
     end
 
@@ -68,7 +71,8 @@ module Conekta
         :'expires_at' => :'Integer',
         :'service_name' => :'String',
         :'store' => :'String',
-        :'store_name' => :'String'
+        :'store_name' => :'String',
+        :'customer_ip_address' => :'String'
       }
     end
 
@@ -144,6 +148,10 @@ module Conekta
       if attributes.key?(:'store_name')
         self.store_name = attributes[:'store_name']
       end
+
+      if attributes.key?(:'customer_ip_address')
+        self.customer_ip_address = attributes[:'customer_ip_address']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -180,7 +188,8 @@ module Conekta
           expires_at == o.expires_at &&
           service_name == o.service_name &&
           store == o.store &&
-          store_name == o.store_name
+          store_name == o.store_name &&
+          customer_ip_address == o.customer_ip_address
     end
 
     # @see the `==` method
@@ -192,7 +201,7 @@ module Conekta
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, object, auth_code, cashier_id, reference, barcode_url, expires_at, service_name, store, store_name].hash
+      [type, object, auth_code, cashier_id, reference, barcode_url, expires_at, service_name, store, store_name, customer_ip_address].hash
     end
 
     # Builds the object from hash

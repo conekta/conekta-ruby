@@ -13,11 +13,11 @@
 | **device_fingerprint** | **String** |  | [optional] |
 | **failure_code** | **String** |  | [optional] |
 | **failure_message** | **String** |  | [optional] |
-| **id** | **String** |  | [optional] |
-| **livemode** | **Boolean** |  | [optional] |
+| **id** | **String** | Charge ID | [optional] |
+| **livemode** | **Boolean** | Whether the charge was made in live mode or not | [optional] |
 | **object** | **String** |  | [optional] |
-| **order_id** | **String** |  | [optional] |
-| **paid_at** | **Integer** |  | [optional] |
+| **order_id** | **String** | Order ID | [optional] |
+| **paid_at** | **Integer** | Payment date | [optional] |
 | **payment_method** | [**ChargeResponsePaymentMethod**](ChargeResponsePaymentMethod.md) |  | [optional] |
 | **reference_id** | **String** | Reference ID of the charge | [optional] |
 | **refunds** | [**ChargeResponseRefunds**](ChargeResponseRefunds.md) |  | [optional] |
@@ -39,8 +39,8 @@ instance = Conekta::ChargeResponse.new(
   failure_code: suspected_fraud,
   failure_message: Este cargo ha sido declinado porque el comportamiento del comprador es sospechoso.,
   id: 63efa757cf65380001aec040,
-  livemode: null,
-  object: null,
+  livemode: false,
+  object: charge,
   order_id: ord_2tN73UdUSNrYRPD9r,
   paid_at: 1676390742,
   payment_method: null,

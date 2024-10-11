@@ -4,9 +4,9 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **amount** | **Integer** |  |  |
+| **amount** | **Integer** | Amount to be refunded in cents |  |
 | **expires_at** | **Integer** |  | [optional] |
-| **reason** | **String** |  |  |
+| **reason** | **String** | Reason for the refund |  |
 
 ## Example
 

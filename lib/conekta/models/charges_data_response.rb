@@ -33,14 +33,18 @@ module Conekta
 
     attr_accessor :failure_message
 
+    # Charge ID
     attr_accessor :id
 
+    # Whether the charge was made in live mode or not
     attr_accessor :livemode
 
     attr_accessor :object
 
+    # Order ID
     attr_accessor :order_id
 
+    # Payment date
     attr_accessor :paid_at
 
     attr_accessor :payment_method

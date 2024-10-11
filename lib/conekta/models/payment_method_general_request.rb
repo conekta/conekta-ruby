@@ -14,24 +14,26 @@ require 'date'
 require 'time'
 
 module Conekta
-  class PaymentMethodCardRequest
+  # Payment method used in the charge. Go to the [payment methods](https://developers.conekta.com/reference/m%C3%A9todos-de-pago) section for more details 
+  class PaymentMethodGeneralRequest
+    # Method expiration date as unix timestamp
+    attr_accessor :expires_at
+
+    # How many months without interest to apply, it can be 3, 6, 9, 12 or 18
+    attr_accessor :monthly_installments
+
     # Type of payment method
     attr_accessor :type
 
-    # Card security code
+    attr_accessor :token_id
+
+    attr_accessor :payment_source_id
+
+    # Optional, It is a value that allows identifying the security code of the card. Only for PCI merchants
     attr_accessor :cvc
 
-    # Card expiration month
-    attr_accessor :exp_month
-
-    # Card expiration year
-    attr_accessor :exp_year
-
-    # Cardholder name
-    attr_accessor :name
-
-    # Card number
-    attr_accessor :number
+    # Optional id sent to indicate the bank contract for recurrent card charges.
+    attr_accessor :contract_id
 
     # Optional field used to capture the customer's IP address for fraud prevention and security monitoring purposes
     attr_accessor :customer_ip_address
@@ -39,12 +41,13 @@ module Conekta
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'expires_at' => :'expires_at',
+        :'monthly_installments' => :'monthly_installments',
         :'type' => :'type',
+        :'token_id' => :'token_id',
+        :'payment_source_id' => :'payment_source_id',
         :'cvc' => :'cvc',
-        :'exp_month' => :'exp_month',
-        :'exp_year' => :'exp_year',
-        :'name' => :'name',
-        :'number' => :'number',
+        :'contract_id' => :'contract_id',
         :'customer_ip_address' => :'customer_ip_address'
       }
     end
@@ -57,12 +60,13 @@ module Conekta
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'expires_at' => :'Integer',
+        :'monthly_installments' => :'Integer',
         :'type' => :'String',
+        :'token_id' => :'String',
+        :'payment_source_id' => :'String',
         :'cvc' => :'String',
-        :'exp_month' => :'String',
-        :'exp_year' => :'String',
-        :'name' => :'String',
-        :'number' => :'String',
+        :'contract_id' => :'String',
         :'customer_ip_address' => :'String'
       }
     end
@@ -73,27 +77,28 @@ module Conekta
       ])
     end
 
-    # List of class defined in allOf (OpenAPI v3)
-    def self.openapi_all_of
-      [
-      :'CustomerPaymentMethodRequest'
-      ]
-    end
-
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Conekta::PaymentMethodCardRequest` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Conekta::PaymentMethodGeneralRequest` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Conekta::PaymentMethodCardRequest`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Conekta::PaymentMethodGeneralRequest`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
+
+      if attributes.key?(:'expires_at')
+        self.expires_at = attributes[:'expires_at']
+      end
+
+      if attributes.key?(:'monthly_installments')
+        self.monthly_installments = attributes[:'monthly_installments']
+      end
 
       if attributes.key?(:'type')
         self.type = attributes[:'type']
@@ -101,34 +106,20 @@ module Conekta
         self.type = nil
       end
 
+      if attributes.key?(:'token_id')
+        self.token_id = attributes[:'token_id']
+      end
+
+      if attributes.key?(:'payment_source_id')
+        self.payment_source_id = attributes[:'payment_source_id']
+      end
+
       if attributes.key?(:'cvc')
         self.cvc = attributes[:'cvc']
-      else
-        self.cvc = nil
       end
 
-      if attributes.key?(:'exp_month')
-        self.exp_month = attributes[:'exp_month']
-      else
-        self.exp_month = nil
-      end
-
-      if attributes.key?(:'exp_year')
-        self.exp_year = attributes[:'exp_year']
-      else
-        self.exp_year = nil
-      end
-
-      if attributes.key?(:'name')
-        self.name = attributes[:'name']
-      else
-        self.name = nil
-      end
-
-      if attributes.key?(:'number')
-        self.number = attributes[:'number']
-      else
-        self.number = nil
+      if attributes.key?(:'contract_id')
+        self.contract_id = attributes[:'contract_id']
       end
 
       if attributes.key?(:'customer_ip_address')
@@ -145,50 +136,6 @@ module Conekta
         invalid_properties.push('invalid value for "type", type cannot be nil.')
       end
 
-      if @cvc.nil?
-        invalid_properties.push('invalid value for "cvc", cvc cannot be nil.')
-      end
-
-      if @cvc.to_s.length > 4
-        invalid_properties.push('invalid value for "cvc", the character length must be smaller than or equal to 4.')
-      end
-
-      if @cvc.to_s.length < 3
-        invalid_properties.push('invalid value for "cvc", the character length must be great than or equal to 3.')
-      end
-
-      if @exp_month.nil?
-        invalid_properties.push('invalid value for "exp_month", exp_month cannot be nil.')
-      end
-
-      if @exp_month.to_s.length > 2
-        invalid_properties.push('invalid value for "exp_month", the character length must be smaller than or equal to 2.')
-      end
-
-      if @exp_month.to_s.length < 2
-        invalid_properties.push('invalid value for "exp_month", the character length must be great than or equal to 2.')
-      end
-
-      if @exp_year.nil?
-        invalid_properties.push('invalid value for "exp_year", exp_year cannot be nil.')
-      end
-
-      if @exp_year.to_s.length > 4
-        invalid_properties.push('invalid value for "exp_year", the character length must be smaller than or equal to 4.')
-      end
-
-      if @exp_year.to_s.length < 4
-        invalid_properties.push('invalid value for "exp_year", the character length must be great than or equal to 4.')
-      end
-
-      if @name.nil?
-        invalid_properties.push('invalid value for "name", name cannot be nil.')
-      end
-
-      if @number.nil?
-        invalid_properties.push('invalid value for "number", number cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -197,72 +144,7 @@ module Conekta
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @type.nil?
-      return false if @cvc.nil?
-      return false if @cvc.to_s.length > 4
-      return false if @cvc.to_s.length < 3
-      return false if @exp_month.nil?
-      return false if @exp_month.to_s.length > 2
-      return false if @exp_month.to_s.length < 2
-      return false if @exp_year.nil?
-      return false if @exp_year.to_s.length > 4
-      return false if @exp_year.to_s.length < 4
-      return false if @name.nil?
-      return false if @number.nil?
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] cvc Value to be assigned
-    def cvc=(cvc)
-      if cvc.nil?
-        fail ArgumentError, 'cvc cannot be nil'
-      end
-
-      if cvc.to_s.length > 4
-        fail ArgumentError, 'invalid value for "cvc", the character length must be smaller than or equal to 4.'
-      end
-
-      if cvc.to_s.length < 3
-        fail ArgumentError, 'invalid value for "cvc", the character length must be great than or equal to 3.'
-      end
-
-      @cvc = cvc
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] exp_month Value to be assigned
-    def exp_month=(exp_month)
-      if exp_month.nil?
-        fail ArgumentError, 'exp_month cannot be nil'
-      end
-
-      if exp_month.to_s.length > 2
-        fail ArgumentError, 'invalid value for "exp_month", the character length must be smaller than or equal to 2.'
-      end
-
-      if exp_month.to_s.length < 2
-        fail ArgumentError, 'invalid value for "exp_month", the character length must be great than or equal to 2.'
-      end
-
-      @exp_month = exp_month
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] exp_year Value to be assigned
-    def exp_year=(exp_year)
-      if exp_year.nil?
-        fail ArgumentError, 'exp_year cannot be nil'
-      end
-
-      if exp_year.to_s.length > 4
-        fail ArgumentError, 'invalid value for "exp_year", the character length must be smaller than or equal to 4.'
-      end
-
-      if exp_year.to_s.length < 4
-        fail ArgumentError, 'invalid value for "exp_year", the character length must be great than or equal to 4.'
-      end
-
-      @exp_year = exp_year
     end
 
     # Checks equality by comparing each attribute.
@@ -270,12 +152,13 @@ module Conekta
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          expires_at == o.expires_at &&
+          monthly_installments == o.monthly_installments &&
           type == o.type &&
+          token_id == o.token_id &&
+          payment_source_id == o.payment_source_id &&
           cvc == o.cvc &&
-          exp_month == o.exp_month &&
-          exp_year == o.exp_year &&
-          name == o.name &&
-          number == o.number &&
+          contract_id == o.contract_id &&
           customer_ip_address == o.customer_ip_address
     end
 
@@ -288,7 +171,7 @@ module Conekta
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, cvc, exp_month, exp_year, name, number, customer_ip_address].hash
+      [expires_at, monthly_installments, type, token_id, payment_source_id, cvc, contract_id, customer_ip_address].hash
     end
 
     # Builds the object from hash

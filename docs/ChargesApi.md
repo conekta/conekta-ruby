@@ -109,7 +109,7 @@ end
 
 api_instance = Conekta::ChargesApi.new
 id = '6307a60c41de27127515a575' # String | Identifier of the resource
-charge_request = Conekta::ChargeRequest.new({payment_method: Conekta::ChargeRequestPaymentMethod.new({type: 'card'})}) # ChargeRequest | requested field for a charge
+charge_request = Conekta::ChargeRequest.new({payment_method: Conekta::PaymentMethodCardRequest.new({type: 'card | cash | spei', cvc: '198', exp_month: '12', exp_year: '2025', name: 'John Doe', number: '4242424242424242'})}) # ChargeRequest | requested field for a charge
 opts = {
   accept_language: 'es', # String | Use for knowing which language to use
   x_child_company_id: '6441b6376b60c3a638da80af' # String | In the case of a holding company, the company id of the child company to which will process the request.

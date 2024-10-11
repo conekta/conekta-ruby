@@ -14,9 +14,9 @@ require 'conekta'
 Conekta::CreateCustomerPaymentMethodsRequest.openapi_one_of
 # =>
 # [
-#   :'PaymentMethodCardRequest',
 #   :'PaymentMethodCashRequest',
-#   :'PaymentMethodSpeiRequest'
+#   :'PaymentMethodSpeiRequest',
+#   :'PaymentMethodTokenRequest'
 # ]
 ```
 
@@ -30,7 +30,7 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 require 'conekta'
 
 Conekta::CreateCustomerPaymentMethodsRequest.build(data)
-# => #<PaymentMethodCardRequest:0x00007fdd4aab02a0>
+# => #<PaymentMethodCashRequest:0x00007fdd4aab02a0>
 
 Conekta::CreateCustomerPaymentMethodsRequest.build(data_that_doesnt_match)
 # => nil
@@ -44,8 +44,8 @@ Conekta::CreateCustomerPaymentMethodsRequest.build(data_that_doesnt_match)
 
 #### Return type
 
-- `PaymentMethodCardRequest`
 - `PaymentMethodCashRequest`
 - `PaymentMethodSpeiRequest`
+- `PaymentMethodTokenRequest`
 - `nil` (if no type matches)
 
