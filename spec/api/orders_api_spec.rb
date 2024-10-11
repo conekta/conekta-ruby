@@ -83,14 +83,14 @@ describe 'OrdersApi' do
                                unit_price: 1555
                              })
       ]
+      payment_method_data = {
+        expires_at: unix_timestamp,
+        type: 'cash'
+      }
       charges = Array.new(1)
+      payment_method = Conekta::ChargeRequestPaymentMethod.build(payment_method_data)
       charges[0] = Conekta::ChargeRequest.new({ amount: 1555,
-                                                payment_method: Conekta::ChargeRequestPaymentMethod.new(
-                                                  {
-                                                    expires_at: unix_timestamp,
-                                                    type: 'cash'
-                                                  }
-                                                )
+                                                payment_method: Conekta::ChargeRequestPaymentMethod.build(payment_method_data)
                                               })
       request = Conekta::OrderRequest.new(
         {
