@@ -75,12 +75,16 @@ describe 'ChargesApi' do
   describe 'orders_create_charge test' do
     it 'card' do
       id = 'ord_2tVKxbhNzfUnGjnXG'
+
+      payment_method_data = {
+        type: 'card',
+        token_id: 'ttest5214'
+      }
+
+      payment_method = Conekta::ChargeRequestPaymentMethod.build(payment_method_data)
       charge_request = Conekta::ChargeRequest.new({
                                                     amount: 40000,
-                                                    payment_method: Conekta::ChargeRequestPaymentMethod.new({
-                                                                                                              type: 'card',
-                                                                                                              token_id: 'tok_2tVKyGpobEKAR3xVH'
-                                                                                                            })
+                                                    payment_method: payment_method
                                                   })
       response = @api_instance.orders_create_charge(id, charge_request)
 
@@ -95,11 +99,13 @@ describe 'ChargesApi' do
 
     it 'cash' do
       id = "ord_2tVL8dT1Hm3y3YiaN"
+      payment_method_data = {
+        type: 'cash',
+      }
+      payment_method = Conekta::ChargeRequestPaymentMethod.build(payment_method_data)
       charge_request = Conekta::ChargeRequest.new({
                                                     amount: 40000,
-                                                    payment_method: Conekta::ChargeRequestPaymentMethod.new({
-                                                                                                              type: 'cash',
-                                                                                                            })
+                                                    payment_method: payment_method
                                                   })
       response = @api_instance.orders_create_charge(id,charge_request)
 
@@ -117,11 +123,13 @@ describe 'ChargesApi' do
     end
     it 'spei' do
       id = "ord_2tVLUFrQBB4HKz1zj"
+      payment_method_data = {
+        type: 'spei',
+      }
+      payment_method = Conekta::ChargeRequestPaymentMethod.build(payment_method_data)
       charge_request = Conekta::ChargeRequest.new({
                                                     amount: 40000,
-                                                    payment_method: Conekta::ChargeRequestPaymentMethod.new({
-                                                                                                              type: 'spei',
-                                                                                                            })
+                                                    payment_method: payment_method
                                                   })
       response = @api_instance.orders_create_charge(id,charge_request)
 
