@@ -19,6 +19,9 @@ module Conekta
 
     attr_accessor :object
 
+    # Agreement ID
+    attr_accessor :agreement
+
     attr_accessor :auth_code
 
     attr_accessor :cashier_id
@@ -28,6 +31,9 @@ module Conekta
     attr_accessor :barcode_url
 
     attr_accessor :expires_at
+
+    # Product type, e.g. bbva_cash_in, cash_in, pespay_cash_in, etc.
+    attr_accessor :product_type
 
     attr_accessor :service_name
 
@@ -42,11 +48,13 @@ module Conekta
       {
         :'type' => :'type',
         :'object' => :'object',
+        :'agreement' => :'agreement',
         :'auth_code' => :'auth_code',
         :'cashier_id' => :'cashier_id',
         :'reference' => :'reference',
         :'barcode_url' => :'barcode_url',
         :'expires_at' => :'expires_at',
+        :'product_type' => :'product_type',
         :'service_name' => :'service_name',
         :'store' => :'store',
         :'store_name' => :'store_name',
@@ -64,11 +72,13 @@ module Conekta
       {
         :'type' => :'String',
         :'object' => :'String',
+        :'agreement' => :'String',
         :'auth_code' => :'Integer',
         :'cashier_id' => :'String',
         :'reference' => :'String',
         :'barcode_url' => :'String',
         :'expires_at' => :'Integer',
+        :'product_type' => :'String',
         :'service_name' => :'String',
         :'store' => :'String',
         :'store_name' => :'String',
@@ -117,6 +127,10 @@ module Conekta
         self.object = nil
       end
 
+      if attributes.key?(:'agreement')
+        self.agreement = attributes[:'agreement']
+      end
+
       if attributes.key?(:'auth_code')
         self.auth_code = attributes[:'auth_code']
       end
@@ -135,6 +149,10 @@ module Conekta
 
       if attributes.key?(:'expires_at')
         self.expires_at = attributes[:'expires_at']
+      end
+
+      if attributes.key?(:'product_type')
+        self.product_type = attributes[:'product_type']
       end
 
       if attributes.key?(:'service_name')
@@ -181,11 +199,13 @@ module Conekta
       self.class == o.class &&
           type == o.type &&
           object == o.object &&
+          agreement == o.agreement &&
           auth_code == o.auth_code &&
           cashier_id == o.cashier_id &&
           reference == o.reference &&
           barcode_url == o.barcode_url &&
           expires_at == o.expires_at &&
+          product_type == o.product_type &&
           service_name == o.service_name &&
           store == o.store &&
           store_name == o.store_name &&
@@ -201,7 +221,7 @@ module Conekta
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, object, auth_code, cashier_id, reference, barcode_url, expires_at, service_name, store, store_name, customer_ip_address].hash
+      [type, object, agreement, auth_code, cashier_id, reference, barcode_url, expires_at, product_type, service_name, store, store_name, customer_ip_address].hash
     end
 
     # Builds the object from hash

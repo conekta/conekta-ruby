@@ -33,6 +33,8 @@ docs/ChargeResponseRefundsData.md
 docs/ChargeUpdateRequest.md
 docs/ChargesApi.md
 docs/ChargesDataResponse.md
+docs/ChargesOrderResponse.md
+docs/ChargesOrderResponseAllOfData.md
 docs/Checkout.md
 docs/CheckoutOrderTemplate.md
 docs/CheckoutOrderTemplateCustomerInfo.md
@@ -256,6 +258,8 @@ lib/conekta/models/charge_response_refunds.rb
 lib/conekta/models/charge_response_refunds_data.rb
 lib/conekta/models/charge_update_request.rb
 lib/conekta/models/charges_data_response.rb
+lib/conekta/models/charges_order_response.rb
+lib/conekta/models/charges_order_response_all_of_data.rb
 lib/conekta/models/checkout.rb
 lib/conekta/models/checkout_order_template.rb
 lib/conekta/models/checkout_order_template_customer_info.rb

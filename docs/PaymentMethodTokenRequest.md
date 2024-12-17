@@ -14,7 +14,7 @@ require 'conekta'
 
 instance = Conekta::PaymentMethodTokenRequest.new(
   type: card | cash | spei,
-  token_id: test_32hj4g234as
+  token_id: tok_32hj4g234as
 )
 ```
 

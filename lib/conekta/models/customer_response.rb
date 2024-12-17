@@ -27,6 +27,9 @@ module Conekta
     # Custom reference
     attr_accessor :custom_reference
 
+    # It is a parameter that allows to identify the date of birth of the client.
+    attr_accessor :date_of_birth
+
     attr_accessor :default_fiscal_entity_id
 
     attr_accessor :default_shipping_contact_id
@@ -45,6 +48,9 @@ module Conekta
 
     # Customer's name
     attr_accessor :name
+
+    # It is a parameter that allows to identify the national identification number of the client.
+    attr_accessor :national_id
 
     attr_accessor :metadata
 
@@ -66,6 +72,7 @@ module Conekta
         :'corporate' => :'corporate',
         :'created_at' => :'created_at',
         :'custom_reference' => :'custom_reference',
+        :'date_of_birth' => :'date_of_birth',
         :'default_fiscal_entity_id' => :'default_fiscal_entity_id',
         :'default_shipping_contact_id' => :'default_shipping_contact_id',
         :'default_payment_source_id' => :'default_payment_source_id',
@@ -74,6 +81,7 @@ module Conekta
         :'id' => :'id',
         :'livemode' => :'livemode',
         :'name' => :'name',
+        :'national_id' => :'national_id',
         :'metadata' => :'metadata',
         :'object' => :'object',
         :'payment_sources' => :'payment_sources',
@@ -95,6 +103,7 @@ module Conekta
         :'corporate' => :'Boolean',
         :'created_at' => :'Integer',
         :'custom_reference' => :'String',
+        :'date_of_birth' => :'String',
         :'default_fiscal_entity_id' => :'String',
         :'default_shipping_contact_id' => :'String',
         :'default_payment_source_id' => :'String',
@@ -103,6 +112,7 @@ module Conekta
         :'id' => :'String',
         :'livemode' => :'Boolean',
         :'name' => :'String',
+        :'national_id' => :'String',
         :'metadata' => :'Hash<String, Object>',
         :'object' => :'String',
         :'payment_sources' => :'CustomerPaymentMethodsResponse',
@@ -154,6 +164,10 @@ module Conekta
         self.custom_reference = attributes[:'custom_reference']
       end
 
+      if attributes.key?(:'date_of_birth')
+        self.date_of_birth = attributes[:'date_of_birth']
+      end
+
       if attributes.key?(:'default_fiscal_entity_id')
         self.default_fiscal_entity_id = attributes[:'default_fiscal_entity_id']
       end
@@ -190,6 +204,10 @@ module Conekta
         self.name = attributes[:'name']
       else
         self.name = nil
+      end
+
+      if attributes.key?(:'national_id')
+        self.national_id = attributes[:'national_id']
       end
 
       if attributes.key?(:'metadata')
@@ -289,6 +307,7 @@ module Conekta
           corporate == o.corporate &&
           created_at == o.created_at &&
           custom_reference == o.custom_reference &&
+          date_of_birth == o.date_of_birth &&
           default_fiscal_entity_id == o.default_fiscal_entity_id &&
           default_shipping_contact_id == o.default_shipping_contact_id &&
           default_payment_source_id == o.default_payment_source_id &&
@@ -297,6 +316,7 @@ module Conekta
           id == o.id &&
           livemode == o.livemode &&
           name == o.name &&
+          national_id == o.national_id &&
           metadata == o.metadata &&
           object == o.object &&
           payment_sources == o.payment_sources &&
@@ -314,7 +334,7 @@ module Conekta
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [antifraud_info, corporate, created_at, custom_reference, default_fiscal_entity_id, default_shipping_contact_id, default_payment_source_id, email, fiscal_entities, id, livemode, name, metadata, object, payment_sources, phone, shipping_contacts, subscription].hash
+      [antifraud_info, corporate, created_at, custom_reference, date_of_birth, default_fiscal_entity_id, default_shipping_contact_id, default_payment_source_id, email, fiscal_entities, id, livemode, name, national_id, metadata, object, payment_sources, phone, shipping_contacts, subscription].hash
     end
 
     # Builds the object from hash

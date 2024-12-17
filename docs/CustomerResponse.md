@@ -8,6 +8,7 @@
 | **corporate** | **Boolean** | true if the customer is a company | [optional] |
 | **created_at** | **Integer** | Creation date of the object |  |
 | **custom_reference** | **String** | Custom reference | [optional] |
+| **date_of_birth** | **String** | It is a parameter that allows to identify the date of birth of the client. | [optional] |
 | **default_fiscal_entity_id** | **String** |  | [optional] |
 | **default_shipping_contact_id** | **String** |  | [optional] |
 | **default_payment_source_id** | **String** |  | [optional] |
@@ -16,6 +17,7 @@
 | **id** | **String** | Customer&#39;s ID |  |
 | **livemode** | **Boolean** | true if the object exists in live mode or the value false if the object exists in test mode |  |
 | **name** | **String** | Customer&#39;s name |  |
+| **national_id** | **String** | It is a parameter that allows to identify the national identification number of the client. | [optional] |
 | **metadata** | **Hash&lt;String, Object&gt;** |  | [optional] |
 | **object** | **String** |  |  |
 | **payment_sources** | [**CustomerPaymentMethodsResponse**](CustomerPaymentMethodsResponse.md) |  | [optional] |
@@ -33,6 +35,7 @@ instance = Conekta::CustomerResponse.new(
   corporate: null,
   created_at: 1485151007,
   custom_reference: custom_reference,
+  date_of_birth: 24/07/1992,
   default_fiscal_entity_id: fis_ent_2tKqqAfqPi21oCmEJ,
   default_shipping_contact_id: ship_cont_2tKZsTYcsryyu7Ah8,
   default_payment_source_id: src_2tHJfJ79KyUwpxTio,
@@ -41,6 +44,7 @@ instance = Conekta::CustomerResponse.new(
   id: cus_2tHJfJ79KyUwpxTik,
   livemode: true,
   name: Felipe,
+  national_id: HEGG560427MVZRRL04,
   metadata: null,
   object: customer,
   payment_sources: null,

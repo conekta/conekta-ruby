@@ -24,6 +24,9 @@ module Conekta
     # It is an undefined value.
     attr_accessor :custom_reference
 
+    # It is a parameter that allows to identify the date of birth of the client.
+    attr_accessor :date_of_birth
+
     # An email address is a series of customizable characters followed by a universal Internet symbol, the at symbol (@), the name of a host server, and a web domain ending (.mx, .com, .org, . net, etc).
     attr_accessor :email
 
@@ -39,6 +42,9 @@ module Conekta
 
     # Client's name
     attr_accessor :name
+
+    # It is a parameter that allows to identify the national identification number of the client.
+    attr_accessor :national_id
 
     # Contains details of the payment methods that the customer has active or has used in Conekta
     attr_accessor :payment_sources
@@ -60,12 +66,14 @@ module Conekta
         :'antifraud_info' => :'antifraud_info',
         :'corporate' => :'corporate',
         :'custom_reference' => :'custom_reference',
+        :'date_of_birth' => :'date_of_birth',
         :'email' => :'email',
         :'default_payment_source_id' => :'default_payment_source_id',
         :'default_shipping_contact_id' => :'default_shipping_contact_id',
         :'fiscal_entities' => :'fiscal_entities',
         :'metadata' => :'metadata',
         :'name' => :'name',
+        :'national_id' => :'national_id',
         :'payment_sources' => :'payment_sources',
         :'phone' => :'phone',
         :'plan_id' => :'plan_id',
@@ -85,12 +93,14 @@ module Conekta
         :'antifraud_info' => :'CustomerAntifraudInfo',
         :'corporate' => :'Boolean',
         :'custom_reference' => :'String',
+        :'date_of_birth' => :'String',
         :'email' => :'String',
         :'default_payment_source_id' => :'String',
         :'default_shipping_contact_id' => :'String',
         :'fiscal_entities' => :'Array<CustomerFiscalEntitiesRequest>',
         :'metadata' => :'Hash<String, Object>',
         :'name' => :'String',
+        :'national_id' => :'String',
         :'payment_sources' => :'Array<CustomerPaymentMethodsRequest>',
         :'phone' => :'String',
         :'plan_id' => :'String',
@@ -135,6 +145,10 @@ module Conekta
         self.custom_reference = attributes[:'custom_reference']
       end
 
+      if attributes.key?(:'date_of_birth')
+        self.date_of_birth = attributes[:'date_of_birth']
+      end
+
       if attributes.key?(:'email')
         self.email = attributes[:'email']
       else
@@ -165,6 +179,10 @@ module Conekta
         self.name = attributes[:'name']
       else
         self.name = nil
+      end
+
+      if attributes.key?(:'national_id')
+        self.national_id = attributes[:'national_id']
       end
 
       if attributes.key?(:'payment_sources')
@@ -251,12 +269,14 @@ module Conekta
           antifraud_info == o.antifraud_info &&
           corporate == o.corporate &&
           custom_reference == o.custom_reference &&
+          date_of_birth == o.date_of_birth &&
           email == o.email &&
           default_payment_source_id == o.default_payment_source_id &&
           default_shipping_contact_id == o.default_shipping_contact_id &&
           fiscal_entities == o.fiscal_entities &&
           metadata == o.metadata &&
           name == o.name &&
+          national_id == o.national_id &&
           payment_sources == o.payment_sources &&
           phone == o.phone &&
           plan_id == o.plan_id &&
@@ -273,7 +293,7 @@ module Conekta
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [antifraud_info, corporate, custom_reference, email, default_payment_source_id, default_shipping_contact_id, fiscal_entities, metadata, name, payment_sources, phone, plan_id, shipping_contacts, subscription].hash
+      [antifraud_info, corporate, custom_reference, date_of_birth, email, default_payment_source_id, default_shipping_contact_id, fiscal_entities, metadata, name, national_id, payment_sources, phone, plan_id, shipping_contacts, subscription].hash
     end
 
     # Builds the object from hash

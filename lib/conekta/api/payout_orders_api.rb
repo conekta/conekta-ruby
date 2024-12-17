@@ -19,6 +19,76 @@ module Conekta
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
+    # Cancel Payout Order
+    # Cancel a payout Order resource that corresponds to a payout order ID.
+    # @param id [String] Identifier of the resource
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :accept_language Use for knowing which language to use (default to 'es')
+    # @return [PayoutOrderResponse]
+    def cancel_payout_order_by_id(id, opts = {})
+      data, _status_code, _headers = cancel_payout_order_by_id_with_http_info(id, opts)
+      data
+    end
+
+    # Cancel Payout Order
+    # Cancel a payout Order resource that corresponds to a payout order ID.
+    # @param id [String] Identifier of the resource
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :accept_language Use for knowing which language to use (default to 'es')
+    # @return [Array<(PayoutOrderResponse, Integer, Hash)>] PayoutOrderResponse data, response status code and response headers
+    def cancel_payout_order_by_id_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: PayoutOrdersApi.cancel_payout_order_by_id ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling PayoutOrdersApi.cancel_payout_order_by_id"
+      end
+      allowable_values = ["es", "en"]
+      if @api_client.config.client_side_validation && opts[:'accept_language'] && !allowable_values.include?(opts[:'accept_language'])
+        fail ArgumentError, "invalid value for \"accept_language\", must be one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/payout_orders/{id}/cancel'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.conekta-v2.1.0+json'])
+      header_params[:'Accept-Language'] = opts[:'accept_language'] if !opts[:'accept_language'].nil?
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'PayoutOrderResponse'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['bearerAuth']
+
+      new_options = opts.merge(
+        :operation => :"PayoutOrdersApi.cancel_payout_order_by_id",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:PUT, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: PayoutOrdersApi#cancel_payout_order_by_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Create payout order
     # Create a new payout order.
     # @param payout_order [PayoutOrder] requested field for payout order
