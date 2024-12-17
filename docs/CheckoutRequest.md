@@ -9,6 +9,7 @@
 | **failure_url** | **String** | Redirection url back to the site in case of failed payment, applies only to HostedPayment. | [optional] |
 | **monthly_installments_enabled** | **Boolean** |  | [optional] |
 | **monthly_installments_options** | **Array&lt;Integer&gt;** |  | [optional] |
+| **max_failed_retries** | **Integer** | Number of retries allowed before the checkout is marked as failed | [optional] |
 | **name** | **String** | Reason for payment | [optional] |
 | **on_demand_enabled** | **Boolean** |  | [optional] |
 | **redirection_time** | **Integer** | number of seconds to wait before redirecting to the success_url | [optional] |
@@ -26,6 +27,7 @@ instance = Conekta::CheckoutRequest.new(
   failure_url: null,
   monthly_installments_enabled: false,
   monthly_installments_options: [3,6,12],
+  max_failed_retries: 3,
   name: null,
   on_demand_enabled: true,
   redirection_time: 10,

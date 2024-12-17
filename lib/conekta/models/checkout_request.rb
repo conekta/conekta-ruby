@@ -29,6 +29,9 @@ module Conekta
 
     attr_accessor :monthly_installments_options
 
+    # Number of retries allowed before the checkout is marked as failed
+    attr_accessor :max_failed_retries
+
     # Reason for payment
     attr_accessor :name
 
@@ -51,6 +54,7 @@ module Conekta
         :'failure_url' => :'failure_url',
         :'monthly_installments_enabled' => :'monthly_installments_enabled',
         :'monthly_installments_options' => :'monthly_installments_options',
+        :'max_failed_retries' => :'max_failed_retries',
         :'name' => :'name',
         :'on_demand_enabled' => :'on_demand_enabled',
         :'redirection_time' => :'redirection_time',
@@ -72,6 +76,7 @@ module Conekta
         :'failure_url' => :'String',
         :'monthly_installments_enabled' => :'Boolean',
         :'monthly_installments_options' => :'Array<Integer>',
+        :'max_failed_retries' => :'Integer',
         :'name' => :'String',
         :'on_demand_enabled' => :'Boolean',
         :'redirection_time' => :'Integer',
@@ -127,6 +132,10 @@ module Conekta
         end
       end
 
+      if attributes.key?(:'max_failed_retries')
+        self.max_failed_retries = attributes[:'max_failed_retries']
+      end
+
       if attributes.key?(:'name')
         self.name = attributes[:'name']
       end
@@ -178,6 +187,7 @@ module Conekta
           failure_url == o.failure_url &&
           monthly_installments_enabled == o.monthly_installments_enabled &&
           monthly_installments_options == o.monthly_installments_options &&
+          max_failed_retries == o.max_failed_retries &&
           name == o.name &&
           on_demand_enabled == o.on_demand_enabled &&
           redirection_time == o.redirection_time &&
@@ -194,7 +204,7 @@ module Conekta
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [allowed_payment_methods, expires_at, failure_url, monthly_installments_enabled, monthly_installments_options, name, on_demand_enabled, redirection_time, success_url, type].hash
+      [allowed_payment_methods, expires_at, failure_url, monthly_installments_enabled, monthly_installments_options, max_failed_retries, name, on_demand_enabled, redirection_time, success_url, type].hash
     end
 
     # Builds the object from hash

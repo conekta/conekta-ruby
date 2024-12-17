@@ -14,21 +14,22 @@ require 'date'
 require 'time'
 
 module Conekta
-  class OrderRefundRequest
-    # Amount to be refunded in cents
-    attr_accessor :amount
+  # The charges associated with the order
+  class ChargesOrderResponse
+    # Indicates if there are more pages to be requested
+    attr_accessor :has_more
 
-    attr_accessor :expires_at
+    # Object type, in this case is list
+    attr_accessor :object
 
-    # Reason for the refund
-    attr_accessor :reason
+    attr_accessor :data
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'amount' => :'amount',
-        :'expires_at' => :'expires_at',
-        :'reason' => :'reason'
+        :'has_more' => :'has_more',
+        :'object' => :'object',
+        :'data' => :'data'
       }
     end
 
@@ -40,9 +41,9 @@ module Conekta
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'amount' => :'Integer',
-        :'expires_at' => :'Integer',
-        :'reason' => :'String'
+        :'has_more' => :'Boolean',
+        :'object' => :'String',
+        :'data' => :'Array<ChargesOrderResponseAllOfData>'
       }
     end
 
@@ -52,35 +53,44 @@ module Conekta
       ])
     end
 
+    # List of class defined in allOf (OpenAPI v3)
+    def self.openapi_all_of
+      [
+      :'Pagination'
+      ]
+    end
+
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Conekta::OrderRefundRequest` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Conekta::ChargesOrderResponse` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Conekta::OrderRefundRequest`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Conekta::ChargesOrderResponse`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'amount')
-        self.amount = attributes[:'amount']
+      if attributes.key?(:'has_more')
+        self.has_more = attributes[:'has_more']
       else
-        self.amount = nil
+        self.has_more = nil
       end
 
-      if attributes.key?(:'expires_at')
-        self.expires_at = attributes[:'expires_at']
+      if attributes.key?(:'object')
+        self.object = attributes[:'object']
+      else
+        self.object = nil
       end
 
-      if attributes.key?(:'reason')
-        self.reason = attributes[:'reason']
-      else
-        self.reason = nil
+      if attributes.key?(:'data')
+        if (value = attributes[:'data']).is_a?(Array)
+          self.data = value
+        end
       end
     end
 
@@ -89,12 +99,12 @@ module Conekta
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @amount.nil?
-        invalid_properties.push('invalid value for "amount", amount cannot be nil.')
+      if @has_more.nil?
+        invalid_properties.push('invalid value for "has_more", has_more cannot be nil.')
       end
 
-      if @reason.nil?
-        invalid_properties.push('invalid value for "reason", reason cannot be nil.')
+      if @object.nil?
+        invalid_properties.push('invalid value for "object", object cannot be nil.')
       end
 
       invalid_properties
@@ -104,8 +114,8 @@ module Conekta
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @amount.nil?
-      return false if @reason.nil?
+      return false if @has_more.nil?
+      return false if @object.nil?
       true
     end
 
@@ -114,9 +124,9 @@ module Conekta
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          amount == o.amount &&
-          expires_at == o.expires_at &&
-          reason == o.reason
+          has_more == o.has_more &&
+          object == o.object &&
+          data == o.data
     end
 
     # @see the `==` method
@@ -128,7 +138,7 @@ module Conekta
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [amount, expires_at, reason].hash
+      [has_more, object, data].hash
     end
 
     # Builds the object from hash

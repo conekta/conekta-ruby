@@ -14,6 +14,7 @@
 | **id** | **String** |  | [optional] |
 | **is_redirect_on_failure** | **Boolean** |  | [optional] |
 | **livemode** | **Boolean** |  | [optional] |
+| **max_failed_retries** | **Integer** | Number of retries allowed before the checkout is marked as failed | [optional] |
 | **metadata** | **Hash&lt;String, Object&gt;** |  | [optional] |
 | **monthly_installments_enabled** | **Boolean** |  | [optional] |
 | **monthly_installments_options** | **Array&lt;Integer&gt;** |  | [optional] |
@@ -48,6 +49,7 @@ instance = Conekta::OrderResponseCheckout.new(
   id: 6fca054a-8519-4c43-971e-cea35cc519bb,
   is_redirect_on_failure: false,
   livemode: false,
+  max_failed_retries: 3,
   metadata: null,
   monthly_installments_enabled: false,
   monthly_installments_options: null,

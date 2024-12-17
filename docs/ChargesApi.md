@@ -6,6 +6,7 @@ All URIs are relative to *https://api.conekta.io*
 | ------ | ------------ | ----------- |
 | [**get_charges**](ChargesApi.md#get_charges) | **GET** /charges | Get A List of Charges |
 | [**orders_create_charge**](ChargesApi.md#orders_create_charge) | **POST** /orders/{id}/charges | Create charge |
+| [**orders_create_charges**](ChargesApi.md#orders_create_charges) | **POST** /orders/{id}/add_charges | Create charges |
 | [**update_charge**](ChargesApi.md#update_charge) | **PUT** /charges/{id} | Update a charge |
 
 
@@ -154,6 +155,83 @@ end
 ### Return type
 
 [**ChargeOrderResponse**](ChargeOrderResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/vnd.conekta-v2.1.0+json
+
+
+## orders_create_charges
+
+> <ChargesOrderResponse> orders_create_charges(id, charge_request, opts)
+
+Create charges
+
+Create charges for an existing orden
+
+### Examples
+
+```ruby
+require 'time'
+require 'conekta'
+# setup authorization
+Conekta.configure do |config|
+  # Configure Bearer authorization: bearerAuth
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = Conekta::ChargesApi.new
+id = '6307a60c41de27127515a575' # String | Identifier of the resource
+charge_request = Conekta::ChargeRequest.new({payment_method: Conekta::PaymentMethodCardRequest.new({type: 'card | cash | spei', cvc: '198', exp_month: '12', exp_year: '2025', name: 'John Doe', number: '4242424242424242'})}) # ChargeRequest | requested field for a charge
+opts = {
+  accept_language: 'es', # String | Use for knowing which language to use
+  x_child_company_id: '6441b6376b60c3a638da80af' # String | In the case of a holding company, the company id of the child company to which will process the request.
+}
+
+begin
+  # Create charges
+  result = api_instance.orders_create_charges(id, charge_request, opts)
+  p result
+rescue Conekta::ApiError => e
+  puts "Error when calling ChargesApi->orders_create_charges: #{e}"
+end
+```
+
+#### Using the orders_create_charges_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<ChargesOrderResponse>, Integer, Hash)> orders_create_charges_with_http_info(id, charge_request, opts)
+
+```ruby
+begin
+  # Create charges
+  data, status_code, headers = api_instance.orders_create_charges_with_http_info(id, charge_request, opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <ChargesOrderResponse>
+rescue Conekta::ApiError => e
+  puts "Error when calling ChargesApi->orders_create_charges_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **id** | **String** | Identifier of the resource |  |
+| **charge_request** | [**ChargeRequest**](ChargeRequest.md) | requested field for a charge |  |
+| **accept_language** | **String** | Use for knowing which language to use | [optional][default to &#39;es&#39;] |
+| **x_child_company_id** | **String** | In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
+
+### Return type
+
+[**ChargesOrderResponse**](ChargesOrderResponse.md)
 
 ### Authorization
 

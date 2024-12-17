@@ -5,6 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **antifraud_info** | [**UpdateCustomerAntifraudInfo**](UpdateCustomerAntifraudInfo.md) |  | [optional] |
+| **date_of_birth** | **String** | It is a parameter that allows to identify the date of birth of the client. | [optional] |
 | **default_payment_source_id** | **String** | It is a parameter that allows to identify in the response, the Conekta ID of a payment method (payment_id) | [optional] |
 | **email** | **String** | An email address is a series of customizable characters followed by a universal Internet symbol, the at symbol (@), the name of a host server, and a web domain ending (.mx, .com, .org, . net, etc). | [optional] |
 | **name** | **String** | Client&#39;s name | [optional] |
@@ -15,6 +16,7 @@
 | **custom_reference** | **String** | It is an undefined value. | [optional] |
 | **fiscal_entities** | [**Array&lt;CustomerFiscalEntitiesRequest&gt;**](CustomerFiscalEntitiesRequest.md) |  | [optional] |
 | **metadata** | **Hash&lt;String, Object&gt;** |  | [optional] |
+| **national_id** | **String** | It is a parameter that allows to identify the national identification number of the client. | [optional] |
 | **payment_sources** | [**Array&lt;CustomerPaymentMethodsRequest&gt;**](CustomerPaymentMethodsRequest.md) | Contains details of the payment methods that the customer has active or has used in Conekta | [optional] |
 | **shipping_contacts** | [**Array&lt;CustomerShippingContacts&gt;**](CustomerShippingContacts.md) | Contains the detail of the shipping addresses that the client has active or has used in Conekta | [optional] |
 | **subscription** | [**SubscriptionRequest**](SubscriptionRequest.md) |  | [optional] |
@@ -26,6 +28,7 @@ require 'conekta'
 
 instance = Conekta::UpdateCustomer.new(
   antifraud_info: null,
+  date_of_birth: 24/07/1992,
   default_payment_source_id: src_1a2b3c4d5e6f7g8h,
   email: miguel@gmail.com,
   name: miguel,
@@ -36,6 +39,7 @@ instance = Conekta::UpdateCustomer.new(
   custom_reference: null,
   fiscal_entities: null,
   metadata: null,
+  national_id: HEGG560427MVZRRL04,
   payment_sources: null,
   shipping_contacts: null,
   subscription: null

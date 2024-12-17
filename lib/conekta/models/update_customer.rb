@@ -18,6 +18,9 @@ module Conekta
   class UpdateCustomer
     attr_accessor :antifraud_info
 
+    # It is a parameter that allows to identify the date of birth of the client.
+    attr_accessor :date_of_birth
+
     # It is a parameter that allows to identify in the response, the Conekta ID of a payment method (payment_id)
     attr_accessor :default_payment_source_id
 
@@ -46,6 +49,9 @@ module Conekta
 
     attr_accessor :metadata
 
+    # It is a parameter that allows to identify the national identification number of the client.
+    attr_accessor :national_id
+
     # Contains details of the payment methods that the customer has active or has used in Conekta
     attr_accessor :payment_sources
 
@@ -58,6 +64,7 @@ module Conekta
     def self.attribute_map
       {
         :'antifraud_info' => :'antifraud_info',
+        :'date_of_birth' => :'date_of_birth',
         :'default_payment_source_id' => :'default_payment_source_id',
         :'email' => :'email',
         :'name' => :'name',
@@ -68,6 +75,7 @@ module Conekta
         :'custom_reference' => :'custom_reference',
         :'fiscal_entities' => :'fiscal_entities',
         :'metadata' => :'metadata',
+        :'national_id' => :'national_id',
         :'payment_sources' => :'payment_sources',
         :'shipping_contacts' => :'shipping_contacts',
         :'subscription' => :'subscription'
@@ -83,6 +91,7 @@ module Conekta
     def self.openapi_types
       {
         :'antifraud_info' => :'UpdateCustomerAntifraudInfo',
+        :'date_of_birth' => :'String',
         :'default_payment_source_id' => :'String',
         :'email' => :'String',
         :'name' => :'String',
@@ -93,6 +102,7 @@ module Conekta
         :'custom_reference' => :'String',
         :'fiscal_entities' => :'Array<CustomerFiscalEntitiesRequest>',
         :'metadata' => :'Hash<String, Object>',
+        :'national_id' => :'String',
         :'payment_sources' => :'Array<CustomerPaymentMethodsRequest>',
         :'shipping_contacts' => :'Array<CustomerShippingContacts>',
         :'subscription' => :'SubscriptionRequest'
@@ -123,6 +133,10 @@ module Conekta
 
       if attributes.key?(:'antifraud_info')
         self.antifraud_info = attributes[:'antifraud_info']
+      end
+
+      if attributes.key?(:'date_of_birth')
+        self.date_of_birth = attributes[:'date_of_birth']
       end
 
       if attributes.key?(:'default_payment_source_id')
@@ -169,6 +183,10 @@ module Conekta
         if (value = attributes[:'metadata']).is_a?(Hash)
           self.metadata = value
         end
+      end
+
+      if attributes.key?(:'national_id')
+        self.national_id = attributes[:'national_id']
       end
 
       if attributes.key?(:'payment_sources')
@@ -228,6 +246,7 @@ module Conekta
       return true if self.equal?(o)
       self.class == o.class &&
           antifraud_info == o.antifraud_info &&
+          date_of_birth == o.date_of_birth &&
           default_payment_source_id == o.default_payment_source_id &&
           email == o.email &&
           name == o.name &&
@@ -238,6 +257,7 @@ module Conekta
           custom_reference == o.custom_reference &&
           fiscal_entities == o.fiscal_entities &&
           metadata == o.metadata &&
+          national_id == o.national_id &&
           payment_sources == o.payment_sources &&
           shipping_contacts == o.shipping_contacts &&
           subscription == o.subscription
@@ -252,7 +272,7 @@ module Conekta
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [antifraud_info, default_payment_source_id, email, name, phone, plan_id, default_shipping_contact_id, corporate, custom_reference, fiscal_entities, metadata, payment_sources, shipping_contacts, subscription].hash
+      [antifraud_info, date_of_birth, default_payment_source_id, email, name, phone, plan_id, default_shipping_contact_id, corporate, custom_reference, fiscal_entities, metadata, national_id, payment_sources, shipping_contacts, subscription].hash
     end
 
     # Builds the object from hash

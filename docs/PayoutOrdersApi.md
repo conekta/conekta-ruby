@@ -4,9 +4,83 @@ All URIs are relative to *https://api.conekta.io*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
+| [**cancel_payout_order_by_id**](PayoutOrdersApi.md#cancel_payout_order_by_id) | **PUT** /payout_orders/{id}/cancel | Cancel Payout Order |
 | [**create_payout_order**](PayoutOrdersApi.md#create_payout_order) | **POST** /payout_orders | Create payout order |
 | [**get_payout_order_by_id**](PayoutOrdersApi.md#get_payout_order_by_id) | **GET** /payout_orders/{id} | Get Payout Order |
 | [**get_payout_orders**](PayoutOrdersApi.md#get_payout_orders) | **GET** /payout_orders | Get a list of Payout Orders |
+
+
+## cancel_payout_order_by_id
+
+> <PayoutOrderResponse> cancel_payout_order_by_id(id, opts)
+
+Cancel Payout Order
+
+Cancel a payout Order resource that corresponds to a payout order ID.
+
+### Examples
+
+```ruby
+require 'time'
+require 'conekta'
+# setup authorization
+Conekta.configure do |config|
+  # Configure Bearer authorization: bearerAuth
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = Conekta::PayoutOrdersApi.new
+id = '6307a60c41de27127515a575' # String | Identifier of the resource
+opts = {
+  accept_language: 'es' # String | Use for knowing which language to use
+}
+
+begin
+  # Cancel Payout Order
+  result = api_instance.cancel_payout_order_by_id(id, opts)
+  p result
+rescue Conekta::ApiError => e
+  puts "Error when calling PayoutOrdersApi->cancel_payout_order_by_id: #{e}"
+end
+```
+
+#### Using the cancel_payout_order_by_id_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<PayoutOrderResponse>, Integer, Hash)> cancel_payout_order_by_id_with_http_info(id, opts)
+
+```ruby
+begin
+  # Cancel Payout Order
+  data, status_code, headers = api_instance.cancel_payout_order_by_id_with_http_info(id, opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <PayoutOrderResponse>
+rescue Conekta::ApiError => e
+  puts "Error when calling PayoutOrdersApi->cancel_payout_order_by_id_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **id** | **String** | Identifier of the resource |  |
+| **accept_language** | **String** | Use for knowing which language to use | [optional][default to &#39;es&#39;] |
+
+### Return type
+
+[**PayoutOrderResponse**](PayoutOrderResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/vnd.conekta-v2.1.0+json
 
 
 ## create_payout_order

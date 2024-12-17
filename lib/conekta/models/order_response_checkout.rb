@@ -35,6 +35,9 @@ module Conekta
 
     attr_accessor :livemode
 
+    # Number of retries allowed before the checkout is marked as failed
+    attr_accessor :max_failed_retries
+
     attr_accessor :metadata
 
     attr_accessor :monthly_installments_enabled
@@ -83,6 +86,7 @@ module Conekta
         :'id' => :'id',
         :'is_redirect_on_failure' => :'is_redirect_on_failure',
         :'livemode' => :'livemode',
+        :'max_failed_retries' => :'max_failed_retries',
         :'metadata' => :'metadata',
         :'monthly_installments_enabled' => :'monthly_installments_enabled',
         :'monthly_installments_options' => :'monthly_installments_options',
@@ -121,6 +125,7 @@ module Conekta
         :'id' => :'String',
         :'is_redirect_on_failure' => :'Boolean',
         :'livemode' => :'Boolean',
+        :'max_failed_retries' => :'Integer',
         :'metadata' => :'Hash<String, Object>',
         :'monthly_installments_enabled' => :'Boolean',
         :'monthly_installments_options' => :'Array<Integer>',
@@ -144,6 +149,7 @@ module Conekta
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'max_failed_retries',
         :'on_demand_enabled',
         :'redirection_time',
       ])
@@ -206,6 +212,10 @@ module Conekta
 
       if attributes.key?(:'livemode')
         self.livemode = attributes[:'livemode']
+      end
+
+      if attributes.key?(:'max_failed_retries')
+        self.max_failed_retries = attributes[:'max_failed_retries']
       end
 
       if attributes.key?(:'metadata')
@@ -330,6 +340,7 @@ module Conekta
           id == o.id &&
           is_redirect_on_failure == o.is_redirect_on_failure &&
           livemode == o.livemode &&
+          max_failed_retries == o.max_failed_retries &&
           metadata == o.metadata &&
           monthly_installments_enabled == o.monthly_installments_enabled &&
           monthly_installments_options == o.monthly_installments_options &&
@@ -358,7 +369,7 @@ module Conekta
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [allowed_payment_methods, can_not_expire, emails_sent, exclude_card_networks, expires_at, failure_url, force_3ds_flow, id, is_redirect_on_failure, livemode, metadata, monthly_installments_enabled, monthly_installments_options, name, needs_shipping_contact, object, on_demand_enabled, paid_payments_count, recurrent, redirection_time, slug, sms_sent, success_url, starts_at, status, type, url].hash
+      [allowed_payment_methods, can_not_expire, emails_sent, exclude_card_networks, expires_at, failure_url, force_3ds_flow, id, is_redirect_on_failure, livemode, max_failed_retries, metadata, monthly_installments_enabled, monthly_installments_options, name, needs_shipping_contact, object, on_demand_enabled, paid_payments_count, recurrent, redirection_time, slug, sms_sent, success_url, starts_at, status, type, url].hash
     end
 
     # Builds the object from hash

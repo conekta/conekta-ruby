@@ -14,21 +14,69 @@ require 'date'
 require 'time'
 
 module Conekta
-  class OrderRefundRequest
-    # Amount to be refunded in cents
+  class ChargesOrderResponseAllOfData
     attr_accessor :amount
 
-    attr_accessor :expires_at
+    attr_accessor :channel
 
-    # Reason for the refund
-    attr_accessor :reason
+    attr_accessor :created_at
+
+    attr_accessor :currency
+
+    attr_accessor :customer_id
+
+    attr_accessor :description
+
+    attr_accessor :device_fingerprint
+
+    attr_accessor :failure_code
+
+    attr_accessor :failure_message
+
+    # Charge ID
+    attr_accessor :id
+
+    # Whether the charge was made in live mode or not
+    attr_accessor :livemode
+
+    attr_accessor :object
+
+    # Order ID
+    attr_accessor :order_id
+
+    # Payment date
+    attr_accessor :paid_at
+
+    attr_accessor :payment_method
+
+    # Reference ID of the charge
+    attr_accessor :reference_id
+
+    attr_accessor :refunds
+
+    attr_accessor :status
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'amount' => :'amount',
-        :'expires_at' => :'expires_at',
-        :'reason' => :'reason'
+        :'channel' => :'channel',
+        :'created_at' => :'created_at',
+        :'currency' => :'currency',
+        :'customer_id' => :'customer_id',
+        :'description' => :'description',
+        :'device_fingerprint' => :'device_fingerprint',
+        :'failure_code' => :'failure_code',
+        :'failure_message' => :'failure_message',
+        :'id' => :'id',
+        :'livemode' => :'livemode',
+        :'object' => :'object',
+        :'order_id' => :'order_id',
+        :'paid_at' => :'paid_at',
+        :'payment_method' => :'payment_method',
+        :'reference_id' => :'reference_id',
+        :'refunds' => :'refunds',
+        :'status' => :'status'
       }
     end
 
@@ -41,46 +89,127 @@ module Conekta
     def self.openapi_types
       {
         :'amount' => :'Integer',
-        :'expires_at' => :'Integer',
-        :'reason' => :'String'
+        :'channel' => :'ChargeResponseChannel',
+        :'created_at' => :'Integer',
+        :'currency' => :'String',
+        :'customer_id' => :'String',
+        :'description' => :'String',
+        :'device_fingerprint' => :'String',
+        :'failure_code' => :'String',
+        :'failure_message' => :'String',
+        :'id' => :'String',
+        :'livemode' => :'Boolean',
+        :'object' => :'String',
+        :'order_id' => :'String',
+        :'paid_at' => :'Integer',
+        :'payment_method' => :'ChargeResponsePaymentMethod',
+        :'reference_id' => :'String',
+        :'refunds' => :'ChargeResponseRefunds',
+        :'status' => :'String'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'paid_at',
+        :'reference_id',
+        :'refunds',
       ])
+    end
+
+    # List of class defined in allOf (OpenAPI v3)
+    def self.openapi_all_of
+      [
+      :'ChargeResponse'
+      ]
     end
 
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Conekta::OrderRefundRequest` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Conekta::ChargesOrderResponseAllOfData` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Conekta::OrderRefundRequest`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Conekta::ChargesOrderResponseAllOfData`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
       if attributes.key?(:'amount')
         self.amount = attributes[:'amount']
-      else
-        self.amount = nil
       end
 
-      if attributes.key?(:'expires_at')
-        self.expires_at = attributes[:'expires_at']
+      if attributes.key?(:'channel')
+        self.channel = attributes[:'channel']
       end
 
-      if attributes.key?(:'reason')
-        self.reason = attributes[:'reason']
-      else
-        self.reason = nil
+      if attributes.key?(:'created_at')
+        self.created_at = attributes[:'created_at']
+      end
+
+      if attributes.key?(:'currency')
+        self.currency = attributes[:'currency']
+      end
+
+      if attributes.key?(:'customer_id')
+        self.customer_id = attributes[:'customer_id']
+      end
+
+      if attributes.key?(:'description')
+        self.description = attributes[:'description']
+      end
+
+      if attributes.key?(:'device_fingerprint')
+        self.device_fingerprint = attributes[:'device_fingerprint']
+      end
+
+      if attributes.key?(:'failure_code')
+        self.failure_code = attributes[:'failure_code']
+      end
+
+      if attributes.key?(:'failure_message')
+        self.failure_message = attributes[:'failure_message']
+      end
+
+      if attributes.key?(:'id')
+        self.id = attributes[:'id']
+      end
+
+      if attributes.key?(:'livemode')
+        self.livemode = attributes[:'livemode']
+      end
+
+      if attributes.key?(:'object')
+        self.object = attributes[:'object']
+      end
+
+      if attributes.key?(:'order_id')
+        self.order_id = attributes[:'order_id']
+      end
+
+      if attributes.key?(:'paid_at')
+        self.paid_at = attributes[:'paid_at']
+      end
+
+      if attributes.key?(:'payment_method')
+        self.payment_method = attributes[:'payment_method']
+      end
+
+      if attributes.key?(:'reference_id')
+        self.reference_id = attributes[:'reference_id']
+      end
+
+      if attributes.key?(:'refunds')
+        self.refunds = attributes[:'refunds']
+      end
+
+      if attributes.key?(:'status')
+        self.status = attributes[:'status']
       end
     end
 
@@ -89,14 +218,6 @@ module Conekta
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @amount.nil?
-        invalid_properties.push('invalid value for "amount", amount cannot be nil.')
-      end
-
-      if @reason.nil?
-        invalid_properties.push('invalid value for "reason", reason cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -104,8 +225,6 @@ module Conekta
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @amount.nil?
-      return false if @reason.nil?
       true
     end
 
@@ -115,8 +234,23 @@ module Conekta
       return true if self.equal?(o)
       self.class == o.class &&
           amount == o.amount &&
-          expires_at == o.expires_at &&
-          reason == o.reason
+          channel == o.channel &&
+          created_at == o.created_at &&
+          currency == o.currency &&
+          customer_id == o.customer_id &&
+          description == o.description &&
+          device_fingerprint == o.device_fingerprint &&
+          failure_code == o.failure_code &&
+          failure_message == o.failure_message &&
+          id == o.id &&
+          livemode == o.livemode &&
+          object == o.object &&
+          order_id == o.order_id &&
+          paid_at == o.paid_at &&
+          payment_method == o.payment_method &&
+          reference_id == o.reference_id &&
+          refunds == o.refunds &&
+          status == o.status
     end
 
     # @see the `==` method
@@ -128,7 +262,7 @@ module Conekta
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [amount, expires_at, reason].hash
+      [amount, channel, created_at, currency, customer_id, description, device_fingerprint, failure_code, failure_message, id, livemode, object, order_id, paid_at, payment_method, reference_id, refunds, status].hash
     end
 
     # Builds the object from hash
