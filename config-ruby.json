@@ -3,7 +3,7 @@
   "gemAuthor": "Conekta",
   "gemName" : "conekta",
   "gemLicense": "MIT",
-  "gemVersion": "6.0.4",
+  "gemVersion": "6.0.5",
   "hideGenerationTimestamp": false,
   "moduleName": "Conekta",
   "gemSummary" : "This library provides https://api.conekta.io operations",
