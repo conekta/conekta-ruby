@@ -83,7 +83,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 
 ## delete_customer_shipping_contacts
@@ -160,7 +160,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 
 ## update_customer_shipping_contacts
@@ -239,5 +239,5 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 

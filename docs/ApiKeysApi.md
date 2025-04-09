@@ -83,7 +83,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 
 ## delete_api_key
@@ -156,7 +156,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 
 ## get_api_key
@@ -231,7 +231,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 
 ## get_api_keys
@@ -312,7 +312,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 
 ## update_api_key
@@ -387,5 +387,5 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 

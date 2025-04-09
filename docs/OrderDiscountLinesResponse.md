@@ -1,4 +1,4 @@
-# Conekta::OrderResponseDiscountLines
+# Conekta::OrderDiscountLinesResponse
 
 ## Properties
 
@@ -13,7 +13,7 @@
 ```ruby
 require 'conekta'
 
-instance = Conekta::OrderResponseDiscountLines.new(
+instance = Conekta::OrderDiscountLinesResponse.new(
   has_more: false,
   object: list,
   data: null

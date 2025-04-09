@@ -4,24 +4,24 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **amount** | **Integer** |  | [optional] |
+| **amount** | **Integer** |  |  |
 | **channel** | [**ChargeResponseChannel**](ChargeResponseChannel.md) |  | [optional] |
-| **created_at** | **Integer** |  | [optional] |
-| **currency** | **String** |  | [optional] |
+| **created_at** | **Integer** |  |  |
+| **currency** | **String** |  |  |
 | **customer_id** | **String** |  | [optional] |
 | **description** | **String** |  | [optional] |
 | **device_fingerprint** | **String** |  | [optional] |
 | **failure_code** | **String** |  | [optional] |
 | **failure_message** | **String** |  | [optional] |
-| **id** | **String** | Charge ID | [optional] |
-| **livemode** | **Boolean** | Whether the charge was made in live mode or not | [optional] |
-| **object** | **String** |  | [optional] |
-| **order_id** | **String** | Order ID | [optional] |
+| **id** | **String** | Charge ID |  |
+| **livemode** | **Boolean** | Whether the charge was made in live mode or not |  |
+| **object** | **String** |  |  |
+| **order_id** | **String** | Order ID |  |
 | **paid_at** | **Integer** | Payment date | [optional] |
 | **payment_method** | [**ChargeResponsePaymentMethod**](ChargeResponsePaymentMethod.md) |  | [optional] |
 | **reference_id** | **String** | Reference ID of the charge | [optional] |
 | **refunds** | [**ChargeResponseRefunds**](ChargeResponseRefunds.md) |  | [optional] |
-| **status** | **String** |  | [optional] |
+| **status** | **String** | Charge status |  |
 
 ## Example
 

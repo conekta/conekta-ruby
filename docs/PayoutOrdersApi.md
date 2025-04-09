@@ -80,7 +80,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 
 ## create_payout_order
@@ -153,7 +153,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 
 ## get_payout_order_by_id
@@ -226,7 +226,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 
 ## get_payout_orders
@@ -305,5 +305,5 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 

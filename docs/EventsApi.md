@@ -6,7 +6,7 @@ All URIs are relative to *https://api.conekta.io*
 | ------ | ------------ | ----------- |
 | [**get_event**](EventsApi.md#get_event) | **GET** /events/{id} | Get Event |
 | [**get_events**](EventsApi.md#get_events) | **GET** /events | Get list of Events |
-| [**resend_event**](EventsApi.md#resend_event) | **POST** /events/{event_id}/webhook_logs/{webhook_log_id}/resend | Resend Event |
+| [**resend_event**](EventsApi.md#resend_event) | **POST** /events/{event_id}/resend | Resend Event |
 
 
 ## get_event
@@ -81,7 +81,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 
 ## get_events
@@ -160,16 +160,16 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 
 ## resend_event
 
-> <EventsResendResponse> resend_event(event_id, webhook_log_id, opts)
+> <EventsResendResponse> resend_event(event_id, resend_request, opts)
 
 Resend Event
 
-Try to send an event
+Resend event to selected webhooks
 
 ### Examples
 
@@ -184,14 +184,14 @@ end
 
 api_instance = Conekta::EventsApi.new
 event_id = '6463d6e35a4c3e001819e760' # String | event identifier
-webhook_log_id = 'webhl_2tsv6NzWJHBWCkqGt' # String | webhook log identifier
+resend_request = Conekta::ResendRequest.new({webhooks_ids: ["6307a60c41de27127515a575", "6307a60c41de27127515a571"]}) # ResendRequest | requested fields for resend an event
 opts = {
   accept_language: 'es' # String | Use for knowing which language to use
 }
 
 begin
   # Resend Event
-  result = api_instance.resend_event(event_id, webhook_log_id, opts)
+  result = api_instance.resend_event(event_id, resend_request, opts)
   p result
 rescue Conekta::ApiError => e
   puts "Error when calling EventsApi->resend_event: #{e}"
@@ -202,12 +202,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<EventsResendResponse>, Integer, Hash)> resend_event_with_http_info(event_id, webhook_log_id, opts)
+> <Array(<EventsResendResponse>, Integer, Hash)> resend_event_with_http_info(event_id, resend_request, opts)
 
 ```ruby
 begin
   # Resend Event
-  data, status_code, headers = api_instance.resend_event_with_http_info(event_id, webhook_log_id, opts)
+  data, status_code, headers = api_instance.resend_event_with_http_info(event_id, resend_request, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <EventsResendResponse>
@@ -221,7 +221,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **event_id** | **String** | event identifier |  |
-| **webhook_log_id** | **String** | webhook log identifier |  |
+| **resend_request** | [**ResendRequest**](ResendRequest.md) | requested fields for resend an event |  |
 | **accept_language** | **String** | Use for knowing which language to use | [optional][default to &#39;es&#39;] |
 
 ### Return type
@@ -234,6 +234,6 @@ end
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Content-Type**: application/json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 

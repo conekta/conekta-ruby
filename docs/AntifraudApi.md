@@ -80,7 +80,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 
 ## create_rule_whitelist
@@ -151,7 +151,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 
 ## delete_rule_blacklist
@@ -224,7 +224,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 
 ## delete_rule_whitelist
@@ -297,7 +297,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 
 ## get_rule_blacklist
@@ -368,7 +368,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 
 ## get_rule_whitelist
@@ -439,5 +439,5 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 

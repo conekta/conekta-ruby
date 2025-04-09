@@ -9,7 +9,7 @@
 | **bank** | **String** |  | [optional] |
 | **clabe** | **String** |  | [optional] |
 | **description** | **String** |  | [optional] |
-| **executed_at** | **Integer** |  | [optional] |
+| **executed_at** | **String** |  | [optional] |
 | **expires_at** | **Integer** |  | [optional] |
 | **issuing_account_bank** | **String** |  | [optional] |
 | **issuing_account_number** | **String** |  | [optional] |

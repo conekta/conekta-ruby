@@ -47,6 +47,7 @@ Conekta::CustomerPaymentMethodsData.openapi_discriminator_mapping
 # {
 #   :'card' => :'PaymentMethodCardResponse',
 #   :'cash' => :'PaymentMethodCashResponse',
+#   :'cash_recurrent' => :'PaymentMethodCashResponse',
 #   :'oxxo_recurrent' => :'PaymentMethodCashResponse',
 #   :'spei_recurrent' => :'PaymentMethodSpeiRecurrent'
 # }

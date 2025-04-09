@@ -86,7 +86,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 
 ## orders_create_charge
@@ -110,7 +110,7 @@ end
 
 api_instance = Conekta::ChargesApi.new
 id = '6307a60c41de27127515a575' # String | Identifier of the resource
-charge_request = Conekta::ChargeRequest.new({payment_method: Conekta::PaymentMethodCardRequest.new({type: 'card | cash | spei', cvc: '198', exp_month: '12', exp_year: '2025', name: 'John Doe', number: '4242424242424242'})}) # ChargeRequest | requested field for a charge
+charge_request = Conekta::ChargeRequest.new({payment_method: Conekta::PaymentMethodBnplRequest.new({type: 'bnpl', cancel_url: 'https://example.com/cancel', can_not_expire: true, failure_url: 'https://example.com/failure', product_type: 'klarna_bnpl', success_url: 'https://example.com/success'})}) # ChargeRequest | requested field for a charge
 opts = {
   accept_language: 'es', # String | Use for knowing which language to use
   x_child_company_id: '6441b6376b60c3a638da80af' # String | In the case of a holding company, the company id of the child company to which will process the request.
@@ -163,7 +163,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 
 ## orders_create_charges
@@ -187,7 +187,7 @@ end
 
 api_instance = Conekta::ChargesApi.new
 id = '6307a60c41de27127515a575' # String | Identifier of the resource
-charge_request = Conekta::ChargeRequest.new({payment_method: Conekta::PaymentMethodCardRequest.new({type: 'card | cash | spei', cvc: '198', exp_month: '12', exp_year: '2025', name: 'John Doe', number: '4242424242424242'})}) # ChargeRequest | requested field for a charge
+charge_request = Conekta::ChargeRequest.new({payment_method: Conekta::PaymentMethodBnplRequest.new({type: 'bnpl', cancel_url: 'https://example.com/cancel', can_not_expire: true, failure_url: 'https://example.com/failure', product_type: 'klarna_bnpl', success_url: 'https://example.com/success'})}) # ChargeRequest | requested field for a charge
 opts = {
   accept_language: 'es', # String | Use for knowing which language to use
   x_child_company_id: '6441b6376b60c3a638da80af' # String | In the case of a holding company, the company id of the child company to which will process the request.
@@ -240,7 +240,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 
 ## update_charge
@@ -315,5 +315,5 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 

@@ -15,6 +15,8 @@
 | **name** | **String** |  | [optional] |
 | **object** | **String** |  | [optional] |
 | **trial_period_days** | **Integer** |  | [optional] |
+| **max_retries** | **Integer** |  | [optional] |
+| **retry_delay_hours** | **Integer** |  | [optional] |
 
 ## Example
 
@@ -32,7 +34,9 @@ instance = Conekta::PlanResponse.new(
   livemode: true,
   name: Extra Plan3,
   object: plan,
-  trial_period_days: 0
+  trial_period_days: 0,
+  max_retries: 3,
+  retry_delay_hours: 48
 )
 ```
 

@@ -32,7 +32,7 @@ Conekta.configure do |config|
 end
 
 api_instance = Conekta::WebhooksApi.new
-webhook_request = Conekta::WebhookRequest.new({url: 'https://webhook.site/89277eaa-a8e4-4306-8dc5-f55c80703dc8', synchronous: false}) # WebhookRequest | requested field for webhook
+webhook_request = Conekta::WebhookRequest.new({url: 'https://webhook.site/89277eaa-a8e4-4306-8dc5-f55c80703dc8'}) # WebhookRequest | requested field for webhook
 opts = {
   accept_language: 'es' # String | Use for knowing which language to use
 }
@@ -82,7 +82,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 
 ## delete_webhook
@@ -153,7 +153,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 
 ## get_webhook
@@ -226,7 +226,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 
 ## get_webhooks
@@ -309,7 +309,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 
 ## test_webhook
@@ -382,7 +382,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 
 ## update_webhook
@@ -406,7 +406,7 @@ end
 
 api_instance = Conekta::WebhooksApi.new
 id = '6307a60c41de27127515a575' # String | Identifier of the resource
-webhook_update_request = Conekta::WebhookUpdateRequest.new({url: 'https://webhook.site/89277eaa-a8e4-4306-8dc5-f55c80703dc8'}) # WebhookUpdateRequest | requested fields in order to update a webhook
+webhook_update_request = Conekta::WebhookUpdateRequest.new # WebhookUpdateRequest | requested fields in order to update a webhook
 opts = {
   accept_language: 'es', # String | Use for knowing which language to use
   x_child_company_id: '6441b6376b60c3a638da80af' # String | In the case of a holding company, the company id of the child company to which will process the request.
@@ -459,5 +459,5 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
