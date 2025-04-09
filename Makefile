@@ -8,4 +8,4 @@ ruby:
       -g ruby \
       -o /local \
       -c /local/config-ruby.json \
-      --global-property modelTests=false
+      --global-property modelTests=false,apiTests=true
