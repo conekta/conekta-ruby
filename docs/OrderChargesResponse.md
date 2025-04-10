@@ -1,4 +1,4 @@
-# Conekta::OrderResponseCharges
+# Conekta::OrderChargesResponse
 
 ## Properties
 
@@ -13,7 +13,7 @@
 ```ruby
 require 'conekta'
 
-instance = Conekta::OrderResponseCharges.new(
+instance = Conekta::OrderChargesResponse.new(
   has_more: false,
   object: list,
   data: null

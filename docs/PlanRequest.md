@@ -12,6 +12,8 @@
 | **interval** | **String** | The interval of time between each charge. |  |
 | **name** | **String** | The name of the plan. |  |
 | **trial_period_days** | **Integer** | The number of days the customer will have a free trial. | [optional] |
+| **max_retries** | **Integer** | (optional) Specifies the maximum number of retry attempts for a subscription payment before it is canceled. | [optional] |
+| **retry_delay_hours** | **Integer** | (optional)  Defines the number of hours between subscription payment retry attempts. | [optional] |
 
 ## Example
 
@@ -26,7 +28,9 @@ instance = Conekta::PlanRequest.new(
   id: plan_24234,
   interval: null,
   name: Extra Plan3,
-  trial_period_days: 0
+  trial_period_days: 0,
+  max_retries: 3,
+  retry_delay_hours: 50
 )
 ```
 

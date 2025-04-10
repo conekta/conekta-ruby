@@ -14,6 +14,7 @@ require 'conekta'
 Conekta::ChargeRequestPaymentMethod.openapi_one_of
 # =>
 # [
+#   :'PaymentMethodBnplRequest',
 #   :'PaymentMethodCardRequest',
 #   :'PaymentMethodGeneralRequest'
 # ]
@@ -29,7 +30,7 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 require 'conekta'
 
 Conekta::ChargeRequestPaymentMethod.build(data)
-# => #<PaymentMethodCardRequest:0x00007fdd4aab02a0>
+# => #<PaymentMethodBnplRequest:0x00007fdd4aab02a0>
 
 Conekta::ChargeRequestPaymentMethod.build(data_that_doesnt_match)
 # => nil
@@ -43,6 +44,7 @@ Conekta::ChargeRequestPaymentMethod.build(data_that_doesnt_match)
 
 #### Return type
 
+- `PaymentMethodBnplRequest`
 - `PaymentMethodCardRequest`
 - `PaymentMethodGeneralRequest`
 - `nil` (if no type matches)

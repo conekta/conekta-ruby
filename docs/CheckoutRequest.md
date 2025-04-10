@@ -22,7 +22,7 @@
 require 'conekta'
 
 instance = Conekta::CheckoutRequest.new(
-  allowed_payment_methods: [&quot;cash&quot;,&quot;card&quot;,&quot;bank_transfer&quot;],
+  allowed_payment_methods: [&quot;cash&quot;,&quot;card&quot;,&quot;bank_transfer&quot;,&quot;bnpl&quot;],
   expires_at: null,
   failure_url: null,
   monthly_installments_enabled: false,
