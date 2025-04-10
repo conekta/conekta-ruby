@@ -11,5 +11,5 @@ Generator version: 7.5.0
 =end
 
 module Conekta
-  VERSION = '6.0.5'
+  VERSION = '6.0.6'
 end
