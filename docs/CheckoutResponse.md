@@ -5,6 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **allowed_payment_methods** | **Array&lt;String&gt;** | Are the payment methods available for this link | [optional] |
+| **plan_ids** | **Array&lt;String&gt;** | List of plan IDs that are available for subscription | [optional] |
 | **can_not_expire** | **Boolean** |  | [optional] |
 | **emails_sent** | **Integer** |  | [optional] |
 | **exclude_card_networks** | **Array&lt;Object&gt;** |  | [optional] |
@@ -37,6 +38,7 @@ require 'conekta'
 
 instance = Conekta::CheckoutResponse.new(
   allowed_payment_methods: [&quot;cash&quot;,&quot;card&quot;,&quot;bank_transfer&quot;,&quot;bnpl&quot;],
+  plan_ids: [&quot;plan_123&quot;,&quot;plan_456&quot;],
   can_not_expire: false,
   emails_sent: 0,
   exclude_card_networks: null,

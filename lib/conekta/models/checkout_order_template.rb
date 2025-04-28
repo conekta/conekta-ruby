@@ -24,6 +24,9 @@ module Conekta
     # They are the products to buy. Each contains the \"unit price\" and \"quantity\" parameters that are used to calculate the total amount of the order.
     attr_accessor :line_items
 
+    # It is a list of plan IDs that will be associated with the order.
+    attr_accessor :plan_ids
+
     # It is a set of key-value pairs that you can attach to the order. It can be used to store additional information about the order in a structured format.
     attr_accessor :metadata
 
@@ -33,6 +36,7 @@ module Conekta
         :'currency' => :'currency',
         :'customer_info' => :'customer_info',
         :'line_items' => :'line_items',
+        :'plan_ids' => :'plan_ids',
         :'metadata' => :'metadata'
       }
     end
@@ -48,6 +52,7 @@ module Conekta
         :'currency' => :'String',
         :'customer_info' => :'CheckoutOrderTemplateCustomerInfo',
         :'line_items' => :'Array<Product>',
+        :'plan_ids' => :'Array<String>',
         :'metadata' => :'Hash<String, Object>'
       }
     end
@@ -89,6 +94,12 @@ module Conekta
         end
       else
         self.line_items = nil
+      end
+
+      if attributes.key?(:'plan_ids')
+        if (value = attributes[:'plan_ids']).is_a?(Array)
+          self.plan_ids = value
+        end
       end
 
       if attributes.key?(:'metadata')
@@ -169,6 +180,7 @@ module Conekta
           currency == o.currency &&
           customer_info == o.customer_info &&
           line_items == o.line_items &&
+          plan_ids == o.plan_ids &&
           metadata == o.metadata
     end
 
@@ -181,7 +193,7 @@ module Conekta
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [currency, customer_info, line_items, metadata].hash
+      [currency, customer_info, line_items, plan_ids, metadata].hash
     end
 
     # Builds the object from hash
