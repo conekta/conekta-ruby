@@ -16,8 +16,11 @@ require 'time'
 module Conekta
   # [Checkout](https://developers.conekta.com/v2.2.0/reference/payment-link) details 
   class CheckoutRequest
-    # Are the payment methods available for this link
+    # Are the payment methods available for this link. For subscriptions, only 'card' is allowed due to the recurring nature of the payments.
     attr_accessor :allowed_payment_methods
+
+    # List of plan IDs that will be available for subscription. This field is required for subscription payments.
+    attr_accessor :plan_ids
 
     # Unix timestamp of checkout expiration
     attr_accessor :expires_at
@@ -46,10 +49,33 @@ module Conekta
     # This field represents the type of checkout
     attr_accessor :type
 
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'allowed_payment_methods' => :'allowed_payment_methods',
+        :'plan_ids' => :'plan_ids',
         :'expires_at' => :'expires_at',
         :'failure_url' => :'failure_url',
         :'monthly_installments_enabled' => :'monthly_installments_enabled',
@@ -72,6 +98,7 @@ module Conekta
     def self.openapi_types
       {
         :'allowed_payment_methods' => :'Array<String>',
+        :'plan_ids' => :'Array<String>',
         :'expires_at' => :'Integer',
         :'failure_url' => :'String',
         :'monthly_installments_enabled' => :'Boolean',
@@ -112,6 +139,12 @@ module Conekta
         end
       else
         self.allowed_payment_methods = nil
+      end
+
+      if attributes.key?(:'plan_ids')
+        if (value = attributes[:'plan_ids']).is_a?(Array)
+          self.plan_ids = value
+        end
       end
 
       if attributes.key?(:'expires_at')
@@ -183,6 +216,7 @@ module Conekta
       return true if self.equal?(o)
       self.class == o.class &&
           allowed_payment_methods == o.allowed_payment_methods &&
+          plan_ids == o.plan_ids &&
           expires_at == o.expires_at &&
           failure_url == o.failure_url &&
           monthly_installments_enabled == o.monthly_installments_enabled &&
@@ -204,7 +238,7 @@ module Conekta
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [allowed_payment_methods, expires_at, failure_url, monthly_installments_enabled, monthly_installments_options, max_failed_retries, name, on_demand_enabled, redirection_time, success_url, type].hash
+      [allowed_payment_methods, plan_ids, expires_at, failure_url, monthly_installments_enabled, monthly_installments_options, max_failed_retries, name, on_demand_enabled, redirection_time, success_url, type].hash
     end
 
     # Builds the object from hash

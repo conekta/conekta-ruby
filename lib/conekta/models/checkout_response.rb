@@ -19,6 +19,9 @@ module Conekta
     # Are the payment methods available for this link
     attr_accessor :allowed_payment_methods
 
+    # List of plan IDs that are available for subscription
+    attr_accessor :plan_ids
+
     attr_accessor :can_not_expire
 
     attr_accessor :emails_sent
@@ -72,6 +75,7 @@ module Conekta
     def self.attribute_map
       {
         :'allowed_payment_methods' => :'allowed_payment_methods',
+        :'plan_ids' => :'plan_ids',
         :'can_not_expire' => :'can_not_expire',
         :'emails_sent' => :'emails_sent',
         :'exclude_card_networks' => :'exclude_card_networks',
@@ -108,6 +112,7 @@ module Conekta
     def self.openapi_types
       {
         :'allowed_payment_methods' => :'Array<String>',
+        :'plan_ids' => :'Array<String>',
         :'can_not_expire' => :'Boolean',
         :'emails_sent' => :'Integer',
         :'exclude_card_networks' => :'Array<Object>',
@@ -160,6 +165,12 @@ module Conekta
       if attributes.key?(:'allowed_payment_methods')
         if (value = attributes[:'allowed_payment_methods']).is_a?(Array)
           self.allowed_payment_methods = value
+        end
+      end
+
+      if attributes.key?(:'plan_ids')
+        if (value = attributes[:'plan_ids']).is_a?(Array)
+          self.plan_ids = value
         end
       end
 
@@ -315,6 +326,7 @@ module Conekta
       return true if self.equal?(o)
       self.class == o.class &&
           allowed_payment_methods == o.allowed_payment_methods &&
+          plan_ids == o.plan_ids &&
           can_not_expire == o.can_not_expire &&
           emails_sent == o.emails_sent &&
           exclude_card_networks == o.exclude_card_networks &&
@@ -350,7 +362,7 @@ module Conekta
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [allowed_payment_methods, can_not_expire, emails_sent, exclude_card_networks, expires_at, failure_url, force_3ds_flow, id, livemode, metadata, monthly_installments_enabled, monthly_installments_options, name, needs_shipping_contact, object, paid_payments_count, payments_limit_count, recurrent, slug, sms_sent, starts_at, status, success_url, type, url].hash
+      [allowed_payment_methods, plan_ids, can_not_expire, emails_sent, exclude_card_networks, expires_at, failure_url, force_3ds_flow, id, livemode, metadata, monthly_installments_enabled, monthly_installments_options, name, needs_shipping_contact, object, paid_payments_count, payments_limit_count, recurrent, slug, sms_sent, starts_at, status, success_url, type, url].hash
     end
 
     # Builds the object from hash

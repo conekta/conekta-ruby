@@ -4,7 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **allowed_payment_methods** | **Array&lt;String&gt;** | Are the payment methods available for this link |  |
+| **allowed_payment_methods** | **Array&lt;String&gt;** | Are the payment methods available for this link. For subscriptions, only &#39;card&#39; is allowed due to the recurring nature of the payments. |  |
+| **plan_ids** | **Array&lt;String&gt;** | List of plan IDs that will be available for subscription. This field is required for subscription payments but optional for other types of payments. |
 | **expires_at** | **Integer** | Unix timestamp of checkout expiration | [optional] |
 | **failure_url** | **String** | Redirection url back to the site in case of failed payment, applies only to HostedPayment. | [optional] |
 | **monthly_installments_enabled** | **Boolean** |  | [optional] |
@@ -23,6 +24,7 @@ require 'conekta'
 
 instance = Conekta::CheckoutRequest.new(
   allowed_payment_methods: [&quot;cash&quot;,&quot;card&quot;,&quot;bank_transfer&quot;,&quot;bnpl&quot;],
+  plan_ids: [&quot;plan_123&quot;,&quot;plan_456&quot;],
   expires_at: null,
   failure_url: null,
   monthly_installments_enabled: false,
