@@ -14,35 +14,15 @@ require 'date'
 require 'time'
 
 module Conekta
-  class PaymentMethodSpeiRecurrent
-    attr_accessor :type
-
-    attr_accessor :id
-
-    attr_accessor :object
-
-    attr_accessor :created_at
-
-    attr_accessor :parent_id
-
-    # Bank name for the SPEI payment method
-    attr_accessor :bank
-
-    attr_accessor :reference
-
-    attr_accessor :expires_at
+  # Bank account information for the company.
+  class CreateCompanyRequestBankAccountInfo
+    # The 18-digit CLABE for the bank account.
+    attr_accessor :clabe
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'type' => :'type',
-        :'id' => :'id',
-        :'object' => :'object',
-        :'created_at' => :'created_at',
-        :'parent_id' => :'parent_id',
-        :'bank' => :'bank',
-        :'reference' => :'reference',
-        :'expires_at' => :'expires_at'
+        :'clabe' => :'clabe'
       }
     end
 
@@ -54,14 +34,7 @@ module Conekta
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'type' => :'String',
-        :'id' => :'String',
-        :'object' => :'String',
-        :'created_at' => :'Integer',
-        :'parent_id' => :'String',
-        :'bank' => :'String',
-        :'reference' => :'String',
-        :'expires_at' => :'String'
+        :'clabe' => :'String'
       }
     end
 
@@ -71,66 +44,23 @@ module Conekta
       ])
     end
 
-    # List of class defined in allOf (OpenAPI v3)
-    def self.openapi_all_of
-      [
-      :'PaymentMethodResponse'
-      ]
-    end
-
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Conekta::PaymentMethodSpeiRecurrent` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Conekta::CreateCompanyRequestBankAccountInfo` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Conekta::PaymentMethodSpeiRecurrent`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Conekta::CreateCompanyRequestBankAccountInfo`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'type')
-        self.type = attributes[:'type']
-      else
-        self.type = nil
-      end
-
-      if attributes.key?(:'id')
-        self.id = attributes[:'id']
-      else
-        self.id = nil
-      end
-
-      if attributes.key?(:'object')
-        self.object = attributes[:'object']
-      else
-        self.object = nil
-      end
-
-      if attributes.key?(:'created_at')
-        self.created_at = attributes[:'created_at']
-      else
-        self.created_at = nil
-      end
-
-      if attributes.key?(:'parent_id')
-        self.parent_id = attributes[:'parent_id']
-      end
-
-      if attributes.key?(:'bank')
-        self.bank = attributes[:'bank']
-      end
-
-      if attributes.key?(:'reference')
-        self.reference = attributes[:'reference']
-      end
-
-      if attributes.key?(:'expires_at')
-        self.expires_at = attributes[:'expires_at']
+      if attributes.key?(:'clabe')
+        self.clabe = attributes[:'clabe']
       end
     end
 
@@ -139,22 +69,6 @@ module Conekta
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @type.nil?
-        invalid_properties.push('invalid value for "type", type cannot be nil.')
-      end
-
-      if @id.nil?
-        invalid_properties.push('invalid value for "id", id cannot be nil.')
-      end
-
-      if @object.nil?
-        invalid_properties.push('invalid value for "object", object cannot be nil.')
-      end
-
-      if @created_at.nil?
-        invalid_properties.push('invalid value for "created_at", created_at cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -162,10 +76,6 @@ module Conekta
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @type.nil?
-      return false if @id.nil?
-      return false if @object.nil?
-      return false if @created_at.nil?
       true
     end
 
@@ -174,14 +84,7 @@ module Conekta
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          type == o.type &&
-          id == o.id &&
-          object == o.object &&
-          created_at == o.created_at &&
-          parent_id == o.parent_id &&
-          bank == o.bank &&
-          reference == o.reference &&
-          expires_at == o.expires_at
+          clabe == o.clabe
     end
 
     # @see the `==` method
@@ -193,7 +96,7 @@ module Conekta
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, id, object, created_at, parent_id, bank, reference, expires_at].hash
+      [clabe].hash
     end
 
     # Builds the object from hash

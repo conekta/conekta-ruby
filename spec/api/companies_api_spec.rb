@@ -32,6 +32,18 @@ describe 'CompaniesApi' do
     end
   end
 
+  # unit tests for create_company
+  # Create Company
+  # Create a new company.
+  # @param create_company_request Company data
+  # @param [Hash] opts the optional parameters
+  # @return [CompanyResponse]
+  describe 'create_company test' do
+    it 'should work' do
+      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+    end
+  end
+
   # unit tests for get_companies
   # Get List of Companies
   # Consume the list of child companies.  This is used for holding companies with several child entities.
@@ -55,6 +67,47 @@ describe 'CompaniesApi' do
   # @option opts [String] :accept_language Use for knowing which language to use
   # @return [CompanyResponse]
   describe 'get_company test' do
+    it 'should work' do
+      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+    end
+  end
+
+  # unit tests for get_company_documents
+  # Get Company Documents
+  # Retrieve a list of documents associated with a specific company.
+  # @param company_id The unique identifier of the company.
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :accept_language Use for knowing which language to use
+  # @return [Array<CompanyDocumentResponse>]
+  describe 'get_company_documents test' do
+    it 'should work' do
+      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+    end
+  end
+
+  # unit tests for update_company_document
+  # Update Company Document
+  # Updates an existing document associated with a specific company.
+  # @param company_id The unique identifier of the company.
+  # @param company_document_request Document information to update.
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :accept_language Use for knowing which language to use
+  # @return [CompanyDocumentResponse]
+  describe 'update_company_document test' do
+    it 'should work' do
+      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+    end
+  end
+
+  # unit tests for upload_company_document
+  # Upload Company Document
+  # Uploads a document associated with a specific company.
+  # @param company_id The unique identifier of the company.
+  # @param company_document_request Document information to upload.
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :accept_language Use for knowing which language to use
+  # @return [CompanyDocumentResponse]
+  describe 'upload_company_document test' do
     it 'should work' do
       # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
     end

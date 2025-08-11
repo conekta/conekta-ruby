@@ -110,7 +110,7 @@ end
 
 api_instance = Conekta::ChargesApi.new
 id = '6307a60c41de27127515a575' # String | Identifier of the resource
-charge_request = Conekta::ChargeRequest.new({payment_method: Conekta::PaymentMethodBnplRequest.new({type: 'bnpl', cancel_url: 'https://example.com/cancel', can_not_expire: true, failure_url: 'https://example.com/failure', product_type: 'klarna_bnpl', success_url: 'https://example.com/success'})}) # ChargeRequest | requested field for a charge
+charge_request = Conekta::ChargeRequest.new({payment_method: Conekta::PaymentMethodBnplRequest.new({type: 'bnpl', cancel_url: 'https://example.com/cancel', can_not_expire: true, failure_url: 'https://example.com/failure', product_type: 'aplazo_bnpl', success_url: 'https://example.com/success'})}) # ChargeRequest | requested field for a charge
 opts = {
   accept_language: 'es', # String | Use for knowing which language to use
   x_child_company_id: '6441b6376b60c3a638da80af' # String | In the case of a holding company, the company id of the child company to which will process the request.
@@ -187,7 +187,7 @@ end
 
 api_instance = Conekta::ChargesApi.new
 id = '6307a60c41de27127515a575' # String | Identifier of the resource
-charge_request = Conekta::ChargeRequest.new({payment_method: Conekta::PaymentMethodBnplRequest.new({type: 'bnpl', cancel_url: 'https://example.com/cancel', can_not_expire: true, failure_url: 'https://example.com/failure', product_type: 'klarna_bnpl', success_url: 'https://example.com/success'})}) # ChargeRequest | requested field for a charge
+charge_request = Conekta::ChargeRequest.new({payment_method: Conekta::PaymentMethodBnplRequest.new({type: 'bnpl', cancel_url: 'https://example.com/cancel', can_not_expire: true, failure_url: 'https://example.com/failure', product_type: 'aplazo_bnpl', success_url: 'https://example.com/success'})}) # ChargeRequest | requested field for a charge
 opts = {
   accept_language: 'es', # String | Use for knowing which language to use
   x_child_company_id: '6441b6376b60c3a638da80af' # String | In the case of a holding company, the company id of the child company to which will process the request.

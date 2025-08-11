@@ -21,7 +21,7 @@ instance = Conekta::PaymentMethodBnplRequest.new(
   cancel_url: https://example.com/cancel,
   can_not_expire: true,
   failure_url: https://example.com/failure,
-  product_type: klarna_bnpl,
+  product_type: aplazo_bnpl,
   success_url: https://example.com/success
 )
 ```
