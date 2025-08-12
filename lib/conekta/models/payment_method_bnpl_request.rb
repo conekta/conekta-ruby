@@ -190,7 +190,7 @@ module Conekta
       return false if @can_not_expire.nil?
       return false if @failure_url.nil?
       return false if @product_type.nil?
-      product_type_validator = EnumAttributeValidator.new('String', ["klarna_bnpl", "creditea_bnpl"])
+      product_type_validator = EnumAttributeValidator.new('String', ["aplazo_bnpl", "creditea_bnpl"])
       return false unless product_type_validator.valid?(@product_type)
       return false if @success_url.nil?
       true
@@ -199,7 +199,7 @@ module Conekta
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] product_type Object to be assigned
     def product_type=(product_type)
-      validator = EnumAttributeValidator.new('String', ["klarna_bnpl", "creditea_bnpl"])
+      validator = EnumAttributeValidator.new('String', ["aplazo_bnpl", "creditea_bnpl"])
       unless validator.valid?(product_type)
         fail ArgumentError, "invalid value for \"product_type\", must be one of #{validator.allowable_values}."
       end

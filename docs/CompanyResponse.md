@@ -4,14 +4,15 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **id** | **String** | The child company&#39;s unique identifier | [optional] |
-| **created_at** | **Integer** | The resource&#39;s creation date (unix timestamp) | [optional] |
-| **name** | **String** | The child company&#39;s name | [optional] |
-| **object** | **String** | The resource&#39;s type | [optional] |
-| **parent_company_id** | **String** | Id of the parent company | [optional] |
-| **use_parent_fiscal_data** | **Boolean** | Whether the parent company&#39;s fiscal data is to be used for liquidation and tax purposes | [optional] |
-| **payout_destination** | [**CompanyPayoutDestinationResponse**](CompanyPayoutDestinationResponse.md) |  | [optional] |
-| **fiscal_info** | [**CompanyFiscalInfoResponse**](CompanyFiscalInfoResponse.md) |  | [optional] |
+| **id** | **String** | The unique identifier for the company. |  |
+| **name** | **String** | The name of the company. |  |
+| **active** | **Boolean** | Indicates if the company is active. |  |
+| **account_status** | **String** | The current status of the company&#39;s account. |  |
+| **parent_company_id** | **String** | The identifier of the parent company, if any. | [optional] |
+| **onboarding_status** | **String** | The current status of the company&#39;s onboarding process. |  |
+| **documents** | [**Array&lt;CompanyResponseDocumentsInner&gt;**](CompanyResponseDocumentsInner.md) | A list of documents related to the company. |  |
+| **created_at** | **Integer** | Timestamp of when the company was created. |  |
+| **object** | **String** | The type of object, typically \&quot;company\&quot;. |  |
 
 ## Example
 
@@ -19,14 +20,15 @@
 require 'conekta'
 
 instance = Conekta::CompanyResponse.new(
-  id: 6441bb27659a060465da7335,
-  created_at: 1680397724,
-  name: Child Company A,
-  object: null,
-  parent_company_id: 6441bb3c62db5812e7920c31,
-  use_parent_fiscal_data: false,
-  payout_destination: null,
-  fiscal_info: null
+  id: 6827305a1ec60400015eb116,
+  name: test,
+  active: false,
+  account_status: signed_up,
+  parent_company_id: 680bf1da38716d00013543bc,
+  onboarding_status: pending,
+  documents: null,
+  created_at: 1748968241,
+  object: company
 )
 ```
 

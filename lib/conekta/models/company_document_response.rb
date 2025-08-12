@@ -14,35 +14,45 @@ require 'date'
 require 'time'
 
 module Conekta
-  class PaymentMethodSpeiRecurrent
-    attr_accessor :type
+  # Response body after uploading a company document.
+  class CompanyDocumentResponse
+    # Classification of the document.  | Tipo de archivo              | Descripción                                               | | :--------------------------- | :-------------------------------------------------------- | | `id_legal_representative`      | identificación oficial frente                             | | `id_legal_representative_back` | identificación oficial atrás                              | | `cfdi`                         | Prueba de situación fiscal                                | | `constitutive_act_basic`       | Acta constitutiva                                         | | `proof_of_address`             | Comprobante de domicilio del negocio                      | | `power_of_attonery`            | Poderes de representación                                 | | `deposit_account_cover`        | Carátula de la cuenta de depósito                         | | `permit_casino`                | Permiso ante SEGOB                                        | | `license_sanitation`           | Licencia sanitaria de COFEPRIS                            | | `registration_tourism`         | Inscripción ante el Registro Nacional de Turismo (SECTUR) | 
+    attr_accessor :file_classification
 
-    attr_accessor :id
+    # Name of the file as stored or processed.
+    attr_accessor :file_name
 
-    attr_accessor :object
+    # Current status of the document.
+    attr_accessor :status
 
-    attr_accessor :created_at
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
 
-    attr_accessor :parent_id
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
 
-    # Bank name for the SPEI payment method
-    attr_accessor :bank
-
-    attr_accessor :reference
-
-    attr_accessor :expires_at
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'type' => :'type',
-        :'id' => :'id',
-        :'object' => :'object',
-        :'created_at' => :'created_at',
-        :'parent_id' => :'parent_id',
-        :'bank' => :'bank',
-        :'reference' => :'reference',
-        :'expires_at' => :'expires_at'
+        :'file_classification' => :'file_classification',
+        :'file_name' => :'file_name',
+        :'status' => :'status'
       }
     end
 
@@ -54,14 +64,9 @@ module Conekta
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'type' => :'String',
-        :'id' => :'String',
-        :'object' => :'String',
-        :'created_at' => :'Integer',
-        :'parent_id' => :'String',
-        :'bank' => :'String',
-        :'reference' => :'String',
-        :'expires_at' => :'String'
+        :'file_classification' => :'String',
+        :'file_name' => :'String',
+        :'status' => :'String'
       }
     end
 
@@ -71,66 +76,37 @@ module Conekta
       ])
     end
 
-    # List of class defined in allOf (OpenAPI v3)
-    def self.openapi_all_of
-      [
-      :'PaymentMethodResponse'
-      ]
-    end
-
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Conekta::PaymentMethodSpeiRecurrent` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Conekta::CompanyDocumentResponse` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Conekta::PaymentMethodSpeiRecurrent`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Conekta::CompanyDocumentResponse`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'type')
-        self.type = attributes[:'type']
+      if attributes.key?(:'file_classification')
+        self.file_classification = attributes[:'file_classification']
       else
-        self.type = nil
+        self.file_classification = nil
       end
 
-      if attributes.key?(:'id')
-        self.id = attributes[:'id']
+      if attributes.key?(:'file_name')
+        self.file_name = attributes[:'file_name']
       else
-        self.id = nil
+        self.file_name = nil
       end
 
-      if attributes.key?(:'object')
-        self.object = attributes[:'object']
+      if attributes.key?(:'status')
+        self.status = attributes[:'status']
       else
-        self.object = nil
-      end
-
-      if attributes.key?(:'created_at')
-        self.created_at = attributes[:'created_at']
-      else
-        self.created_at = nil
-      end
-
-      if attributes.key?(:'parent_id')
-        self.parent_id = attributes[:'parent_id']
-      end
-
-      if attributes.key?(:'bank')
-        self.bank = attributes[:'bank']
-      end
-
-      if attributes.key?(:'reference')
-        self.reference = attributes[:'reference']
-      end
-
-      if attributes.key?(:'expires_at')
-        self.expires_at = attributes[:'expires_at']
+        self.status = nil
       end
     end
 
@@ -139,20 +115,16 @@ module Conekta
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @type.nil?
-        invalid_properties.push('invalid value for "type", type cannot be nil.')
+      if @file_classification.nil?
+        invalid_properties.push('invalid value for "file_classification", file_classification cannot be nil.')
       end
 
-      if @id.nil?
-        invalid_properties.push('invalid value for "id", id cannot be nil.')
+      if @file_name.nil?
+        invalid_properties.push('invalid value for "file_name", file_name cannot be nil.')
       end
 
-      if @object.nil?
-        invalid_properties.push('invalid value for "object", object cannot be nil.')
-      end
-
-      if @created_at.nil?
-        invalid_properties.push('invalid value for "created_at", created_at cannot be nil.')
+      if @status.nil?
+        invalid_properties.push('invalid value for "status", status cannot be nil.')
       end
 
       invalid_properties
@@ -162,11 +134,22 @@ module Conekta
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @type.nil?
-      return false if @id.nil?
-      return false if @object.nil?
-      return false if @created_at.nil?
+      return false if @file_classification.nil?
+      file_classification_validator = EnumAttributeValidator.new('String', ["id_legal_representative", "id_legal_representative_back", "cfdi", "constitutive_act_basic", "proof_of_address", "power_of_attonery", "deposit_account_cover", "permit_casino", "license_sanitation", "registration_tourism"])
+      return false unless file_classification_validator.valid?(@file_classification)
+      return false if @file_name.nil?
+      return false if @status.nil?
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] file_classification Object to be assigned
+    def file_classification=(file_classification)
+      validator = EnumAttributeValidator.new('String', ["id_legal_representative", "id_legal_representative_back", "cfdi", "constitutive_act_basic", "proof_of_address", "power_of_attonery", "deposit_account_cover", "permit_casino", "license_sanitation", "registration_tourism"])
+      unless validator.valid?(file_classification)
+        fail ArgumentError, "invalid value for \"file_classification\", must be one of #{validator.allowable_values}."
+      end
+      @file_classification = file_classification
     end
 
     # Checks equality by comparing each attribute.
@@ -174,14 +157,9 @@ module Conekta
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          type == o.type &&
-          id == o.id &&
-          object == o.object &&
-          created_at == o.created_at &&
-          parent_id == o.parent_id &&
-          bank == o.bank &&
-          reference == o.reference &&
-          expires_at == o.expires_at
+          file_classification == o.file_classification &&
+          file_name == o.file_name &&
+          status == o.status
     end
 
     # @see the `==` method
@@ -193,7 +171,7 @@ module Conekta
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, id, object, created_at, parent_id, bank, reference, expires_at].hash
+      [file_classification, file_name, status].hash
     end
 
     # Builds the object from hash

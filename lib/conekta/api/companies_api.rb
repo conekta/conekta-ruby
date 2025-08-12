@@ -19,6 +19,74 @@ module Conekta
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
+    # Create Company
+    # Create a new company.
+    # @param create_company_request [CreateCompanyRequest] Company data
+    # @param [Hash] opts the optional parameters
+    # @return [CompanyResponse]
+    def create_company(create_company_request, opts = {})
+      data, _status_code, _headers = create_company_with_http_info(create_company_request, opts)
+      data
+    end
+
+    # Create Company
+    # Create a new company.
+    # @param create_company_request [CreateCompanyRequest] Company data
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(CompanyResponse, Integer, Hash)>] CompanyResponse data, response status code and response headers
+    def create_company_with_http_info(create_company_request, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CompaniesApi.create_company ...'
+      end
+      # verify the required parameter 'create_company_request' is set
+      if @api_client.config.client_side_validation && create_company_request.nil?
+        fail ArgumentError, "Missing the required parameter 'create_company_request' when calling CompaniesApi.create_company"
+      end
+      # resource path
+      local_var_path = '/companies'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.conekta-v2.2.0+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(create_company_request)
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'CompanyResponse'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['bearerAuth']
+
+      new_options = opts.merge(
+        :operation => :"CompaniesApi.create_company",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CompaniesApi#create_company\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Get List of Companies
     # Consume the list of child companies.  This is used for holding companies with several child entities.
     # @param [Hash] opts the optional parameters
@@ -167,6 +235,238 @@ module Conekta
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: CompaniesApi#get_company\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get Company Documents
+    # Retrieve a list of documents associated with a specific company.
+    # @param company_id [String] The unique identifier of the company.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :accept_language Use for knowing which language to use (default to 'es')
+    # @return [Array<CompanyDocumentResponse>]
+    def get_company_documents(company_id, opts = {})
+      data, _status_code, _headers = get_company_documents_with_http_info(company_id, opts)
+      data
+    end
+
+    # Get Company Documents
+    # Retrieve a list of documents associated with a specific company.
+    # @param company_id [String] The unique identifier of the company.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :accept_language Use for knowing which language to use (default to 'es')
+    # @return [Array<(Array<CompanyDocumentResponse>, Integer, Hash)>] Array<CompanyDocumentResponse> data, response status code and response headers
+    def get_company_documents_with_http_info(company_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CompaniesApi.get_company_documents ...'
+      end
+      # verify the required parameter 'company_id' is set
+      if @api_client.config.client_side_validation && company_id.nil?
+        fail ArgumentError, "Missing the required parameter 'company_id' when calling CompaniesApi.get_company_documents"
+      end
+      allowable_values = ["es", "en"]
+      if @api_client.config.client_side_validation && opts[:'accept_language'] && !allowable_values.include?(opts[:'accept_language'])
+        fail ArgumentError, "invalid value for \"accept_language\", must be one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/companies/{company_id}/documents'.sub('{' + 'company_id' + '}', CGI.escape(company_id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.conekta-v2.2.0+json'])
+      header_params[:'Accept-Language'] = opts[:'accept_language'] if !opts[:'accept_language'].nil?
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Array<CompanyDocumentResponse>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['bearerAuth']
+
+      new_options = opts.merge(
+        :operation => :"CompaniesApi.get_company_documents",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CompaniesApi#get_company_documents\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Update Company Document
+    # Updates an existing document associated with a specific company.
+    # @param company_id [String] The unique identifier of the company.
+    # @param company_document_request [CompanyDocumentRequest] Document information to update.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :accept_language Use for knowing which language to use (default to 'es')
+    # @return [CompanyDocumentResponse]
+    def update_company_document(company_id, company_document_request, opts = {})
+      data, _status_code, _headers = update_company_document_with_http_info(company_id, company_document_request, opts)
+      data
+    end
+
+    # Update Company Document
+    # Updates an existing document associated with a specific company.
+    # @param company_id [String] The unique identifier of the company.
+    # @param company_document_request [CompanyDocumentRequest] Document information to update.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :accept_language Use for knowing which language to use (default to 'es')
+    # @return [Array<(CompanyDocumentResponse, Integer, Hash)>] CompanyDocumentResponse data, response status code and response headers
+    def update_company_document_with_http_info(company_id, company_document_request, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CompaniesApi.update_company_document ...'
+      end
+      # verify the required parameter 'company_id' is set
+      if @api_client.config.client_side_validation && company_id.nil?
+        fail ArgumentError, "Missing the required parameter 'company_id' when calling CompaniesApi.update_company_document"
+      end
+      # verify the required parameter 'company_document_request' is set
+      if @api_client.config.client_side_validation && company_document_request.nil?
+        fail ArgumentError, "Missing the required parameter 'company_document_request' when calling CompaniesApi.update_company_document"
+      end
+      allowable_values = ["es", "en"]
+      if @api_client.config.client_side_validation && opts[:'accept_language'] && !allowable_values.include?(opts[:'accept_language'])
+        fail ArgumentError, "invalid value for \"accept_language\", must be one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/companies/{company_id}/document'.sub('{' + 'company_id' + '}', CGI.escape(company_id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.conekta-v2.2.0+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+      header_params[:'Accept-Language'] = opts[:'accept_language'] if !opts[:'accept_language'].nil?
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(company_document_request)
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'CompanyDocumentResponse'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['bearerAuth']
+
+      new_options = opts.merge(
+        :operation => :"CompaniesApi.update_company_document",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:PATCH, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CompaniesApi#update_company_document\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Upload Company Document
+    # Uploads a document associated with a specific company.
+    # @param company_id [String] The unique identifier of the company.
+    # @param company_document_request [CompanyDocumentRequest] Document information to upload.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :accept_language Use for knowing which language to use (default to 'es')
+    # @return [CompanyDocumentResponse]
+    def upload_company_document(company_id, company_document_request, opts = {})
+      data, _status_code, _headers = upload_company_document_with_http_info(company_id, company_document_request, opts)
+      data
+    end
+
+    # Upload Company Document
+    # Uploads a document associated with a specific company.
+    # @param company_id [String] The unique identifier of the company.
+    # @param company_document_request [CompanyDocumentRequest] Document information to upload.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :accept_language Use for knowing which language to use (default to 'es')
+    # @return [Array<(CompanyDocumentResponse, Integer, Hash)>] CompanyDocumentResponse data, response status code and response headers
+    def upload_company_document_with_http_info(company_id, company_document_request, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CompaniesApi.upload_company_document ...'
+      end
+      # verify the required parameter 'company_id' is set
+      if @api_client.config.client_side_validation && company_id.nil?
+        fail ArgumentError, "Missing the required parameter 'company_id' when calling CompaniesApi.upload_company_document"
+      end
+      # verify the required parameter 'company_document_request' is set
+      if @api_client.config.client_side_validation && company_document_request.nil?
+        fail ArgumentError, "Missing the required parameter 'company_document_request' when calling CompaniesApi.upload_company_document"
+      end
+      allowable_values = ["es", "en"]
+      if @api_client.config.client_side_validation && opts[:'accept_language'] && !allowable_values.include?(opts[:'accept_language'])
+        fail ArgumentError, "invalid value for \"accept_language\", must be one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/companies/{company_id}/document'.sub('{' + 'company_id' + '}', CGI.escape(company_id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.conekta-v2.2.0+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+      header_params[:'Accept-Language'] = opts[:'accept_language'] if !opts[:'accept_language'].nil?
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(company_document_request)
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'CompanyDocumentResponse'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['bearerAuth']
+
+      new_options = opts.merge(
+        :operation => :"CompaniesApi.upload_company_document",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CompaniesApi#upload_company_document\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

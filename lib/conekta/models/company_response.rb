@@ -14,63 +14,46 @@ require 'date'
 require 'time'
 
 module Conekta
-  # Company model
   class CompanyResponse
-    # The child company's unique identifier
+    # The unique identifier for the company.
     attr_accessor :id
 
-    # The resource's creation date (unix timestamp)
-    attr_accessor :created_at
-
-    # The child company's name
+    # The name of the company.
     attr_accessor :name
 
-    # The resource's type
-    attr_accessor :object
+    # Indicates if the company is active.
+    attr_accessor :active
 
-    # Id of the parent company
+    # The current status of the company's account.
+    attr_accessor :account_status
+
+    # The identifier of the parent company, if any.
     attr_accessor :parent_company_id
 
-    # Whether the parent company's fiscal data is to be used for liquidation and tax purposes
-    attr_accessor :use_parent_fiscal_data
+    # The current status of the company's onboarding process.
+    attr_accessor :onboarding_status
 
-    attr_accessor :payout_destination
+    # A list of documents related to the company.
+    attr_accessor :documents
 
-    attr_accessor :fiscal_info
+    # Timestamp of when the company was created.
+    attr_accessor :created_at
 
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
+    # The type of object, typically \"company\".
+    attr_accessor :object
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'id' => :'id',
-        :'created_at' => :'created_at',
         :'name' => :'name',
-        :'object' => :'object',
+        :'active' => :'active',
+        :'account_status' => :'account_status',
         :'parent_company_id' => :'parent_company_id',
-        :'use_parent_fiscal_data' => :'use_parent_fiscal_data',
-        :'payout_destination' => :'payout_destination',
-        :'fiscal_info' => :'fiscal_info'
+        :'onboarding_status' => :'onboarding_status',
+        :'documents' => :'documents',
+        :'created_at' => :'created_at',
+        :'object' => :'object'
       }
     end
 
@@ -83,19 +66,21 @@ module Conekta
     def self.openapi_types
       {
         :'id' => :'String',
-        :'created_at' => :'Integer',
         :'name' => :'String',
-        :'object' => :'String',
+        :'active' => :'Boolean',
+        :'account_status' => :'String',
         :'parent_company_id' => :'String',
-        :'use_parent_fiscal_data' => :'Boolean',
-        :'payout_destination' => :'CompanyPayoutDestinationResponse',
-        :'fiscal_info' => :'CompanyFiscalInfoResponse'
+        :'onboarding_status' => :'String',
+        :'documents' => :'Array<CompanyResponseDocumentsInner>',
+        :'created_at' => :'Integer',
+        :'object' => :'String'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'parent_company_id',
       ])
     end
 
@@ -116,34 +101,56 @@ module Conekta
 
       if attributes.key?(:'id')
         self.id = attributes[:'id']
-      end
-
-      if attributes.key?(:'created_at')
-        self.created_at = attributes[:'created_at']
+      else
+        self.id = nil
       end
 
       if attributes.key?(:'name')
         self.name = attributes[:'name']
+      else
+        self.name = nil
       end
 
-      if attributes.key?(:'object')
-        self.object = attributes[:'object']
+      if attributes.key?(:'active')
+        self.active = attributes[:'active']
+      else
+        self.active = nil
+      end
+
+      if attributes.key?(:'account_status')
+        self.account_status = attributes[:'account_status']
+      else
+        self.account_status = nil
       end
 
       if attributes.key?(:'parent_company_id')
         self.parent_company_id = attributes[:'parent_company_id']
       end
 
-      if attributes.key?(:'use_parent_fiscal_data')
-        self.use_parent_fiscal_data = attributes[:'use_parent_fiscal_data']
+      if attributes.key?(:'onboarding_status')
+        self.onboarding_status = attributes[:'onboarding_status']
+      else
+        self.onboarding_status = nil
       end
 
-      if attributes.key?(:'payout_destination')
-        self.payout_destination = attributes[:'payout_destination']
+      if attributes.key?(:'documents')
+        if (value = attributes[:'documents']).is_a?(Array)
+          self.documents = value
+        end
+      else
+        self.documents = nil
       end
 
-      if attributes.key?(:'fiscal_info')
-        self.fiscal_info = attributes[:'fiscal_info']
+      if attributes.key?(:'created_at')
+        self.created_at = attributes[:'created_at']
+      else
+        self.created_at = nil
+      end
+
+      if attributes.key?(:'object')
+        self.object = attributes[:'object']
+      else
+        self.object = nil
       end
     end
 
@@ -152,6 +159,38 @@ module Conekta
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @id.nil?
+        invalid_properties.push('invalid value for "id", id cannot be nil.')
+      end
+
+      if @name.nil?
+        invalid_properties.push('invalid value for "name", name cannot be nil.')
+      end
+
+      if @active.nil?
+        invalid_properties.push('invalid value for "active", active cannot be nil.')
+      end
+
+      if @account_status.nil?
+        invalid_properties.push('invalid value for "account_status", account_status cannot be nil.')
+      end
+
+      if @onboarding_status.nil?
+        invalid_properties.push('invalid value for "onboarding_status", onboarding_status cannot be nil.')
+      end
+
+      if @documents.nil?
+        invalid_properties.push('invalid value for "documents", documents cannot be nil.')
+      end
+
+      if @created_at.nil?
+        invalid_properties.push('invalid value for "created_at", created_at cannot be nil.')
+      end
+
+      if @object.nil?
+        invalid_properties.push('invalid value for "object", object cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -159,19 +198,15 @@ module Conekta
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      object_validator = EnumAttributeValidator.new('String', ["company"])
-      return false unless object_validator.valid?(@object)
+      return false if @id.nil?
+      return false if @name.nil?
+      return false if @active.nil?
+      return false if @account_status.nil?
+      return false if @onboarding_status.nil?
+      return false if @documents.nil?
+      return false if @created_at.nil?
+      return false if @object.nil?
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] object Object to be assigned
-    def object=(object)
-      validator = EnumAttributeValidator.new('String', ["company"])
-      unless validator.valid?(object)
-        fail ArgumentError, "invalid value for \"object\", must be one of #{validator.allowable_values}."
-      end
-      @object = object
     end
 
     # Checks equality by comparing each attribute.
@@ -180,13 +215,14 @@ module Conekta
       return true if self.equal?(o)
       self.class == o.class &&
           id == o.id &&
-          created_at == o.created_at &&
           name == o.name &&
-          object == o.object &&
+          active == o.active &&
+          account_status == o.account_status &&
           parent_company_id == o.parent_company_id &&
-          use_parent_fiscal_data == o.use_parent_fiscal_data &&
-          payout_destination == o.payout_destination &&
-          fiscal_info == o.fiscal_info
+          onboarding_status == o.onboarding_status &&
+          documents == o.documents &&
+          created_at == o.created_at &&
+          object == o.object
     end
 
     # @see the `==` method
@@ -198,7 +234,7 @@ module Conekta
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, created_at, name, object, parent_company_id, use_parent_fiscal_data, payout_destination, fiscal_info].hash
+      [id, name, active, account_status, parent_company_id, onboarding_status, documents, created_at, object].hash
     end
 
     # Builds the object from hash
