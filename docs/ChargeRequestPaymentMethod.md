@@ -16,7 +16,8 @@ Conekta::ChargeRequestPaymentMethod.openapi_one_of
 # [
 #   :'PaymentMethodBnplRequest',
 #   :'PaymentMethodCardRequest',
-#   :'PaymentMethodGeneralRequest'
+#   :'PaymentMethodGeneralRequest',
+#   :'PaymentMethodPbbRequest'
 # ]
 ```
 
@@ -47,5 +48,6 @@ Conekta::ChargeRequestPaymentMethod.build(data_that_doesnt_match)
 - `PaymentMethodBnplRequest`
 - `PaymentMethodCardRequest`
 - `PaymentMethodGeneralRequest`
+- `PaymentMethodPbbRequest`
 - `nil` (if no type matches)
 

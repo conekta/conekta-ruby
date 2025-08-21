@@ -20,7 +20,7 @@ instance = Conekta::CompanyDocumentRequest.new(
   content_type: application/pdf,
   international: false,
   file_name: example_document.pdf,
-  file_data: [B@1dc7173
+  file_data: [B@53a49745
 )
 ```
 

@@ -13,7 +13,7 @@
 require 'conekta'
 
 instance = Conekta::PaymentMethodTokenRequest.new(
-  type: card | cash | spei | bnpl,
+  type: card | cash | spei | bnpl | pay_by_bank,
   token_id: tok_32hj4g234as
 )
 ```

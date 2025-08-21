@@ -24,7 +24,7 @@ instance = Conekta::WebhookLog.new(
   last_http_response_status: 200,
   object: webhook_log,
   response_data: {&quot;amount&quot;:3000,&quot;payable&quot;:true},
-  url: https://username:password@mockoon.stg.conekta.io/payments-api/cash/merchant_approval
+  url: https://username:password@mockoon.conekta.io/payments-api/cash/merchant_approval
 )
 ```
 

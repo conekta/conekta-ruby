@@ -66,7 +66,7 @@ instance = Conekta::OrderResponseCheckout.new(
   starts_at: 1676354400,
   status: Issued,
   type: HostedPayment,
-  url: https://pay.stg.conekta.io/checkout/6fca054a85194c43971ecea35cc519bb
+  url: https://pay.conekta.io/checkout/6fca054a85194c43971ecea35cc519bb
 )
 ```
 

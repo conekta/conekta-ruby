@@ -17,7 +17,8 @@ Conekta::ChargeResponsePaymentMethod.openapi_one_of
 #   :'PaymentMethodBankTransfer',
 #   :'PaymentMethodBnplPayment',
 #   :'PaymentMethodCard',
-#   :'PaymentMethodCash'
+#   :'PaymentMethodCash',
+#   :'PaymentMethodPbbPayment'
 # ]
 ```
 
@@ -49,7 +50,8 @@ Conekta::ChargeResponsePaymentMethod.openapi_discriminator_mapping
 #   :'bank_transfer_payment' => :'PaymentMethodBankTransfer',
 #   :'bnpl_payment' => :'PaymentMethodBnplPayment',
 #   :'card_payment' => :'PaymentMethodCard',
-#   :'cash_payment' => :'PaymentMethodCash'
+#   :'cash_payment' => :'PaymentMethodCash',
+#   :'pay_by_bank_payment' => :'PaymentMethodPbbPayment'
 # }
 ```
 
@@ -81,5 +83,6 @@ Conekta::ChargeResponsePaymentMethod.build(data_that_doesnt_match)
 - `PaymentMethodBnplPayment`
 - `PaymentMethodCard`
 - `PaymentMethodCash`
+- `PaymentMethodPbbPayment`
 - `nil` (if no type matches)
 

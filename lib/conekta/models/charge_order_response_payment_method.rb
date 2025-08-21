@@ -22,7 +22,8 @@ module Conekta
           :'PaymentMethodBankTransfer',
           :'PaymentMethodBnplPayment',
           :'PaymentMethodCard',
-          :'PaymentMethodCash'
+          :'PaymentMethodCash',
+          :'PaymentMethodPbbPayment'
         ]
       end
 
@@ -37,7 +38,8 @@ module Conekta
           :'bank_transfer_payment' => :'PaymentMethodBankTransfer',
           :'bnpl_payment' => :'PaymentMethodBnplPayment',
           :'card_payment' => :'PaymentMethodCard',
-          :'cash_payment' => :'PaymentMethodCash'
+          :'cash_payment' => :'PaymentMethodCash',
+          :'pbb_payment' => :'PaymentMethodPbbPayment'
         }
       end
 

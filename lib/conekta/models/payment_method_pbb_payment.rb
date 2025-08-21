@@ -14,18 +14,36 @@ require 'date'
 require 'time'
 
 module Conekta
-  class UpdatePaymentMethods
-    # The name of the payment method holder
-    attr_accessor :name
+  class PaymentMethodPbbPayment
+    attr_accessor :type
 
-    # The expiration date of the payment method in Unix timestamp format
+    attr_accessor :object
+
+    # Deep link for the payment, use for mobile apps/flows
+    attr_accessor :deep_link
+
+    # Expiration date of the charge
     attr_accessor :expires_at
+
+    # Product type of the charge
+    attr_accessor :product_type
+
+    # URL to redirect the customer to complete the payment
+    attr_accessor :redirect_url
+
+    # Reference for the payment
+    attr_accessor :reference
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'name' => :'name',
-        :'expires_at' => :'expires_at'
+        :'type' => :'type',
+        :'object' => :'object',
+        :'deep_link' => :'deep_link',
+        :'expires_at' => :'expires_at',
+        :'product_type' => :'product_type',
+        :'redirect_url' => :'redirect_url',
+        :'reference' => :'reference'
       }
     end
 
@@ -37,8 +55,13 @@ module Conekta
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'name' => :'String',
-        :'expires_at' => :'Integer'
+        :'type' => :'String',
+        :'object' => :'String',
+        :'deep_link' => :'String',
+        :'expires_at' => :'Integer',
+        :'product_type' => :'String',
+        :'redirect_url' => :'String',
+        :'reference' => :'String'
       }
     end
 
@@ -48,27 +71,66 @@ module Conekta
       ])
     end
 
+    # List of class defined in allOf (OpenAPI v3)
+    def self.openapi_all_of
+      [
+      :'PaymentMethod'
+      ]
+    end
+
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Conekta::UpdatePaymentMethods` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Conekta::PaymentMethodPbbPayment` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Conekta::UpdatePaymentMethods`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Conekta::PaymentMethodPbbPayment`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'name')
-        self.name = attributes[:'name']
+      if attributes.key?(:'type')
+        self.type = attributes[:'type']
+      end
+
+      if attributes.key?(:'object')
+        self.object = attributes[:'object']
+      else
+        self.object = nil
+      end
+
+      if attributes.key?(:'deep_link')
+        self.deep_link = attributes[:'deep_link']
+      else
+        self.deep_link = nil
       end
 
       if attributes.key?(:'expires_at')
         self.expires_at = attributes[:'expires_at']
+      else
+        self.expires_at = nil
+      end
+
+      if attributes.key?(:'product_type')
+        self.product_type = attributes[:'product_type']
+      else
+        self.product_type = nil
+      end
+
+      if attributes.key?(:'redirect_url')
+        self.redirect_url = attributes[:'redirect_url']
+      else
+        self.redirect_url = nil
+      end
+
+      if attributes.key?(:'reference')
+        self.reference = attributes[:'reference']
+      else
+        self.reference = nil
       end
     end
 
@@ -77,8 +139,32 @@ module Conekta
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if !@expires_at.nil? && @expires_at < 1
-        invalid_properties.push('invalid value for "expires_at", must be greater than or equal to 1.')
+      if @object.nil?
+        invalid_properties.push('invalid value for "object", object cannot be nil.')
+      end
+
+      if @deep_link.nil?
+        invalid_properties.push('invalid value for "deep_link", deep_link cannot be nil.')
+      end
+
+      if @expires_at.nil?
+        invalid_properties.push('invalid value for "expires_at", expires_at cannot be nil.')
+      end
+
+      if @expires_at <= 0
+        invalid_properties.push('invalid value for "expires_at", must be greater than 0.')
+      end
+
+      if @product_type.nil?
+        invalid_properties.push('invalid value for "product_type", product_type cannot be nil.')
+      end
+
+      if @redirect_url.nil?
+        invalid_properties.push('invalid value for "redirect_url", redirect_url cannot be nil.')
+      end
+
+      if @reference.nil?
+        invalid_properties.push('invalid value for "reference", reference cannot be nil.')
       end
 
       invalid_properties
@@ -88,7 +174,13 @@ module Conekta
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@expires_at.nil? && @expires_at < 1
+      return false if @object.nil?
+      return false if @deep_link.nil?
+      return false if @expires_at.nil?
+      return false if @expires_at <= 0
+      return false if @product_type.nil?
+      return false if @redirect_url.nil?
+      return false if @reference.nil?
       true
     end
 
@@ -99,8 +191,8 @@ module Conekta
         fail ArgumentError, 'expires_at cannot be nil'
       end
 
-      if expires_at < 1
-        fail ArgumentError, 'invalid value for "expires_at", must be greater than or equal to 1.'
+      if expires_at <= 0
+        fail ArgumentError, 'invalid value for "expires_at", must be greater than 0.'
       end
 
       @expires_at = expires_at
@@ -111,8 +203,13 @@ module Conekta
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          name == o.name &&
-          expires_at == o.expires_at
+          type == o.type &&
+          object == o.object &&
+          deep_link == o.deep_link &&
+          expires_at == o.expires_at &&
+          product_type == o.product_type &&
+          redirect_url == o.redirect_url &&
+          reference == o.reference
     end
 
     # @see the `==` method
@@ -124,7 +221,7 @@ module Conekta
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [name, expires_at].hash
+      [type, object, deep_link, expires_at, product_type, redirect_url, reference].hash
     end
 
     # Builds the object from hash
