@@ -40,6 +40,9 @@ class OneTimeChargeBnpl
   begin
     result = api_instance.create_order(order_request, opts)
     p result
+    p result.id
+    p result.charges.data[0].payment_method.bnpl_payment.redirect_url
+    p result.charges.data[0].payment_method.bnpl_payment.type
   rescue Conekta::ApiError => e
     puts "Exception when calling create order #{e}"
   end
