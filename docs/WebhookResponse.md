@@ -26,7 +26,7 @@ instance = Conekta::WebhookResponse.new(
   object: event,
   status: listening,
   subscribed_events: [&quot;charge.created&quot;,&quot;charge.paid&quot;,&quot;charge.under_fraud_review&quot;,&quot;charge.fraudulent&quot;,&quot;charge.refunded&quot;,&quot;charge.preauthorized&quot;,&quot;charge.declined&quot;,&quot;charge.canceled&quot;,&quot;charge.reversed&quot;,&quot;charge.pending_confirmation&quot;],
-  url: https://username:password@mockoon.stg.conekta.io/payments-api/cash/merchant_approval
+  url: https://username:password@mockoon.conekta.io/payments-api/cash/merchant_approval
 )
 ```
 

@@ -22,7 +22,7 @@ instance = Conekta::EventsResendResponse.new(
   last_attempted_at: 1684265970,
   last_http_response_status: 405,
   response_data: {},
-  url: https://username:password@mockoon.stg.conekta.io/payments-api/cash/merchant_approval
+  url: https://username:password@mockoon.conekta.io/payments-api/cash/merchant_approval
 )
 ```
 

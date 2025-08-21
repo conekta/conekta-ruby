@@ -13,7 +13,7 @@
 require 'conekta'
 
 instance = Conekta::PaymentMethodSpeiRequest.new(
-  type: card | cash | spei | bnpl,
+  type: card | cash | spei | bnpl | pay_by_bank,
   expires_at: 1553273553
 )
 ```

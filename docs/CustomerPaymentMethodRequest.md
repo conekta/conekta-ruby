@@ -12,7 +12,7 @@
 require 'conekta'
 
 instance = Conekta::CustomerPaymentMethodRequest.new(
-  type: card | cash | spei | bnpl
+  type: card | cash | spei | bnpl | pay_by_bank
 )
 ```
 

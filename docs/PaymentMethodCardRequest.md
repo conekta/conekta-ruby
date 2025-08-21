@@ -18,7 +18,7 @@
 require 'conekta'
 
 instance = Conekta::PaymentMethodCardRequest.new(
-  type: card | cash | spei | bnpl,
+  type: card | cash | spei | bnpl | pay_by_bank,
   cvc: 198,
   exp_month: 12,
   exp_year: 2025,

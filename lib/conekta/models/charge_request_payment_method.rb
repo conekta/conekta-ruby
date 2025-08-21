@@ -21,7 +21,8 @@ module Conekta
         [
           :'PaymentMethodBnplRequest',
           :'PaymentMethodCardRequest',
-          :'PaymentMethodGeneralRequest'
+          :'PaymentMethodGeneralRequest',
+          :'PaymentMethodPbbRequest'
         ]
       end
 

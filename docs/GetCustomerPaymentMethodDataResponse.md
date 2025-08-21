@@ -15,6 +15,7 @@ Conekta::GetCustomerPaymentMethodDataResponse.openapi_one_of
 # =>
 # [
 #   :'PaymentMethodCardResponse',
+#   :'PaymentMethodCashRecurrentResponse',
 #   :'PaymentMethodCashResponse',
 #   :'PaymentMethodSpeiRecurrent'
 # ]
@@ -47,8 +48,7 @@ Conekta::GetCustomerPaymentMethodDataResponse.openapi_discriminator_mapping
 # {
 #   :'card' => :'PaymentMethodCardResponse',
 #   :'cash' => :'PaymentMethodCashResponse',
-#   :'cash_recurrent' => :'PaymentMethodCashResponse',
-#   :'oxxo_recurrent' => :'PaymentMethodCashResponse',
+#   :'cash_recurrent' => :'PaymentMethodCashRecurrentResponse',
 #   :'spei_recurrent' => :'PaymentMethodSpeiRecurrent'
 # }
 ```
@@ -78,6 +78,7 @@ Conekta::GetCustomerPaymentMethodDataResponse.build(data_that_doesnt_match)
 #### Return type
 
 - `PaymentMethodCardResponse`
+- `PaymentMethodCashRecurrentResponse`
 - `PaymentMethodCashResponse`
 - `PaymentMethodSpeiRecurrent`
 - `nil` (if no type matches)

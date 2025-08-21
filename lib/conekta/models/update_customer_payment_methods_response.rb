@@ -20,6 +20,7 @@ module Conekta
       def openapi_one_of
         [
           :'PaymentMethodCardResponse',
+          :'PaymentMethodCashRecurrentResponse',
           :'PaymentMethodCashResponse',
           :'PaymentMethodSpeiRecurrent'
         ]
@@ -35,8 +36,7 @@ module Conekta
         {
           :'card' => :'PaymentMethodCardResponse',
           :'cash' => :'PaymentMethodCashResponse',
-          :'cash_recurrent' => :'PaymentMethodCashResponse',
-          :'oxxo_recurrent' => :'PaymentMethodCashResponse',
+          :'cash_recurrent' => :'PaymentMethodCashRecurrentResponse',
           :'spei_recurrent' => :'PaymentMethodSpeiRecurrent'
         }
       end
