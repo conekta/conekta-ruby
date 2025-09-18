@@ -39,7 +39,7 @@
 require 'conekta'
 
 instance = Conekta::OrderResponseCheckout.new(
-  allowed_payment_methods: [&quot;cash&quot;,&quot;card&quot;,&quot;bank_transfer&quot;,&quot;bnpl&quot;],
+  allowed_payment_methods: [&quot;cash&quot;,&quot;card&quot;,&quot;bank_transfer&quot;,&quot;bnpl&quot;,&quot;pay_by_bank&quot;],
   can_not_expire: false,
   emails_sent: 0,
   exclude_card_networks: null,

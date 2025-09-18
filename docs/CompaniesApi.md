@@ -8,6 +8,7 @@ All URIs are relative to *https://api.conekta.io*
 | [**get_companies**](CompaniesApi.md#get_companies) | **GET** /companies | Get List of Companies |
 | [**get_company**](CompaniesApi.md#get_company) | **GET** /companies/{id} | Get Company |
 | [**get_company_documents**](CompaniesApi.md#get_company_documents) | **GET** /companies/{company_id}/documents | Get Company Documents |
+| [**get_current_company**](CompaniesApi.md#get_current_company) | **GET** /companies/current | Get Current Company |
 | [**update_company_document**](CompaniesApi.md#update_company_document) | **PATCH** /companies/{company_id}/document | Update Company Document |
 | [**upload_company_document**](CompaniesApi.md#upload_company_document) | **POST** /companies/{company_id}/document | Upload Company Document |
 
@@ -304,6 +305,77 @@ end
 - **Accept**: application/vnd.conekta-v2.2.0+json
 
 
+## get_current_company
+
+> <CompanyResponse> get_current_company(opts)
+
+Get Current Company
+
+Retrieves information about the currently authenticated company. This endpoint returns the same data as the standard company endpoint but automatically uses the current company's context.
+
+### Examples
+
+```ruby
+require 'time'
+require 'conekta'
+# setup authorization
+Conekta.configure do |config|
+  # Configure Bearer authorization: bearerAuth
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = Conekta::CompaniesApi.new
+opts = {
+  accept_language: 'es' # String | Use for knowing which language to use
+}
+
+begin
+  # Get Current Company
+  result = api_instance.get_current_company(opts)
+  p result
+rescue Conekta::ApiError => e
+  puts "Error when calling CompaniesApi->get_current_company: #{e}"
+end
+```
+
+#### Using the get_current_company_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<CompanyResponse>, Integer, Hash)> get_current_company_with_http_info(opts)
+
+```ruby
+begin
+  # Get Current Company
+  data, status_code, headers = api_instance.get_current_company_with_http_info(opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <CompanyResponse>
+rescue Conekta::ApiError => e
+  puts "Error when calling CompaniesApi->get_current_company_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **accept_language** | **String** | Use for knowing which language to use | [optional][default to &#39;es&#39;] |
+
+### Return type
+
+[**CompanyResponse**](CompanyResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/vnd.conekta-v2.2.0+json
+
+
 ## update_company_document
 
 > <CompanyDocumentResponse> update_company_document(company_id, company_document_request, opts)
@@ -325,7 +397,7 @@ end
 
 api_instance = Conekta::CompaniesApi.new
 company_id = '6827206b1ec60400015eb09a' # String | The unique identifier of the company.
-company_document_request = Conekta::CompanyDocumentRequest.new({file_classification: 'id_legal_representative', content_type: 'application/pdf', file_name: 'example_document.pdf', file_data: '[B@53a49745'}) # CompanyDocumentRequest | Document information to update.
+company_document_request = Conekta::CompanyDocumentRequest.new({file_classification: 'id_legal_representative', content_type: 'application/pdf', file_name: 'example_document.pdf', file_data: '[B@532a48d4'}) # CompanyDocumentRequest | Document information to update.
 opts = {
   accept_language: 'es' # String | Use for knowing which language to use
 }
@@ -400,7 +472,7 @@ end
 
 api_instance = Conekta::CompaniesApi.new
 company_id = '6827206b1ec60400015eb09a' # String | The unique identifier of the company.
-company_document_request = Conekta::CompanyDocumentRequest.new({file_classification: 'id_legal_representative', content_type: 'application/pdf', file_name: 'example_document.pdf', file_data: '[B@53a49745'}) # CompanyDocumentRequest | Document information to upload.
+company_document_request = Conekta::CompanyDocumentRequest.new({file_classification: 'id_legal_representative', content_type: 'application/pdf', file_name: 'example_document.pdf', file_data: '[B@532a48d4'}) # CompanyDocumentRequest | Document information to upload.
 opts = {
   accept_language: 'es' # String | Use for knowing which language to use
 }

@@ -42,6 +42,34 @@ module Conekta
     # The type of object, typically \"company\".
     attr_accessor :object
 
+    # Indicates if 3DS authentication is enabled for the company.
+    attr_accessor :three_ds_enabled
+
+    # The 3DS mode for the company, either 'smart' or 'strict'. This property is only applicable when three_ds_enabled is true. When three_ds_enabled is false, this field will be null.
+    attr_accessor :three_ds_mode
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -53,7 +81,9 @@ module Conekta
         :'onboarding_status' => :'onboarding_status',
         :'documents' => :'documents',
         :'created_at' => :'created_at',
-        :'object' => :'object'
+        :'object' => :'object',
+        :'three_ds_enabled' => :'three_ds_enabled',
+        :'three_ds_mode' => :'three_ds_mode'
       }
     end
 
@@ -73,7 +103,9 @@ module Conekta
         :'onboarding_status' => :'String',
         :'documents' => :'Array<CompanyResponseDocumentsInner>',
         :'created_at' => :'Integer',
-        :'object' => :'String'
+        :'object' => :'String',
+        :'three_ds_enabled' => :'Boolean',
+        :'three_ds_mode' => :'String'
       }
     end
 
@@ -81,6 +113,7 @@ module Conekta
     def self.openapi_nullable
       Set.new([
         :'parent_company_id',
+        :'three_ds_mode'
       ])
     end
 
@@ -152,6 +185,14 @@ module Conekta
       else
         self.object = nil
       end
+
+      if attributes.key?(:'three_ds_enabled')
+        self.three_ds_enabled = attributes[:'three_ds_enabled']
+      end
+
+      if attributes.key?(:'three_ds_mode')
+        self.three_ds_mode = attributes[:'three_ds_mode']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -206,7 +247,19 @@ module Conekta
       return false if @documents.nil?
       return false if @created_at.nil?
       return false if @object.nil?
+      three_ds_mode_validator = EnumAttributeValidator.new('String', ["smart", "strict"])
+      return false unless three_ds_mode_validator.valid?(@three_ds_mode)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] three_ds_mode Object to be assigned
+    def three_ds_mode=(three_ds_mode)
+      validator = EnumAttributeValidator.new('String', ["smart", "strict"])
+      unless validator.valid?(three_ds_mode)
+        fail ArgumentError, "invalid value for \"three_ds_mode\", must be one of #{validator.allowable_values}."
+      end
+      @three_ds_mode = three_ds_mode
     end
 
     # Checks equality by comparing each attribute.
@@ -222,7 +275,9 @@ module Conekta
           onboarding_status == o.onboarding_status &&
           documents == o.documents &&
           created_at == o.created_at &&
-          object == o.object
+          object == o.object &&
+          three_ds_enabled == o.three_ds_enabled &&
+          three_ds_mode == o.three_ds_mode
     end
 
     # @see the `==` method
@@ -234,7 +289,7 @@ module Conekta
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, name, active, account_status, parent_company_id, onboarding_status, documents, created_at, object].hash
+      [id, name, active, account_status, parent_company_id, onboarding_status, documents, created_at, object, three_ds_enabled, three_ds_mode].hash
     end
 
     # Builds the object from hash
