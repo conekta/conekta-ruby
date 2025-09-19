@@ -57,7 +57,7 @@ module Conekta
     # List of [taxes](https://developers.conekta.com/v2.2.0/reference/orderscreatetaxes) that are applied to the order.
     attr_accessor :tax_lines
 
-    # Indicates the 3DS2 mode for the order, either smart or strict.
+    # Indicates the 3DS2 mode for the order, either smart or strict. This property is only applicable when 3DS is enabled. When 3DS is disabled, this field should be null.
     attr_accessor :three_ds_mode
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -112,6 +112,7 @@ module Conekta
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'three_ds_mode'
       ])
     end
 

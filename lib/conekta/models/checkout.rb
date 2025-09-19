@@ -28,7 +28,7 @@ module Conekta
     # This field allows you to specify the number of months without interest.
     attr_accessor :monthly_installments_options
 
-    # Indicates the 3DS2 mode for the order, either smart or strict.
+    # Indicates the 3DS2 mode for the order, either smart or strict. This property is only applicable when 3DS is enabled. When 3DS is disabled, this field should be null.
     attr_accessor :three_ds_mode
 
     # Reason for charge
@@ -95,6 +95,7 @@ module Conekta
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'three_ds_mode',
         :'on_demand_enabled',
       ])
     end

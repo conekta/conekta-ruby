@@ -13,6 +13,8 @@
 | **documents** | [**Array&lt;CompanyResponseDocumentsInner&gt;**](CompanyResponseDocumentsInner.md) | A list of documents related to the company. |  |
 | **created_at** | **Integer** | Timestamp of when the company was created. |  |
 | **object** | **String** | The type of object, typically \&quot;company\&quot;. |  |
+| **three_ds_enabled** | **Boolean** | Indicates if 3DS authentication is enabled for the company. | [optional] |
+| **three_ds_mode** | **String** | The 3DS mode for the company, either &#39;smart&#39; or &#39;strict&#39;. This property is only applicable when three_ds_enabled is true. When three_ds_enabled is false, this field will be null. | [optional] |
 
 ## Example
 
@@ -28,7 +30,9 @@ instance = Conekta::CompanyResponse.new(
   onboarding_status: pending,
   documents: null,
   created_at: 1748968241,
-  object: company
+  object: company,
+  three_ds_enabled: true,
+  three_ds_mode: strict
 )
 ```
 

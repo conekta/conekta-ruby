@@ -85,6 +85,18 @@ describe 'CompaniesApi' do
     end
   end
 
+  # unit tests for get_current_company
+  # Get Current Company
+  # Retrieves information about the currently authenticated company. This endpoint returns the same data as the standard company endpoint but automatically uses the current company&#39;s context.
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :accept_language Use for knowing which language to use
+  # @return [CompanyResponse]
+  describe 'get_current_company test' do
+    it 'should work' do
+      # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+    end
+  end
+
   # unit tests for update_company_document
   # Update Company Document
   # Updates an existing document associated with a specific company.

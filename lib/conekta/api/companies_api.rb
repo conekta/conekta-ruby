@@ -309,6 +309,70 @@ module Conekta
       return data, status_code, headers
     end
 
+    # Get Current Company
+    # Retrieves information about the currently authenticated company. This endpoint returns the same data as the standard company endpoint but automatically uses the current company's context.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :accept_language Use for knowing which language to use (default to 'es')
+    # @return [CompanyResponse]
+    def get_current_company(opts = {})
+      data, _status_code, _headers = get_current_company_with_http_info(opts)
+      data
+    end
+
+    # Get Current Company
+    # Retrieves information about the currently authenticated company. This endpoint returns the same data as the standard company endpoint but automatically uses the current company&#39;s context.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :accept_language Use for knowing which language to use (default to 'es')
+    # @return [Array<(CompanyResponse, Integer, Hash)>] CompanyResponse data, response status code and response headers
+    def get_current_company_with_http_info(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CompaniesApi.get_current_company ...'
+      end
+      allowable_values = ["es", "en"]
+      if @api_client.config.client_side_validation && opts[:'accept_language'] && !allowable_values.include?(opts[:'accept_language'])
+        fail ArgumentError, "invalid value for \"accept_language\", must be one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/companies/current'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.conekta-v2.2.0+json'])
+      header_params[:'Accept-Language'] = opts[:'accept_language'] if !opts[:'accept_language'].nil?
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'CompanyResponse'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['bearerAuth']
+
+      new_options = opts.merge(
+        :operation => :"CompaniesApi.get_current_company",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CompaniesApi#get_current_company\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Update Company Document
     # Updates an existing document associated with a specific company.
     # @param company_id [String] The unique identifier of the company.
