@@ -397,7 +397,7 @@ end
 
 api_instance = Conekta::CompaniesApi.new
 company_id = '6827206b1ec60400015eb09a' # String | The unique identifier of the company.
-company_document_request = Conekta::CompanyDocumentRequest.new({file_classification: 'id_legal_representative', content_type: 'application/pdf', file_name: 'example_document.pdf', file_data: '[B@532a48d4'}) # CompanyDocumentRequest | Document information to update.
+company_document_request = Conekta::CompanyDocumentRequest.new({file_classification: 'id_legal_representative', content_type: 'application/pdf', file_name: 'example_document.pdf', file_data: '[B@1b40c635'}) # CompanyDocumentRequest | Document information to update.
 opts = {
   accept_language: 'es' # String | Use for knowing which language to use
 }
@@ -472,7 +472,7 @@ end
 
 api_instance = Conekta::CompaniesApi.new
 company_id = '6827206b1ec60400015eb09a' # String | The unique identifier of the company.
-company_document_request = Conekta::CompanyDocumentRequest.new({file_classification: 'id_legal_representative', content_type: 'application/pdf', file_name: 'example_document.pdf', file_data: '[B@532a48d4'}) # CompanyDocumentRequest | Document information to upload.
+company_document_request = Conekta::CompanyDocumentRequest.new({file_classification: 'id_legal_representative', content_type: 'application/pdf', file_name: 'example_document.pdf', file_data: '[B@1b40c635'}) # CompanyDocumentRequest | Document information to upload.
 opts = {
   accept_language: 'es' # String | Use for knowing which language to use
 }

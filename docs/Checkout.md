@@ -12,6 +12,7 @@
 | **name** | **String** | Reason for charge |  |
 | **needs_shipping_contact** | **Boolean** | This flag allows you to fill in the shipping information at checkout. | [optional] |
 | **on_demand_enabled** | **Boolean** | This flag allows you to specify if the link will be on demand. | [optional] |
+| **plan_ids** | **Array&lt;String&gt;** | It is a list of plan IDs that will be associated with the order. | [optional] |
 | **order_template** | [**CheckoutOrderTemplate**](CheckoutOrderTemplate.md) |  |  |
 | **payments_limit_count** | **Integer** | It is the number of payments that can be made through the link. | [optional] |
 | **recurrent** | **Boolean** | false: single use. true: multiple payments |  |
@@ -31,6 +32,7 @@ instance = Conekta::Checkout.new(
   name: Payment Link Name 1594138857,
   needs_shipping_contact: false,
   on_demand_enabled: true,
+  plan_ids: [&quot;plan_123&quot;,&quot;plan_456&quot;],
   order_template: null,
   payments_limit_count: 5,
   recurrent: false,

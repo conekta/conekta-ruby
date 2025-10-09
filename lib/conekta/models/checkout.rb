@@ -40,6 +40,9 @@ module Conekta
     # This flag allows you to specify if the link will be on demand.
     attr_accessor :on_demand_enabled
 
+    # It is a list of plan IDs that will be associated with the order.
+    attr_accessor :plan_ids
+
     attr_accessor :order_template
 
     # It is the number of payments that can be made through the link.
@@ -62,6 +65,7 @@ module Conekta
         :'name' => :'name',
         :'needs_shipping_contact' => :'needs_shipping_contact',
         :'on_demand_enabled' => :'on_demand_enabled',
+        :'plan_ids' => :'plan_ids',
         :'order_template' => :'order_template',
         :'payments_limit_count' => :'payments_limit_count',
         :'recurrent' => :'recurrent',
@@ -85,6 +89,7 @@ module Conekta
         :'name' => :'String',
         :'needs_shipping_contact' => :'Boolean',
         :'on_demand_enabled' => :'Boolean',
+        :'plan_ids' => :'Array<String>',
         :'order_template' => :'CheckoutOrderTemplate',
         :'payments_limit_count' => :'Integer',
         :'recurrent' => :'Boolean',
@@ -155,6 +160,12 @@ module Conekta
 
       if attributes.key?(:'on_demand_enabled')
         self.on_demand_enabled = attributes[:'on_demand_enabled']
+      end
+
+      if attributes.key?(:'plan_ids')
+        if (value = attributes[:'plan_ids']).is_a?(Array)
+          self.plan_ids = value
+        end
       end
 
       if attributes.key?(:'order_template')
@@ -238,6 +249,7 @@ module Conekta
           name == o.name &&
           needs_shipping_contact == o.needs_shipping_contact &&
           on_demand_enabled == o.on_demand_enabled &&
+          plan_ids == o.plan_ids &&
           order_template == o.order_template &&
           payments_limit_count == o.payments_limit_count &&
           recurrent == o.recurrent &&
@@ -253,7 +265,7 @@ module Conekta
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [allowed_payment_methods, expires_at, monthly_installments_enabled, monthly_installments_options, three_ds_mode, name, needs_shipping_contact, on_demand_enabled, order_template, payments_limit_count, recurrent, type].hash
+      [allowed_payment_methods, expires_at, monthly_installments_enabled, monthly_installments_options, three_ds_mode, name, needs_shipping_contact, on_demand_enabled, plan_ids, order_template, payments_limit_count, recurrent, type].hash
     end
 
     # Builds the object from hash
