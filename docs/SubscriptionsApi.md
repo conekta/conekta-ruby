@@ -950,7 +950,7 @@ end
 
 ## subscription_update
 
-> <SubscriptionResponse> subscription_update(customer_id, id, subscription_update_request, opts)
+> <SubscriptionResponse> subscription_update(customer_id, id, updates_a_subscription, opts)
 
 Update Subscription
 
@@ -970,7 +970,7 @@ end
 api_instance = Conekta::SubscriptionsApi.new
 customer_id = 'cus_2tGzG1GxtDAZHEGPH' # String | Identifier of the customer resource
 id = 'sub_2tGzG1GxtDAZHEGPH' # String | Identifier of the subscription resource
-subscription_update_request = Conekta::SubscriptionUpdateRequest.new # SubscriptionUpdateRequest | requested field for update a subscription
+updates_a_subscription = Conekta::UpdatesASubscription.new # UpdatesASubscription | requested field for update a subscription
 opts = {
   accept_language: 'es', # String | Use for knowing which language to use
   x_child_company_id: '6441b6376b60c3a638da80af' # String | In the case of a holding company, the company id of the child company to which will process the request.
@@ -978,7 +978,7 @@ opts = {
 
 begin
   # Update Subscription
-  result = api_instance.subscription_update(customer_id, id, subscription_update_request, opts)
+  result = api_instance.subscription_update(customer_id, id, updates_a_subscription, opts)
   p result
 rescue Conekta::ApiError => e
   puts "Error when calling SubscriptionsApi->subscription_update: #{e}"
@@ -989,12 +989,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<SubscriptionResponse>, Integer, Hash)> subscription_update_with_http_info(customer_id, id, subscription_update_request, opts)
+> <Array(<SubscriptionResponse>, Integer, Hash)> subscription_update_with_http_info(customer_id, id, updates_a_subscription, opts)
 
 ```ruby
 begin
   # Update Subscription
-  data, status_code, headers = api_instance.subscription_update_with_http_info(customer_id, id, subscription_update_request, opts)
+  data, status_code, headers = api_instance.subscription_update_with_http_info(customer_id, id, updates_a_subscription, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SubscriptionResponse>
@@ -1009,7 +1009,7 @@ end
 | ---- | ---- | ----------- | ----- |
 | **customer_id** | **String** | Identifier of the customer resource |  |
 | **id** | **String** | Identifier of the subscription resource |  |
-| **subscription_update_request** | [**SubscriptionUpdateRequest**](SubscriptionUpdateRequest.md) | requested field for update a subscription |  |
+| **updates_a_subscription** | [**UpdatesASubscription**](UpdatesASubscription.md) | requested field for update a subscription |  |
 | **accept_language** | **String** | Use for knowing which language to use | [optional][default to &#39;es&#39;] |
 | **x_child_company_id** | **String** | In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 
@@ -1183,7 +1183,7 @@ end
 
 ## update_subscription
 
-> <SubscriptionResponse> update_subscription(id, subscription_update_request, opts)
+> <SubscriptionResponse> update_subscription(id, updates_a_subscription, opts)
 
 Update Subscription [Deprecated]
 
@@ -1202,7 +1202,7 @@ end
 
 api_instance = Conekta::SubscriptionsApi.new
 id = '6307a60c41de27127515a575' # String | Identifier of the resource
-subscription_update_request = Conekta::SubscriptionUpdateRequest.new # SubscriptionUpdateRequest | requested field for update a subscription
+updates_a_subscription = Conekta::UpdatesASubscription.new # UpdatesASubscription | requested field for update a subscription
 opts = {
   accept_language: 'es', # String | Use for knowing which language to use
   x_child_company_id: '6441b6376b60c3a638da80af' # String | In the case of a holding company, the company id of the child company to which will process the request.
@@ -1210,7 +1210,7 @@ opts = {
 
 begin
   # Update Subscription [Deprecated]
-  result = api_instance.update_subscription(id, subscription_update_request, opts)
+  result = api_instance.update_subscription(id, updates_a_subscription, opts)
   p result
 rescue Conekta::ApiError => e
   puts "Error when calling SubscriptionsApi->update_subscription: #{e}"
@@ -1221,12 +1221,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<SubscriptionResponse>, Integer, Hash)> update_subscription_with_http_info(id, subscription_update_request, opts)
+> <Array(<SubscriptionResponse>, Integer, Hash)> update_subscription_with_http_info(id, updates_a_subscription, opts)
 
 ```ruby
 begin
   # Update Subscription [Deprecated]
-  data, status_code, headers = api_instance.update_subscription_with_http_info(id, subscription_update_request, opts)
+  data, status_code, headers = api_instance.update_subscription_with_http_info(id, updates_a_subscription, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SubscriptionResponse>
@@ -1240,7 +1240,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | Identifier of the resource |  |
-| **subscription_update_request** | [**SubscriptionUpdateRequest**](SubscriptionUpdateRequest.md) | requested field for update a subscription |  |
+| **updates_a_subscription** | [**UpdatesASubscription**](UpdatesASubscription.md) | requested field for update a subscription |  |
 | **accept_language** | **String** | Use for knowing which language to use | [optional][default to &#39;es&#39;] |
 | **x_child_company_id** | **String** | In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 

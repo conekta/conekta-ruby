@@ -249,7 +249,7 @@ end
 
 ## update_customer_payment_methods
 
-> <UpdateCustomerPaymentMethodsResponse> update_customer_payment_methods(id, payment_method_id, update_payment_methods, opts)
+> <UpdateCustomerPaymentMethodsResponse> update_customer_payment_methods(id, payment_method_id, update_payment_methods_card, opts)
 
 Update Payment Method
 
@@ -269,7 +269,7 @@ end
 api_instance = Conekta::PaymentMethodsApi.new
 id = '6307a60c41de27127515a575' # String | Identifier of the resource
 payment_method_id = 'src_2tQ974hSHcsdeSZHG' # String | Identifier of the payment method
-update_payment_methods = Conekta::UpdatePaymentMethods.new # UpdatePaymentMethods | requested field for customer payment methods
+update_payment_methods_card = Conekta::UpdatePaymentMethodsCard.new # UpdatePaymentMethodsCard | requested field for customer payment methods
 opts = {
   accept_language: 'es', # String | Use for knowing which language to use
   x_child_company_id: '6441b6376b60c3a638da80af' # String | In the case of a holding company, the company id of the child company to which will process the request.
@@ -277,7 +277,7 @@ opts = {
 
 begin
   # Update Payment Method
-  result = api_instance.update_customer_payment_methods(id, payment_method_id, update_payment_methods, opts)
+  result = api_instance.update_customer_payment_methods(id, payment_method_id, update_payment_methods_card, opts)
   p result
 rescue Conekta::ApiError => e
   puts "Error when calling PaymentMethodsApi->update_customer_payment_methods: #{e}"
@@ -288,12 +288,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<UpdateCustomerPaymentMethodsResponse>, Integer, Hash)> update_customer_payment_methods_with_http_info(id, payment_method_id, update_payment_methods, opts)
+> <Array(<UpdateCustomerPaymentMethodsResponse>, Integer, Hash)> update_customer_payment_methods_with_http_info(id, payment_method_id, update_payment_methods_card, opts)
 
 ```ruby
 begin
   # Update Payment Method
-  data, status_code, headers = api_instance.update_customer_payment_methods_with_http_info(id, payment_method_id, update_payment_methods, opts)
+  data, status_code, headers = api_instance.update_customer_payment_methods_with_http_info(id, payment_method_id, update_payment_methods_card, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <UpdateCustomerPaymentMethodsResponse>
@@ -308,7 +308,7 @@ end
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | Identifier of the resource |  |
 | **payment_method_id** | **String** | Identifier of the payment method |  |
-| **update_payment_methods** | [**UpdatePaymentMethods**](UpdatePaymentMethods.md) | requested field for customer payment methods |  |
+| **update_payment_methods_card** | [**UpdatePaymentMethodsCard**](UpdatePaymentMethodsCard.md) | requested field for customer payment methods |  |
 | **accept_language** | **String** | Use for knowing which language to use | [optional][default to &#39;es&#39;] |
 | **x_child_company_id** | **String** | In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 

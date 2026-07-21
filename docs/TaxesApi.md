@@ -11,7 +11,7 @@ All URIs are relative to *https://api.conekta.io*
 
 ## orders_create_taxes
 
-> <UpdateOrderTaxResponse> orders_create_taxes(id, order_tax_request, opts)
+> <OrderTaxResponse> orders_create_taxes(id, order_tax_request, opts)
 
 Create Tax
 
@@ -49,7 +49,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<UpdateOrderTaxResponse>, Integer, Hash)> orders_create_taxes_with_http_info(id, order_tax_request, opts)
+> <Array(<OrderTaxResponse>, Integer, Hash)> orders_create_taxes_with_http_info(id, order_tax_request, opts)
 
 ```ruby
 begin
@@ -57,7 +57,7 @@ begin
   data, status_code, headers = api_instance.orders_create_taxes_with_http_info(id, order_tax_request, opts)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <UpdateOrderTaxResponse>
+  p data # => <OrderTaxResponse>
 rescue Conekta::ApiError => e
   puts "Error when calling TaxesApi->orders_create_taxes_with_http_info: #{e}"
 end
@@ -74,7 +74,7 @@ end
 
 ### Return type
 
-[**UpdateOrderTaxResponse**](UpdateOrderTaxResponse.md)
+[**OrderTaxResponse**](OrderTaxResponse.md)
 
 ### Authorization
 
@@ -88,7 +88,7 @@ end
 
 ## orders_delete_taxes
 
-> <UpdateOrderTaxResponse> orders_delete_taxes(id, tax_id, opts)
+> <OrderTaxResponse> orders_delete_taxes(id, tax_id, opts)
 
 Delete Tax
 
@@ -126,7 +126,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<UpdateOrderTaxResponse>, Integer, Hash)> orders_delete_taxes_with_http_info(id, tax_id, opts)
+> <Array(<OrderTaxResponse>, Integer, Hash)> orders_delete_taxes_with_http_info(id, tax_id, opts)
 
 ```ruby
 begin
@@ -134,7 +134,7 @@ begin
   data, status_code, headers = api_instance.orders_delete_taxes_with_http_info(id, tax_id, opts)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <UpdateOrderTaxResponse>
+  p data # => <OrderTaxResponse>
 rescue Conekta::ApiError => e
   puts "Error when calling TaxesApi->orders_delete_taxes_with_http_info: #{e}"
 end
@@ -151,7 +151,7 @@ end
 
 ### Return type
 
-[**UpdateOrderTaxResponse**](UpdateOrderTaxResponse.md)
+[**OrderTaxResponse**](OrderTaxResponse.md)
 
 ### Authorization
 
@@ -165,7 +165,7 @@ end
 
 ## orders_update_taxes
 
-> <UpdateOrderTaxResponse> orders_update_taxes(id, tax_id, update_order_tax_request, opts)
+> <OrderTaxResponse> orders_update_taxes(id, tax_id, orders_update_taxes_request, opts)
 
 Update Tax
 
@@ -185,7 +185,7 @@ end
 api_instance = Conekta::TaxesApi.new
 id = '6307a60c41de27127515a575' # String | Identifier of the resource
 tax_id = 'tax_lin_2tQ974hSHcsdeSZHG' # String | identifier
-update_order_tax_request = Conekta::UpdateOrderTaxRequest.new # UpdateOrderTaxRequest | requested field for taxes
+orders_update_taxes_request = Conekta::OrdersUpdateTaxesRequest.new # OrdersUpdateTaxesRequest | requested field for taxes
 opts = {
   accept_language: 'es', # String | Use for knowing which language to use
   x_child_company_id: '6441b6376b60c3a638da80af' # String | In the case of a holding company, the company id of the child company to which will process the request.
@@ -193,7 +193,7 @@ opts = {
 
 begin
   # Update Tax
-  result = api_instance.orders_update_taxes(id, tax_id, update_order_tax_request, opts)
+  result = api_instance.orders_update_taxes(id, tax_id, orders_update_taxes_request, opts)
   p result
 rescue Conekta::ApiError => e
   puts "Error when calling TaxesApi->orders_update_taxes: #{e}"
@@ -204,15 +204,15 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<UpdateOrderTaxResponse>, Integer, Hash)> orders_update_taxes_with_http_info(id, tax_id, update_order_tax_request, opts)
+> <Array(<OrderTaxResponse>, Integer, Hash)> orders_update_taxes_with_http_info(id, tax_id, orders_update_taxes_request, opts)
 
 ```ruby
 begin
   # Update Tax
-  data, status_code, headers = api_instance.orders_update_taxes_with_http_info(id, tax_id, update_order_tax_request, opts)
+  data, status_code, headers = api_instance.orders_update_taxes_with_http_info(id, tax_id, orders_update_taxes_request, opts)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <UpdateOrderTaxResponse>
+  p data # => <OrderTaxResponse>
 rescue Conekta::ApiError => e
   puts "Error when calling TaxesApi->orders_update_taxes_with_http_info: #{e}"
 end
@@ -224,13 +224,13 @@ end
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | Identifier of the resource |  |
 | **tax_id** | **String** | identifier |  |
-| **update_order_tax_request** | [**UpdateOrderTaxRequest**](UpdateOrderTaxRequest.md) | requested field for taxes |  |
+| **orders_update_taxes_request** | [**OrdersUpdateTaxesRequest**](OrdersUpdateTaxesRequest.md) | requested field for taxes |  |
 | **accept_language** | **String** | Use for knowing which language to use | [optional][default to &#39;es&#39;] |
 | **x_child_company_id** | **String** | In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 
 ### Return type
 
-[**UpdateOrderTaxResponse**](UpdateOrderTaxResponse.md)
+[**OrderTaxResponse**](OrderTaxResponse.md)
 
 ### Authorization
 

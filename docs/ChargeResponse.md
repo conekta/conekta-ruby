@@ -17,10 +17,11 @@
 | **livemode** | **Boolean** | Whether the charge was made in live mode or not |  |
 | **object** | **String** |  |  |
 | **order_id** | **String** | Order ID |  |
-| **paid_at** | **Integer** | Payment date | [optional] |
+| **paid_at** | **Integer** | charge Payment date | [optional] |
 | **payment_method** | [**ChargeResponsePaymentMethod**](ChargeResponsePaymentMethod.md) |  | [optional] |
 | **reference_id** | **String** | Reference ID of the charge | [optional] |
 | **refunds** | [**ChargeResponseRefunds**](ChargeResponseRefunds.md) |  | [optional] |
+| **chargeback** | [**ChargebackResponse**](ChargebackResponse.md) |  | [optional] |
 | **status** | **String** | Charge status |  |
 
 ## Example
@@ -46,6 +47,7 @@ instance = Conekta::ChargeResponse.new(
   payment_method: null,
   reference_id: ref_2tN73UdUSNrYRPD9r,
   refunds: null,
+  chargeback: null,
   status: pending_payment
 )
 ```

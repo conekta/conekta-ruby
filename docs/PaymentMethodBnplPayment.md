@@ -20,7 +20,7 @@ require 'conekta'
 
 instance = Conekta::PaymentMethodBnplPayment.new(
   type: null,
-  object: payment_source,
+  object: null,
   cancel_url: https://example.com/cancel,
   expires_at: 1683053729,
   failure_url: https://example.com/failure,

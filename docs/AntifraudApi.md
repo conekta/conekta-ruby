@@ -14,7 +14,7 @@ All URIs are relative to *https://api.conekta.io*
 
 ## create_rule_blacklist
 
-> <BlacklistRuleResponse> create_rule_blacklist(create_risk_rules_data, opts)
+> <BlacklistRuleResponse> create_rule_blacklist(create_rule_whitelist_request, opts)
 
 Create blacklisted rule
 
@@ -30,14 +30,14 @@ Conekta.configure do |config|
 end
 
 api_instance = Conekta::AntifraudApi.new
-create_risk_rules_data = Conekta::CreateRiskRulesData.new({description: 'this client email was verified at 20/09/22 by internal process', field: 'email | phone | card_token', value: 'email@example.com | 818081808180 | src_2qUCNd5AyQqfPMBuV'}) # CreateRiskRulesData | requested field for blacklist rule
+create_rule_whitelist_request = Conekta::CreateRuleWhitelistRequest.new({description: 'this client email was verified at 20/09/22 by internal process', field: 'email | phone | card_token', value: 'email@example.com | 818081808180 | src_2qUCNd5AyQqfPMBuV'}) # CreateRuleWhitelistRequest | requested field for blacklist rule
 opts = {
   accept_language: 'es' # String | Use for knowing which language to use
 }
 
 begin
   # Create blacklisted rule
-  result = api_instance.create_rule_blacklist(create_risk_rules_data, opts)
+  result = api_instance.create_rule_blacklist(create_rule_whitelist_request, opts)
   p result
 rescue Conekta::ApiError => e
   puts "Error when calling AntifraudApi->create_rule_blacklist: #{e}"
@@ -48,12 +48,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<BlacklistRuleResponse>, Integer, Hash)> create_rule_blacklist_with_http_info(create_risk_rules_data, opts)
+> <Array(<BlacklistRuleResponse>, Integer, Hash)> create_rule_blacklist_with_http_info(create_rule_whitelist_request, opts)
 
 ```ruby
 begin
   # Create blacklisted rule
-  data, status_code, headers = api_instance.create_rule_blacklist_with_http_info(create_risk_rules_data, opts)
+  data, status_code, headers = api_instance.create_rule_blacklist_with_http_info(create_rule_whitelist_request, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <BlacklistRuleResponse>
@@ -66,7 +66,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **create_risk_rules_data** | [**CreateRiskRulesData**](CreateRiskRulesData.md) | requested field for blacklist rule |  |
+| **create_rule_whitelist_request** | [**CreateRuleWhitelistRequest**](CreateRuleWhitelistRequest.md) | requested field for blacklist rule |  |
 | **accept_language** | **String** | Use for knowing which language to use | [optional][default to &#39;es&#39;] |
 
 ### Return type
@@ -103,7 +103,7 @@ end
 api_instance = Conekta::AntifraudApi.new
 opts = {
   accept_language: 'es', # String | Use for knowing which language to use
-  create_risk_rules_data: Conekta::CreateRiskRulesData.new({description: 'this client email was verified at 20/09/22 by internal process', field: 'email | phone | card_token', value: 'email@example.com | 818081808180 | src_2qUCNd5AyQqfPMBuV'}) # CreateRiskRulesData | 
+  create_rule_whitelist_request: Conekta::CreateRuleWhitelistRequest.new({description: 'this client email was verified at 20/09/22 by internal process', field: 'email | phone | card_token', value: 'email@example.com | 818081808180 | src_2qUCNd5AyQqfPMBuV'}) # CreateRuleWhitelistRequest | 
 }
 
 begin
@@ -138,7 +138,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **accept_language** | **String** | Use for knowing which language to use | [optional][default to &#39;es&#39;] |
-| **create_risk_rules_data** | [**CreateRiskRulesData**](CreateRiskRulesData.md) |  | [optional] |
+| **create_rule_whitelist_request** | [**CreateRuleWhitelistRequest**](CreateRuleWhitelistRequest.md) |  | [optional] |
 
 ### Return type
 

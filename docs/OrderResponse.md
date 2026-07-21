@@ -13,6 +13,8 @@
 | **currency** | **String** | The three-letter ISO 4217 currency code. The currency of the order. | [optional] |
 | **customer_info** | [**OrderResponseCustomerInfo**](OrderResponseCustomerInfo.md) |  | [optional] |
 | **discount_lines** | [**OrderDiscountLinesResponse**](OrderDiscountLinesResponse.md) |  | [optional] |
+| **tax_lines** | [**OrderTaxLinesResponse**](OrderTaxLinesResponse.md) |  | [optional] |
+| **shipping_lines** | [**OrderShippingLinesResponse**](OrderShippingLinesResponse.md) |  | [optional] |
 | **fiscal_entity** | [**OrderFiscalEntityResponse**](OrderFiscalEntityResponse.md) |  | [optional] |
 | **id** | **String** |  | [optional] |
 | **is_refundable** | **Boolean** |  | [optional] |
@@ -41,6 +43,8 @@ instance = Conekta::OrderResponse.new(
   currency: MXN,
   customer_info: null,
   discount_lines: null,
+  tax_lines: null,
+  shipping_lines: null,
   fiscal_entity: null,
   id: ord_2tMtQQpDvfnNjiuFG,
   is_refundable: false,

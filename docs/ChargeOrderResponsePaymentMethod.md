@@ -51,7 +51,7 @@ Conekta::ChargeOrderResponsePaymentMethod.openapi_discriminator_mapping
 #   :'bnpl_payment' => :'PaymentMethodBnplPayment',
 #   :'card_payment' => :'PaymentMethodCard',
 #   :'cash_payment' => :'PaymentMethodCash',
-#   :'pbb_payment' => :'PaymentMethodPbbPayment'
+#   :'pay_by_bank_payment' => :'PaymentMethodPbbPayment'
 # }
 ```
 

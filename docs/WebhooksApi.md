@@ -387,7 +387,7 @@ end
 
 ## update_webhook
 
-> <WebhookResponse> update_webhook(id, webhook_update_request, opts)
+> <WebhookResponse> update_webhook(id, update_webhook, opts)
 
 Update Webhook
 
@@ -406,7 +406,7 @@ end
 
 api_instance = Conekta::WebhooksApi.new
 id = '6307a60c41de27127515a575' # String | Identifier of the resource
-webhook_update_request = Conekta::WebhookUpdateRequest.new # WebhookUpdateRequest | requested fields in order to update a webhook
+update_webhook = Conekta::UpdateWebhook.new # UpdateWebhook | requested fields in order to update a webhook
 opts = {
   accept_language: 'es', # String | Use for knowing which language to use
   x_child_company_id: '6441b6376b60c3a638da80af' # String | In the case of a holding company, the company id of the child company to which will process the request.
@@ -414,7 +414,7 @@ opts = {
 
 begin
   # Update Webhook
-  result = api_instance.update_webhook(id, webhook_update_request, opts)
+  result = api_instance.update_webhook(id, update_webhook, opts)
   p result
 rescue Conekta::ApiError => e
   puts "Error when calling WebhooksApi->update_webhook: #{e}"
@@ -425,12 +425,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<WebhookResponse>, Integer, Hash)> update_webhook_with_http_info(id, webhook_update_request, opts)
+> <Array(<WebhookResponse>, Integer, Hash)> update_webhook_with_http_info(id, update_webhook, opts)
 
 ```ruby
 begin
   # Update Webhook
-  data, status_code, headers = api_instance.update_webhook_with_http_info(id, webhook_update_request, opts)
+  data, status_code, headers = api_instance.update_webhook_with_http_info(id, update_webhook, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <WebhookResponse>
@@ -444,7 +444,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | Identifier of the resource |  |
-| **webhook_update_request** | [**WebhookUpdateRequest**](WebhookUpdateRequest.md) | requested fields in order to update a webhook |  |
+| **update_webhook** | [**UpdateWebhook**](UpdateWebhook.md) | requested fields in order to update a webhook |  |
 | **accept_language** | **String** | Use for knowing which language to use | [optional][default to &#39;es&#39;] |
 | **x_child_company_id** | **String** | In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 

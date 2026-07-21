@@ -165,7 +165,7 @@ end
 
 ## resend_event
 
-> <EventsResendResponse> resend_event(event_id, resend_request, opts)
+> <EventsResendResponse> resend_event(event_id, resend_event_request, opts)
 
 Resend Event
 
@@ -184,14 +184,14 @@ end
 
 api_instance = Conekta::EventsApi.new
 event_id = '6463d6e35a4c3e001819e760' # String | event identifier
-resend_request = Conekta::ResendRequest.new({webhooks_ids: ["6307a60c41de27127515a575", "6307a60c41de27127515a571"]}) # ResendRequest | requested fields for resend an event
+resend_event_request = Conekta::ResendEventRequest.new({webhooks_ids: [6307a60c41de27127515a575,  6307a60c41de27127515a571]}) # ResendEventRequest | requested fields for resend an event
 opts = {
   accept_language: 'es' # String | Use for knowing which language to use
 }
 
 begin
   # Resend Event
-  result = api_instance.resend_event(event_id, resend_request, opts)
+  result = api_instance.resend_event(event_id, resend_event_request, opts)
   p result
 rescue Conekta::ApiError => e
   puts "Error when calling EventsApi->resend_event: #{e}"
@@ -202,12 +202,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<EventsResendResponse>, Integer, Hash)> resend_event_with_http_info(event_id, resend_request, opts)
+> <Array(<EventsResendResponse>, Integer, Hash)> resend_event_with_http_info(event_id, resend_event_request, opts)
 
 ```ruby
 begin
   # Resend Event
-  data, status_code, headers = api_instance.resend_event_with_http_info(event_id, resend_request, opts)
+  data, status_code, headers = api_instance.resend_event_with_http_info(event_id, resend_event_request, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <EventsResendResponse>
@@ -221,7 +221,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **event_id** | **String** | event identifier |  |
-| **resend_request** | [**ResendRequest**](ResendRequest.md) | requested fields for resend an event |  |
+| **resend_event_request** | [**ResendEventRequest**](ResendEventRequest.md) | requested fields for resend an event |  |
 | **accept_language** | **String** | Use for knowing which language to use | [optional][default to &#39;es&#39;] |
 
 ### Return type

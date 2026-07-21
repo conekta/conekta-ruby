@@ -8,7 +8,7 @@
 | **plan_ids** | **Array&lt;String&gt;** | List of plan IDs that are available for subscription | [optional] |
 | **can_not_expire** | **Boolean** |  | [optional] |
 | **emails_sent** | **Integer** |  | [optional] |
-| **exclude_card_networks** | **Array&lt;Object&gt;** |  | [optional] |
+| **exclude_card_networks** | **Array&lt;String&gt;** |  | [optional] |
 | **expires_at** | **Integer** |  | [optional] |
 | **failure_url** | **String** |  | [optional] |
 | **force_3ds_flow** | **Boolean** |  | [optional] |
@@ -27,7 +27,7 @@
 | **sms_sent** | **Integer** |  | [optional] |
 | **starts_at** | **Integer** |  | [optional] |
 | **status** | **String** |  | [optional] |
-| **success_url** | **String** |  | [optional] |
+| **success_url** | **String** | The URL to redirect to after a successful payment. | [optional] |
 | **type** | **String** |  | [optional] |
 | **url** | **String** |  | [optional] |
 
@@ -37,19 +37,19 @@
 require 'conekta'
 
 instance = Conekta::CheckoutResponse.new(
-  allowed_payment_methods: [&quot;cash&quot;,&quot;card&quot;,&quot;bank_transfer&quot;,&quot;bnpl&quot;,&quot;pay_by_bank&quot;],
-  plan_ids: [&quot;plan_123&quot;,&quot;plan_456&quot;],
+  allowed_payment_methods: [cash, card, bank_transfer, bnpl, pay_by_bank],
+  plan_ids: [plan_123, plan_456],
   can_not_expire: false,
   emails_sent: 0,
-  exclude_card_networks: null,
+  exclude_card_networks: [visa, amex],
   expires_at: 1680397724,
   failure_url: https://pay.conekta.com/failure,
   force_3ds_flow: false,
   id: b0bf16c4-18b9-445e-ba24-01604f329dbf,
   livemode: true,
-  metadata: {&quot;key&quot;:&quot;value&quot;},
+  metadata: {key&#x3D;value},
   monthly_installments_enabled: false,
-  monthly_installments_options: [3,6,12],
+  monthly_installments_options: [3, 6, 12],
   name: Payment Link Name 1594138857,
   needs_shipping_contact: false,
   object: checkout,
