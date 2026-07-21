@@ -3,7 +3,7 @@
   "gemAuthor": "Conekta",
   "gemName" : "conekta",
   "gemLicense": "MIT",
-  "gemVersion": "7.1.0",
+  "gemVersion": "9.0.0",
   "hideGenerationTimestamp": false,
   "moduleName": "Conekta",
   "gemSummary" : "This library provides https://api.conekta.io operations",
@@ -15,6 +15,9 @@
   "templateDir": "local/templates/ruby",
   "gitUserId" : "conekta",
   "gitRepoId" : "conekta-ruby",
+  "modelNameMappings": {
+    "subscription_response_1": "SubscriptionResponse"
+  },
   "files": {
     "/local/CODE_OF_CONDUCT.md": {},
     "/local/AUTHORS.md": {},

@@ -94,7 +94,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ## create_subscription
@@ -171,7 +171,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ## get_subscription
@@ -244,7 +244,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ## get_subscription_events
@@ -319,7 +319,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ## pause_subscription
@@ -394,7 +394,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ## resume_subscription
@@ -469,7 +469,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ## subscription_cancel
@@ -546,7 +546,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ## subscription_create
@@ -623,7 +623,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ## subscription_events
@@ -708,7 +708,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ## subscription_list
@@ -791,7 +791,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ## subscription_pause
@@ -868,7 +868,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ## subscription_resume
@@ -945,7 +945,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ## subscription_update
@@ -1024,7 +1024,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ## subscriptions_get
@@ -1101,7 +1101,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ## subscriptions_retry
@@ -1178,7 +1178,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ## update_subscription
@@ -1255,5 +1255,5 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 

@@ -5,6 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **allowed_payment_methods** | **Array&lt;String&gt;** | Are the payment methods available for this link | [optional] |
+| **excluded_payment_methods** | **Array&lt;String&gt;** | Payment methods excluded from the checkout. This field is only returned when excluded_payment_methods is provided in the request. | [optional] |
 | **plan_ids** | **Array&lt;String&gt;** | List of plan IDs that are available for subscription | [optional] |
 | **can_not_expire** | **Boolean** |  | [optional] |
 | **emails_sent** | **Integer** |  | [optional] |
@@ -38,6 +39,7 @@ require 'conekta'
 
 instance = Conekta::CheckoutResponse.new(
   allowed_payment_methods: [cash, card, bank_transfer, bnpl, pay_by_bank],
+  excluded_payment_methods: [cash, bank_transfer],
   plan_ids: [plan_123, plan_456],
   can_not_expire: false,
   emails_sent: 0,

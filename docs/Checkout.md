@@ -4,7 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **allowed_payment_methods** | **Array&lt;String&gt;** | Those are the payment methods that will be available for the link |  |
+| **allowed_payment_methods** | **Array&lt;String&gt;** | Those are the payment methods that will be available for the link. This field is mutually exclusive with excluded_payment_methods. | [optional] |
+| **excluded_payment_methods** | **Array&lt;String&gt;** | Payment methods to be excluded from the checkout. This field is mutually exclusive with allowed_payment_methods. | [optional] |
 | **exclude_card_networks** | **Array&lt;String&gt;** | List of card networks to exclude from the checkout. This field is only applicable for card payments. | [optional] |
 | **expires_at** | **Integer** | It is the time when the link will expire.  It is expressed in seconds since the Unix epoch. The valid range is from 5 minutes to 365 days from the creation date.  |  |
 | **monthly_installments_enabled** | **Boolean** | This flag allows you to specify if months without interest will be active. | [optional] |
@@ -27,6 +28,7 @@ require 'conekta'
 
 instance = Conekta::Checkout.new(
   allowed_payment_methods: [cash, card, bank_transfer, bnpl, pay_by_bank],
+  excluded_payment_methods: [cash, bank_transfer],
   exclude_card_networks: [visa, amex],
   expires_at: 1680397724,
   monthly_installments_enabled: true,

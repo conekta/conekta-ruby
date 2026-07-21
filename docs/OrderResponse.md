@@ -12,9 +12,9 @@
 | **created_at** | **Integer** | The time at which the object was created in seconds since the Unix epoch | [optional] |
 | **currency** | **String** | The three-letter ISO 4217 currency code. The currency of the order. | [optional] |
 | **customer_info** | [**OrderResponseCustomerInfo**](OrderResponseCustomerInfo.md) |  | [optional] |
-| **discount_lines** | [**OrderDiscountLinesResponse**](OrderDiscountLinesResponse.md) |  | [optional] |
-| **tax_lines** | [**OrderTaxLinesResponse**](OrderTaxLinesResponse.md) |  | [optional] |
-| **shipping_lines** | [**OrderShippingLinesResponse**](OrderShippingLinesResponse.md) |  | [optional] |
+| **discount_lines** | [**OrderResponseDiscountLines**](OrderResponseDiscountLines.md) |  | [optional] |
+| **tax_lines** | [**OrderResponseTaxLines**](OrderResponseTaxLines.md) |  | [optional] |
+| **shipping_lines** | [**OrderResponseShippingLines**](OrderResponseShippingLines.md) |  | [optional] |
 | **fiscal_entity** | [**OrderFiscalEntityResponse**](OrderFiscalEntityResponse.md) |  | [optional] |
 | **id** | **String** |  | [optional] |
 | **is_refundable** | **Boolean** |  | [optional] |

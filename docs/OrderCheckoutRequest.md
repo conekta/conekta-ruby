@@ -4,7 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **allowed_payment_methods** | **Array&lt;String&gt;** | Are the payment methods available for this link. For subscriptions, only &#39;card&#39; is allowed due to the recurring nature of the payments. |  |
+| **allowed_payment_methods** | **Array&lt;String&gt;** | Are the payment methods available for this link. For subscriptions, only &#39;card&#39; is allowed due to the recurring nature of the payments. This field is mutually exclusive with excluded_payment_methods. | [optional] |
+| **excluded_payment_methods** | **Array&lt;String&gt;** | Payment methods to be excluded from the checkout. This field is mutually exclusive with allowed_payment_methods. | [optional] |
 | **exclude_card_networks** | **Array&lt;String&gt;** | List of card networks to exclude from the checkout. This field is only applicable for card payments. | [optional] |
 | **plan_ids** | **Array&lt;String&gt;** | List of plan IDs that will be available for subscription. This field is required for subscription payments. | [optional] |
 | **expires_at** | **Integer** | It is the time when the link will expire.  It is expressed in seconds since the Unix epoch. The valid range is from 5 minutes to 365 days from the creation date.  | [optional] |
@@ -25,7 +26,8 @@
 require 'conekta'
 
 instance = Conekta::OrderCheckoutRequest.new(
-  allowed_payment_methods: [cash, card, bank_transfer, bnpl, pay_by_bank, google, apple],
+  allowed_payment_methods: [cash, card, bank_transfer, bnpl, pay_by_bank, apple, google],
+  excluded_payment_methods: [cash, bank_transfer],
   exclude_card_networks: [visa, amex],
   plan_ids: [plan_123, plan_456],
   expires_at: null,
