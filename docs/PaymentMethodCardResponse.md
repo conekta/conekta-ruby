@@ -15,6 +15,7 @@
 | **exp_month** | **String** |  | [optional] |
 | **exp_year** | **String** |  | [optional] |
 | **brand** | **String** |  | [optional] |
+| **issuer** | **String** | Name of the institution that issued the card | [optional] |
 | **name** | **String** |  | [optional] |
 | **default** | **Boolean** |  | [optional] |
 | **visible_on_checkout** | **Boolean** |  | [optional] |
@@ -37,6 +38,7 @@ instance = Conekta::PaymentMethodCardResponse.new(
   exp_month: 10,
   exp_year: 25,
   brand: visa,
+  issuer: santander,
   name: Fulano Perez&quot;,
   default: null,
   visible_on_checkout: null,

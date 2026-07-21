@@ -187,7 +187,8 @@ api_instance = Conekta::OrdersApi.new
 id = '6307a60c41de27127515a575' # String | Identifier of the resource
 opts = {
   accept_language: 'es', # String | Use for knowing which language to use
-  x_child_company_id: '6441b6376b60c3a638da80af' # String | In the case of a holding company, the company id of the child company to which will process the request.
+  x_child_company_id: '6441b6376b60c3a638da80af', # String | In the case of a holding company, the company id of the child company to which will process the request.
+  client: 'checkout' # String | client of the object to be retrieved
 }
 
 begin
@@ -224,6 +225,7 @@ end
 | **id** | **String** | Identifier of the resource |  |
 | **accept_language** | **String** | Use for knowing which language to use | [optional][default to &#39;es&#39;] |
 | **x_child_company_id** | **String** | In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
+| **client** | **String** | client of the object to be retrieved | [optional] |
 
 ### Return type
 
@@ -567,7 +569,7 @@ end
 
 ## update_order
 
-> <OrderResponse> update_order(id, order_update_request, opts)
+> <OrderResponse> update_order(id, order_update, opts)
 
 Update Order
 
@@ -586,14 +588,14 @@ end
 
 api_instance = Conekta::OrdersApi.new
 id = '6307a60c41de27127515a575' # String | Identifier of the resource
-order_update_request = Conekta::OrderUpdateRequest.new # OrderUpdateRequest | requested field for an order
+order_update = Conekta::OrderUpdate.new # OrderUpdate | requested field for an order
 opts = {
   accept_language: 'es' # String | Use for knowing which language to use
 }
 
 begin
   # Update Order
-  result = api_instance.update_order(id, order_update_request, opts)
+  result = api_instance.update_order(id, order_update, opts)
   p result
 rescue Conekta::ApiError => e
   puts "Error when calling OrdersApi->update_order: #{e}"
@@ -604,12 +606,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<OrderResponse>, Integer, Hash)> update_order_with_http_info(id, order_update_request, opts)
+> <Array(<OrderResponse>, Integer, Hash)> update_order_with_http_info(id, order_update, opts)
 
 ```ruby
 begin
   # Update Order
-  data, status_code, headers = api_instance.update_order_with_http_info(id, order_update_request, opts)
+  data, status_code, headers = api_instance.update_order_with_http_info(id, order_update, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <OrderResponse>
@@ -623,7 +625,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | Identifier of the resource |  |
-| **order_update_request** | [**OrderUpdateRequest**](OrderUpdateRequest.md) | requested field for an order |  |
+| **order_update** | [**OrderUpdate**](OrderUpdate.md) | requested field for an order |  |
 | **accept_language** | **String** | Use for knowing which language to use | [optional][default to &#39;es&#39;] |
 
 ### Return type

@@ -9,7 +9,7 @@
 | **object** | **String** |  |  |
 | **created_at** | **Integer** |  |  |
 | **parent_id** | **String** |  | [optional] |
-| **agreements** | [**Array&lt;PaymentMethodCashResponseAllOfAgreements&gt;**](PaymentMethodCashResponseAllOfAgreements.md) |  | [optional] |
+| **agreements** | [**Array&lt;CashAgreementsResponse&gt;**](CashAgreementsResponse.md) |  | [optional] |
 | **reference** | **String** |  | [optional] |
 | **barcode** | **String** |  | [optional] |
 | **barcode_url** | **String** | URL to the barcode image, reference is the same as barcode | [optional] |

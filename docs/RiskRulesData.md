@@ -20,7 +20,7 @@ require 'conekta'
 instance = Conekta::RiskRulesData.new(
   id: 618c3f2fdb8b8da9be376af9,
   field: email,
-  created_at: 2021-11-10T21:52:47.339Z,
+  created_at: 2021-11-10T21:52:47.339+00:00,
   value: email@example.com,
   is_global: false,
   is_test: false,

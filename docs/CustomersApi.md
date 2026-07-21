@@ -90,7 +90,7 @@ end
 
 ## create_customer_fiscal_entities
 
-> <CreateCustomerFiscalEntitiesResponse> create_customer_fiscal_entities(id, customer_fiscal_entities_request, opts)
+> <CreateCustomerFiscalEntitiesResponse> create_customer_fiscal_entities(id, fiscal_entity_request, opts)
 
 Create Fiscal Entity
 
@@ -109,7 +109,7 @@ end
 
 api_instance = Conekta::CustomersApi.new
 id = '6307a60c41de27127515a575' # String | Identifier of the resource
-customer_fiscal_entities_request = Conekta::CustomerFiscalEntitiesRequest.new({address: Conekta::CustomerAddress.new({street1: 'Nuevo Leon 254', postal_code: '06100', city: 'Ciudad de Mexico'})}) # CustomerFiscalEntitiesRequest | requested field for customer fiscal entities
+fiscal_entity_request = Conekta::FiscalEntityRequest.new({address: Conekta::FiscalEntityRequestAddress.new({street1: 'Nuevo Leon 254', postal_code: '06100', city: 'Ciudad de Mexico'})}) # FiscalEntityRequest | requested field for customer fiscal entities
 opts = {
   accept_language: 'es', # String | Use for knowing which language to use
   x_child_company_id: '6441b6376b60c3a638da80af' # String | In the case of a holding company, the company id of the child company to which will process the request.
@@ -117,7 +117,7 @@ opts = {
 
 begin
   # Create Fiscal Entity
-  result = api_instance.create_customer_fiscal_entities(id, customer_fiscal_entities_request, opts)
+  result = api_instance.create_customer_fiscal_entities(id, fiscal_entity_request, opts)
   p result
 rescue Conekta::ApiError => e
   puts "Error when calling CustomersApi->create_customer_fiscal_entities: #{e}"
@@ -128,12 +128,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<CreateCustomerFiscalEntitiesResponse>, Integer, Hash)> create_customer_fiscal_entities_with_http_info(id, customer_fiscal_entities_request, opts)
+> <Array(<CreateCustomerFiscalEntitiesResponse>, Integer, Hash)> create_customer_fiscal_entities_with_http_info(id, fiscal_entity_request, opts)
 
 ```ruby
 begin
   # Create Fiscal Entity
-  data, status_code, headers = api_instance.create_customer_fiscal_entities_with_http_info(id, customer_fiscal_entities_request, opts)
+  data, status_code, headers = api_instance.create_customer_fiscal_entities_with_http_info(id, fiscal_entity_request, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <CreateCustomerFiscalEntitiesResponse>
@@ -147,7 +147,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | Identifier of the resource |  |
-| **customer_fiscal_entities_request** | [**CustomerFiscalEntitiesRequest**](CustomerFiscalEntitiesRequest.md) | requested field for customer fiscal entities |  |
+| **fiscal_entity_request** | [**FiscalEntityRequest**](FiscalEntityRequest.md) | requested field for customer fiscal entities |  |
 | **accept_language** | **String** | Use for knowing which language to use | [optional][default to &#39;es&#39;] |
 | **x_child_company_id** | **String** | In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 
@@ -475,7 +475,7 @@ end
 
 ## update_customer_fiscal_entities
 
-> <UpdateCustomerFiscalEntitiesResponse> update_customer_fiscal_entities(id, fiscal_entities_id, customer_update_fiscal_entities_request, opts)
+> <UpdateCustomerFiscalEntitiesResponse> update_customer_fiscal_entities(id, fiscal_entities_id, update_fiscal_entity_request, opts)
 
 Update  Fiscal Entity
 
@@ -495,7 +495,7 @@ end
 api_instance = Conekta::CustomersApi.new
 id = '6307a60c41de27127515a575' # String | Identifier of the resource
 fiscal_entities_id = 'fis_ent_2tQ8HkkfbauaKP9Ho' # String | identifier
-customer_update_fiscal_entities_request = Conekta::CustomerUpdateFiscalEntitiesRequest.new # CustomerUpdateFiscalEntitiesRequest | requested field for customer update fiscal entities
+update_fiscal_entity_request = Conekta::UpdateFiscalEntityRequest.new # UpdateFiscalEntityRequest | requested field for customer update fiscal entities
 opts = {
   accept_language: 'es', # String | Use for knowing which language to use
   x_child_company_id: '6441b6376b60c3a638da80af' # String | In the case of a holding company, the company id of the child company to which will process the request.
@@ -503,7 +503,7 @@ opts = {
 
 begin
   # Update  Fiscal Entity
-  result = api_instance.update_customer_fiscal_entities(id, fiscal_entities_id, customer_update_fiscal_entities_request, opts)
+  result = api_instance.update_customer_fiscal_entities(id, fiscal_entities_id, update_fiscal_entity_request, opts)
   p result
 rescue Conekta::ApiError => e
   puts "Error when calling CustomersApi->update_customer_fiscal_entities: #{e}"
@@ -514,12 +514,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<UpdateCustomerFiscalEntitiesResponse>, Integer, Hash)> update_customer_fiscal_entities_with_http_info(id, fiscal_entities_id, customer_update_fiscal_entities_request, opts)
+> <Array(<UpdateCustomerFiscalEntitiesResponse>, Integer, Hash)> update_customer_fiscal_entities_with_http_info(id, fiscal_entities_id, update_fiscal_entity_request, opts)
 
 ```ruby
 begin
   # Update  Fiscal Entity
-  data, status_code, headers = api_instance.update_customer_fiscal_entities_with_http_info(id, fiscal_entities_id, customer_update_fiscal_entities_request, opts)
+  data, status_code, headers = api_instance.update_customer_fiscal_entities_with_http_info(id, fiscal_entities_id, update_fiscal_entity_request, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <UpdateCustomerFiscalEntitiesResponse>
@@ -534,7 +534,7 @@ end
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | Identifier of the resource |  |
 | **fiscal_entities_id** | **String** | identifier |  |
-| **customer_update_fiscal_entities_request** | [**CustomerUpdateFiscalEntitiesRequest**](CustomerUpdateFiscalEntitiesRequest.md) | requested field for customer update fiscal entities |  |
+| **update_fiscal_entity_request** | [**UpdateFiscalEntityRequest**](UpdateFiscalEntityRequest.md) | requested field for customer update fiscal entities |  |
 | **accept_language** | **String** | Use for knowing which language to use | [optional][default to &#39;es&#39;] |
 | **x_child_company_id** | **String** | In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 

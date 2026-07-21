@@ -11,7 +11,7 @@ All URIs are relative to *https://api.conekta.io*
 
 ## create_customer_shipping_contacts
 
-> <CustomerShippingContactsResponse> create_customer_shipping_contacts(id, customer_shipping_contacts, opts)
+> <CustomerShippingContactsResponse> create_customer_shipping_contacts(id, customer_shipping_contacts_request, opts)
 
 Create a shipping contacts
 
@@ -30,7 +30,7 @@ end
 
 api_instance = Conekta::ShippingContactsApi.new
 id = '6307a60c41de27127515a575' # String | Identifier of the resource
-customer_shipping_contacts = Conekta::CustomerShippingContacts.new({address: Conekta::CustomerShippingContactsAddress.new}) # CustomerShippingContacts | requested field for customer shippings contacts
+customer_shipping_contacts_request = Conekta::CustomerShippingContactsRequest.new({address: Conekta::CustomerShippingContactsRequestAddress.new}) # CustomerShippingContactsRequest | requested field for customer shippings contacts
 opts = {
   accept_language: 'es', # String | Use for knowing which language to use
   x_child_company_id: '6441b6376b60c3a638da80af' # String | In the case of a holding company, the company id of the child company to which will process the request.
@@ -38,7 +38,7 @@ opts = {
 
 begin
   # Create a shipping contacts
-  result = api_instance.create_customer_shipping_contacts(id, customer_shipping_contacts, opts)
+  result = api_instance.create_customer_shipping_contacts(id, customer_shipping_contacts_request, opts)
   p result
 rescue Conekta::ApiError => e
   puts "Error when calling ShippingContactsApi->create_customer_shipping_contacts: #{e}"
@@ -49,12 +49,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<CustomerShippingContactsResponse>, Integer, Hash)> create_customer_shipping_contacts_with_http_info(id, customer_shipping_contacts, opts)
+> <Array(<CustomerShippingContactsResponse>, Integer, Hash)> create_customer_shipping_contacts_with_http_info(id, customer_shipping_contacts_request, opts)
 
 ```ruby
 begin
   # Create a shipping contacts
-  data, status_code, headers = api_instance.create_customer_shipping_contacts_with_http_info(id, customer_shipping_contacts, opts)
+  data, status_code, headers = api_instance.create_customer_shipping_contacts_with_http_info(id, customer_shipping_contacts_request, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <CustomerShippingContactsResponse>
@@ -68,7 +68,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | Identifier of the resource |  |
-| **customer_shipping_contacts** | [**CustomerShippingContacts**](CustomerShippingContacts.md) | requested field for customer shippings contacts |  |
+| **customer_shipping_contacts_request** | [**CustomerShippingContactsRequest**](CustomerShippingContactsRequest.md) | requested field for customer shippings contacts |  |
 | **accept_language** | **String** | Use for knowing which language to use | [optional][default to &#39;es&#39;] |
 | **x_child_company_id** | **String** | In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 
@@ -165,7 +165,7 @@ end
 
 ## update_customer_shipping_contacts
 
-> <CustomerShippingContactsResponse> update_customer_shipping_contacts(id, shipping_contacts_id, customer_update_shipping_contacts, opts)
+> <CustomerShippingContactsResponse> update_customer_shipping_contacts(id, shipping_contacts_id, customer_update_shipping_contacts_request, opts)
 
 Update shipping contacts
 
@@ -185,7 +185,7 @@ end
 api_instance = Conekta::ShippingContactsApi.new
 id = '6307a60c41de27127515a575' # String | Identifier of the resource
 shipping_contacts_id = '6307a60c41de27127515a575' # String | identifier
-customer_update_shipping_contacts = Conekta::CustomerUpdateShippingContacts.new # CustomerUpdateShippingContacts | requested field for customer update shippings contacts
+customer_update_shipping_contacts_request = Conekta::CustomerUpdateShippingContactsRequest.new # CustomerUpdateShippingContactsRequest | requested field for customer update shippings contacts
 opts = {
   accept_language: 'es', # String | Use for knowing which language to use
   x_child_company_id: '6441b6376b60c3a638da80af' # String | In the case of a holding company, the company id of the child company to which will process the request.
@@ -193,7 +193,7 @@ opts = {
 
 begin
   # Update shipping contacts
-  result = api_instance.update_customer_shipping_contacts(id, shipping_contacts_id, customer_update_shipping_contacts, opts)
+  result = api_instance.update_customer_shipping_contacts(id, shipping_contacts_id, customer_update_shipping_contacts_request, opts)
   p result
 rescue Conekta::ApiError => e
   puts "Error when calling ShippingContactsApi->update_customer_shipping_contacts: #{e}"
@@ -204,12 +204,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<CustomerShippingContactsResponse>, Integer, Hash)> update_customer_shipping_contacts_with_http_info(id, shipping_contacts_id, customer_update_shipping_contacts, opts)
+> <Array(<CustomerShippingContactsResponse>, Integer, Hash)> update_customer_shipping_contacts_with_http_info(id, shipping_contacts_id, customer_update_shipping_contacts_request, opts)
 
 ```ruby
 begin
   # Update shipping contacts
-  data, status_code, headers = api_instance.update_customer_shipping_contacts_with_http_info(id, shipping_contacts_id, customer_update_shipping_contacts, opts)
+  data, status_code, headers = api_instance.update_customer_shipping_contacts_with_http_info(id, shipping_contacts_id, customer_update_shipping_contacts_request, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <CustomerShippingContactsResponse>
@@ -224,7 +224,7 @@ end
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | Identifier of the resource |  |
 | **shipping_contacts_id** | **String** | identifier |  |
-| **customer_update_shipping_contacts** | [**CustomerUpdateShippingContacts**](CustomerUpdateShippingContacts.md) | requested field for customer update shippings contacts |  |
+| **customer_update_shipping_contacts_request** | [**CustomerUpdateShippingContactsRequest**](CustomerUpdateShippingContactsRequest.md) | requested field for customer update shippings contacts |  |
 | **accept_language** | **String** | Use for knowing which language to use | [optional][default to &#39;es&#39;] |
 | **x_child_company_id** | **String** | In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 

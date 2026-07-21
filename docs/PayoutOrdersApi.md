@@ -85,7 +85,7 @@ end
 
 ## create_payout_order
 
-> <PayoutOrderResponse> create_payout_order(payout_order, opts)
+> <PayoutOrderResponse> create_payout_order(payout_order_request, opts)
 
 Create payout order
 
@@ -103,14 +103,14 @@ Conekta.configure do |config|
 end
 
 api_instance = Conekta::PayoutOrdersApi.new
-payout_order = Conekta::PayoutOrder.new({allowed_payout_methods: ["cashout"], amount: 100, currency: 'MXN', customer_info: Conekta::CustomerInfoJustCustomerId.new({customer_id: 'cus_23874283647'}), payout: Conekta::Payout.new({payout_method: Conekta::PayoutMethod.new({type: 'cashout'})}), reason: 'Payout order for the customer'}) # PayoutOrder | requested field for payout order
+payout_order_request = Conekta::PayoutOrderRequest.new({allowed_payout_methods: [cashout], amount: 100, currency: 'MXN', customer_info: Conekta::PayoutOrderRequestCustomerInfo.new({customer_id: 'cus_23874283647'}), expires_at: 1700000000, payout: Conekta::Payout.new({payout_method: Conekta::PayoutMethod.new({type: 'cashout'})}), reason: 'Payout order for the customer'}) # PayoutOrderRequest | requested field for payout order
 opts = {
   accept_language: 'es' # String | Use for knowing which language to use
 }
 
 begin
   # Create payout order
-  result = api_instance.create_payout_order(payout_order, opts)
+  result = api_instance.create_payout_order(payout_order_request, opts)
   p result
 rescue Conekta::ApiError => e
   puts "Error when calling PayoutOrdersApi->create_payout_order: #{e}"
@@ -121,12 +121,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<PayoutOrderResponse>, Integer, Hash)> create_payout_order_with_http_info(payout_order, opts)
+> <Array(<PayoutOrderResponse>, Integer, Hash)> create_payout_order_with_http_info(payout_order_request, opts)
 
 ```ruby
 begin
   # Create payout order
-  data, status_code, headers = api_instance.create_payout_order_with_http_info(payout_order, opts)
+  data, status_code, headers = api_instance.create_payout_order_with_http_info(payout_order_request, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <PayoutOrderResponse>
@@ -139,7 +139,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **payout_order** | [**PayoutOrder**](PayoutOrder.md) | requested field for payout order |  |
+| **payout_order_request** | [**PayoutOrderRequest**](PayoutOrderRequest.md) | requested field for payout order |  |
 | **accept_language** | **String** | Use for knowing which language to use | [optional][default to &#39;es&#39;] |
 
 ### Return type

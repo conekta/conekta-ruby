@@ -14,11 +14,11 @@
 | **default_shipping_contact_id** | **String** | It is a parameter that allows to identify in the response, the Conekta ID of the shipping address (shipping_contact) | [optional] |
 | **corporate** | **Boolean** | It is a value that allows identifying if the email is corporate or not. | [optional][default to false] |
 | **custom_reference** | **String** | It is an undefined value. | [optional] |
-| **fiscal_entities** | [**Array&lt;CustomerFiscalEntitiesRequest&gt;**](CustomerFiscalEntitiesRequest.md) |  | [optional] |
+| **fiscal_entities** | [**Array&lt;FiscalEntityRequest&gt;**](FiscalEntityRequest.md) |  | [optional] |
 | **metadata** | **Hash&lt;String, Object&gt;** |  | [optional] |
 | **national_id** | **String** | It is a parameter that allows to identify the national identification number of the client. | [optional] |
 | **payment_sources** | [**Array&lt;CustomerPaymentMethodsRequest&gt;**](CustomerPaymentMethodsRequest.md) | Contains details of the payment methods that the customer has active or has used in Conekta | [optional] |
-| **shipping_contacts** | [**Array&lt;CustomerShippingContacts&gt;**](CustomerShippingContacts.md) | Contains the detail of the shipping addresses that the client has active or has used in Conekta | [optional] |
+| **shipping_contacts** | [**Array&lt;CustomerShippingContactsRequest&gt;**](CustomerShippingContactsRequest.md) | Contains the detail of the shipping addresses that the client has active or has used in Conekta | [optional] |
 | **subscription** | [**SubscriptionRequest**](SubscriptionRequest.md) |  | [optional] |
 
 ## Example

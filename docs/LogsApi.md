@@ -10,7 +10,7 @@ All URIs are relative to *https://api.conekta.io*
 
 ## get_log_by_id
 
-> <LogResponse> get_log_by_id(id, opts)
+> <LogResponseForRequest> get_log_by_id(id, opts)
 
 Get Log
 
@@ -47,7 +47,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<LogResponse>, Integer, Hash)> get_log_by_id_with_http_info(id, opts)
+> <Array(<LogResponseForRequest>, Integer, Hash)> get_log_by_id_with_http_info(id, opts)
 
 ```ruby
 begin
@@ -55,7 +55,7 @@ begin
   data, status_code, headers = api_instance.get_log_by_id_with_http_info(id, opts)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <LogResponse>
+  p data # => <LogResponseForRequest>
 rescue Conekta::ApiError => e
   puts "Error when calling LogsApi->get_log_by_id_with_http_info: #{e}"
 end
@@ -71,7 +71,7 @@ end
 
 ### Return type
 
-[**LogResponse**](LogResponse.md)
+[**LogResponseForRequest**](LogResponseForRequest.md)
 
 ### Authorization
 
@@ -85,7 +85,7 @@ end
 
 ## get_logs
 
-> <LogsResponse> get_logs(opts)
+> <LogsResponseForRequest> get_logs(opts)
 
 Get List Of Logs
 
@@ -125,7 +125,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<LogsResponse>, Integer, Hash)> get_logs_with_http_info(opts)
+> <Array(<LogsResponseForRequest>, Integer, Hash)> get_logs_with_http_info(opts)
 
 ```ruby
 begin
@@ -133,7 +133,7 @@ begin
   data, status_code, headers = api_instance.get_logs_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <LogsResponse>
+  p data # => <LogsResponseForRequest>
 rescue Conekta::ApiError => e
   puts "Error when calling LogsApi->get_logs_with_http_info: #{e}"
 end
@@ -152,7 +152,7 @@ end
 
 ### Return type
 
-[**LogsResponse**](LogsResponse.md)
+[**LogsResponseForRequest**](LogsResponseForRequest.md)
 
 ### Authorization
 

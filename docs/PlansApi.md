@@ -254,7 +254,9 @@ opts = {
   limit: 56, # Integer | The numbers of items to return, the maximum value is 250
   search: 'search_example', # String | General order search, e.g. by mail, reference etc.
   _next: '_next_example', # String | next page
-  previous: 'previous_example' # String | previous page
+  previous: 'previous_example', # String | previous page
+  currency: 'MXN', # String | currency of the object to be retrieved
+  frequency: 1 # Integer | frequency of the object to be retrieved
 }
 
 begin
@@ -294,6 +296,8 @@ end
 | **search** | **String** | General order search, e.g. by mail, reference etc. | [optional] |
 | **_next** | **String** | next page | [optional] |
 | **previous** | **String** | previous page | [optional] |
+| **currency** | **String** | currency of the object to be retrieved | [optional] |
+| **frequency** | **Integer** | frequency of the object to be retrieved | [optional] |
 
 ### Return type
 
@@ -311,7 +315,7 @@ end
 
 ## update_plan
 
-> <PlanResponse> update_plan(id, plan_update_request, opts)
+> <PlanResponse> update_plan(id, update_plan, opts)
 
 Update Plan
 
@@ -328,7 +332,7 @@ end
 
 api_instance = Conekta::PlansApi.new
 id = '6307a60c41de27127515a575' # String | Identifier of the resource
-plan_update_request = Conekta::PlanUpdateRequest.new # PlanUpdateRequest | requested field for plan
+update_plan = Conekta::UpdatePlan.new # UpdatePlan | requested field for plan
 opts = {
   accept_language: 'es', # String | Use for knowing which language to use
   x_child_company_id: '6441b6376b60c3a638da80af' # String | In the case of a holding company, the company id of the child company to which will process the request.
@@ -336,7 +340,7 @@ opts = {
 
 begin
   # Update Plan
-  result = api_instance.update_plan(id, plan_update_request, opts)
+  result = api_instance.update_plan(id, update_plan, opts)
   p result
 rescue Conekta::ApiError => e
   puts "Error when calling PlansApi->update_plan: #{e}"
@@ -347,12 +351,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<PlanResponse>, Integer, Hash)> update_plan_with_http_info(id, plan_update_request, opts)
+> <Array(<PlanResponse>, Integer, Hash)> update_plan_with_http_info(id, update_plan, opts)
 
 ```ruby
 begin
   # Update Plan
-  data, status_code, headers = api_instance.update_plan_with_http_info(id, plan_update_request, opts)
+  data, status_code, headers = api_instance.update_plan_with_http_info(id, update_plan, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <PlanResponse>
@@ -366,7 +370,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | Identifier of the resource |  |
-| **plan_update_request** | [**PlanUpdateRequest**](PlanUpdateRequest.md) | requested field for plan |  |
+| **update_plan** | [**UpdatePlan**](UpdatePlan.md) | requested field for plan |  |
 | **accept_language** | **String** | Use for knowing which language to use | [optional][default to &#39;es&#39;] |
 | **x_child_company_id** | **String** | In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 

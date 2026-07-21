@@ -15,7 +15,7 @@ Conekta::OrderRequestCustomerInfo.openapi_one_of
 # =>
 # [
 #   :'CustomerInfo',
-#   :'CustomerInfoJustCustomerId'
+#   :'CustomerInfoCustomerId'
 # ]
 ```
 
@@ -44,6 +44,6 @@ Conekta::OrderRequestCustomerInfo.build(data_that_doesnt_match)
 #### Return type
 
 - `CustomerInfo`
-- `CustomerInfoJustCustomerId`
+- `CustomerInfoCustomerId`
 - `nil` (if no type matches)
 

@@ -9,11 +9,11 @@ All URIs are relative to *https://api.conekta.io*
 
 ## create_token
 
-> <TokenResponse> create_token(token, opts)
+> <TokenResponse> create_token(token_request, opts)
 
 Create Token
 
-Generate a payment token, to associate it with a card 
+Generate a payment token, to associate it with a card, Endpoint could be use directly only for PCI compliance account 
 
 ### Examples
 
@@ -27,14 +27,14 @@ Conekta.configure do |config|
 end
 
 api_instance = Conekta::TokensApi.new
-token = Conekta::Token.new # Token | requested field for token
+token_request = Conekta::TokenRequest.new # TokenRequest | requested field for token
 opts = {
   accept_language: 'es' # String | Use for knowing which language to use
 }
 
 begin
   # Create Token
-  result = api_instance.create_token(token, opts)
+  result = api_instance.create_token(token_request, opts)
   p result
 rescue Conekta::ApiError => e
   puts "Error when calling TokensApi->create_token: #{e}"
@@ -45,12 +45,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<TokenResponse>, Integer, Hash)> create_token_with_http_info(token, opts)
+> <Array(<TokenResponse>, Integer, Hash)> create_token_with_http_info(token_request, opts)
 
 ```ruby
 begin
   # Create Token
-  data, status_code, headers = api_instance.create_token_with_http_info(token, opts)
+  data, status_code, headers = api_instance.create_token_with_http_info(token_request, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <TokenResponse>
@@ -63,7 +63,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **token** | [**Token**](Token.md) | requested field for token |  |
+| **token_request** | [**TokenRequest**](TokenRequest.md) | requested field for token |  |
 | **accept_language** | **String** | Use for knowing which language to use | [optional][default to &#39;es&#39;] |
 
 ### Return type
