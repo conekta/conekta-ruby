@@ -86,7 +86,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ## orders_create_charge
@@ -163,7 +163,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ## orders_create_charges
@@ -240,7 +240,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ## update_charge
@@ -315,5 +315,5 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 

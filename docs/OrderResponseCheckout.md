@@ -4,7 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **allowed_payment_methods** | **Array&lt;String&gt;** | Are the payment methods available for this link |  |
+| **allowed_payment_methods** | **Array&lt;String&gt;** | Are the payment methods available for this link | [optional] |
+| **excluded_payment_methods** | **Array&lt;String&gt;** | Payment methods excluded from the checkout. This field is only returned when excluded_payment_methods is provided in the request. | [optional] |
 | **can_not_expire** | **Boolean** |  | [optional] |
 | **emails_sent** | **Integer** |  | [optional] |
 | **exclude_card_networks** | **Array&lt;String&gt;** |  | [optional] |
@@ -14,7 +15,7 @@
 | **force_save_card** | **Boolean** | Indicates whether the card used for the payment should be saved for future purchases. This field is only applicable for card payments. | [optional] |
 | **id** | **String** |  |  |
 | **is_redirect_on_failure** | **Boolean** |  | [optional] |
-| **livemode** | **Boolean** |  | [optional] |
+| **livemode** | **Boolean** |  |  |
 | **max_failed_retries** | **Integer** | Number of retries allowed before the checkout is marked as failed | [optional] |
 | **metadata** | **Hash&lt;String, Object&gt;** |  | [optional] |
 | **monthly_installments_enabled** | **Boolean** |  | [optional] |
@@ -41,6 +42,7 @@ require 'conekta'
 
 instance = Conekta::OrderResponseCheckout.new(
   allowed_payment_methods: [cash, card, bank_transfer, bnpl, pay_by_bank, apple, google],
+  excluded_payment_methods: [cash, bank_transfer],
   can_not_expire: false,
   emails_sent: 0,
   exclude_card_networks: [visa, amex],

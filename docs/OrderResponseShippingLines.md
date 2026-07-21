@@ -1,4 +1,4 @@
-# Conekta::OrderDiscountLinesResponse
+# Conekta::OrderResponseShippingLines
 
 ## Properties
 
@@ -8,14 +8,14 @@
 | **object** | **String** | Object type, in this case is list |  |
 | **next_page_url** | **String** | URL of the next page. | [optional] |
 | **previous_page_url** | **String** | Url of the previous page. | [optional] |
-| **data** | [**Array&lt;DiscountLinesDataResponse&gt;**](DiscountLinesDataResponse.md) |  | [optional] |
+| **data** | [**Array&lt;ShippingLinesDataResponse&gt;**](ShippingLinesDataResponse.md) |  | [optional] |
 
 ## Example
 
 ```ruby
 require 'conekta'
 
-instance = Conekta::OrderDiscountLinesResponse.new(
+instance = Conekta::OrderResponseShippingLines.new(
   has_more: false,
   object: list,
   next_page_url: https://api.conekta.io/resources?limit&#x3D;10&amp;next&#x3D;chrg_1,

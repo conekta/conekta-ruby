@@ -1,4 +1,4 @@
-# Conekta::OrderTaxLinesResponse
+# Conekta::OrderResponseTaxLines
 
 ## Properties
 
@@ -15,7 +15,7 @@
 ```ruby
 require 'conekta'
 
-instance = Conekta::OrderTaxLinesResponse.new(
+instance = Conekta::OrderResponseTaxLines.new(
   has_more: false,
   object: list,
   next_page_url: https://api.conekta.io/resources?limit&#x3D;10&amp;next&#x3D;chrg_1,
